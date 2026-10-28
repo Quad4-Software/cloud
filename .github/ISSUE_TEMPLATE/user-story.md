@@ -36,4 +36,4 @@ assignees: ''
 - Non-functional requirements
   - [ ] No sonar cloud issues
 - Configuration changes
-  - [ ] The next branch of the OpenCloud charts is compatible
+  - [ ] The next branch of the Quad4 Cloud charts is compatible

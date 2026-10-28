@@ -12,39 +12,39 @@ ginkgo = "latest"
 
 [tasks.build]
 description = "build"
-run = "make -C opencloud build"
+run = "make -C quad4 build"
 
 [tasks."build:debug"]
 description = "build with debug symbols"
-run = "make -C opencloud build-debug"
+run = "make -C quad4 build-debug"
 
 [tasks."docker:build"]
-description = "docker image opencloudeu/opencloud:dev"
-run = "make -C opencloud dev-docker"
+description = "docker image quad4-software/quad4:dev"
+run = "make -C quad4 dev-docker"
 
 [tasks."docker:build:multiarch"]
 description = "docker image for amd64 + arm64"
 depends = ["gen"]
-run = "make -C opencloud dev-docker-multiarch"
+run = "make -C quad4 dev-docker-multiarch"
 
 [tasks."docker:build:debug"]
 description = "docker image with delve"
-run = "make -C opencloud debug-docker"
+run = "make -C quad4 debug-docker"
 
 [tasks.serve]
 description = "start the server"
 depends = ["build"]
-run = "opencloud/bin/opencloud server"
+run = "quad4/bin/quad4 server"
 
 [tasks."serve:init"]
 description = "create the local config"
 depends = ["build"]
-run = "opencloud/bin/opencloud init"
+run = "quad4/bin/quad4 init"
 
 [tasks."serve:debug"]
 description = "start the server under delve"
 depends = ["build:debug"]
-run = "dlv exec opencloud/bin/opencloud-debug -- server"
+run = "dlv exec quad4/bin/quad4-debug -- server"
 
 [tasks.test]
 description = "go test"

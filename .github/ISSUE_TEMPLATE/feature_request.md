@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for improving OpenCloud
+about: Suggest an idea for improving Quad4 Cloud
 title: ''
 labels: Category:Feature, Topic:needs-triage
 assignees: ''

@@ -1,0 +1,52 @@
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions: {}
+
+jobs:
+  release:
+    name: create release
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43 # v2.22.3
+        with:
+          egress-policy: audit
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          cat > notes.md <<EOF
+          # Quad4 Cloud ${TAG}
+
+          Container image (multi-arch, linux/amd64 and linux/arm64):
+
+          \`\`\`
+          podman pull ghcr.io/quad4-software/cloud:${TAG}
+          podman run -d --name quad4-cloud \\
+            -p 9200:9200 \\
+            -v quad4-config:/etc/quad4 \\
+            -v quad4-data:/var/lib/quad4 \\
+            ghcr.io/quad4-software/cloud:${TAG}
+          \`\`\`
+
+          The image is signed with cosign keyless signing:
+
+          \`\`\`
+          cosign verify ghcr.io/quad4-software/cloud:${TAG} \\
+            --certificate-identity-regexp 'https://github.com/Quad4-Software/cloud' \\
+            --certificate-oidc-issuer https://token.actions.githubusercontent.com
+          \`\`\`
+
+          See https://github.com/Quad4-Software/cloud/blob/master/README.md
+          for configuration options including OIDC and S3 storage.
+          EOF
+          gh release create "$TAG" --title "$TAG" --notes-file notes.md
