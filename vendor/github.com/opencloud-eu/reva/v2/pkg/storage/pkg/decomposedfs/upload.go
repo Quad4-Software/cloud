@@ -384,7 +384,7 @@ func (fs *Decomposedfs) GetUpload(ctx context.Context, id string) (tusd.Upload, 
 // executant. The session is reconstructed from the given tus FileInfo rather than the session
 // store, so it still resolves after a synchronous upload has cleaned up its session. It returns
 // the resource info and the executant context, so the caller can derive identity dependent
-// values such as the WebDAV permissions. https://github.com/Quad4-Software/cloud/issues/2409
+// values such as the WebDAV permissions. https://github.com/opencloud-eu/opencloud/issues/2409
 func (fs *Decomposedfs) ResolveUpload(ctx context.Context, info tusd.FileInfo) (*provider.ResourceInfo, context.Context, error) {
 	session := fs.sessionStore.SessionFromInfo(info)
 	ctx = session.Context(ctx)
