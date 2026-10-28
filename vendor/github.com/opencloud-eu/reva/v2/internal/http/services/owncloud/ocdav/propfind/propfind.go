@@ -1796,7 +1796,7 @@ func downloadURL(ctx context.Context, log zerolog.Logger, isPublic bool, path st
 	// Encode the path with net.EncodePath, the same encoder the resource href
 	// uses, so a filename with a literal "%" or "#" round-trips. url.JoinPath
 	// treats a literal "%" as an escape, so such names 404.
-	// See https://github.com/Quad4-Software/cloud/issues/2852.
+	// See https://github.com/opencloud-eu/opencloud/issues/2852.
 	encodedPath := net.EncodePath(path)
 
 	switch {
