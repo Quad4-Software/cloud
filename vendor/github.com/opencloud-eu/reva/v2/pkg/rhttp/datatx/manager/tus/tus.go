@@ -109,7 +109,7 @@ func (m *manager) Handler(fs storage.FS) (http.Handler, error) {
 		NotifyCompleteUploads: true,
 		Logger:                slog.New(tusdLogger{log: m.log}),
 		// Add the finalized resource's etag and permissions to the last chunk's response
-		// (see preFinishResponseCallback). https://github.com/Quad4-Software/cloud/issues/2409
+		// (see preFinishResponseCallback). https://github.com/opencloud-eu/opencloud/issues/2409
 		PreFinishResponseCallback: m.preFinishResponseCallback(fs),
 	}
 
@@ -217,7 +217,7 @@ func (m *manager) Handler(fs storage.FS) (http.Handler, error) {
 // creation-with-upload path. The storage driver resolves the resource as the upload's executant
 // (the data path's transfer token carries no user identity), so this layer does not reconstruct
 // the user. It is best effort: it logs any lookup failure and still completes the upload (the
-// client falls back to a PROPFIND). https://github.com/Quad4-Software/cloud/issues/2409
+// client falls back to a PROPFIND). https://github.com/opencloud-eu/opencloud/issues/2409
 func (m *manager) preFinishResponseCallback(fs storage.FS) func(tusd.HookEvent) (tusd.HTTPResponse, error) {
 	resolver, ok := fs.(storage.UploadSessionResolver)
 	return func(hook tusd.HookEvent) (tusd.HTTPResponse, error) {
