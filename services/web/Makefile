@@ -43,6 +43,8 @@ download-assets:
 	rm -rf assets/core
 	mkdir -p assets/core
 	curl --fail -slL -o- https://github.com/opencloud-eu/web/releases/download/$(WEB_ASSETS_VERSION)/web.tar.gz | tar xzf - -C assets/core/
+	sed -i 's/OpenCloud/Quad4 Cloud/g; s/opencloud/quad4/g' assets/core/index.html assets/core/manifest.json
+	cp assets/themes/quad4/assets/icon-512.png assets/core/img/quad4-icon.png
 
 .PHONY: ci-node-save-licenses
 ci-node-save-licenses:
