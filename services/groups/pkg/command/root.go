@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/groups/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/groups/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -23,11 +23,11 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 	}
 }
 
-// Execute is the entry point for the opencloud group command.
+// Execute is the entry point for the quad4 group command.
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "group",
-		Short: "Provide groups for OpenCloud",
+		Short: "Provide groups for Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

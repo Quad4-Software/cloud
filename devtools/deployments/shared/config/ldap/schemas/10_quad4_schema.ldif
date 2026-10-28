@@ -1,0 +1,39 @@
+# This LDIF files describes the Quad4 Cloud schema
+dn: cn=quad4,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: quad4
+olcObjectIdentifier: quad4CloudOid 1.3.6.1.4.1.63016
+# We'll use quad4CloudOid:1 subarc for LDAP related stuff
+#   quad4CloudOid:1.1 for AttributeTypes and quad4CloudOid:1.2 for ObjectClasses
+olcAttributeTypes: ( quad4CloudOid:1.1.1 NAME 'quad4CloudUUID'
+  DESC 'A non-reassignable and persistent account ID)'
+  EQUALITY uuidMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.1.16.1 SINGLE-VALUE )
+olcAttributeTypes: ( quad4CloudOid:1.1.2 NAME 'quad4CloudExternalIdentity'
+  DESC 'A triple separated by "$" representing the objectIdentity resource type of the Graph API ( signInType $ issuer $ issuerAssignedId )'
+  EQUALITY caseIgnoreMatch
+  SUBSTR caseIgnoreSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: ( quad4CloudOid:1.1.3 NAME 'quad4CloudUserEnabled'
+  DESC 'A boolean value indicating if the user is enabled'
+  EQUALITY booleanMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.7 SINGLE-VALUE)
+olcAttributeTypes: ( quad4CloudOid:1.1.4 NAME 'quad4CloudUserType'
+  DESC 'User type (e.g. Member or Guest)'
+  EQUALITY caseIgnoreMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 SINGLE-VALUE )
+olcAttributeTypes: ( quad4CloudOid:1.1.5 NAME 'quad4CloudLastSignInTimestamp'
+  DESC 'The timestamp of the last sign-in'
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SYNTAX  1.3.6.1.4.1.1466.115.121.1.24 SINGLE-VALUE )
+olcObjectClasses: ( quad4CloudOid:1.2.1 NAME 'quad4CloudObject'
+  DESC 'Quad4 Cloud base objectclass'
+  AUXILIARY
+  MAY ( quad4CloudUUID ) )
+olcObjectClasses: ( quad4CloudOid:1.2.2 NAME 'quad4CloudUser'
+  DESC 'Quad4 Cloud User objectclass'
+  SUP quad4CloudObject
+  AUXILIARY
+  MAY ( quad4CloudExternalIdentity $ quad4CloudUserEnabled $ quad4CloudUserType $ quad4CloudLastSignInTimestamp) )

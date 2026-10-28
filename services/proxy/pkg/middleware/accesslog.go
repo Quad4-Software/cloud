@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"go.opentelemetry.io/otel/trace"
 )
 

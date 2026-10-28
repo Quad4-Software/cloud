@@ -1,23 +1,23 @@
 # Development/Test Deployment for a multi-tenacy setup
 
 The docker compose files in this directory are derived from the
-opencloud-compose project and can be used to deploy a Development or Testing
-environment for a multi-tenancy setup of OpenCloud. It consists of the
+quad4-compose project and can be used to deploy a Development or Testing
+environment for a multi-tenancy setup of Quad4 Cloud. It consists of the
 following services:
 
-* `provisioning`: The OpenCloud graph service deployed in a standalone mode. It
+* `provisioning`: The Quad4 Cloud graph service deployed in a standalone mode. It
   is configured to provide the libregraph education API for managing tenants
   and users. The `ldap-server`service (see below) is used to store the tenants
   and users.
 * `ldap-server`: An OpenLDAP server that is used by the provisioning service to
-  store tenants and users. Used by the OpenCloud services as the user directory
+  store tenants and users. Used by the Quad4 Cloud services as the user directory
   (for looking up users and searching for sharees).
 * `keycloak`: The OpenID Connect Provider used for authenticating users. The
   pre-loaded realm is configured to add `tenantid` claim into the identity and
   access tokens. It's also currently consuming user from the `ldap-server`
   (this federation will likely go away in the future and is optional for future
   configurations).
-* `opencloud`: The OpenCloud configured so that is hides users from different
+* `quad4`: The Quad4 Cloud configured so that is hides users from different
   tenants from each other.
 
 To deploy the setup, run:

@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"sort"
 
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 )
 
@@ -21,7 +21,7 @@ var (
 )
 
 const (
-	SelectorCookieName = "opencloud-selector"
+	SelectorCookieName = "quad4-selector"
 )
 
 // Selector is a function which selects a proxy-policy based on the request.
@@ -99,7 +99,7 @@ func LoadSelector(cfg *config.PolicySelector) (Selector, error) {
 // Configuration:
 //
 //	"policy_selector": {
-//	   "static": {"policy" : "opencloud"}
+//	   "static": {"policy" : "quad4"}
 //	 },
 func NewStaticSelector(cfg *config.StaticSelectorConf) Selector {
 	return func(r *http.Request) (s string, err error) {
@@ -107,12 +107,12 @@ func NewStaticSelector(cfg *config.StaticSelectorConf) Selector {
 	}
 }
 
-// NewClaimsSelector selects the policy based on the "opencloud.routing.policy" claim
+// NewClaimsSelector selects the policy based on the "quad4.routing.policy" claim
 // The policy for corner cases is configurable:
 //
 //	"policy_selector": {
 //	   "migration": {
-//	     "default_policy" : "opencloud",
+//	     "default_policy" : "quad4",
 //	     "unauthenticated_policy": "oc10"
 //	   }
 //	 },
@@ -132,7 +132,7 @@ func NewClaimsSelector(cfg *config.ClaimsSelectorConf) Selector {
 
 		// first, try to route by selector
 		if claims := oidc.FromContext(r.Context()); claims != nil {
-			if p, ok := claims[oidc.OpenCloudRoutingPolicy].(string); ok && p != "" {
+			if p, ok := claims[oidc.Quad4CloudRoutingPolicy].(string); ok && p != "" {
 				// TODO check we know the routing policy?
 				return p, nil
 			}
@@ -160,11 +160,11 @@ func NewClaimsSelector(cfg *config.ClaimsSelectorConf) Selector {
 //	"policy_selector": {
 //	   "regex": {
 //	     "matches_policies": [
-//	       {"priority": 10, "property": "mail", "match": "mary@example.org", "policy": "opencloud"},
+//	       {"priority": 10, "property": "mail", "match": "mary@example.org", "policy": "quad4"},
 //	       {"priority": 20, "property": "mail", "match": "[^@]+@example.org", "policy": "oc10"},
-//	       {"priority": 30, "property": "username", "match": "(dennis|feynman)", "policy": "opencloud"},
+//	       {"priority": 30, "property": "username", "match": "(dennis|feynman)", "policy": "quad4"},
 //	       {"priority": 40, "property": "username", "match": ".+", "policy": "oc10"},
-//	       {"priority": 50, "property": "id", "match": "b1f74ec4-dd7e-11ef-a543-03775734d0f7", "policy": "opencloud"},
+//	       {"priority": 50, "property": "id", "match": "b1f74ec4-dd7e-11ef-a543-03775734d0f7", "policy": "quad4"},
 //	       {"priority": 60, "property": "id", "match": "056fc874-dd7f-11ef-ba84-af6fca4b7289", "policy": "oc10"}
 //	     ],
 //	     "unauthenticated_policy": "oc10"

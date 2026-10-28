@@ -8,7 +8,7 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
 )
 
 const (
@@ -23,7 +23,7 @@ func (g Graph) setDriveItemsThumbnails(r *http.Request, items []libregraph.Drive
 	}
 	for i := range items {
 		if i < len(infos) {
-			setDriveItemThumbnails(&items[i], infos[i], g.config.Commons.OpenCloudURL, g.sourceTypes)
+			setDriveItemThumbnails(&items[i], infos[i], g.config.Commons.Quad4CloudURL, g.sourceTypes)
 		}
 	}
 }

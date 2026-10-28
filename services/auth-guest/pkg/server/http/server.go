@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package http
@@ -8,10 +8,10 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	chimiddleware "github.com/go-chi/chi/v5/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/cors"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	ohttp "github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/cors"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	ohttp "github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/version"
 	"go-micro.dev/v4"
 )
 

@@ -8,7 +8,7 @@ import (
 	cs3rpc "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 func TestFromCS3Status(t *testing.T) {

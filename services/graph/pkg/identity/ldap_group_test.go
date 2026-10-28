@@ -8,7 +8,7 @@ import (
 
 	"github.com/CiscoM31/godata"
 	"github.com/go-ldap/ldap/v3"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )

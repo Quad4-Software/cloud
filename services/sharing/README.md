@@ -1,6 +1,6 @@
 # Sharing
 
-The `sharing` service provides the CS3 Sharing API for OpenCloud. It manages user shares and public link shares, implementing the core sharing functionality.
+The `sharing` service provides the CS3 Sharing API for Quad4 Cloud. It manages user shares and public link shares, implementing the core sharing functionality.
 
 ## Overview
 
@@ -26,7 +26,7 @@ The service supports different types of shares:
 - **User shares** - Share resources with specific users
 - **Group shares** - Share resources with groups
 - **Public link shares** - Create public URLs for sharing
-- **Federated shares** - Share with users on other OpenCloud instances (via `ocm` service)
+- **Federated shares** - Share with users on other Quad4 Cloud instances (via `ocm` service)
 
 ## Configuration
 

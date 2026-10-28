@@ -5,8 +5,8 @@ package mimetype
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/kql"
 )
 
 // field is the real index field a mediatype restriction targets.

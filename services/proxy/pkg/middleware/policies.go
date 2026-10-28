@@ -20,9 +20,9 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	pMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/policies/v0"
-	pService "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/net"
+	pMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/policies/v0"
+	pService "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/net"
 )
 
 type (

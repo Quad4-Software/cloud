@@ -7,8 +7,8 @@ import (
 
 	validation "github.com/invopop/validation"
 	"github.com/invopop/validation/is"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 )
 
 var (

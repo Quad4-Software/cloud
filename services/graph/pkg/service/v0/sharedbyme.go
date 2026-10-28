@@ -8,7 +8,7 @@ import (
 	"github.com/go-chi/render"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 type driveItemsByResourceID map[string]libregraph.DriveItem
@@ -42,7 +42,7 @@ func (g Graph) GetSharedByMe(w http.ResponseWriter, r *http.Request) {
 	expandThumbnails := strings.Contains(expand, "thumbnails")
 	if expandThumbnails {
 		for k, item := range driveItems {
-			setShareThumbnails(&item, item.GetId(), g.config.Commons.OpenCloudURL, g.sourceTypes)
+			setShareThumbnails(&item, item.GetId(), g.config.Commons.Quad4CloudURL, g.sourceTypes)
 			driveItems[k] = item
 		}
 	}

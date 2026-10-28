@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
 )
 
 // PrepareForIndex converts v to the flat map[string]any the backend index

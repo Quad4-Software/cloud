@@ -1,0 +1,11 @@
+image: quad4-software/quad4:latest
+manifests:
+  - image: quad4-software/quad4:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: quad4-software/quad4:{{#if build.tag}}{{trimPrefix "v" build.tag}}-{{/if}}linux-arm64
+    platform:
+      architecture: arm64
+      variant: v8
+      os: linux

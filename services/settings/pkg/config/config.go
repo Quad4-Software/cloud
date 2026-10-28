@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
 	"go-micro.dev/v4/client"
 )
 
@@ -47,8 +47,8 @@ type Metadata struct {
 	GatewayAddress string `yaml:"gateway_addr" env:"SETTINGS_STORAGE_GATEWAY_GRPC_ADDR;STORAGE_GATEWAY_GRPC_ADDR" desc:"GRPC address of the STORAGE-SYSTEM service." introductionVersion:"1.0.0"`
 	StorageAddress string `yaml:"storage_addr" env:"SETTINGS_STORAGE_GRPC_ADDR;STORAGE_GRPC_ADDR" desc:"GRPC address of the STORAGE-SYSTEM service." introductionVersion:"1.0.0"`
 
-	SystemUserID     string `yaml:"system_user_id" env:"OC_SYSTEM_USER_ID;SETTINGS_SYSTEM_USER_ID" desc:"ID of the OpenCloud STORAGE-SYSTEM system user. Admins need to set the ID for the STORAGE-SYSTEM system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format." introductionVersion:"1.0.0"`
-	SystemUserIDP    string `yaml:"system_user_idp" env:"OC_SYSTEM_USER_IDP;SETTINGS_SYSTEM_USER_IDP" desc:"IDP of the OpenCloud STORAGE-SYSTEM system user." introductionVersion:"1.0.0"`
+	SystemUserID     string `yaml:"system_user_id" env:"OC_SYSTEM_USER_ID;SETTINGS_SYSTEM_USER_ID" desc:"ID of the Quad4 Cloud STORAGE-SYSTEM system user. Admins need to set the ID for the STORAGE-SYSTEM system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format." introductionVersion:"1.0.0"`
+	SystemUserIDP    string `yaml:"system_user_idp" env:"OC_SYSTEM_USER_IDP;SETTINGS_SYSTEM_USER_IDP" desc:"IDP of the Quad4 Cloud STORAGE-SYSTEM system user." introductionVersion:"1.0.0"`
 	SystemUserAPIKey string `yaml:"system_user_api_key" env:"OC_SYSTEM_USER_API_KEY" desc:"API key for the STORAGE-SYSTEM system user." introductionVersion:"1.0.0"`
 	Cache            *Cache `yaml:"cache"`
 }

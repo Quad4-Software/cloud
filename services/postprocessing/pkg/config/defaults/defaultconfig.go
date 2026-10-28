@@ -3,7 +3,7 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/services/postprocessing/pkg/config"
+	"github.com/Quad4-Software/cloud/services/postprocessing/pkg/config"
 )
 
 // FullDefaultConfig returns a full sanitized config
@@ -29,7 +29,7 @@ func DefaultConfig() *config.Config {
 		Postprocessing: config.Postprocessing{
 			Events: config.Events{
 				Endpoint:      "127.0.0.1:9233",
-				Cluster:       "opencloud-cluster",
+				Cluster:       "quad4-cluster",
 				MaxAckPending: 10_000,
 				AckWait:       1 * time.Minute,
 			},

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"ocwrapper/common"
 	"ocwrapper/log"
-	"ocwrapper/opencloud/config"
+	"ocwrapper/quad4/config"
 	"ocwrapper/wrapper/handlers"
 )
 
@@ -25,8 +25,8 @@ func Start(port string) {
 	mux.HandleFunc("/config", handlers.SetEnvHandler)
 	mux.HandleFunc("/rollback", handlers.RollbackHandler)
 	mux.HandleFunc("/command", handlers.CommandHandler)
-	mux.HandleFunc("/stop", handlers.StopOpencloudHandler)
-	mux.HandleFunc("/start", handlers.StartOpencloudHandler)
+	mux.HandleFunc("/stop", handlers.StopQuad4cloudHandler)
+	mux.HandleFunc("/start", handlers.StartQuad4cloudHandler)
 
 	httpServer.Handler = mux
 

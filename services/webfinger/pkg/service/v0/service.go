@@ -4,9 +4,9 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 )
 
 // Service defines the extension handlers.
@@ -15,7 +15,7 @@ type Service interface {
 	//
 	//	GET /.well-known/webfinger?
 	//	     resource=acct%3Acarol%40example.com&
-	//	     rel=http%3A%2F%2Fwebfinger.opencloud%rel%2Fserver-instance
+	//	     rel=http%3A%2F%2Fwebfinger.quad4%rel%2Fserver-instance
 	//	     HTTP/1.1
 	//	Host: example.com
 	//
@@ -30,14 +30,14 @@ type Service interface {
 	//	  "links" :
 	//	  [
 	//	    {
-	//	      "rel" : "http://webfinger.opencloud/rel/server-instance",
+	//	      "rel" : "http://webfinger.quad4/rel/server-instance",
 	//	      "href" : "https://instance.example.com",
 	//	      "titles": {
 	//	        "en": "Readable Instance Name"
 	//	      }
 	//	    },
 	//	    {
-	//	      "rel" : "http://webfinger.opencloud/rel/server-instance",
+	//	      "rel" : "http://webfinger.quad4/rel/server-instance",
 	//	      "href" : "https://otherinstance.example.com",
 	//	      "titles": {
 	//	        "en": "Other Readable Instance Name"

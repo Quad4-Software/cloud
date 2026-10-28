@@ -20,8 +20,8 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/clientlog/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/clientlog/pkg/config"
 )
 
 // ClientlogService is the service responsible for user activities
@@ -60,7 +60,7 @@ func NewClientlogService(opts ...Option) (*ClientlogService, error) {
 		gatewaySelector:  o.GatewaySelector,
 		registeredEvents: make(map[string]events.Unmarshaller),
 		tp:               o.TraceProvider,
-		tracer:           o.TraceProvider.Tracer("github.com/opencloud-eu/opencloud/services/clientlog/pkg/service"),
+		tracer:           o.TraceProvider.Tracer("github.com/Quad4-Software/cloud/services/clientlog/pkg/service"),
 		publisher:        o.Stream,
 		ch:               ch,
 		stopCh:           make(chan struct{}, 1),

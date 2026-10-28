@@ -3,8 +3,8 @@ package defaults
 import (
 	"path"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/idm/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/idm/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration

@@ -1,15 +1,15 @@
 # Graph
 
-The graph service provides the Graph API which is a RESTful web API used to access OpenCloud
+The graph service provides the Graph API which is a RESTful web API used to access Quad4 Cloud
 resources. It is inspired by the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api)
-and can be used by clients or other services or extensions. Visit the [Libre Graph API](https://docs.opencloud.eu/swagger/libre-graph-api/)
+and can be used by clients or other services or extensions. Visit the [Libre Graph API](https://github.com/Quad4-Software/cloud/swagger/libre-graph-api/)
 for a detailed specification of the API implemented by the graph service.
 
 ## Sequence Diagram
 
 The following image gives an overview of the scenario when a client requests to list available spaces the user has access to. To do so, the client is directed with his request automatically via the proxy service to the graph service.
 
-<img src="https://raw.githubusercontent.com/opencloud-eu/opencloud/main/services/graph/images/mermaid-graph.svg" width="900" />
+<img src="https://raw.githubusercontent.com/Quad4-Software/cloud/main/services/graph/images/mermaid-graph.svg" width="900" />
 
 ## Users and Groups API
 
@@ -24,7 +24,7 @@ The graph service provides endpoints for querying users and groups. It features 
 ### LDAP Configuration
 
 The LDAP backend is configured using a set of environment variables. A detailed list of all the
-available configuration options can be found in the [documentation](https://docs.opencloud.eu/docs/dev/server/services/graph/environment-variables).
+available configuration options can be found in the [documentation](https://github.com/Quad4-Software/cloud/docs/dev/server/services/graph/environment-variables).
 The LDAP related options are prefixed with `OC_LDAP_` (or `GRAPH_LDAP_` for settings specific to graph service).
 
 #### Read-Only Access to Existing LDAP Servers
@@ -32,27 +32,27 @@ The LDAP related options are prefixed with `OC_LDAP_` (or `GRAPH_LDAP_` for sett
 To connect the graph service to an existing LDAP server, set `OC_LDAP_SERVER_WRITE_ENABLED` to
 `false` to prevent the graph service from sending write operations to the LDAP server. Also set the
 various `OC_LDAP_*` environment variables to match the configuration of the LDAP server you are connecting
-to. A more detailed explanation can be found [here](https://docs.opencloud.eu/docs/admin/configuration/authentication-and-user-management/.
+to. A more detailed explanation can be found [here](https://github.com/Quad4-Software/cloud/docs/admin/configuration/authentication-and-user-management/.
 
 #### Using a Write Enabled LDAP Server
 
 To use the graph service for managing (create, update, delete) users and groups, a write enabled LDAP
 server is required. In the default configuration, the graph service will use the simple LDAP server
-that is bundled with OpenCloud in the `idm` service which provides all the required features.
-It is also possible to setup up an external LDAP server with write access for use with OpenCloud. It is
+that is bundled with Quad4 Cloud in the `idm` service which provides all the required features.
+It is also possible to setup up an external LDAP server with write access for use with Quad4 Cloud. It is
 recommend to use OpenLDAP for this. The LDAP server needs to fulfill a couple of requirements with
 respect to the available schema:
   * The LDAP server must provide the `inetOrgPerson` object class for users and the `groupOfNames`
     object class for groups.
   * The graph service maintains a few additional attributes for users and groups that are not
     available in the standard LDAP schema. An schema file, ready to use with OpenLDAP, defining those
-    additional attributes is available [here](https://github.com/opencloud-eu/opencloud-compose/blob/main/config/ldap/schemas/10_opencloud_schema.ldif)
+    additional attributes is available [here](https://github.com/opencloud-eu/quad4-compose/blob/main/config/ldap/schemas/10_quad4_schema.ldif)
 
 ## Query Filters Provided by the Graph API
 
 Some API endpoints provided by the graph service allow to specify query filters. The filter syntax
 is based on the [OData Specification](https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter).
-See the [Libre Graph API](https://docs.opencloud.eu/swagger/libre-graph-api/#/users/ListUsers) for examples
+See the [Libre Graph API](https://github.com/Quad4-Software/cloud/swagger/libre-graph-api/#/users/ListUsers) for examples
 on the filters supported when querying users.
 
 ## Caching
@@ -78,12 +78,12 @@ If Keycloak is used for authentication, GDPR regulations require to add all pers
 *   `OC_KEYCLOAK_CLIENT_ID` - The client ID of the client that is used to authenticate with keycloak, this client has to be able to list users and get the credential data.
 *   `OC_KEYCLOAK_CLIENT_SECRET` - The client secret of the client that is used to authenticate with keycloak.
 *   `OC_KEYCLOAK_CLIENT_REALM` - The realm the client is defined in.
-*   `OC_KEYCLOAK_USER_REALM` - The realm the OpenCloud users are defined in.
+*   `OC_KEYCLOAK_USER_REALM` - The realm the Quad4 Cloud users are defined in.
 *   `OC_KEYCLOAK_INSECURE_SKIP_VERIFY` - If set to true, the TLS certificate of the keycloak instance is not verified.
 
 ### Keycloak Client Configuration
 
-The client that is used to authenticate with keycloak has to be able to list users and get the credential data. To do this, the following  roles have to be assigned to the client and they have to be about the realm that contains the OpenCloud users:
+The client that is used to authenticate with keycloak has to be able to list users and get the credential data. To do this, the following  roles have to be assigned to the client and they have to be about the realm that contains the Quad4 Cloud users:
 
 *   `view-users`
 *   `view-identity-providers`
@@ -111,7 +111,7 @@ For example, for the language `de`, one needs to place the corresponding transla
 <!-- also see the notifications readme -->
 
 :::warning
-For the time being, the embedded OpenCloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
+For the time being, the embedded Quad4 Cloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
 :::
 
 ### Translation Rules
@@ -173,7 +173,7 @@ To enable disabled roles like the `UnifiedRoleSecureViewerID`, you must provide 
 The following CLI command simplifies the process of finding out which UID belongs to which role:
 
 ```bash
-opencloud graph list-unified-roles
+quad4 graph list-unified-roles
 ```
 
 The output of this command includes the following information for each role:
@@ -250,20 +250,20 @@ The `graph` service provides the following metrics:
 
 | Name | Description |
 | ---- | ----------- |
-| `opencloud_graph_build_info{version=...}` | Contains a label `version` that is set to the current version of the service, and always has a value of `1` |
-| `opencloud_graph_events_enabled` | Is set to `1` if the Events API handler is enabled, or `0` if not |
-| `opencloud_graph_http_enabled` | Is set to `1` if the HTTP API handler is enabled, or `0` if not |
-| `opencloud_graph_events{event=...,result=...}` | Counts the number of events that have been consumed, with a `event` label that contains the name of the event, and a `result` label that is set to `success` or `failure` |
-| `opencloud_graph_events_invalid` | Counts the number of invalid events that are malformed or are missing required data |
-| `opencloud_graph_events_unsupported` | Counts the numbef of consumed events that cannot be processes by this service, should always be `0` |
-| `opencloud_graph_user_password_changes{result=...,reason=...}` | Counts the number of user password change attempts, including the reason for failure when `result`=`failure` |
-| `opencloud_graph_http_request_duration_seconds{method=...,path=...,version=...,resource=...,code=...,result=...}` | Histogram that measures the duration of Graph HTTP API requests, in buckets |
-| `opencloud_graph_http_requests` | Gauge that counts the number of concurrent inbound HTTP requests to the Graph API |
-| `opencloud_graph_ldap_client_operation_duration_seconds{uri=...,write=...,operation=...,result=...}` | Histogram that measures the duration of outbound LDAP operations |
-| `opencloud_graph_ldap_client_operations{uri=...,write=...}` | Gauge that counts the number of concurrent outbound LDAP operations |
-| `opencloud_graph_identity_backend_api_duration_seconds{type=...,operation=...,result=...}` | Histogram that measures the duration of requests to the Graph identity backend, in buckets |
+| `quad4_graph_build_info{version=...}` | Contains a label `version` that is set to the current version of the service, and always has a value of `1` |
+| `quad4_graph_events_enabled` | Is set to `1` if the Events API handler is enabled, or `0` if not |
+| `quad4_graph_http_enabled` | Is set to `1` if the HTTP API handler is enabled, or `0` if not |
+| `quad4_graph_events{event=...,result=...}` | Counts the number of events that have been consumed, with a `event` label that contains the name of the event, and a `result` label that is set to `success` or `failure` |
+| `quad4_graph_events_invalid` | Counts the number of invalid events that are malformed or are missing required data |
+| `quad4_graph_events_unsupported` | Counts the numbef of consumed events that cannot be processes by this service, should always be `0` |
+| `quad4_graph_user_password_changes{result=...,reason=...}` | Counts the number of user password change attempts, including the reason for failure when `result`=`failure` |
+| `quad4_graph_http_request_duration_seconds{method=...,path=...,version=...,resource=...,code=...,result=...}` | Histogram that measures the duration of Graph HTTP API requests, in buckets |
+| `quad4_graph_http_requests` | Gauge that counts the number of concurrent inbound HTTP requests to the Graph API |
+| `quad4_graph_ldap_client_operation_duration_seconds{uri=...,write=...,operation=...,result=...}` | Histogram that measures the duration of outbound LDAP operations |
+| `quad4_graph_ldap_client_operations{uri=...,write=...}` | Gauge that counts the number of concurrent outbound LDAP operations |
+| `quad4_graph_identity_backend_api_duration_seconds{type=...,operation=...,result=...}` | Histogram that measures the duration of requests to the Graph identity backend, in buckets |
 
-To create some moderate load on a running `opencloud` instance, one can use the k6 script `load_test.js` as follows:
+To create some moderate load on a running `quad4` instance, one can use the k6 script `load_test.js` as follows:
 
 ```bash
 k6 run --vus=10 --duration=3m ./load_test.js
@@ -285,7 +285,7 @@ It is not meant to be a feature test suite, but merely a small k6 script to gene
 
 ### Graph User Password Change Counter Metric
 
-For `opencloud_graph_user_password_changes`:
+For `quad4_graph_user_password_changes`:
 
 * `result` is either
   * `success`: when the password was changed successfully
@@ -298,7 +298,7 @@ For `opencloud_graph_user_password_changes`:
 
 ### Graph Inbound HTTP Request Duration Metrics
 
-For `opencloud_graph_http_request_duration_seconds`:
+For `quad4_graph_http_request_duration_seconds`:
 
 * `method` is the HTTP method (`GET`, `PUT`, ...)
 * `path` is the canonical request path with placeholders (e.g. `/v1beta1/drives/{driveID}/root/children`)
@@ -309,10 +309,10 @@ For `opencloud_graph_http_request_duration_seconds`:
 
 ### Graph Outbound LDAP Operation Duration Metrics
 
-For `opencloud_graph_ldap_client_operation_duration_seconds`:
+For `quad4_graph_ldap_client_operation_duration_seconds`:
 
 * `operation` is the name of the LDAP operation (`add`, `delete`, `modify`, `modify-dn`, ...)
-* `result` is either `success`, `failure`, `read-only` (when attempting a write operation on a LDAP server that is configured as read-only in OpenCloud) or `not-found`
+* `result` is either `success`, `failure`, `read-only` (when attempting a write operation on a LDAP server that is configured as read-only in Quad4 Cloud) or `not-found`
 * `uri` contains the LDAP server URI the client is connected to
 * `write` is set to `1` if the LDAP client is allowed to perform write operations, or to `0` if it is configured to be read-only
 

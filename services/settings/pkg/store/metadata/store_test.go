@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	. "github.com/onsi/gomega"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config/defaults"
-	rdefaults "github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config/defaults"
+	rdefaults "github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 	"github.com/opencloud-eu/reva/v2/pkg/errtypes"
 )
 
@@ -39,7 +39,7 @@ const (
 	value3 = "b42702d2-5e4d-4d73-b133-e1f9e285355e"
 )
 
-// use "unit" or "integration" do define test type. You need a running OpenCloud instance for integration tests
+// use "unit" or "integration" do define test type. You need a running Quad4 Cloud instance for integration tests
 var testtype = "unit"
 
 // MockedMetadataClient mocks the metadataservice inmemory

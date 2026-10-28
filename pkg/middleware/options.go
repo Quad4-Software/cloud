@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	gatewayv1beta1 "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // Option defines a single option function.

@@ -3,17 +3,17 @@ package parser
 import (
 	"errors"
 
-	"github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
 )
 
-// ParseConfig loads the opencloud configuration and
+// ParseConfig loads the quad4 configuration and
 // copies applicable parts into the commons part, from
 // where the services can copy it into their own config
 func ParseConfig(cfg *config.Config, skipValidate bool) error {
-	err := config.BindSourcesToStructs("opencloud", cfg)
+	err := config.BindSourcesToStructs("quad4", cfg)
 	if err != nil {
 		return err
 	}
@@ -38,7 +38,7 @@ func ParseConfig(cfg *config.Config, skipValidate bool) error {
 }
 
 // EnsureDefaults ensures that all pointers in the
-// OpenCloud config (not the services configs) are initialized
+// Quad4 Cloud config (not the services configs) are initialized
 func EnsureDefaults(cfg *config.Config) {
 	if cfg.Log == nil {
 		cfg.Log = &shared.Log{}
@@ -65,7 +65,7 @@ func EnsureDefaults(cfg *config.Config) {
 	}
 }
 
-// EnsureCommons copies applicable parts of the OpenCloud config into the commons part
+// EnsureCommons copies applicable parts of the Quad4 Cloud config into the commons part
 func EnsureCommons(cfg *config.Config) {
 	cfg.Commons.Log = structs.CopyOrZeroValue(cfg.Log)
 	cfg.Commons.Cache = structs.CopyOrZeroValue(cfg.Cache)
@@ -114,8 +114,8 @@ func EnsureCommons(cfg *config.Config) {
 		cfg.Commons.AdminUserID = cfg.AdminUserID
 	}
 
-	if cfg.OpenCloudURL != "" {
-		cfg.Commons.OpenCloudURL = cfg.OpenCloudURL
+	if cfg.Quad4CloudURL != "" {
+		cfg.Commons.Quad4CloudURL = cfg.Quad4CloudURL
 	}
 
 	cfg.Commons.Reva = structs.CopyOrZeroValue(cfg.Reva)
@@ -125,23 +125,23 @@ func EnsureCommons(cfg *config.Config) {
 // is missing an error will be returned.
 func Validate(cfg *config.Config) error {
 	if cfg.TokenManager.JWTSecret == "" {
-		return shared.MissingJWTTokenError("opencloud")
+		return shared.MissingJWTTokenError("quad4")
 	}
 
 	if cfg.TransferSecret == "" {
-		return shared.MissingRevaTransferSecretError("opencloud")
+		return shared.MissingRevaTransferSecretError("quad4")
 	}
 
 	if cfg.URLSigningSecret == "" {
-		return shared.MissingURLSigningSecret("opencloud")
+		return shared.MissingURLSigningSecret("quad4")
 	}
 
 	if cfg.MachineAuthAPIKey == "" {
-		return shared.MissingMachineAuthApiKeyError("opencloud")
+		return shared.MissingMachineAuthApiKeyError("quad4")
 	}
 
 	if cfg.SystemUserID == "" {
-		return shared.MissingSystemUserID("opencloud")
+		return shared.MissingSystemUserID("quad4")
 	}
 
 	return nil

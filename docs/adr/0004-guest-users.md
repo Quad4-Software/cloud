@@ -1,25 +1,25 @@
 ---
-title: "Inviting Guest users as fully integrated user in OpenCloud"
+title: "Inviting Guest users as fully integrated user in Quad4 Cloud"
 ---
 
 * Status: postponed
 * Deciders: []
 * Date: 2026-01-20
 
-Reference: https://github.com/opencloud-eu/opencloud/issues/2111
+Reference: https://github.com/Quad4-Software/cloud/issues/2111
 
 ## Important Disclaimer
 
 The approach discussed here has been postponed (as of March, 2026) in favor
 of a different solution that does not require full-blown user-accounts in
-OpenCloud. That approach is currently tracked here:
-https://github.com/opencloud-eu/opencloud/issues/2513
+Quad4 Cloud. That approach is currently tracked here:
+https://github.com/Quad4-Software/cloud/issues/2513
 
 ## Context and Problem statement
 
 To allow collaboration with external Users (Users that don't yet have an
 account in the IDP, and might be external to the organization), it should
-be possible to invite "Guest Users" into an OpenCloud instance.
+be possible to invite "Guest Users" into an Quad4 Cloud instance.
 
 ## Requirements
 
@@ -39,7 +39,7 @@ be possible to invite "Guest Users" into an OpenCloud instance.
 - the process of inviting a guest must can be asynchrounous, i.e. the user
   account of the guest user might not be created at the moment of
   creating the share/sending the invitaion as the whole process crosses
-  multiple systems (OpenCloud, Identity Management System, Email) and might
+  multiple systems (Quad4 Cloud, Identity Management System, Email) and might
   even require manual steps.
 - It should be possible to "convert" a guest user into a "normal" user without
   the user loosing their shares.
@@ -73,24 +73,24 @@ be possible to invite "Guest Users" into an OpenCloud instance.
 
 ### UserIDs
 
-- Every user in OpenCloud needs to have a userid assigned
+- Every user in Quad4 Cloud needs to have a userid assigned
 - Sharing, as many other features, needs that userid for storing the
   share (share service) and for assigning the grants on the shared
   resources (storage provider)
 - When an external IDP is used the generation of that userid is usually
-  not in control of OpenCloud (exception User-Autoprovisioning, or when
+  not in control of Quad4 Cloud (exception User-Autoprovisioning, or when
   the Provisioning/Education API is used). In that case, the userid is
   taken from a LDAP Attribute maintained in the external system
 
 ### Lots of identity management options
 
-- OpenCloud provides many different ways to consume user-accounts. Guest
+- Quad4 Cloud provides many different ways to consume user-accounts. Guest
   users are supposed to be working with all/most of them:
   - External IDP, with external LDAP service
   - External IDP, with manual provisioning via the
-    Education/Provisioning APIs (to a local OpenCloud specific LDAP
+    Education/Provisioning APIs (to a local Quad4 Cloud specific LDAP
     service) - e.g. in multi-tenant setups
-  - External IDP, with User-Autoprovisioning (also to a local OpenCloud
+  - External IDP, with User-Autoprovisioning (also to a local Quad4 Cloud
     specific LDAP service)
   - everything in-between and outside of the above
 - Each of these options have different ways for user-provisioning and in
@@ -104,7 +104,7 @@ be possible to invite "Guest Users" into an OpenCloud instance.
 
 ## Possible solutions
 
-### Re-vitalize the PoC implementation of the invitations service and finalize it (<https://github.com/opencloud-eu/opencloud/blob/main/services/invitations/README.md>)
+### Re-vitalize the PoC implementation of the invitations service and finalize it (<https://github.com/Quad4-Software/cloud/blob/main/services/invitations/README.md>)
 
 - Implements parts of the MSGraph Invitation Specification
   (<https://learn.microsoft.com/en-us/graph/api/resources/invitation?view=graph-rest-1.0>)
@@ -130,7 +130,7 @@ be possible to invite "Guest Users" into an OpenCloud instance.
       workflow, the user experience for the invited user is not ideal
     - The workflow likely only works with a limited set of setups.
       (Specifically: a keycloak that is able to write into a connected
-      LDAP database, that OpenCloud can consume)
+      LDAP database, that Quad4 Cloud can consume)
     - As the invitations are not really tracked, e.g. we don't really
       "know" if an invitation was accepted
     - Requires direct access to the Identity Management System
@@ -191,14 +191,14 @@ be possible to invite "Guest Users" into an OpenCloud instance.
 
 ## Additional thoughts
 
-If OpenCloud were responsible for allocating the UserIDs of all users
+If Quad4 Cloud were responsible for allocating the UserIDs of all users
 the solution sketch above would likely loose some of its complexity. We
 would "roll" the userid for the invited user already when creating the invite.
 That would allow to skip the step of creating a "pending" Share with an
 invitation assigned. As we have an ID already, we could just create a "normal"
 share and even populate the grants on the filesystem for that share (or space)
 
-We've been pondering on the idea of making OpenCloud manage all UserIDs
+We've been pondering on the idea of making Quad4 Cloud manage all UserIDs
 for quite a while as it would have some additional benefits for the
 whole user management story.
 

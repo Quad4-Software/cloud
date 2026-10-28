@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 func TestCS3ResourceToDriveItemPopulatesWebUrl(t *testing.T) {

@@ -12,8 +12,8 @@ import (
 
 	"github.com/CiscoM31/godata"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"

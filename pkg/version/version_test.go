@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/version"
 )
 
 func TestChannel(t *testing.T) {

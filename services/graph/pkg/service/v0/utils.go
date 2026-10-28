@@ -19,11 +19,11 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/cache"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/cache"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 // StrictJSONUnmarshal is a wrapper around json.Unmarshal that returns an error if the json contains unknown fields.

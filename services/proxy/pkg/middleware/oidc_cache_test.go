@@ -15,9 +15,9 @@ import (
 	"go-micro.dev/v4/store"
 	"golang.org/x/crypto/sha3"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	oidcmocks "github.com/opencloud-eu/opencloud/pkg/oidc/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	oidcmocks "github.com/Quad4-Software/cloud/pkg/oidc/mocks"
 )
 
 func TestOIDCCacheTokenVerification(t *testing.T) {

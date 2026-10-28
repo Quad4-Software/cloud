@@ -3,7 +3,7 @@ package command
 import (
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 
 	"github.com/spf13/cobra"
 )

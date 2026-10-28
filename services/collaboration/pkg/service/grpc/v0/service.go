@@ -18,11 +18,11 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 	microstore "go-micro.dev/v4/store"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/helpers"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/wopisrc"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/helpers"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/wopisrc"
 )
 
 // NewHandler creates a new grpc service implementing the OpenInApp interface

@@ -14,10 +14,10 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	conf "github.com/opencloud-eu/opencloud/services/search/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	contentMocks "github.com/opencloud-eu/opencloud/services/search/pkg/content/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	conf "github.com/Quad4-Software/cloud/services/search/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	contentMocks "github.com/Quad4-Software/cloud/services/search/pkg/content/mocks"
 )
 
 var _ = Describe("Tika", func() {

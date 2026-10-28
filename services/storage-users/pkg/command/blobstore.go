@@ -10,9 +10,9 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config/parser"
 	"github.com/opencloud-eu/reva/v2/pkg/bytesize"
 	ocisbs "github.com/opencloud-eu/reva/v2/pkg/storage/fs/ocis/blobstore"
 	s3bs "github.com/opencloud-eu/reva/v2/pkg/storage/fs/s3ng/blobstore"

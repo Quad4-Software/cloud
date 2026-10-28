@@ -21,11 +21,11 @@ import (
 	cs3mocks "github.com/opencloud-eu/reva/v2/tests/cs3mocks/mocks"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/collaboration/mocks"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/helpers"
-	service "github.com/opencloud-eu/opencloud/services/collaboration/pkg/service/grpc/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/collaboration/mocks"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/helpers"
+	service "github.com/Quad4-Software/cloud/services/collaboration/pkg/service/grpc/v0"
 )
 
 // Based on https://github.com/cs3org/reva/blob/b99ad4865401144a981d4cfd1ae28b5a018ea51d/pkg/token/manager/jwt/jwt.go#L82
@@ -87,15 +87,15 @@ var _ = Describe("Discovery", func() {
 		appURLs := helpers.NewAppURLs()
 		appURLs.Store(map[string]map[string]string{
 			"view": {
-				".pdf":  "https://cloud.opencloud.test/hosting/wopi/word/view",
-				".djvu": "https://cloud.opencloud.test/hosting/wopi/word/view",
-				".docx": "https://cloud.opencloud.test/hosting/wopi/word/view",
-				".xls":  "https://cloud.opencloud.test/hosting/wopi/cell/view",
-				".xlsb": "https://cloud.opencloud.test/hosting/wopi/cell/view",
+				".pdf":  "https://cloud.quad4.test/hosting/wopi/word/view",
+				".djvu": "https://cloud.quad4.test/hosting/wopi/word/view",
+				".docx": "https://cloud.quad4.test/hosting/wopi/word/view",
+				".xls":  "https://cloud.quad4.test/hosting/wopi/cell/view",
+				".xlsb": "https://cloud.quad4.test/hosting/wopi/cell/view",
 			},
 			"edit": {
-				".docx":    "https://cloud.opencloud.test/hosting/wopi/word/edit",
-				".invalid": "://cloud.opencloud.test/hosting/wopi/cell/edit",
+				".docx":    "https://cloud.quad4.test/hosting/wopi/word/edit",
+				".invalid": "://cloud.quad4.test/hosting/wopi/cell/edit",
 			},
 		})
 
@@ -115,7 +115,7 @@ var _ = Describe("Discovery", func() {
 		It("Invalid access token", func() {
 			ctx := context.Background()
 
-			cfg.Wopi.WopiSrc = "https://wopi.opencloud.test"
+			cfg.Wopi.WopiSrc = "https://wopi.quad4.test"
 
 			req := &appproviderv1beta1.OpenInAppRequest{
 				ResourceInfo: &providerv1beta1.ResourceInfo{
@@ -153,7 +153,7 @@ var _ = Describe("Discovery", func() {
 				ctx := context.Background()
 				nowTime := time.Now()
 
-				cfg.Wopi.WopiSrc = "https://wopi.opencloud.test"
+				cfg.Wopi.WopiSrc = "https://wopi.quad4.test"
 				cfg.Wopi.Secret = "my_supa_secret"
 				cfg.Wopi.DisableChat = disableChat
 				cfg.App.Name = appName
@@ -196,18 +196,18 @@ var _ = Describe("Discovery", func() {
 				Expect(resp.GetAppUrl().GetAppUrl()).To(Equal(expectedAppUrl))
 				Expect(resp.GetAppUrl().GetFormParameters()["access_token_ttl"]).To(Equal(strconv.FormatInt(nowTime.Add(5*time.Hour).Unix()*1000, 10)))
 			},
-			Entry("Microsoft chat no lang", "Microsoft", "", false, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
-			Entry("Collabora chat no lang", "Collabora", "", false, "https://cloud.opencloud.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false"),
-			Entry("OnlyOffice chat no lang", "OnlyOffice", "", false, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
-			Entry("Microsoft chat lang", "Microsoft", "de", false, "https://cloud.opencloud.test/hosting/wopi/word/edit?UI_LLCC=de-DE&WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
-			Entry("Collabora chat lang", "Collabora", "de", false, "https://cloud.opencloud.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&lang=de-DE"),
-			Entry("OnlyOffice chat lang", "OnlyOffice", "de", false, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&ui=de-DE"),
-			Entry("Microsoft no chat no lang", "Microsoft", "", true, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
-			Entry("Collabora no chat no lang", "Collabora", "", true, "https://cloud.opencloud.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&dchat=1"),
-			Entry("OnlyOffice no chat no lang", "OnlyOffice", "", true, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
-			Entry("Microsoft no chat lang", "Microsoft", "de", true, "https://cloud.opencloud.test/hosting/wopi/word/edit?UI_LLCC=de-DE&WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
-			Entry("Collabora no chat lang", "Collabora", "de", true, "https://cloud.opencloud.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&dchat=1&lang=de-DE"),
-			Entry("OnlyOffice no chat lang", "OnlyOffice", "de", true, "https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1&ui=de-DE"),
+			Entry("Microsoft chat no lang", "Microsoft", "", false, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
+			Entry("Collabora chat no lang", "Collabora", "", false, "https://cloud.quad4.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false"),
+			Entry("OnlyOffice chat no lang", "OnlyOffice", "", false, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
+			Entry("Microsoft chat lang", "Microsoft", "de", false, "https://cloud.quad4.test/hosting/wopi/word/edit?UI_LLCC=de-DE&WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e"),
+			Entry("Collabora chat lang", "Collabora", "de", false, "https://cloud.quad4.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&lang=de-DE"),
+			Entry("OnlyOffice chat lang", "OnlyOffice", "de", false, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&ui=de-DE"),
+			Entry("Microsoft no chat no lang", "Microsoft", "", true, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
+			Entry("Collabora no chat no lang", "Collabora", "", true, "https://cloud.quad4.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&dchat=1"),
+			Entry("OnlyOffice no chat no lang", "OnlyOffice", "", true, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
+			Entry("Microsoft no chat lang", "Microsoft", "de", true, "https://cloud.quad4.test/hosting/wopi/word/edit?UI_LLCC=de-DE&WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1"),
+			Entry("Collabora no chat lang", "Collabora", "de", true, "https://cloud.quad4.test/hosting/wopi/word/view?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&closebutton=false&dchat=1&lang=de-DE"),
+			Entry("OnlyOffice no chat lang", "OnlyOffice", "de", true, "https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=https%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&dchat=1&ui=de-DE"),
 		)
 		DescribeTable(
 			"Mobile view",
@@ -215,7 +215,7 @@ var _ = Describe("Discovery", func() {
 				ctx := context.Background()
 				nowTime := time.Now()
 
-				cfg.Wopi.WopiSrc = "https://wopi.opencloud.test"
+				cfg.Wopi.WopiSrc = "https://wopi.quad4.test"
 				cfg.Wopi.Secret = "my_supa_secret"
 				cfg.Wopi.EnableMobile = enableMobile
 				cfg.App.Name = product
@@ -275,9 +275,9 @@ var _ = Describe("Discovery", func() {
 			ctx := context.Background()
 			nowTime := time.Now()
 
-			cfg.Wopi.WopiSrc = "https://wopi.opencloud.test"
+			cfg.Wopi.WopiSrc = "https://wopi.quad4.test"
 			cfg.Wopi.Secret = "my_supa_secret"
-			cfg.Wopi.ProxyURL = "https://office.proxy.opencloud.test"
+			cfg.Wopi.ProxyURL = "https://office.proxy.quad4.test"
 			cfg.Wopi.ProxySecret = "your_supa_secret"
 			cfg.App.Name = "Microsoft"
 
@@ -313,14 +313,14 @@ var _ = Describe("Discovery", func() {
 			Expect(err).To(Succeed())
 			Expect(resp.GetStatus().GetCode()).To(Equal(rpcv1beta1.Code_CODE_OK))
 			Expect(resp.GetAppUrl().GetMethod()).To(Equal("POST"))
-			Expect(resp.GetAppUrl().GetAppUrl()).To(Equal("https://cloud.opencloud.test/hosting/wopi/word/edit?UI_LLCC=en-GB&WOPISrc=https%3A%2F%2Foffice.proxy.opencloud.test%2Fwopi%2Ffiles%2FeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiaHR0cHM6Ly93b3BpLm9wZW5jbG91ZC50ZXN0L3dvcGkvZmlsZXMvIiwiZiI6IjJmNmVjMTg2OTZkZDEwMDgxMDY3NDliZDk0MTA2ZTVjZmFkNWMwOWUxNWRlN2I3NzA4OGQwMzg0M2U3MWI0M2UifQ.j873xu7TkqtIokSIQXW5y7-BRRrHgIURqAx4WY_zxTA"))
+			Expect(resp.GetAppUrl().GetAppUrl()).To(Equal("https://cloud.quad4.test/hosting/wopi/word/edit?UI_LLCC=en-GB&WOPISrc=https%3A%2F%2Foffice.proxy.quad4.test%2Fwopi%2Ffiles%2FeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiaHR0cHM6Ly93b3BpLm9wZW5jbG91ZC50ZXN0L3dvcGkvZmlsZXMvIiwiZiI6IjJmNmVjMTg2OTZkZDEwMDgxMDY3NDliZDk0MTA2ZTVjZmFkNWMwOWUxNWRlN2I3NzA4OGQwMzg0M2U3MWI0M2UifQ.j873xu7TkqtIokSIQXW5y7-BRRrHgIURqAx4WY_zxTA"))
 			Expect(resp.GetAppUrl().GetFormParameters()["access_token_ttl"]).To(Equal(strconv.FormatInt(nowTime.Add(5*time.Hour).Unix()*1000, 10)))
 		})
 		It("Fail with invalid app url", func() {
 			ctx := context.Background()
 			nowTime := time.Now()
 
-			cfg.Wopi.WopiSrc = "htttps://wopi.opencloud.test"
+			cfg.Wopi.WopiSrc = "htttps://wopi.quad4.test"
 			cfg.Wopi.Secret = "my_supa_secret"
 			cfg.App.Name = "Microsoft"
 
@@ -361,7 +361,7 @@ var _ = Describe("Discovery", func() {
 			ctx := context.Background()
 			nowTime := time.Now()
 
-			cfg.Wopi.WopiSrc = "htttps://wopi.opencloud.test"
+			cfg.Wopi.WopiSrc = "htttps://wopi.quad4.test"
 			cfg.Wopi.Secret = "my_supa_secret"
 			cfg.App.Name = "Microsoft"
 
@@ -403,7 +403,7 @@ var _ = Describe("Discovery", func() {
 			ctx := context.Background()
 			nowTime := time.Now()
 
-			cfg.Wopi.WopiSrc = "htttps://wopi.opencloud.test"
+			cfg.Wopi.WopiSrc = "htttps://wopi.quad4.test"
 			cfg.Wopi.Secret = "my_supa_secret"
 			cfg.App.Name = "OnlyOffice"
 			cfg.App.Product = "OnlyOffice"
@@ -441,7 +441,7 @@ var _ = Describe("Discovery", func() {
 			Expect(err).To(Succeed())
 			Expect(resp.GetStatus().GetCode()).To(Equal(rpcv1beta1.Code_CODE_OK))
 			Expect(resp.GetAppUrl().GetMethod()).To(Equal("POST"))
-			Expect(resp.GetAppUrl().GetAppUrl()).To(Equal("https://cloud.opencloud.test/hosting/wopi/word/edit?WOPISrc=htttps%3A%2F%2Fwopi.opencloud.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&ui=en-GB"))
+			Expect(resp.GetAppUrl().GetAppUrl()).To(Equal("https://cloud.quad4.test/hosting/wopi/word/edit?WOPISrc=htttps%3A%2F%2Fwopi.quad4.test%2Fwopi%2Ffiles%2F2f6ec18696dd1008106749bd94106e5cfad5c09e15de7b77088d03843e71b43e&ui=en-GB"))
 			Expect(resp.GetAppUrl().GetFormParameters()["access_token_ttl"]).To(Equal(strconv.FormatInt(nowTime.Add(5*time.Hour).Unix()*1000, 10)))
 		})
 	})

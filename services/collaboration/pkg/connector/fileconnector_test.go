@@ -28,14 +28,14 @@ import (
 	"github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	collabmocks "github.com/opencloud-eu/opencloud/services/collaboration/mocks"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector/fileinfo"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	collabmocks "github.com/Quad4-Software/cloud/services/collaboration/mocks"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector/fileinfo"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
 )
 
 var _ = Describe("FileConnector", func() {
@@ -51,14 +51,14 @@ var _ = Describe("FileConnector", func() {
 	BeforeEach(func() {
 		cfg = &config.Config{
 			Commons: &shared.Commons{
-				OpenCloudURL: "https://cloud.opencloud.test",
+				Quad4CloudURL: "https://cloud.quad4.test",
 			},
 			App: config.App{
 				Name:    "test",
 				Product: "Microsoft",
 			},
 			Wopi: config.Wopi{
-				WopiSrc: "https://wopi.opencloud.test",
+				WopiSrc: "https://wopi.quad4.test",
 				Secret:  "topsecret",
 			},
 			TokenManager: &config.TokenManager{JWTSecret: "secret"},
@@ -75,7 +75,7 @@ var _ = Describe("FileConnector", func() {
 		now := time.Now()
 		accessToken, err := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 			"aud": "reva",
-			"iss": "https://cloud.opencloud.test",
+			"iss": "https://cloud.quad4.test",
 			"iat": now.Unix(),
 			"exp": now.Add(5 * time.Hour).Unix(),
 			"sub": "alice",
@@ -990,9 +990,9 @@ var _ = Describe("FileConnector", func() {
 			Expect(response.Headers).To(BeNil())
 			rBody := response.Body.(map[string]any)
 			Expect(rBody["Name"]).To(Equal("newDocument.docx"))
-			Expect(rBody["Url"]).To(HavePrefix("https://wopi.opencloud.test/wopi/files/")) // skip checking the actual reference
-			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
-			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
+			Expect(rBody["Url"]).To(HavePrefix("https://wopi.quad4.test/wopi/files/")) // skip checking the actual reference
+			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
+			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
 		})
 
 		It("PutRelativeFileSuggested success only extension", func() {
@@ -1045,9 +1045,9 @@ var _ = Describe("FileConnector", func() {
 			Expect(response.Headers).To(BeNil())
 			rBody := response.Body.(map[string]any)
 			Expect(rBody["Name"]).To(Equal("file.pdf"))
-			Expect(rBody["Url"]).To(HavePrefix("https://wopi.opencloud.test/wopi/files/")) // skip checking the actual reference
-			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/file.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
-			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/file.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
+			Expect(rBody["Url"]).To(HavePrefix("https://wopi.quad4.test/wopi/files/")) // skip checking the actual reference
+			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/file.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
+			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/file.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
 		})
 
 		It("PutRelativeFileSuggested success conflict", func() {
@@ -1117,9 +1117,9 @@ var _ = Describe("FileConnector", func() {
 			Expect(response.Headers).To(BeNil())
 			rBody := response.Body.(map[string]any)
 			Expect(rBody["Name"]).To(MatchRegexp(`[a-zA-Z0-9_-] file\.pdf`))
-			Expect(rBody["Url"]).To(HavePrefix("https://wopi.opencloud.test/wopi/files/")) // skip checking the actual reference
-			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/" + url.PathEscape(path.Base(*newFilePath)) + "?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
-			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/" + url.PathEscape(path.Base(*newFilePath)) + "?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
+			Expect(rBody["Url"]).To(HavePrefix("https://wopi.quad4.test/wopi/files/")) // skip checking the actual reference
+			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/" + url.PathEscape(path.Base(*newFilePath)) + "?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
+			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/" + url.PathEscape(path.Base(*newFilePath)) + "?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
 		})
 
 		It("PutRelativeFileSuggested put file fails", func() {
@@ -1241,9 +1241,9 @@ var _ = Describe("FileConnector", func() {
 			Expect(response.Headers).To(BeNil())
 			rBody := response.Body.(map[string]any)
 			Expect(rBody["Name"]).To(Equal("newDocument.docx"))
-			Expect(rBody["Url"]).To(HavePrefix("https://wopi.opencloud.test/wopi/files/")) // skip checking the actual reference
-			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
-			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
+			Expect(rBody["Url"]).To(HavePrefix("https://wopi.quad4.test/wopi/files/")) // skip checking the actual reference
+			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
+			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/newDocument.docx?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
 		})
 
 		It("PutRelativeFileRelative conflict", func() {
@@ -1300,9 +1300,9 @@ var _ = Describe("FileConnector", func() {
 			Expect(response.Headers[connector.HeaderWopiValidRT]).To(MatchRegexp(`[a-zA-Z0-9_-] convFile\.pdf`))
 			rBody := response.Body.(map[string]any)
 			Expect(rBody["Name"]).To(Equal("convFile.pdf"))
-			Expect(rBody["Url"]).To(HavePrefix("https://wopi.opencloud.test/wopi/files/")) // skip checking the actual reference
-			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/convFile.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
-			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.opencloud.test/external-test/personal/path/to/convFile.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
+			Expect(rBody["Url"]).To(HavePrefix("https://wopi.quad4.test/wopi/files/")) // skip checking the actual reference
+			Expect(rBody["HostEditUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/convFile.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=write"))
+			Expect(rBody["HostViewUrl"]).To(Equal("https://cloud.quad4.test/external-test/personal/path/to/convFile.pdf?fileId=storageid%24spaceid%21opaqueid_newDoc&view_mode=view"))
 		})
 
 		It("PutRelativeFileRelative put file fails", func() {
@@ -1746,7 +1746,7 @@ var _ = Describe("FileConnector", func() {
 				BaseFileName:               "test.txt",
 				BreadcrumbDocName:          "test.txt",
 				BreadcrumbFolderName:       "/path/to",
-				BreadcrumbFolderURL:        "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
+				BreadcrumbFolderURL:        "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
 				UserCanNotWriteRelative:    false,
 				SupportsExtendedLockLength: true,
 				SupportsGetLock:            true,
@@ -1758,18 +1758,18 @@ var _ = Describe("FileConnector", func() {
 				UserCanRename:              true,
 				UserID:                     "61646d696e40637573746f6d496470", // hex of admin@customIdp
 				UserFriendlyName:           "Pet Shaft",
-				FileSharingURL:             "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:             "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:                "https://cloud.opencloud.test/external-test/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				HostViewURL:                "https://cloud.opencloud.test/external-test/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
-				CloseURL:                   "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
+				FileSharingURL:             "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:             "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:                "https://cloud.quad4.test/external-test/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				HostViewURL:                "https://cloud.quad4.test/external-test/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
+				CloseURL:                   "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
 			}
 
 			response, err := fc.CheckFileInfo(ctx)
 			Expect(err).ToNot(HaveOccurred())
 			Expect(response.Status).To(Equal(200))
 			// DownloadURL carries a fresh WOPI token, so check its shape separately
-			Expect(response.Body.(*fileinfo.Microsoft).DownloadURL).To(HavePrefix("https://wopi.opencloud.test/wopi/files/"))
+			Expect(response.Body.(*fileinfo.Microsoft).DownloadURL).To(HavePrefix("https://wopi.quad4.test/wopi/files/"))
 			Expect(response.Body.(*fileinfo.Microsoft).DownloadURL).To(ContainSubstring("/contents?access_token="))
 			response.Body.(*fileinfo.Microsoft).DownloadURL = ""
 			Expect(response.Body.(*fileinfo.Microsoft)).To(Equal(expectedFileInfo))
@@ -1838,7 +1838,7 @@ var _ = Describe("FileConnector", func() {
 				SupportsRename:          true,
 				UserCanRename:           false,
 				BreadcrumbDocName:       "test.txt",
-				PostMessageOrigin:       "https://cloud.opencloud.test",
+				PostMessageOrigin:       "https://cloud.quad4.test",
 				EnableInsertRemoteImage: true,
 				EnableInsertRemoteFile:  true,
 				EnableRemoteLinkPicker:  true,
@@ -1848,12 +1848,12 @@ var _ = Describe("FileConnector", func() {
 				ReadOnly:                true,
 				SupportsUpdate:          true,
 				BreadcrumbFolderName:    "/path/to",
-				BreadcrumbFolderURL:     "https://cloud.opencloud.test",
-				CloseURL:                "https://cloud.opencloud.test",
-				FileSharingURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				HostViewURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
+				BreadcrumbFolderURL:     "https://cloud.quad4.test",
+				CloseURL:                "https://cloud.quad4.test",
+				FileSharingURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				HostViewURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
 				EditModePostMessage:     true,
 			}
 
@@ -1867,7 +1867,7 @@ var _ = Describe("FileConnector", func() {
 			response.Body.(*fileinfo.Collabora).UserID = "guest-zzz000"
 			response.Body.(*fileinfo.Collabora).UserFriendlyName = "guest zzz000"
 			// DownloadURL carries a fresh WOPI token, so check its shape separately
-			Expect(response.Body.(*fileinfo.Collabora).DownloadURL).To(HavePrefix("https://wopi.opencloud.test/wopi/files/"))
+			Expect(response.Body.(*fileinfo.Collabora).DownloadURL).To(HavePrefix("https://wopi.quad4.test/wopi/files/"))
 			Expect(response.Body.(*fileinfo.Collabora).DownloadURL).To(ContainSubstring("/contents?access_token="))
 			response.Body.(*fileinfo.Collabora).DownloadURL = ""
 
@@ -1948,7 +1948,7 @@ var _ = Describe("FileConnector", func() {
 				LastModifiedTime:        "1970-07-08T08:30:49.0000000Z",
 				BreadcrumbDocName:       "test.txt",
 				BreadcrumbFolderName:    "/path/to",
-				BreadcrumbFolderURL:     "https://cloud.opencloud.test/s/ABC123",
+				BreadcrumbFolderURL:     "https://cloud.quad4.test/s/ABC123",
 				DisablePrint:            true,
 				UserCanNotWriteRelative: false,
 				SupportsLocks:           true,
@@ -1961,11 +1961,11 @@ var _ = Describe("FileConnector", func() {
 				EnableInsertRemoteImage: true,
 				UserID:                  "guest-zzz000",
 				UserFriendlyName:        "guest zzz000",
-				FileSharingURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:             "https://cloud.opencloud.test/external-onlyoffice/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				PostMessageOrigin:       "https://cloud.opencloud.test",
-				CloseURL:                "https://cloud.opencloud.test/s/ABC123",
+				FileSharingURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:             "https://cloud.quad4.test/external-onlyoffice/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				PostMessageOrigin:       "https://cloud.quad4.test",
+				CloseURL:                "https://cloud.quad4.test/s/ABC123",
 				ReadOnly:                true,
 			}
 
@@ -2053,7 +2053,7 @@ var _ = Describe("FileConnector", func() {
 				SupportsRename:          true,
 				UserCanRename:           false,
 				BreadcrumbDocName:       "test.txt",
-				PostMessageOrigin:       "https://cloud.opencloud.test",
+				PostMessageOrigin:       "https://cloud.quad4.test",
 				EnableInsertRemoteImage: true,
 				EnableInsertRemoteFile:  true,
 				EnableRemoteLinkPicker:  true,
@@ -2063,12 +2063,12 @@ var _ = Describe("FileConnector", func() {
 				ReadOnly:                true,
 				SupportsUpdate:          true,
 				BreadcrumbFolderName:    "/path/to",
-				BreadcrumbFolderURL:     "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
-				CloseURL:                "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
-				FileSharingURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				HostViewURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
+				BreadcrumbFolderURL:     "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
+				CloseURL:                "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
+				FileSharingURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				HostViewURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
 				EditModePostMessage:     true,
 				IsUserLocked:            true,
 				UserExtraInfo: &fileinfo.UserExtraInfo{
@@ -2159,7 +2159,7 @@ var _ = Describe("FileConnector", func() {
 				SupportsRename:          true,
 				UserCanRename:           false,
 				BreadcrumbDocName:       "test.txt",
-				PostMessageOrigin:       "https://cloud.opencloud.test",
+				PostMessageOrigin:       "https://cloud.quad4.test",
 				EnableInsertRemoteImage: true,
 				EnableInsertRemoteFile:  true,
 				EnableRemoteLinkPicker:  true,
@@ -2169,12 +2169,12 @@ var _ = Describe("FileConnector", func() {
 				ReadOnly:                true,
 				SupportsUpdate:          true,
 				BreadcrumbFolderName:    "/path/to",
-				BreadcrumbFolderURL:     "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
-				CloseURL:                "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
-				FileSharingURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				HostViewURL:             "https://cloud.opencloud.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
+				BreadcrumbFolderURL:     "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
+				CloseURL:                "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
+				FileSharingURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				HostViewURL:             "https://cloud.quad4.test/external-collabora/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=view",
 				EditModePostMessage:     true,
 				UserExtraInfo: &fileinfo.UserExtraInfo{
 					Mail: "shaft@example.com",
@@ -2191,7 +2191,7 @@ var _ = Describe("FileConnector", func() {
 			Expect(body.UserExtraInfo.Avatar).To(ContainSubstring("/wopi/avatars/aabbcc?access_token="))
 			Expect(body.UserExtraInfo.Mail).To(Equal("shaft@example.com"))
 			// DownloadURL carries a fresh WOPI token, so check its shape separately
-			Expect(body.DownloadURL).To(HavePrefix("https://wopi.opencloud.test/wopi/files/"))
+			Expect(body.DownloadURL).To(HavePrefix("https://wopi.quad4.test/wopi/files/"))
 			Expect(body.DownloadURL).To(ContainSubstring("/contents?access_token="))
 			body.DownloadURL = ""
 			// Clear dynamic fields for struct comparison
@@ -2256,7 +2256,7 @@ var _ = Describe("FileConnector", func() {
 				LastModifiedTime:        "1970-07-08T08:30:49.0000000Z",
 				BreadcrumbDocName:       "test.txt",
 				BreadcrumbFolderName:    "/path/to",
-				BreadcrumbFolderURL:     "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
+				BreadcrumbFolderURL:     "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
 				UserCanNotWriteRelative: false,
 				SupportsLocks:           true,
 				SupportsUpdate:          true,
@@ -2265,12 +2265,12 @@ var _ = Describe("FileConnector", func() {
 				UserCanRename:           true,
 				UserID:                  "61646d696e40637573746f6d496470", // hex of admin@customIdp
 				UserFriendlyName:        "Pet Shaft",
-				FileSharingURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=sharing",
-				FileVersionURL:          "https://cloud.opencloud.test/f/storageid$spaceid%21opaqueid?details=versions",
-				HostEditURL:             "https://cloud.opencloud.test/external-onlyoffice/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
-				PostMessageOrigin:       "https://cloud.opencloud.test",
+				FileSharingURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=sharing",
+				FileVersionURL:          "https://cloud.quad4.test/f/storageid$spaceid%21opaqueid?details=versions",
+				HostEditURL:             "https://cloud.quad4.test/external-onlyoffice/path/to/test.txt?fileId=storageid%24spaceid%21opaqueid&view_mode=write",
+				PostMessageOrigin:       "https://cloud.quad4.test",
 				EnableInsertRemoteImage: true,
-				CloseURL:                "https://cloud.opencloud.test/f/storageid$spaceid%21parentopaqueid",
+				CloseURL:                "https://cloud.quad4.test/f/storageid$spaceid%21parentopaqueid",
 			}
 
 			// change wopi app provider
@@ -2283,7 +2283,7 @@ var _ = Describe("FileConnector", func() {
 
 			returnedFileInfo := response.Body.(*fileinfo.OnlyOffice)
 			templateSource := returnedFileInfo.TemplateSource
-			expectedTemplateSource := "https://wopi.opencloud.test/wopi/templates/a340d017568d0d579ee061a9ac02109e32fb07082d35c40aa175864303bd9107?access_token="
+			expectedTemplateSource := "https://wopi.quad4.test/wopi/templates/a340d017568d0d579ee061a9ac02109e32fb07082d35c40aa175864303bd9107?access_token="
 
 			// take TemplateSource out of the response for easier comparison
 			returnedFileInfo.TemplateSource = ""
@@ -2433,7 +2433,7 @@ var _ = Describe("FileConnector", func() {
 				Expect(err).ToNot(HaveOccurred())
 				body := response.Body.(*fileinfo.Collabora)
 				Expect(body.BreadcrumbBrandName).To(Equal("Project X"))
-				Expect(body.BreadcrumbBrandURL).To(Equal("https://cloud.opencloud.test/f/storageid$spaceid%21spaceid"))
+				Expect(body.BreadcrumbBrandURL).To(Equal("https://cloud.quad4.test/f/storageid$spaceid%21spaceid"))
 			})
 
 			It("names the space but keeps its link from a public share", func() {

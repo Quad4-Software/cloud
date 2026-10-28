@@ -12,7 +12,7 @@ import (
 	cs3group "github.com/cs3org/go-cs3apis/cs3/identity/group/v1beta1"
 	cs3user "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 // Errors used by the interfaces

@@ -3,9 +3,9 @@ package convert
 import (
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/kql"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/query"
+	"github.com/Quad4-Software/cloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/services/search/pkg/query"
 )
 
 var (

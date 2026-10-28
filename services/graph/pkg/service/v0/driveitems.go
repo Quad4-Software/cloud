@@ -29,10 +29,10 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/tags"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/search/pkg/mapping"
 )
 
 // opt-in driveItem instance annotations, returned only when requested via $select
@@ -351,7 +351,7 @@ func (g Graph) GetDriveItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if driveItemRelationExpanded(r, _expandThumbnails) {
-		setDriveItemThumbnails(driveItem, res.GetInfo(), g.config.Commons.OpenCloudURL, g.sourceTypes)
+		setDriveItemThumbnails(driveItem, res.GetInfo(), g.config.Commons.Quad4CloudURL, g.sourceTypes)
 	}
 
 	render.Status(r, http.StatusOK)
@@ -577,7 +577,7 @@ func cs3ResourceToDriveItem(logger *log.Logger, publicBaseURL *url.URL, res *sto
 }
 
 // lockToFacet maps a CS3 lock; WebDAV renders the same state as d:lockdiscovery.
-// Only exclusive locks are reported, that is all OpenCloud issues.
+// Only exclusive locks are reported, that is all Quad4 Cloud issues.
 func lockToFacet(lock *storageprovider.Lock) *libregraph.LockInfo {
 	switch lock.GetType() {
 	case storageprovider.LockType_LOCK_TYPE_EXCL, storageprovider.LockType_LOCK_TYPE_WRITE:

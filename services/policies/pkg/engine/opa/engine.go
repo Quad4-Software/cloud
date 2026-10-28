@@ -12,9 +12,9 @@ import (
 	"github.com/open-policy-agent/opa/rego"
 	"github.com/opencloud-eu/reva/v2/pkg/rhttp"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine"
 )
 
 // downloads go to the internal data gateway, its certificate is not verified.

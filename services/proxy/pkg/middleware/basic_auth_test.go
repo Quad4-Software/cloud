@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/mock"
 
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend/mocks"
 )
 
 var _ = Describe("Authenticating requests", Label("BasicAuthenticator"), func() {
@@ -61,7 +61,7 @@ var _ = Describe("Authenticating requests", Label("BasicAuthenticator"), func() 
 			Expect(claims[oidc.Iss]).To(Equal("IdpId"))
 			Expect(claims[oidc.PreferredUsername]).To(Equal("testuser"))
 			Expect(claims[oidc.Email]).To(Equal("testuser@example.com"))
-			Expect(claims[oidc.OpenCloudUUID]).To(Equal("OpaqueId"))
+			Expect(claims[oidc.Quad4CloudUUID]).To(Equal("OpaqueId"))
 		})
 	})
 })

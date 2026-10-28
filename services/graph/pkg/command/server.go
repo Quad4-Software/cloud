@@ -6,20 +6,20 @@ import (
 	"os/signal"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	natspkg "github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/server/http"
-	evc "github.com/opencloud-eu/opencloud/services/graph/pkg/service/events"
-	svc "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	natspkg "github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/server/http"
+	evc "github.com/Quad4-Software/cloud/services/graph/pkg/service/events"
+	svc "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
 	"github.com/prometheus/client_golang/prometheus"
@@ -155,7 +155,7 @@ func Server(cfg *config.Config) *cobra.Command {
 				// even if events are enabled, we still need to differentiate between whether this process
 				// show be consuming events or not (and even when that is disabled, we still need to be
 				// able to produce events), which is why this is a separate setting;
-				// for context, see https://github.com/opencloud-eu/opencloud/issues/1312
+				// for context, see https://github.com/Quad4-Software/cloud/issues/1312
 
 				logger := &log.Logger{Logger: logger.With().Str("transport", "events").Logger()}
 				eventConsumer, err := evc.NewService(cfg.Context, eventsStream, identityBackend, mtrcs, logger)

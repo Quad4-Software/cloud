@@ -6,13 +6,13 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/sharing/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/sharing/pkg/config"
 )
 
-// SharingConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// SharingConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func SharingConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string]any, error) {
 	passwordPolicyCfg, err := passwordPolicyConfig(cfg)
 	if err != nil {
@@ -146,7 +146,7 @@ func SharingConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string]
 					"password":         cfg.Events.AuthPassword,
 				},
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "sharing",
 				},
 			},

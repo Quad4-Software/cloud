@@ -6,9 +6,9 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/authguest:
+  github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/authguest:
     interfaces:
       AuthGuest: {}
-  github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/storage:
+  github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/storage:
     interfaces:
       Manager: {}

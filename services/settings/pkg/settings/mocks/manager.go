@@ -5,7 +5,7 @@
 package mocks
 
 import (
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
 	mock "github.com/stretchr/testify/mock"
 )
 

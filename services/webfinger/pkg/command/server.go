@@ -5,18 +5,18 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/relations"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/server/http"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/relations"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/server/http"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/service/v0"
 
 	"github.com/spf13/cobra"
 )
@@ -121,9 +121,9 @@ func getRelationProviders(cfg *config.Config) (map[string]service.RelationProvid
 		switch relationURI {
 		case relations.OpenIDConnectRel:
 			rels[relationURI] = relations.OpenIDDiscovery(cfg.IDP, cfg.OIDCClientConfigs)
-		case relations.OpenCloudInstanceRel:
+		case relations.Quad4CloudInstanceRel:
 			var err error
-			rels[relationURI], err = relations.OpenCloudInstance(cfg.Instances, cfg.OpenCloudURL)
+			rels[relationURI], err = relations.Quad4CloudInstance(cfg.Instances, cfg.Quad4CloudURL)
 			if err != nil {
 				return nil, err
 			}

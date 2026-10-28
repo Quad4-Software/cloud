@@ -3,7 +3,7 @@ package content_test
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
 
 	"context"
 	"encoding/json"
@@ -12,8 +12,8 @@ import (
 	cs3Types "github.com/cs3org/go-cs3apis/cs3/types/v1beta1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
 )
 
 var _ = Describe("Basic", func() {

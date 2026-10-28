@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/ldap"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/users/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/users/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/users/pkg/revaconfig"
-	"github.com/opencloud-eu/opencloud/services/users/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/ldap"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/users/pkg/config"
+	"github.com/Quad4-Software/cloud/services/users/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/users/pkg/revaconfig"
+	"github.com/Quad4-Software/cloud/services/users/pkg/server/debug"
 	"github.com/opencloud-eu/reva/v2/cmd/revad/runtime"
 
 	"github.com/spf13/cobra"
@@ -36,7 +36,7 @@ func Server(cfg *config.Config) *cobra.Command {
 				return err
 			}
 
-			// the reva runtime calls os.Exit in the case of a failure and there is no way for the OpenCloud
+			// the reva runtime calls os.Exit in the case of a failure and there is no way for the Quad4 Cloud
 			// runtime to catch it and restart a reva service. Therefore we need to ensure the service has
 			// everything it needs, before starting the service.
 			// In this case: CA certificates

@@ -64,13 +64,13 @@ OC_MODULES = \
 	services/web \
 	services/webdav\
 	services/webfinger\
-	opencloud \
+	quad4 \
 	pkg \
 	protogen
 
 # bin file definitions
-PHP_CODESNIFFER=vendor-bin/opencloud-codestyle/vendor/bin/phpcs
-PHP_CODEBEAUTIFIER=vendor-bin/opencloud-codestyle/vendor/bin/phpcbf
+PHP_CODESNIFFER=vendor-bin/quad4-codestyle/vendor/bin/phpcs
+PHP_CODEBEAUTIFIER=vendor-bin/quad4-codestyle/vendor/bin/phpcbf
 
 ifneq (, $(shell command -v go 2> /dev/null)) # suppress `command not found warnings` for non go targets in CI
 include .bingo/Variables.mk
@@ -81,7 +81,7 @@ help:
 	@echo "Please use 'make <target>' where <target> is one of the following:"
 	@echo
 	@echo -e "${GREEN}Testing with test suite natively installed:${RESET}\n"
-	@echo -e "${PURPLE}\ttests: https://github.com/opencloud-eu/opencloud/blob/main/tests/README.md#running-test-suite-in-local-environment${RESET}\n"
+	@echo -e "${PURPLE}\ttests: https://github.com/Quad4-Software/cloud/blob/main/tests/README.md#running-test-suite-in-local-environment${RESET}\n"
 	@echo -e "\tmake test-acceptance-api\t\t${BLUE}run API acceptance tests${RESET}"
 	@echo -e "\tmake clean-tests\t\t\t${BLUE}delete API tests framework dependencies${RESET}"
 	@echo
@@ -89,12 +89,12 @@ help:
 	@echo
 	@echo -e "${RED}You also should have a look at other available Makefiles:${RESET}"
 	@echo
-	@echo -e "${GREEN}opencloud:${RESET}\n"
-	@echo -e "${PURPLE}\tdocs: https://github.com/opencloud-eu/opencloud/blob/main/README.md#build-opencloud${RESET}\n"
-	@echo -e "\tsee ./opencloud/Makefile"
+	@echo -e "${GREEN}quad4:${RESET}\n"
+	@echo -e "${PURPLE}\tdocs: https://github.com/Quad4-Software/cloud/blob/main/README.md#build-quad4${RESET}\n"
+	@echo -e "\tsee ./quad4/Makefile"
 	@echo
 	@echo -e "${GREEN}Testing with test suite in docker:${RESET}\n"
-	@echo -e "${PURPLE}\ttests: https://github.com/opencloud-eu/opencloud/blob/main/tests/README.md#running-test-suite-in-docker${RESET}\n"
+	@echo -e "${PURPLE}\ttests: https://github.com/Quad4-Software/cloud/blob/main/tests/README.md#running-test-suite-in-docker${RESET}\n"
 	@echo -e "\tsee ./tests/acceptance/docker/Makefile"
 	@echo -e "\tor run ${YELLOW}make -C tests/acceptance/docker help${RESET}"
 	@echo
@@ -253,9 +253,9 @@ ci-node-check-licenses:
 
 .PHONY: ci-go-save-licenses
 ci-go-save-licenses:
-	@mkdir -p ./third-party-licenses/go/opencloud/third-party-licenses
-	$(GO_LICENSES) csv ./... > ./third-party-licenses/go/opencloud/third-party-licenses.csv
-	$(GO_LICENSES) save ./... --force --save_path="./third-party-licenses/go/opencloud/third-party-licenses"
+	@mkdir -p ./third-party-licenses/go/quad4/third-party-licenses
+	$(GO_LICENSES) csv ./... > ./third-party-licenses/go/quad4/third-party-licenses.csv
+	$(GO_LICENSES) save ./... --force --save_path="./third-party-licenses/go/quad4/third-party-licenses"
 
 .PHONY: ci-node-save-licenses
 ci-node-save-licenses:
@@ -302,15 +302,15 @@ ci-format: $(BUILDIFIER)
 	$(BUILDIFIER) --mode=fix .woodpecker.star
 
 .PHONY: test-php-style
-test-php-style: vendor-bin/opencloud-codestyle/vendor
+test-php-style: vendor-bin/quad4-codestyle/vendor
 	$(PHP_CODESNIFFER) --cache --runtime-set ignore_warnings_on_exit --standard=phpcs.xml tests/acceptance tests/acceptance/TestHelpers
 
 .PHONY: test-php-style-fix
-test-php-style-fix: vendor-bin/opencloud-codestyle/vendor
+test-php-style-fix: vendor-bin/quad4-codestyle/vendor
 	$(PHP_CODEBEAUTIFIER) --cache --runtime-set ignore_warnings_on_exit --standard=phpcs.xml tests/acceptance
 
-vendor-bin/opencloud-codestyle/vendor: vendor/bamarni/composer-bin-plugin vendor-bin/opencloud-codestyle/composer.lock
-	composer bin opencloud-codestyle install --no-progress
+vendor-bin/quad4-codestyle/vendor: vendor/bamarni/composer-bin-plugin vendor-bin/quad4-codestyle/composer.lock
+	composer bin quad4-codestyle install --no-progress
 
-vendor-bin/opencloud-codestyle/composer.lock: vendor-bin/opencloud-codestyle/composer.json
-	@echo opencloud-codestyle composer.lock is not up to date.
+vendor-bin/quad4-codestyle/composer.lock: vendor-bin/quad4-codestyle/composer.json
+	@echo quad4-codestyle composer.lock is not up to date.

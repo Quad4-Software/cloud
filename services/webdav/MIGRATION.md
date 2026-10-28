@@ -62,9 +62,9 @@ thumbnails:
   thumbnail:
     resolutions: ["16x16", "32x32", "7680x4320"]
     max_input_image_file_size: 50MB
-    font_map_file: /etc/opencloud/fontmap.json
+    font_map_file: /etc/quad4/fontmap.json
   filesystem_storage:
-    root: /var/lib/opencloud/thumbnails
+    root: /var/lib/quad4/thumbnails
 ```
 
 After:
@@ -74,8 +74,8 @@ webdav:
   thumbnails:
     resolutions: ["16", "32", "2048"]
     max_input_image_file_size: 50MB
-    txt_fontmap_file: /etc/opencloud/fontmap.json
-    cache_dir: /var/lib/opencloud/thumbnails/cache
+    txt_fontmap_file: /etc/quad4/fontmap.json
+    cache_dir: /var/lib/quad4/thumbnails/cache
 thumbnails:
   thumbnail:
     max_input_image_file_size: 50MB

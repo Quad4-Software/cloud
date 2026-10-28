@@ -3,11 +3,11 @@ package revaconfig
 import (
 	"path/filepath"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/config"
 )
 
-// AuthAppConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// AuthAppConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func AuthAppConfigFromStruct(cfg *config.Config) map[string]any {
 	appAuthJSON := filepath.Join(defaults.BaseDataPath(), "appauth.json")
 
@@ -63,7 +63,7 @@ func AuthAppConfigFromStruct(cfg *config.Config) map[string]any {
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "auth_app",
 				},
 			},

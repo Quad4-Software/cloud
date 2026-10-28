@@ -3,8 +3,8 @@ package theme
 import (
 	"path"
 
-	"github.com/opencloud-eu/opencloud/pkg/capabilities"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/capabilities"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var (

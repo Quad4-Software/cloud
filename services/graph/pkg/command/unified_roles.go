@@ -5,10 +5,10 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/olekukonko/tablewriter/renderer"

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 	"go-micro.dev/v4/client"
 )
 
@@ -130,7 +130,7 @@ type OIDC struct {
 type JWKS struct {
 	RefreshInterval   uint64 `yaml:"refresh_interval" env:"PROXY_OIDC_JWKS_REFRESH_INTERVAL" desc:"The interval for refreshing the JWKS (JSON Web Key Set) in minutes in the background via a new HTTP request to the IDP." introductionVersion:"1.0.0"`
 	RefreshTimeout    uint64 `yaml:"refresh_timeout" env:"PROXY_OIDC_JWKS_REFRESH_TIMEOUT" desc:"The timeout in seconds for an outgoing JWKS request." introductionVersion:"1.0.0"`
-	RefreshRateLimit  uint64 `yaml:"refresh_limit" env:"PROXY_OIDC_JWKS_REFRESH_RATE_LIMIT" desc:"Limits the rate in seconds at which refresh requests are performed for unknown keys. This is used to prevent malicious clients from imposing high network load on the IDP via OpenCloud." introductionVersion:"1.0.0"`
+	RefreshRateLimit  uint64 `yaml:"refresh_limit" env:"PROXY_OIDC_JWKS_REFRESH_RATE_LIMIT" desc:"Limits the rate in seconds at which refresh requests are performed for unknown keys. This is used to prevent malicious clients from imposing high network load on the IDP via Quad4 Cloud." introductionVersion:"1.0.0"`
 	RefreshUnknownKID bool   `yaml:"refresh_unknown_kid" env:"PROXY_OIDC_JWKS_REFRESH_UNKNOWN_KID" desc:"If set to 'true', the JWKS refresh request will occur every time an unknown KEY ID (KID) is seen. Always set a 'refresh_limit' when enabling this." introductionVersion:"1.0.0"`
 }
 
@@ -158,12 +158,12 @@ type RoleAssignment struct {
 // OIDCRoleMapper contains the configuration for the "oidc" role assignment driver
 type OIDCRoleMapper struct {
 	RoleClaim string        `yaml:"role_claim" env:"PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM" desc:"The OIDC claim used to create the users role assignment." introductionVersion:"1.0.0"`
-	RolesMap  []RoleMapping `yaml:"role_mapping" desc:"A list of mappings of OpenCloud role names to PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM claim values. This setting can only be configured in the configuration file and not via environment variables."`
+	RolesMap  []RoleMapping `yaml:"role_mapping" desc:"A list of mappings of Quad4 Cloud role names to PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM claim values. This setting can only be configured in the configuration file and not via environment variables."`
 }
 
-// RoleMapping defines which OpenCloud role matches a specific claim value
+// RoleMapping defines which Quad4 Cloud role matches a specific claim value
 type RoleMapping struct {
-	RoleName   string `yaml:"role_name" desc:"The name of an OpenCloud role that this mapping should apply for."`
+	RoleName   string `yaml:"role_name" desc:"The name of an Quad4 Cloud role that this mapping should apply for."`
 	ClaimValue string `yaml:"claim_value" desc:"The value of the 'PROXY_ROLE_ASSIGNMENT_OIDC_CLAIM' that matches the role defined in 'role_name'."`
 }
 
@@ -196,7 +196,7 @@ type PreSignedURL struct {
 
 // SigningKeys is a store configuration.
 type SigningKeys struct {
-	Store                string        `yaml:"store" env:"OC_CACHE_STORE;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE" desc:"The type of the signing key store. Supported values are: 'redis-sentinel', 'nats-js-kv' and 'opencloudstoreservice' (deprecated). See the text description for details." introductionVersion:"1.0.0"`
+	Store                string        `yaml:"store" env:"OC_CACHE_STORE;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE" desc:"The type of the signing key store. Supported values are: 'redis-sentinel', 'nats-js-kv' and 'quad4storeservice' (deprecated). See the text description for details." introductionVersion:"1.0.0"`
 	Nodes                []string      `yaml:"addresses" env:"OC_CACHE_STORE_NODES;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_NODES" desc:"A list of nodes to access the configured store. Note that the behaviour how nodes are used is dependent on the library of the configured store. See the Environment Variable Types description for more details." introductionVersion:"1.0.0"`
 	TTL                  time.Duration `yaml:"ttl" env:"OC_CACHE_TTL;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_TTL" desc:"Default time to live for signing keys. See the Environment Variable Types description for more details." introductionVersion:"1.0.0"`
 	DisablePersistence   bool          `yaml:"disable_persistence" env:"OC_CACHE_DISABLE_PERSISTENCE;PROXY_PRESIGNEDURL_SIGNING_KEYS_STORE_DISABLE_PERSISTENCE" desc:"Disables persistence of the store. Only applies when store type 'nats-js-kv' is configured. Defaults to true." introductionVersion:"1.0.0"`
@@ -241,12 +241,12 @@ type Events struct {
 	Cluster              string `yaml:"cluster" env:"OC_EVENTS_CLUSTER;PROXY_EVENTS_CLUSTER" desc:"The clusterID of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture." introductionVersion:"1.0.0"`
 	TLSInsecure          bool   `yaml:"tls_insecure" env:"OC_INSECURE;OC_EVENTS_TLS_INSECURE;PROXY_EVENTS_TLS_INSECURE" desc:"Whether to verify the server TLS certificates." introductionVersion:"1.0.0"`
 	TLSRootCACertificate string `yaml:"tls_root_ca_certificate" env:"OC_EVENTS_TLS_ROOT_CA_CERTIFICATE;PROXY_EVENTS_TLS_ROOT_CA_CERTIFICATE" desc:"The root CA certificate used to validate the server's TLS certificate. If provided PROXY_EVENTS_TLS_INSECURE will be seen as false." introductionVersion:"1.0.0"`
-	EnableTLS            bool   `yaml:"enable_tls" env:"OC_EVENTS_ENABLE_TLS;PROXY_EVENTS_ENABLE_TLS" desc:"Enable TLS for the connection to the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
-	AuthUsername         string `yaml:"username" env:"OC_EVENTS_AUTH_USERNAME;PROXY_EVENTS_AUTH_USERNAME" desc:"The username to authenticate with the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
-	AuthPassword         string `yaml:"password" env:"OC_EVENTS_AUTH_PASSWORD;PROXY_EVENTS_AUTH_PASSWORD" desc:"The password to authenticate with the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	EnableTLS            bool   `yaml:"enable_tls" env:"OC_EVENTS_ENABLE_TLS;PROXY_EVENTS_ENABLE_TLS" desc:"Enable TLS for the connection to the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	AuthUsername         string `yaml:"username" env:"OC_EVENTS_AUTH_USERNAME;PROXY_EVENTS_AUTH_USERNAME" desc:"The username to authenticate with the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	AuthPassword         string `yaml:"password" env:"OC_EVENTS_AUTH_PASSWORD;PROXY_EVENTS_AUTH_PASSWORD" desc:"The password to authenticate with the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
 }
 
 // GuestLinkAuth configures the guest-link cookie authentication flow.
 type GuestLinkAuth struct {
-	CookieName string `yaml:"cookie_name" env:"PROXY_GUEST_LINK_COOKIE_NAME" desc:"The name of the guest-session cookie. Defaults to __Host-opencloud-guest." introductionVersion:"9.0.0"`
+	CookieName string `yaml:"cookie_name" env:"PROXY_GUEST_LINK_COOKIE_NAME" desc:"The name of the guest-session cookie. Defaults to __Host-quad4-guest." introductionVersion:"9.0.0"`
 }

@@ -1,4 +1,4 @@
-# NOTE: set env OC_CORS_ALLOW_ORIGINS=https://aphno.badal while running OpenCloud server
+# NOTE: set env OC_CORS_ALLOW_ORIGINS=https://aphno.badal while running Quad4 Cloud server
 @env-config
 Feature: CORS headers
   As a user

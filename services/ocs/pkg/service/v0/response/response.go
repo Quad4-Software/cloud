@@ -6,7 +6,7 @@ import (
 	"reflect"
 
 	"github.com/go-chi/render"
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/service/v0/data"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/service/v0/data"
 )
 
 // Response is the top level response structure

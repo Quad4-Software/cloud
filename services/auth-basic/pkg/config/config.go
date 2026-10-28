@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 type Config struct {
@@ -46,7 +46,7 @@ type GRPCConfig struct {
 type AuthProviders struct {
 	LDAP        LDAPProvider        `yaml:"ldap"`
 	OwnCloudSQL OwnCloudSQLProvider `yaml:"owncloudsql"`
-	JSON        JSONProvider        `yaml:"json,omitempty"` // not supported by the OpenCloud product, therefore not part of docs
+	JSON        JSONProvider        `yaml:"json,omitempty"` // not supported by the Quad4 Cloud product, therefore not part of docs
 }
 
 type JSONProvider struct {
@@ -63,7 +63,7 @@ type LDAPProvider struct {
 	GroupBaseDN              string          `yaml:"group_base_dn" env:"OC_LDAP_GROUP_BASE_DN;AUTH_BASIC_LDAP_GROUP_BASE_DN" desc:"Search base DN for looking up LDAP groups." introductionVersion:"1.0.0"`
 	UserScope                string          `yaml:"user_scope" env:"OC_LDAP_USER_SCOPE;AUTH_BASIC_LDAP_USER_SCOPE" desc:"LDAP search scope to use when looking up users. Supported values are 'base', 'one' and 'sub'." introductionVersion:"1.0.0"`
 	GroupScope               string          `yaml:"group_scope" env:"OC_LDAP_GROUP_SCOPE;AUTH_BASIC_LDAP_GROUP_SCOPE" desc:"LDAP search scope to use when looking up groups. Supported values are 'base', 'one' and 'sub'." introductionVersion:"1.0.0"`
-	UserFilter               string          `yaml:"user_filter" env:"OC_LDAP_USER_FILTER;AUTH_BASIC_LDAP_USER_FILTER" desc:"LDAP filter to add to the default filters for user search like '(objectclass=openCloudUser)'." introductionVersion:"1.0.0"`
+	UserFilter               string          `yaml:"user_filter" env:"OC_LDAP_USER_FILTER;AUTH_BASIC_LDAP_USER_FILTER" desc:"LDAP filter to add to the default filters for user search like '(objectclass=quad4CloudUser)'." introductionVersion:"1.0.0"`
 	GroupFilter              string          `yaml:"group_filter" env:"OC_LDAP_GROUP_FILTER;AUTH_BASIC_LDAP_GROUP_FILTER" desc:"LDAP filter to add to the default filters for group searches." introductionVersion:"1.0.0"`
 	UserObjectClass          string          `yaml:"user_object_class" env:"OC_LDAP_USER_OBJECTCLASS;AUTH_BASIC_LDAP_USER_OBJECTCLASS" desc:"The object class to use for users in the default user search filter ('inetOrgPerson')." introductionVersion:"1.0.0"`
 	GroupObjectClass         string          `yaml:"group_object_class" env:"OC_LDAP_GROUP_OBJECTCLASS;AUTH_BASIC_LDAP_GROUP_OBJECTCLASS" desc:"The object class to use for groups in the default group search filter ('groupOfNames')." introductionVersion:"1.0.0"`

@@ -13,8 +13,8 @@ import (
 	"github.com/pkg/errors"
 	mail "github.com/xhit/go-simple-mail/v2"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/config"
 )
 
 // Channel defines the methods of a communication channel.

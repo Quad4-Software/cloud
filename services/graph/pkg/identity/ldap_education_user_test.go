@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
@@ -22,10 +22,10 @@ var eduUserAttrs = []string{
 	"givenname",
 	"userEnabledAttribute",
 	"userTypeAttribute",
-	"openCloudExternalIdentity",
+	"quad4CloudExternalIdentity",
 	"userClass",
-	"openCloudEducationExternalId",
-	"openCloudMemberOfSchool",
+	"quad4CloudEducationExternalId",
+	"quad4CloudMemberOfSchool",
 }
 
 var eduUserEntry = ldap.NewEntry("uid=user,ou=people,dc=test",
@@ -35,7 +35,7 @@ var eduUserEntry = ldap.NewEntry("uid=user,ou=people,dc=test",
 		"mail":        {"user@example"},
 		"entryuuid":   {"abcd-defg"},
 		"userClass":   {"student"},
-		"openCloudExternalIdentity": {
+		"quad4CloudExternalIdentity": {
 			"$ http://idp $ testuser",
 			"xxx $ http://idpnew $ xxxxx-xxxxx-xxxxx",
 		},
@@ -49,7 +49,7 @@ var renamedEduUserEntry = ldap.NewEntry("uid=newtestuser,ou=people,dc=test",
 		"mail":        {"user@example"},
 		"entryuuid":   {"abcd-defg"},
 		"userClass":   {"student"},
-		"openCloudExternalIdentity": {
+		"quad4CloudExternalIdentity": {
 			"$ http://idp $ testuser",
 			"xxx $ http://idpnew $ xxxxx-xxxxx-xxxxx",
 		},
@@ -63,8 +63,8 @@ var eduUserEntryWithSchool = ldap.NewEntry("uid=user,ou=people,dc=test",
 		"mail":                    {"user@example"},
 		"entryuuid":               {"abcd-defg"},
 		"userClass":               {"student"},
-		"openCloudMemberOfSchool": {"abcd-defg"},
-		"openCloudExternalIdentity": {
+		"quad4CloudMemberOfSchool": {"abcd-defg"},
+		"quad4CloudExternalIdentity": {
 			"$ http://idp $ testuser",
 			"xxx $ http://idpnew $ xxxxx-xxxxx-xxxxx",
 		},
@@ -74,7 +74,7 @@ var sr1 *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     peopleBaseDN,
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationUser)(|(uid=abcd-defg)(entryUUID=abcd-defg)))",
+	Filter:     "(&(objectClass=quad4CloudEducationUser)(|(uid=abcd-defg)(entryUUID=abcd-defg)))",
 	Attributes: eduUserAttrs,
 	Controls:   []ldap.Control(nil),
 }
@@ -82,7 +82,7 @@ var sr2 *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     peopleBaseDN,
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationUser)(|(uid=xxxx-xxxx)(entryUUID=xxxx-xxxx)))",
+	Filter:     "(&(objectClass=quad4CloudEducationUser)(|(uid=xxxx-xxxx)(entryUUID=xxxx-xxxx)))",
 	Attributes: eduUserAttrs,
 	Controls:   []ldap.Control(nil),
 }
@@ -169,7 +169,7 @@ func TestGetEducationUsers(t *testing.T) {
 		BaseDN:     peopleBaseDN,
 		Scope:      2,
 		SizeLimit:  0,
-		Filter:     "(objectClass=openCloudEducationUser)",
+		Filter:     "(objectClass=quad4CloudEducationUser)",
 		Attributes: eduUserAttrs,
 		Controls:   []ldap.Control(nil),
 	}
@@ -187,7 +187,7 @@ func TestFilterEducationUsersByAttr(t *testing.T) {
 		BaseDN:     peopleBaseDN,
 		Scope:      2,
 		SizeLimit:  0,
-		Filter:     "(&(objectClass=openCloudEducationUser)(openCloudEducationExternalId=id1234))",
+		Filter:     "(&(objectClass=quad4CloudEducationUser)(quad4CloudEducationExternalId=id1234))",
 		Attributes: eduUserAttrs,
 		Controls:   []ldap.Control(nil),
 	}
@@ -207,7 +207,7 @@ func TestUpdateEducationUser(t *testing.T) {
 		BaseDN:     peopleBaseDN,
 		Scope:      2,
 		SizeLimit:  1,
-		Filter:     "(&(objectClass=openCloudEducationUser)(|(uid=testuser)(entryUUID=testuser)))",
+		Filter:     "(&(objectClass=quad4CloudEducationUser)(|(uid=testuser)(entryUUID=testuser)))",
 		Attributes: eduUserAttrs,
 	}
 	userLookupReq := &ldap.SearchRequest{
@@ -221,7 +221,7 @@ func TestUpdateEducationUser(t *testing.T) {
 		BaseDN:     "uid=newtestuser,ou=people,dc=test",
 		Scope:      0,
 		SizeLimit:  1,
-		Filter:     "(objectClass=openCloudEducationUser)",
+		Filter:     "(objectClass=quad4CloudEducationUser)",
 		Attributes: eduUserAttrs,
 	}
 	groupSearchReq := &ldap.SearchRequest{

@@ -1,6 +1,6 @@
 # Storage Shares
 
-The `storage-shares` service provides storage backend functionality for user and group shares in OpenCloud. It implements the CS3 storage provider interface specifically for working with shared resources.
+The `storage-shares` service provides storage backend functionality for user and group shares in Quad4 Cloud. It implements the CS3 storage provider interface specifically for working with shared resources.
 
 ## Overview
 

@@ -26,7 +26,7 @@ use Psr\Http\Message\ResponseInterface;
 use PHPUnit\Framework\Assert;
 
 /**
- * A helper class for OpenCloud settings
+ * A helper class for Quad4 Cloud settings
  */
 class SettingsHelper {
 	private static string $settingsEndpoint = '/api/v0/settings/';

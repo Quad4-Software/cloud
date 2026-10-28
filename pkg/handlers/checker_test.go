@@ -12,8 +12,8 @@ import (
 	"github.com/test-go/testify/require"
 	"github.com/tidwall/gjson"
 
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 func TestCheckHandlerConfiguration(t *testing.T) {

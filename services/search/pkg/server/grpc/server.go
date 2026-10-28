@@ -1,10 +1,10 @@
 package grpc
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	svc "github.com/opencloud-eu/opencloud/services/search/pkg/service/grpc/v0"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	svc "github.com/Quad4-Software/cloud/services/search/pkg/service/grpc/v0"
 )
 
 // Server initializes a new go-micro service ready to run

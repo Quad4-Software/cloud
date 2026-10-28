@@ -9,8 +9,8 @@ import (
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	httpsvc "github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	httpsvc "github.com/Quad4-Software/cloud/services/activitylog/pkg/service/http"
 )
 
 var _ = Describe("Response", func() {

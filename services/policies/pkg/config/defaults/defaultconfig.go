@@ -3,8 +3,8 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration which is needed for doc generation.
@@ -30,12 +30,12 @@ func DefaultConfig() *config.Config {
 		GRPC: config.GRPC{
 			Disabled:  false,
 			Addr:      "127.0.0.1:9125",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 		Events: config.Events{
 			Disabled:  false,
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		Engine: config.Engine{

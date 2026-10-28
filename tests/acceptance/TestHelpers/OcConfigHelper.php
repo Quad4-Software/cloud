@@ -27,7 +27,7 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * A helper class for configuring OpenCloud server
+ * A helper class for configuring Quad4 Cloud server
  */
 class OcConfigHelper {
 	public static $postProcessingDelay = 0;
@@ -125,7 +125,7 @@ class OcConfigHelper {
 	 * @return ResponseInterface
 	 * @throws GuzzleException
 	 */
-	public static function stopOpencloud(): ResponseInterface {
+	public static function stopQuad4cloud(): ResponseInterface {
 		$url = self::getWrapperUrl() . "/stop";
 		return self::sendRequest($url, "POST");
 	}
@@ -134,7 +134,7 @@ class OcConfigHelper {
 	 * @return ResponseInterface
 	 * @throws GuzzleException
 	 */
-	public static function startOpencloud(): ResponseInterface {
+	public static function startQuad4cloud(): ResponseInterface {
 		$url = self::getWrapperUrl() . "/start";
 		return self::sendRequest($url, "POST");
 	}

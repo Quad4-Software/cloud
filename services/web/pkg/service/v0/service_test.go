@@ -8,10 +8,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/web/mocks"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/announcement"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/web/mocks"
+	"github.com/Quad4-Software/cloud/services/web/pkg/announcement"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
 )
 
 func TestCurrentAnnouncement(t *testing.T) {

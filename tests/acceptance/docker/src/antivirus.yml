@@ -5,5 +5,5 @@ services:
       - clamav
     command: clamav:3310
   clamav:
-    image: opencloudeu/clamav-ci:latest
+    image: quad4-software/clamav-ci:latest
 

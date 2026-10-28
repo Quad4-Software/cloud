@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 	"go-micro.dev/v4/client"
 )
 

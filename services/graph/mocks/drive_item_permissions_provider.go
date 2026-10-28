@@ -9,7 +9,7 @@ import (
 
 	"github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	"github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 	mock "github.com/stretchr/testify/mock"
 )
 

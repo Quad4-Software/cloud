@@ -16,10 +16,10 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"google.golang.org/grpc/metadata"
 
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	settingsServiceExt "github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	settingsServiceExt "github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 )
 
 const (

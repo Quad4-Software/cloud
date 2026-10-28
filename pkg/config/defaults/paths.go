@@ -10,7 +10,7 @@ var (
 	// switch between modes
 	BaseDataPathType = "homedir" // or "path"
 	// default data path
-	BaseDataPathValue = "/var/lib/opencloud"
+	BaseDataPathValue = "/var/lib/quad4"
 )
 
 func BaseDataPath() string {
@@ -30,7 +30,7 @@ func BaseDataPath() string {
 			// fallback to BaseDatapathValue for users without home
 			return BaseDataPathValue
 		}
-		return path.Join(dir, ".opencloud")
+		return path.Join(dir, ".quad4")
 	case "path":
 		return BaseDataPathValue
 	default:
@@ -43,7 +43,7 @@ var (
 	// switch between modes
 	BaseConfigPathType = "homedir" // or "path"
 	// default config path
-	BaseConfigPathValue = "/etc/opencloud"
+	BaseConfigPathValue = "/etc/quad4"
 )
 
 func BaseConfigPath() string {
@@ -63,7 +63,7 @@ func BaseConfigPath() string {
 			// fallback to BaseConfigPathValue for users without home
 			return BaseConfigPathValue
 		}
-		return path.Join(dir, ".opencloud", "config")
+		return path.Join(dir, ".quad4", "config")
 	case "path":
 		return BaseConfigPathValue
 	default:

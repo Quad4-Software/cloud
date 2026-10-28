@@ -6,12 +6,12 @@ title: "Use the graph education API for multi-tenant user provisioning"
 * Deciders: [@micbar, @butonic, @rhafer]
 * Date: 2025-09-23
 
-Reference: https://github.com/opencloud-eu/opencloud/issues/877
+Reference: https://github.com/Quad4-Software/cloud/issues/877
 
 ## Context and Problem Statement
 
 With the current multi-tenancy implementation, the user-management is mostly external
-to the OpenCloud instance. Up to [now](../0001-simple-multi-tenancy-using-a-single-opencloud-instance.md)
+to the Quad4 Cloud instance. Up to [now](../0001-simple-multi-tenancy-using-a-single-quad4-instance.md)
 we relied on some external LDAP server providing the users including their tenant assignment.
 We'd like multi-tenancy to also work in environments where no such LDAP server is available.
 
@@ -23,9 +23,9 @@ We'd like multi-tenancy to also work in environments where no such LDAP server i
 
 ## Considered Options
 
-### Use the auto-provisioning feature of OpenCloud
+### Use the auto-provisioning feature of Quad4 Cloud
 
-We already have basic auto-provsioning features implemented in OpenCloud.
+We already have basic auto-provsioning features implemented in Quad4 Cloud.
 Currently this is not tenant-aware, but it could be extended to support that.
 This would require some changes in the way that the users are managed by the
 auto-proviosioning code.
@@ -45,7 +45,7 @@ Also we don't currently have any de-provisioning features implemented.
 
 ### Use the existing Eudcation API of the Graph Service
 
-We already implemented the Graph Education API in OpenCloud (based on the MS Graph Education API).
+We already implemented the Graph Education API in Quad4 Cloud (based on the MS Graph Education API).
 This, apart from the somewhat different naming, does already bring most of what is needed
 for provisioning users in a multi-tenant environment.
 

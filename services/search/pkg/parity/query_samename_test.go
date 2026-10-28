@@ -1,9 +1,9 @@
 package parity
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	searchMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	searchMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 func samenameGroup() queryGroup {

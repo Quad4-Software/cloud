@@ -1,5 +1,5 @@
 Feature: Remove access to a drive
-  https://docs.opencloud.eu/libre-graph-api/#/drives.root/DeletePermissionSpaceRoot
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/drives.root/DeletePermissionSpaceRoot
 
   Background:
     Given these users have been created with default attributes:

@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /**
- * @author Viktor Scharf OpenCloud GmbH <v.scharf@opencloud.eu>
- * @copyright Copyright (c) 2026 OpenCloud GmbH <v.scharf@opencloud.eu>
+ * @author Viktor Scharf Quad4 Cloud GmbH <v.scharf@quad4.io>
+ * @copyright Copyright (c) 2026 Quad4 Cloud GmbH <v.scharf@quad4.io>
  *
  * This code is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License,
@@ -39,7 +39,7 @@ require_once 'bootstrap.php';
 
 /**
  * Steps for guest links: shares with an email address that the guest opens
- * through a link (or PIN) received by email, without an OpenCloud account.
+ * through a link (or PIN) received by email, without an Quad4 Cloud account.
  *
  * The guest is treated like a browser: it keeps the session cookie set by verifying
  * a link or PIN and the nonce cookie set by renewing, and sends them back.

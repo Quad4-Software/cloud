@@ -9,10 +9,10 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config/defaults"
 	"go-micro.dev/v4/selector"
 )
 
@@ -128,7 +128,7 @@ func TestRouter(t *testing.T) {
 			Routes: []config.Route{
 				{Type: config.PrefixRoute, Endpoint: "/web/unprotected/demo/", Backend: "http://web", Unprotected: true},
 				{Type: config.PrefixRoute, Endpoint: "/dav", Backend: "http://frontend"},
-				{Type: config.PrefixRoute, Method: "REPORT", Endpoint: "/dav", Backend: "http://opencloud-webdav"},
+				{Type: config.PrefixRoute, Method: "REPORT", Endpoint: "/dav", Backend: "http://quad4-webdav"},
 			},
 		},
 	}
@@ -139,7 +139,7 @@ func TestRouter(t *testing.T) {
 
 	table := []matchertest{
 		{method: "PROPFIND", endpoint: "/dav/files/demo/", target: "frontend"},
-		{method: "REPORT", endpoint: "/dav/files/demo/", target: "opencloud-webdav"},
+		{method: "REPORT", endpoint: "/dav/files/demo/", target: "quad4-webdav"},
 		{method: "GET", endpoint: "/web/unprotected/demo/", target: "web", unprotected: true},
 	}
 

@@ -1,7 +1,7 @@
 @ocm
 Feature: an user shares resources using ScienceMesh application
   As a user
-  I want to share resources between different OpenCloud instances
+  I want to share resources between different Quad4 Cloud instances
 
   Background:
     Given user "Alice" has been created with default attributes

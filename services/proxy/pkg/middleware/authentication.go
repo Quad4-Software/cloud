@@ -14,8 +14,8 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/webdav"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/webdav"
 )
 
 var (
@@ -23,7 +23,7 @@ var (
 	SupportedAuthStrategies []string
 
 	// ProxyWwwAuthenticate is a list of endpoints that do not rely on reva underlying authentication, such as ocs.
-	// services that fallback to reva authentication are declared in the "frontend" command on OpenCloud. It is a list of
+	// services that fallback to reva authentication are declared in the "frontend" command on Quad4 Cloud. It is a list of
 	// regexp.Regexp which are safe to use concurrently.
 	ProxyWwwAuthenticate = []regexp.Regexp{*regexp.MustCompile("/ocs/v[12].php/cloud/")}
 
@@ -391,7 +391,7 @@ func renderDAVExpired(w http.ResponseWriter, permissionID string) error {
 		Exception: "Sabre\\DAV\\Exception\\NotAuthenticated",
 		Message:   "Guest session has expired.",
 		Details: davExpiredDetails{
-			XmlnsOpenCloud: "http://opencloud.org/ns",
+			XmlnsQuad4Cloud: "http://quad4.org/ns",
 			ErrorType:      "session_expired",
 			ShareID:        permissionID,
 		},
@@ -404,11 +404,11 @@ type davExpiredResponse struct {
 	XmlnsS    string            `xml:"xmlns:s,attr"`
 	Exception string            `xml:"s:Exception"`
 	Message   string            `xml:"s:Message"`
-	Details   davExpiredDetails `xml:"opencloud:details"`
+	Details   davExpiredDetails `xml:"quad4:details"`
 }
 
 type davExpiredDetails struct {
-	XmlnsOpenCloud string `xml:"xmlns:opencloud,attr"`
-	ErrorType      string `xml:"opencloud:error_type"`
-	ShareID        string `xml:"opencloud:share_id"`
+	XmlnsQuad4Cloud string `xml:"xmlns:quad4,attr"`
+	ErrorType      string `xml:"quad4:error_type"`
+	ShareID        string `xml:"quad4:share_id"`
 }

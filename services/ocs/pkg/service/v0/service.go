@@ -7,13 +7,13 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/render"
 
-	"github.com/opencloud-eu/opencloud/pkg/account"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	opkgm "github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/config"
-	ocsm "github.com/opencloud-eu/opencloud/services/ocs/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/service/v0/data"
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/service/v0/response"
+	"github.com/Quad4-Software/cloud/pkg/account"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	opkgm "github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/config"
+	ocsm "github.com/Quad4-Software/cloud/services/ocs/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/service/v0/data"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/service/v0/response"
 	microstore "go-micro.dev/v4/store"
 )
 

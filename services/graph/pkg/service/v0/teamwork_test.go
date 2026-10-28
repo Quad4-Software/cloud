@@ -22,13 +22,13 @@ import (
 	"google.golang.org/grpc"
 	grpcmetadata "google.golang.org/grpc/metadata"
 
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	settings "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	service "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	settings "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	service "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 )
 
 var _ = Describe("SendActivityNotification", func() {
@@ -116,11 +116,11 @@ var _ = Describe("SendActivityNotification", func() {
 		permissionService.On("GetPermissionByID", mock.Anything, mock.Anything).
 			Return(&settings.GetPermissionByIDResponse{}, nil)
 
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector := pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},
@@ -182,7 +182,7 @@ var _ = Describe("SendActivityNotification", func() {
 			service.Config(cfg),
 			service.WithGatewaySelector(pool.GetSelector[gateway.GatewayAPIClient](
 				"GatewaySelector",
-				"eu.opencloud.api.gateway",
+				"io.quad4.api.gateway",
 				func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 					return gatewayClient
 				},
@@ -353,7 +353,7 @@ var _ = Describe("SendActivityNotification", func() {
 		Entry("unknown field", `{"topic":{"source":"text","value":"storage$space!item"},"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`","chainId":1}`),
 		Entry("template parameters", `{"topic":{"source":"text","value":"storage$space!item"},"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`","templateParameters":[{"name":"actor","value":"someone else"}]}`),
 		Entry("no topic", `{"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`"}`),
-		Entry("topic source entityUrl", `{"topic":{"source":"entityUrl","value":"https://cloud.opencloud.test/f/item"},"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`"}`),
+		Entry("topic source entityUrl", `{"topic":{"source":"entityUrl","value":"https://cloud.quad4.test/f/item"},"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`"}`),
 		Entry("topic value is no resource id", `{"topic":{"source":"text","value":"not-an-id"},"activityType":"mentioned","teamsAppId":"`+service.WebOfficeAppID+`"}`),
 		Entry("unknown activityType", `{"topic":{"source":"text","value":"storage$space!item"},"activityType":"reactedTo","teamsAppId":"`+service.WebOfficeAppID+`"}`),
 		Entry("unknown teamsAppId", `{"topic":{"source":"text","value":"storage$space!item"},"activityType":"mentioned","teamsAppId":"14a4bd3a-1e0f-4a2e-9f30-1cc1f0d0a1cd"}`),

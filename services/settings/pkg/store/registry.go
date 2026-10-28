@@ -2,5 +2,5 @@ package store
 
 import (
 	// init filesystem store
-	_ "github.com/opencloud-eu/opencloud/services/settings/pkg/store/metadata"
+	_ "github.com/Quad4-Software/cloud/services/settings/pkg/store/metadata"
 )

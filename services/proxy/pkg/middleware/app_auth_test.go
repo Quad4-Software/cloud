@@ -9,8 +9,8 @@ import (
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	userRoleMocks "github.com/opencloud-eu/opencloud/services/proxy/pkg/userroles/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	userRoleMocks "github.com/Quad4-Software/cloud/services/proxy/pkg/userroles/mocks"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/stretchr/testify/mock"
@@ -20,14 +20,14 @@ import (
 var _ = Describe("Authenticating requests", Label("AppAuthAuthenticator"), func() {
 	var authenticator Authenticator
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		ra := &userRoleMocks.UserRoleAssigner{}
 		ra.On("ApplyUserRole", mock.Anything, mock.Anything, mock.Anything).Return(&userv1beta1.User{}, nil)
 		authenticator = AppAuthAuthenticator{
 			Logger: log.NewLogger(),
 			RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 				"GatewaySelector",
-				"eu.opencloud.api.gateway",
+				"io.quad4.api.gateway",
 				func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 					return mockGatewayClient{
 						AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {

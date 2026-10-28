@@ -10,19 +10,19 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/jellydator/ttlcache/v3"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/cache"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/cache"
 	"github.com/riandyrn/otelchi"
 	microstore "go-micro.dev/v4/store"
 
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 
-	"github.com/opencloud-eu/opencloud/pkg/roles"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	graphm "github.com/opencloud-eu/opencloud/services/graph/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/pkg/roles"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	graphm "github.com/Quad4-Software/cloud/services/graph/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
 )
 
 const (
@@ -204,7 +204,7 @@ func NewService(opts ...Option) (Graph, error) { //nolint:maintidx
 		if err != nil {
 			return svc, err
 		}
-		svc.permissionsService = settingssvc.NewPermissionService("eu.opencloud.api.settings", grpcClient)
+		svc.permissionsService = settingssvc.NewPermissionService("io.quad4.api.settings", grpcClient)
 	} else {
 		svc.permissionsService = options.PermissionService
 	}

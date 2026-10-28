@@ -12,7 +12,7 @@ import (
 	opensearchgoAPI "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
 )
 
 type TestClient struct {

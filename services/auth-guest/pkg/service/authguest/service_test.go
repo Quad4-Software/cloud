@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package authguest
@@ -17,14 +17,14 @@ import (
 	rpc "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	collaboration "github.com/cs3org/go-cs3apis/cs3/sharing/collaboration/v1beta1"
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/guard"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/jwt"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/pin"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/storage"
-	storagemocks "github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/storage/mocks"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/token"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/guard"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/jwt"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/pin"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/storage"
+	storagemocks "github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/storage/mocks"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/token"
 	revaevents "github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"

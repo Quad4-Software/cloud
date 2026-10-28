@@ -4,8 +4,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/query/mimetype"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/services/search/pkg/query/mimetype"
 )
 
 // This is the single place the mediatype -> MimeType mapping is tested. The

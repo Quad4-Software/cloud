@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/email"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/email"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 )

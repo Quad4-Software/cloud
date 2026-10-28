@@ -26,8 +26,8 @@ import (
 	"golang.org/x/image/font/sfnt"
 	"golang.org/x/image/math/fixed"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/collaboration"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/collaboration"
 )
 
 type ServiceOptions struct {
@@ -269,7 +269,7 @@ func (s Service) ListFonts(w http.ResponseWriter, _ *http.Request) {
 
 	b, err := json.Marshal(map[string]any{
 		"kind":   "fontconfiguration",
-		"server": "OpenCloud Fonts",
+		"server": "Quad4 Cloud Fonts",
 		"fonts":  fontMap,
 	})
 	if err != nil {

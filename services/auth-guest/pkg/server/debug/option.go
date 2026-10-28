@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package debug
@@ -6,8 +6,8 @@ package debug
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
 )
 
 // Option defines a single option function.

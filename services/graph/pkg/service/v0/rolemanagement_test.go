@@ -15,14 +15,14 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	service "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	service "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var _ = Describe("RoleManagement", func() {
@@ -47,11 +47,11 @@ var _ = Describe("RoleManagement", func() {
 		cfg.Commons = &shared.Commons{}
 		cfg.GRPCClientTLS = &shared.GRPCClientTLS{}
 
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},

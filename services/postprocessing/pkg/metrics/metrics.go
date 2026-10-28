@@ -7,7 +7,7 @@ import (
 
 var (
 	// Namespace defines the namespace for the defines metrics.
-	Namespace = "opencloud"
+	Namespace = "quad4"
 
 	// Subsystem defines the subsystem for the defines metrics.
 	Subsystem = "postprocessing"

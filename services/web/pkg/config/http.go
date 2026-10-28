@@ -1,6 +1,6 @@
 package config
 
-import "github.com/opencloud-eu/opencloud/pkg/shared"
+import "github.com/Quad4-Software/cloud/pkg/shared"
 
 // HTTP defines the available http configuration.
 type HTTP struct {
@@ -8,7 +8,7 @@ type HTTP struct {
 	TLS       shared.HTTPServiceTLS `yaml:"tls"`
 	Namespace string                `yaml:"-"`
 	Root      string                `yaml:"root" env:"WEB_HTTP_ROOT" desc:"Subdirectory that serves as the root for this HTTP service." introductionVersion:"1.0.0"`
-	CacheTTL  int                   `yaml:"cache_ttl" env:"WEB_CACHE_TTL" desc:"Cache policy in seconds for OpenCloud Web assets." introductionVersion:"1.0.0"`
+	CacheTTL  int                   `yaml:"cache_ttl" env:"WEB_CACHE_TTL" desc:"Cache policy in seconds for Quad4 Cloud Web assets." introductionVersion:"1.0.0"`
 	CORS      CORS                  `yaml:"cors"`
 }
 

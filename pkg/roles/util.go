@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
 	"go-micro.dev/v4/metadata"
 )
 

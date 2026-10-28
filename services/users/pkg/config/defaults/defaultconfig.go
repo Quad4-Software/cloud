@@ -3,9 +3,9 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/users/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/users/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -27,7 +27,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9144",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		Service: config.Service{
@@ -52,17 +52,17 @@ func DefaultConfig() *config.Config {
 				BindDN:                   "uid=reva,ou=sysusers,o=libregraph-idm",
 				DisableUserMechanism:     "attribute",
 				LdapDisabledUsersGroupDN: "cn=DisabledUsersGroup,ou=groups,o=libregraph-idm",
-				UserTypeAttribute:        "openCloudUserType",
+				UserTypeAttribute:        "quad4CloudUserType",
 				IDP:                      "https://localhost:9200",
 				UserSchema: config.LDAPUserSchema{
-					ID:          "openclouduuid",
+					ID:          "quad4uuid",
 					Mail:        "mail",
 					DisplayName: "displayname",
 					Username:    "uid",
-					Enabled:     "openclouduserenabled",
+					Enabled:     "quad4userenabled",
 				},
 				GroupSchema: config.LDAPGroupSchema{
-					ID:          "openclouduuid",
+					ID:          "quad4uuid",
 					Mail:        "mail",
 					DisplayName: "cn",
 					Groupname:   "cn",

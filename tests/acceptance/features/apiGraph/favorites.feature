@@ -172,7 +172,7 @@ Feature: favorites
 
   Scenario: add a shared file to favorites
     Given user "Brian" has been created with default attributes
-    And user "Alice" has uploaded file with content "OpenCloud test text file" to "textfile.txt"
+    And user "Alice" has uploaded file with content "Quad4 Cloud test text file" to "textfile.txt"
     And user "Alice" has sent the following resource share invitation:
       | resource        | textfile.txt |
       | space           | Personal     |
@@ -264,7 +264,7 @@ Feature: favorites
     Given user "Brian" has been created with default attributes
     And user "Alice" has created folder "parent"
     And user "Alice" has created folder "parent/sub"
-    And user "Alice" has uploaded file with content "OpenCloud test text file" to "parent/textfile.txt"
+    And user "Alice" has uploaded file with content "Quad4 Cloud test text file" to "parent/textfile.txt"
     And user "Alice" has sent the following resource share invitation:
       | resource        | parent   |
       | space           | Personal |

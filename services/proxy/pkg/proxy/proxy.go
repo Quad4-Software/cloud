@@ -10,11 +10,11 @@ import (
 	"net/http/httputil"
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/proxy/policy"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/proxy/policy"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
 	"github.com/rs/zerolog"
 )
 

@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	ehmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/eventhistory/v0"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	"github.com/opencloud-eu/opencloud/services/eventhistory/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	ehmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/eventhistory/v0"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	"github.com/Quad4-Software/cloud/services/eventhistory/pkg/config"
 	"go-micro.dev/v4/store"
 )
 

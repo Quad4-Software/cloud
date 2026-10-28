@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/frontend/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/frontend/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/frontend/pkg/config"
+	"github.com/Quad4-Software/cloud/services/frontend/pkg/config/parser"
 
 	"github.com/spf13/cobra"
 )

@@ -10,15 +10,15 @@ import (
 	"slices"
 	"strconv"
 
-	"github.com/opencloud-eu/opencloud/pkg/capabilities"
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/frontend/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/pkg/capabilities"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/frontend/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
 )
 
-// FrontendConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// FrontendConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string]any, error) {
 	webURL, err := url.Parse(cfg.PublicURL)
 	if err != nil {
@@ -116,7 +116,7 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 					"credentials_by_user_agent": cfg.Middleware.Auth.CredentialsByUserAgent,
 				},
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "frontend",
 				},
 				"requestid": map[string]any{},
@@ -125,7 +125,7 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 			"services": map[string]any{
 				// this reva service called "appprovider" comes from
 				// `internal/http/services/appprovider` and is a translation
-				// layer from the grpc app registry to http, used by e.g. OpenCloud Web
+				// layer from the grpc app registry to http, used by e.g. Quad4 Cloud Web
 				// It should not be confused with `internal/grpc/services/appprovider`
 				// which is currently only the driver for the CS3org WOPI server
 				"appprovider": map[string]any{
@@ -142,7 +142,7 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 							"app":    "appname",
 						},
 						"staticurlparams": map[string]string{
-							"contextRouteName": "files-spaces-personal", // FIXME: remove when https://github.com/owncloud/web/pull/7437 arrived in OpenCloud
+							"contextRouteName": "files-spaces-personal", // FIXME: remove when https://github.com/owncloud/web/pull/7437 arrived in Quad4 Cloud
 						},
 					},
 					"secure_view_app_addr": cfg.AppHandler.SecureViewAppAddr,
@@ -190,7 +190,7 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 					},
 					"config": map[string]any{
 						"version": "1.7",
-						"website": "OpenCloud",
+						"website": "Quad4 Cloud",
 						"host":    cfg.PublicURL,
 						"contact": "",
 						"ssl":     "false",
@@ -208,8 +208,8 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 									"version":        version.Legacy,
 									"versionstring":  version.LegacyString,
 									"edition":        version.Edition,
-									"productname":    "OpenCloud",
-									"product":        "OpenCloud",
+									"productname":    "Quad4 Cloud",
+									"product":        "Quad4 Cloud",
 									"productversion": version.GetString(),
 									"hostname":       "",
 								},
@@ -347,7 +347,7 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 							},
 						},
 						"version": map[string]any{
-							"product":        "OpenCloud",
+							"product":        "Quad4 Cloud",
 							"edition":        version.Edition,
 							"major":          version.ParsedLegacy().Major(),
 							"minor":          version.ParsedLegacy().Minor(),
@@ -379,8 +379,8 @@ func FrontendConfigFromStruct(cfg *config.Config, logger log.Logger) (map[string
 					"version":              version.Legacy,
 					"version_string":       version.LegacyString,
 					"edition":              version.Edition,
-					"product":              "OpenCloud",
-					"product_name":         "OpenCloud",
+					"product":              "Quad4 Cloud",
+					"product_name":         "Quad4 Cloud",
 					"product_version":      version.GetString(),
 					"allow_depth_infinity": cfg.OCDav.AllowPropfindDepthInfinity,
 					"validation": map[string]any{

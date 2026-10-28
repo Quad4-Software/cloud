@@ -5,7 +5,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 // Config combines all available configuration parts.
@@ -17,7 +17,7 @@ type Config struct {
 	LogLevel string `yaml:"loglevel" env:"OC_LOG_LEVEL;NOTIFICATIONS_LOG_LEVEL" desc:"The log level. Valid values are: 'panic', 'fatal', 'error', 'warn', 'info', 'debug', 'trace'." introductionVersion:"1.0.0"`
 	Debug    Debug  `yaml:"debug"`
 
-	WebUIURL string `yaml:"opencloud_url" env:"OC_URL;NOTIFICATIONS_WEB_UI_URL" desc:"The public facing URL of the OpenCloud Web UI, used e.g. when sending notification eMails" introductionVersion:"1.0.0"`
+	WebUIURL string `yaml:"quad4_url" env:"OC_URL;NOTIFICATIONS_WEB_UI_URL" desc:"The public facing URL of the Quad4 Cloud Web UI, used e.g. when sending notification eMails" introductionVersion:"1.0.0"`
 
 	Notifications  Notifications        `yaml:"notifications"`
 	GRPCClientTLS  shared.GRPCClientTLS `yaml:"grpc_client_tls"`
@@ -43,7 +43,7 @@ type Notifications struct {
 type SMTP struct {
 	Host           string `yaml:"smtp_host" env:"NOTIFICATIONS_SMTP_HOST" desc:"SMTP host to connect to." introductionVersion:"1.0.0"`
 	Port           int    `yaml:"smtp_port" env:"NOTIFICATIONS_SMTP_PORT" desc:"Port of the SMTP host to connect to." introductionVersion:"1.0.0"`
-	Sender         string `yaml:"smtp_sender" env:"NOTIFICATIONS_SMTP_SENDER" desc:"Sender address of emails that will be sent (e.g. 'OpenCloud <noreply@example.com>'." introductionVersion:"1.0.0"`
+	Sender         string `yaml:"smtp_sender" env:"NOTIFICATIONS_SMTP_SENDER" desc:"Sender address of emails that will be sent (e.g. 'Quad4 Cloud <noreply@example.com>'." introductionVersion:"1.0.0"`
 	Username       string `yaml:"smtp_username" env:"NOTIFICATIONS_SMTP_USERNAME" desc:"Username for the SMTP host to connect to." introductionVersion:"1.0.0"`
 	Password       string `yaml:"smtp_password" env:"NOTIFICATIONS_SMTP_PASSWORD" desc:"Password for the SMTP host to connect to." introductionVersion:"1.0.0"`
 	Insecure       bool   `yaml:"insecure" env:"NOTIFICATIONS_SMTP_INSECURE" desc:"Allow insecure connections to the SMTP server." introductionVersion:"1.0.0"`
@@ -57,9 +57,9 @@ type Events struct {
 	Cluster              string `yaml:"cluster" env:"OC_EVENTS_CLUSTER;NOTIFICATIONS_EVENTS_CLUSTER" desc:"The clusterID of the event system. The event system is the message queuing service. It is used as message broker for the microservice architecture. Mandatory when using NATS as event system." introductionVersion:"1.0.0"`
 	TLSInsecure          bool   `yaml:"tls_insecure" env:"OC_INSECURE;OC_EVENTS_TLS_INSECURE;NOTIFICATIONS_EVENTS_TLS_INSECURE" desc:"Whether to verify the server TLS certificates." introductionVersion:"1.0.0"`
 	TLSRootCACertificate string `yaml:"tls_root_ca_certificate" env:"OC_EVENTS_TLS_ROOT_CA_CERTIFICATE;NOTIFICATIONS_EVENTS_TLS_ROOT_CA_CERTIFICATE" desc:"The root CA certificate used to validate the server's TLS certificate. If provided NOTIFICATIONS_EVENTS_TLS_INSECURE will be seen as false." introductionVersion:"1.0.0"`
-	EnableTLS            bool   `yaml:"enable_tls" env:"OC_EVENTS_ENABLE_TLS;NOTIFICATIONS_EVENTS_ENABLE_TLS" desc:"Enable TLS for the connection to the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
-	AuthUsername         string `yaml:"username" env:"OC_EVENTS_AUTH_USERNAME;NOTIFICATIONS_EVENTS_AUTH_USERNAME" desc:"The username to authenticate with the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
-	AuthPassword         string `yaml:"password" env:"OC_EVENTS_AUTH_PASSWORD;NOTIFICATIONS_EVENTS_AUTH_PASSWORD" desc:"The password to authenticate with the events broker. The events broker is the OpenCloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	EnableTLS            bool   `yaml:"enable_tls" env:"OC_EVENTS_ENABLE_TLS;NOTIFICATIONS_EVENTS_ENABLE_TLS" desc:"Enable TLS for the connection to the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	AuthUsername         string `yaml:"username" env:"OC_EVENTS_AUTH_USERNAME;NOTIFICATIONS_EVENTS_AUTH_USERNAME" desc:"The username to authenticate with the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
+	AuthPassword         string `yaml:"password" env:"OC_EVENTS_AUTH_PASSWORD;NOTIFICATIONS_EVENTS_AUTH_PASSWORD" desc:"The password to authenticate with the events broker. The events broker is the Quad4 Cloud service which receives and delivers events between the services." introductionVersion:"1.0.0"`
 }
 
 // ServiceAccount is the configuration for the used service account

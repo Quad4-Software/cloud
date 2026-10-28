@@ -14,8 +14,8 @@ directives:
   frame-src:
     - '''self'''
     - 'https://embed.diagrams.net/'
-    - 'https://${ONLYOFFICE_DOMAIN|onlyoffice.opencloud.test}/'
-    - 'https://${COLLABORA_DOMAIN|collabora.opencloud.test}/'
+    - 'https://${ONLYOFFICE_DOMAIN|onlyoffice.quad4.test}/'
+    - 'https://${COLLABORA_DOMAIN|collabora.quad4.test}/'
 `
 
 	customYaml := `
@@ -32,8 +32,8 @@ directives:
 	}
 	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "'self'"))
 	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "https://embed.diagrams.net/"))
-	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "https://onlyoffice.opencloud.test/"))
-	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "https://collabora.opencloud.test/"))
+	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "https://onlyoffice.quad4.test/"))
+	assert.Assert(t, cmp.Contains(config.Directives["frame-src"], "https://collabora.quad4.test/"))
 
 	assert.Assert(t, cmp.Contains(config.Directives["img-src"], "'self'"))
 	assert.Assert(t, cmp.Contains(config.Directives["img-src"], "data:"))

@@ -9,8 +9,8 @@ import (
 	sprovider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 var fixtureLongName = strings.Repeat("a", 260) + "needle.txt"

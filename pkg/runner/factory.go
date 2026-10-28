@@ -6,15 +6,15 @@ import (
 	"net"
 	"net/http"
 
-	ogrpc "github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	ohttp "github.com/opencloud-eu/opencloud/pkg/service/http"
+	ogrpc "github.com/Quad4-Software/cloud/pkg/service/grpc"
+	ohttp "github.com/Quad4-Software/cloud/pkg/service/http"
 	"github.com/opencloud-eu/reva/v2/cmd/revad/runtime"
 	"google.golang.org/grpc"
 )
 
 // NewGoMicroGrpcServerRunner creates a new runner based on the provided go-micro's
 // GRPC service. The service is expected to be created via
-// "github.com/opencloud-eu/opencloud/pkg/service/grpc".NewService(...) function
+// "github.com/Quad4-Software/cloud/pkg/service/grpc".NewService(...) function
 //
 // The runner will behave as described:
 // * The task is to start a server and listen for connections. If the server
@@ -44,7 +44,7 @@ func NewGoMicroGrpcServerRunner(name string, server ogrpc.Service, opts ...Optio
 
 // NewGoMicroHttpServerRunner creates a new runner based on the provided go-micro's
 // HTTP service. The service is expected to be created via
-// "github.com/opencloud-eu/opencloud/pkg/service/http".NewService(...) function
+// "github.com/Quad4-Software/cloud/pkg/service/http".NewService(...) function
 //
 // The runner will behave as described:
 // * The task is to start a server and listen for connections. If the server
@@ -74,7 +74,7 @@ func NewGoMicroHttpServerRunner(name string, server ohttp.Service, opts ...Optio
 
 // NewGolangHttpServerRunner creates a new runner based on the provided HTTP server.
 // The HTTP server is expected to be created via
-// "github.com/opencloud-eu/opencloud/pkg/service/debug".NewService(...) function
+// "github.com/Quad4-Software/cloud/pkg/service/debug".NewService(...) function
 // and it's expected to be a regular golang HTTP server
 //
 // The runner will behave as described:

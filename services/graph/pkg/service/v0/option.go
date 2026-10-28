@@ -10,15 +10,15 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/opencloud-eu/opencloud/pkg/keycloak"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/roles"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
+	"github.com/Quad4-Software/cloud/pkg/keycloak"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/roles"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
 )
 
 // Option defines a single option function.

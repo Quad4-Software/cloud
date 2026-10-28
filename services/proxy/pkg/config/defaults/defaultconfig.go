@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -31,7 +31,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Addr:      "0.0.0.0:9200",
 			Root:      "/",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			TLSCert:   path.Join(defaults.BaseDataPath(), "proxy", "server.crt"),
 			TLSKey:    path.Join(defaults.BaseDataPath(), "proxy", "server.key"),
 			TLS:       true,
@@ -74,10 +74,10 @@ func DefaultConfig() *config.Config {
 			OIDCRoleMapper: config.OIDCRoleMapper{
 				RoleClaim: "roles",
 				RolesMap: []config.RoleMapping{
-					{RoleName: "admin", ClaimValue: "opencloudAdmin"},
-					{RoleName: "spaceadmin", ClaimValue: "opencloudSpaceAdmin"},
-					{RoleName: "user", ClaimValue: "opencloudUser"},
-					{RoleName: "user-light", ClaimValue: "opencloudGuest"},
+					{RoleName: "admin", ClaimValue: "quad4Admin"},
+					{RoleName: "spaceadmin", ClaimValue: "quad4SpaceAdmin"},
+					{RoleName: "user", ClaimValue: "quad4User"},
+					{RoleName: "user-light", ClaimValue: "quad4Guest"},
 				},
 			},
 		},
@@ -109,7 +109,7 @@ func DefaultConfig() *config.Config {
 		CSPConfigFileOverrideLocation: "",
 		Events: config.Events{
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		AuthMiddleware: config.AuthMiddleware{
@@ -129,95 +129,95 @@ func DefaultPolicies() []config.Policy {
 			Routes: []config.Route{
 				{
 					Endpoint:    "/",
-					Service:     "eu.opencloud.web.web",
+					Service:     "io.quad4.web.web",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/.well-known/ocm",
-					Service:     "eu.opencloud.web.ocm",
+					Service:     "io.quad4.web.ocm",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/.well-known/webfinger",
-					Service:     "eu.opencloud.web.webfinger",
+					Service:     "io.quad4.web.webfinger",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/.well-known/openid-configuration",
-					Service:     "eu.opencloud.web.idp",
+					Service:     "io.quad4.web.idp",
 					Unprotected: true,
 				},
 				{
 					Endpoint: "/branding/logo",
-					Service:  "eu.opencloud.web.web",
+					Service:  "io.quad4.web.web",
 				},
 				{
 					Endpoint: "/announcement",
-					Service:  "eu.opencloud.web.web",
+					Service:  "io.quad4.web.web",
 				},
 				{
 					Endpoint:    "/konnect/",
-					Service:     "eu.opencloud.web.idp",
+					Service:     "io.quad4.web.idp",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/signin/",
-					Service:     "eu.opencloud.web.idp",
+					Service:     "io.quad4.web.idp",
 					Unprotected: true,
 				},
 				{
 					Endpoint: "/archiver",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					// reroute oc10 notifications endpoint to userlog service
 					Endpoint: "/ocs/v2.php/apps/notifications/api/v1/notifications/sse",
-					Service:  "eu.opencloud.sse.sse",
+					Service:  "io.quad4.sse.sse",
 				},
 				{
 					// reroute oc10 notifications endpoint to userlog service
 					Endpoint: "/ocs/v2.php/apps/notifications/api/v1/notifications",
-					Service:  "eu.opencloud.web.userlog",
+					Service:  "io.quad4.web.userlog",
 				},
 				{
 					Type:     config.RegexRoute,
-					Endpoint: "/ocs/v[12].php/cloud/user/signing-key", // only `user/signing-key` is left in opencloud-ocs
-					Service:  "eu.opencloud.web.ocs",
+					Endpoint: "/ocs/v[12].php/cloud/user/signing-key", // only `user/signing-key` is left in quad4-ocs
+					Service:  "io.quad4.web.ocs",
 				},
 				{
 					Type:        config.RegexRoute,
 					Endpoint:    "/ocs/v[12].php/config",
-					Service:     "eu.opencloud.web.frontend",
+					Service:     "io.quad4.web.frontend",
 					Unprotected: true,
 				},
 				// OCM WAYF public endpoints
 				{
 					Endpoint:    "/sciencemesh/federations",
-					Service:     "eu.opencloud.web.ocm",
+					Service:     "io.quad4.web.ocm",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/sciencemesh/discover",
-					Service:     "eu.opencloud.web.ocm",
+					Service:     "io.quad4.web.ocm",
 					Unprotected: true,
 				},
 				// General sciencemesh endpoints
 				{
 					Endpoint: "/sciencemesh/",
-					Service:  "eu.opencloud.web.ocm",
+					Service:  "io.quad4.web.ocm",
 				},
 				{
 					Endpoint: "/ocm/",
-					Service:  "eu.opencloud.web.ocm",
+					Service:  "io.quad4.web.ocm",
 				},
 				{
 					Endpoint: "/ocs/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Type:     config.QueryRoute,
 					Endpoint: "/remote.php/?preview=1",
-					Service:  "eu.opencloud.web.webdav",
+					Service:  "io.quad4.web.webdav",
 				},
 				// TODO the actual REPORT goes to /dav/files/{username}, which is user specific ... how would this work in a spaces world?
 				// TODO what paths are returned? the href contains the full path so it should be possible to return urls from other spaces?
@@ -227,91 +227,91 @@ func DefaultPolicies() []config.Policy {
 					Type:     config.RegexRoute,
 					Method:   "REPORT",
 					Endpoint: "(/remote.php)?/(web)?dav",
-					Service:  "eu.opencloud.web.webdav",
+					Service:  "io.quad4.web.webdav",
 				},
 				{
 					Type:     config.QueryRoute,
 					Endpoint: "/dav/?preview=1",
-					Service:  "eu.opencloud.web.webdav",
+					Service:  "io.quad4.web.webdav",
 				},
 				{
 					Type:     config.QueryRoute,
 					Endpoint: "/webdav/?preview=1",
-					Service:  "eu.opencloud.web.webdav",
+					Service:  "io.quad4.web.webdav",
 				},
 				{
 					Endpoint: "/remote.php/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint: "/dav/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint: "/webdav/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint:    "/status",
-					Service:     "eu.opencloud.web.frontend",
+					Service:     "io.quad4.web.frontend",
 					Unprotected: true,
 				},
 				{
 					Endpoint:    "/status.php",
-					Service:     "eu.opencloud.web.frontend",
+					Service:     "io.quad4.web.frontend",
 					Unprotected: true,
 				},
 				{
 					Endpoint: "/index.php/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint: "/apps/",
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint:    "/app/list",
-					Service:     "eu.opencloud.web.frontend",
+					Service:     "io.quad4.web.frontend",
 					Unprotected: true,
 				},
 				{
 					Endpoint: "/app/", // /app or /apps? frontend only handles /apps
-					Service:  "eu.opencloud.web.frontend",
+					Service:  "io.quad4.web.frontend",
 				},
 				{
 					Endpoint: "/graph/v1beta1/extensions/org.libregraph/activities",
-					Service:  "eu.opencloud.web.activitylog",
+					Service:  "io.quad4.web.activitylog",
 				},
 				{
 					Endpoint: "/graph/v1.0/invitations",
-					Service:  "eu.opencloud.web.invitations",
+					Service:  "io.quad4.web.invitations",
 				},
 				{
 					Endpoint:    "/graph/v1beta1/extensions/org.libregraph/guestLinks",
-					Service:     "eu.opencloud.web.auth-guest",
+					Service:     "io.quad4.web.auth-guest",
 					Unprotected: true,
 				},
 				{
 					Endpoint: "/graph/",
-					Service:  "eu.opencloud.web.graph",
+					Service:  "io.quad4.web.graph",
 				},
 				{
 					Endpoint: "/api/v0/settings",
-					Service:  "eu.opencloud.web.settings",
+					Service:  "io.quad4.web.settings",
 				},
 				{
 					Endpoint: "/auth-app/tokens",
-					Service:  "eu.opencloud.web.auth-app",
+					Service:  "io.quad4.web.auth-app",
 				},
 				{
 					Endpoint:         "/wopi",
-					Service:          "eu.opencloud.web.collaboration",
+					Service:          "io.quad4.web.collaboration",
 					Unprotected:      true,
 					SkipXAccessToken: true,
 				},
 				{
 					Endpoint: "/collaboration",
-					Service:  "eu.opencloud.web.collaboration",
+					Service:  "io.quad4.web.collaboration",
 				},
 			},
 		},

@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -29,12 +29,12 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9157",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		HTTP: config.HTTPConfig{
 			Addr:      "127.0.0.1:9158",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Protocol:  "tcp",
 			Prefix:    "data",
 			CORS: config.CORS{
@@ -103,7 +103,7 @@ func DefaultConfig() *config.Config {
 				DBHost:                "",
 				DBPort:                3306,
 				DBName:                "owncloud",
-				UsersProviderEndpoint: "eu.opencloud.api.users",
+				UsersProviderEndpoint: "io.quad4.api.users",
 			},
 			DecomposedS3: config.DecomposedS3Driver{
 				Propagator:                 "sync",
@@ -118,7 +118,7 @@ func DefaultConfig() *config.Config {
 				PersonalSpacePathTemplate:  "",
 				GeneralSpaceAliasTemplate:  "{{.SpaceType}}/{{.SpaceName | replace \" \" \"-\" | lower}}",
 				GeneralSpacePathTemplate:   "",
-				PermissionsEndpoint:        "eu.opencloud.api.settings",
+				PermissionsEndpoint:        "io.quad4.api.settings",
 				MaxAcquireLockCycles:       20,
 				MaxConcurrency:             5,
 				LockCycleDurationFactor:    30,
@@ -135,7 +135,7 @@ func DefaultConfig() *config.Config {
 				PersonalSpacePathTemplate:  "",
 				GeneralSpaceAliasTemplate:  "{{.SpaceType}}/{{.SpaceName | replace \" \" \"-\" | lower}}",
 				GeneralSpacePathTemplate:   "",
-				PermissionsEndpoint:        "eu.opencloud.api.settings",
+				PermissionsEndpoint:        "io.quad4.api.settings",
 				MaxAcquireLockCycles:       20,
 				MaxConcurrency:             5,
 				LockCycleDurationFactor:    30,
@@ -148,7 +148,7 @@ func DefaultConfig() *config.Config {
 				PersonalSpacePathTemplate:  "users/{{.User.Id.OpaqueId}}",
 				GeneralSpaceAliasTemplate:  "{{.SpaceType}}/{{.SpaceName | replace \" \" \"-\" | lower}}",
 				GeneralSpacePathTemplate:   "projects/{{.SpaceId}}",
-				PermissionsEndpoint:        "eu.opencloud.api.settings",
+				PermissionsEndpoint:        "io.quad4.api.settings",
 				AsyncUploads:               true,
 				ScanDebounceDelay:          1 * time.Second,
 				ScanFS:                     true,
@@ -159,7 +159,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Addr:      "127.0.0.1:9233",
-			ClusterID: "opencloud-cluster",
+			ClusterID: "quad4-cluster",
 			EnableTLS: false,
 		},
 		FilemetadataCache: config.FilemetadataCache{
@@ -208,11 +208,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.Tasks.PurgeTrashBin.UserID = cfg.Commons.AdminUserID
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

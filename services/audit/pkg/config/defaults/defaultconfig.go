@@ -1,7 +1,7 @@
 package defaults
 
 import (
-	"github.com/opencloud-eu/opencloud/services/audit/pkg/config"
+	"github.com/Quad4-Software/cloud/services/audit/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -25,7 +25,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		Auditlog: config.Auditlog{

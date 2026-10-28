@@ -40,7 +40,7 @@ To enable OpenSearch as a backend, the following settings must be set:
 Additionally, the following optional settings can be set:
 
 *   `SEARCH_ENGINE_OPEN_SEARCH_RESOURCE_INDEX_NAME=val` (default:
-    `opencloud-resource`): base name of the OpenSearch index. The running
+    `quad4-resource`): base name of the OpenSearch index. The running
     index is suffixed with the current schema version; a breaking schema
     change targets a fresh index, the old one stays in place.
 *   `SEARCH_ENGINE_OPEN_SEARCH_CLIENT_USERNAME=val`: Username for HTTP Basic Authentication.
@@ -105,7 +105,7 @@ which is resource-intensive and can lead to delays with larger documents.
 
 ### Basic
 
-This extractor is the simplest one and just uses the resource information provided by OpenCloud.
+This extractor is the simplest one and just uses the resource information provided by Quad4 Cloud.
 It does not do any further content analysis.
 
 ### Tika
@@ -131,20 +131,20 @@ Additionally, the following optional settings can be set:
 The service includes a command-line interface to trigger re-indexing a space:
 
 ```shell
-opencloud search index --space $SPACE_ID
+quad4 search index --space $SPACE_ID
 ```
 
 It can also be used to re-index all spaces:
 
 ```shell
-opencloud search index --all-spaces --insecure
+quad4 search index --all-spaces --insecure
 ```
 
 Please note that a reindex only picks up new or changed files. Files that have already been indexed are not scanned again, even if the configuration or the whole extractor has been changed. To force a full rescan (re-running the extractor on every file) you need to use the `force-rescan` flag:
 
 
 ```shell
-opencloud search index --all-spaces --force-rescan --insecure
+quad4 search index --all-spaces --force-rescan --insecure
 ```
 
 ## Metrics
@@ -153,9 +153,9 @@ The search service exposes the following prometheus metrics at `<debug_endpoint>
 
 | Metric Name | Type | Description | Labels |
 | --- | --- | --- | --- |
-| `opencloud_search_build_info` | Gauge | Build information | `version` |
-| `opencloud_search_events_outstanding_acks` | Gauge | Number of outstanding acks for events | |
-| `opencloud_search_events_unprocessed` | Gauge | Number of unprocessed events | |
-| `opencloud_search_events_redelivered` | Gauge | Number of redelivered events | |
-| `opencloud_search_search_duration_seconds` | Histogram | Duration of search operations in seconds | `status` |
-| `opencloud_search_index_duration_seconds` | Histogram | Duration of indexing operations in seconds | `status` |
+| `quad4_search_build_info` | Gauge | Build information | `version` |
+| `quad4_search_events_outstanding_acks` | Gauge | Number of outstanding acks for events | |
+| `quad4_search_events_unprocessed` | Gauge | Number of unprocessed events | |
+| `quad4_search_events_redelivered` | Gauge | Number of redelivered events | |
+| `quad4_search_search_duration_seconds` | Histogram | Duration of search operations in seconds | `status` |
+| `quad4_search_index_duration_seconds` | Histogram | Duration of indexing operations in seconds | `status` |

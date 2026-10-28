@@ -1,8 +1,8 @@
 package grpc
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/version"
 )
 
 // NewService initializes the grpc service and server.

@@ -8,7 +8,7 @@ import (
 	"context"
 
 	"github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
 	mock "github.com/stretchr/testify/mock"
 )
 

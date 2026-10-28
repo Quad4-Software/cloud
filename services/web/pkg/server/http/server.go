@@ -12,17 +12,17 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"go-micro.dev/v4"
 
-	"github.com/opencloud-eu/opencloud/pkg/cors"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	natspkg "github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
-	"github.com/opencloud-eu/opencloud/services/web"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/announcement"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/apps"
-	svc "github.com/opencloud-eu/opencloud/services/web/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/cors"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	natspkg "github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/services/web"
+	"github.com/Quad4-Software/cloud/services/web/pkg/announcement"
+	"github.com/Quad4-Software/cloud/services/web/pkg/apps"
+	svc "github.com/Quad4-Software/cloud/services/web/pkg/service/v0"
 )
 
 var (

@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config/parser"
 	"github.com/stretchr/testify/require"
 )
 
@@ -23,23 +23,23 @@ func TestParseOIDCAudiences(t *testing.T) {
 		wantErr string
 	}{
 		{name: "unset defaults to disabled"},
-		{name: "YAML", yaml: "oidc:\n  audiences: [opencloud, opencloud-api]\n", want: []string{"opencloud", "opencloud-api"}},
+		{name: "YAML", yaml: "oidc:\n  audiences: [quad4, quad4-api]\n", want: []string{"quad4", "quad4-api"}},
 		{name: "empty YAML list", yaml: "oidc:\n  audiences: []\n"},
 		{name: "null YAML list", yaml: "oidc:\n  audiences: null\n"},
-		{name: "ENV", setEnv: true, env: "opencloud,opencloud-api", want: []string{"opencloud", "opencloud-api"}},
-		{name: "ENV trims list entries", setEnv: true, env: " opencloud, opencloud-api ", want: []string{"opencloud", "opencloud-api"}},
+		{name: "ENV", setEnv: true, env: "quad4,quad4-api", want: []string{"quad4", "quad4-api"}},
+		{name: "ENV trims list entries", setEnv: true, env: " quad4, quad4-api ", want: []string{"quad4", "quad4-api"}},
 		{name: "ENV precedence", yaml: "oidc:\n  audiences: [yaml-audience]\n", setEnv: true, env: "env-audience", want: []string{"env-audience"}},
-		{name: "empty ENV disables YAML", yaml: "oidc:\n  audiences: [opencloud]\n", setEnv: true},
-		{name: "existing ENV empty segment handling", setEnv: true, env: "opencloud,,opencloud-api", want: []string{"opencloud", "opencloud-api"}},
+		{name: "empty ENV disables YAML", yaml: "oidc:\n  audiences: [quad4]\n", setEnv: true},
+		{name: "existing ENV empty segment handling", setEnv: true, env: "quad4,,quad4-api", want: []string{"quad4", "quad4-api"}},
 		{name: "YAML blank entry", yaml: "oidc:\n  audiences: ['']\n", wantErr: "empty or whitespace-only"},
 		{name: "YAML whitespace entry", yaml: "oidc:\n  audiences: ['  ']\n", wantErr: "empty or whitespace-only"},
-		{name: "ENV whitespace entry", setEnv: true, env: "opencloud, ", wantErr: "empty or whitespace-only"},
+		{name: "ENV whitespace entry", setEnv: true, env: "quad4, ", wantErr: "empty or whitespace-only"},
 		{name: "ENV whitespace only", setEnv: true, env: " ", wantErr: "empty or whitespace-only"},
-		{name: "YAML preserves case", yaml: "oidc:\n  audiences: [OpenCloud]\n", want: []string{"OpenCloud"}},
-		{name: "YAML incompatible verification", yaml: "oidc:\n  audiences: [opencloud]\n  access_token_verify_method: none\n", wantErr: "require access_token_verify_method to be 'jwt'"},
-		{name: "ENV incompatible verification", setEnv: true, env: "opencloud", method: "none", wantErr: "require access_token_verify_method to be 'jwt'"},
-		{name: "ENV enables JWT over YAML none", yaml: "oidc:\n  audiences: [opencloud]\n  access_token_verify_method: none\n", method: "jwt", want: []string{"opencloud"}},
-		{name: "empty ENV restores none compatibility", yaml: "oidc:\n  audiences: [opencloud]\n  access_token_verify_method: none\n", setEnv: true},
+		{name: "YAML preserves case", yaml: "oidc:\n  audiences: [Quad4 Cloud]\n", want: []string{"Quad4 Cloud"}},
+		{name: "YAML incompatible verification", yaml: "oidc:\n  audiences: [quad4]\n  access_token_verify_method: none\n", wantErr: "require access_token_verify_method to be 'jwt'"},
+		{name: "ENV incompatible verification", setEnv: true, env: "quad4", method: "none", wantErr: "require access_token_verify_method to be 'jwt'"},
+		{name: "ENV enables JWT over YAML none", yaml: "oidc:\n  audiences: [quad4]\n  access_token_verify_method: none\n", method: "jwt", want: []string{"quad4"}},
+		{name: "empty ENV restores none compatibility", yaml: "oidc:\n  audiences: [quad4]\n  access_token_verify_method: none\n", setEnv: true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -83,11 +83,11 @@ func TestValidateOIDCAudiences(t *testing.T) {
 	}{
 		{name: "disabled JWT", method: "jwt"},
 		{name: "disabled none", method: "none"},
-		{name: "enabled JWT", audiences: []string{"opencloud"}, method: "jwt"},
-		{name: "enabled none", audiences: []string{"opencloud"}, method: "none", wantErr: "require access_token_verify_method to be 'jwt'"},
+		{name: "enabled JWT", audiences: []string{"quad4"}, method: "jwt"},
+		{name: "enabled none", audiences: []string{"quad4"}, method: "none", wantErr: "require access_token_verify_method to be 'jwt'"},
 		{name: "blank", audiences: []string{""}, method: "jwt", wantErr: "empty or whitespace-only"},
 		{name: "whitespace", audiences: []string{" \t"}, method: "jwt", wantErr: "empty or whitespace-only"},
-		{name: "mixed valid and blank", audiences: []string{"opencloud", ""}, method: "jwt", wantErr: "empty or whitespace-only"},
+		{name: "mixed valid and blank", audiences: []string{"quad4", ""}, method: "jwt", wantErr: "empty or whitespace-only"},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
 			cfg := validProxyConfig()

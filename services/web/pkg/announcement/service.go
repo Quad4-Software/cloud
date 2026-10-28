@@ -12,7 +12,7 @@ import (
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // _permission is the settings permission required to read and manage the announcement.

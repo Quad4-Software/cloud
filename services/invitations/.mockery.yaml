@@ -6,7 +6,7 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/pkg/keycloak:
+  github.com/Quad4-Software/cloud/pkg/keycloak:
     config:
       dir: pkg/backends/keycloak/mocks
     interfaces:

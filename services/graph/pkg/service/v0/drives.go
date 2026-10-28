@@ -31,12 +31,12 @@ import (
 	"golang.org/x/text/language"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	v0 "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/odata"
-	settingsServiceExt "github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	v0 "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/odata"
+	settingsServiceExt "github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 )
 
 const (

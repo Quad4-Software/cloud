@@ -13,8 +13,8 @@ import (
 	"github.com/onsi/ginkgo/v2/types"
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 
-	searchMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	searchMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 const (

@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/ocm/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/ocm/pkg/config"
 )
 
 // FullDefaultConfig returns the full default config
@@ -29,7 +29,7 @@ func DefaultConfig() *config.Config {
 		},
 		HTTP: config.HTTPConfig{
 			Addr:      "127.0.0.1:9280",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Protocol:  "tcp",
 			Prefix:    "",
 			CORS: config.CORS{
@@ -79,7 +79,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9282",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 		Reva: shared.DefaultRevaConfig(),
 		Service: config.Service{
@@ -87,7 +87,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint: "127.0.0.1:9233",
-			Cluster:  "opencloud-cluster",
+			Cluster:  "quad4-cluster",
 		},
 		ScienceMesh: config.ScienceMesh{
 			Prefix:             "sciencemesh",
@@ -164,11 +164,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.GRPC.TLS = structs.CopyOrZeroValue(cfg.Commons.GRPCServiceTLS)
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

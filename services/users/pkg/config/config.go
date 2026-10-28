@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 type Config struct {
@@ -48,8 +48,8 @@ type Drivers struct {
 	LDAP        LDAPDriver        `yaml:"ldap"`
 	OwnCloudSQL OwnCloudSQLDriver `yaml:"owncloudsql"`
 
-	JSON JSONDriver   `yaml:"json,omitempty"` // not supported by the OpenCloud product, therefore not part of docs
-	REST RESTProvider `yaml:"rest,omitempty"` // not supported by the OpenCloud product, therefore not part of docs
+	JSON JSONDriver   `yaml:"json,omitempty"` // not supported by the Quad4 Cloud product, therefore not part of docs
+	REST RESTProvider `yaml:"rest,omitempty"` // not supported by the Quad4 Cloud product, therefore not part of docs
 }
 
 type JSONDriver struct {
@@ -71,13 +71,13 @@ type LDAPDriver struct {
 	UserScope                string           `yaml:"user_scope" env:"OC_LDAP_USER_SCOPE;USERS_LDAP_USER_SCOPE" desc:"LDAP search scope to use when looking up users. Supported values are 'base', 'one' and 'sub'." introductionVersion:"1.0.0"`
 	GroupScope               string           `yaml:"group_scope" env:"OC_LDAP_GROUP_SCOPE;USERS_LDAP_GROUP_SCOPE" desc:"LDAP search scope to use when looking up groups. Supported values are 'base', 'one' and 'sub'." introductionVersion:"1.0.0"`
 	UserSubstringFilterType  string           `yaml:"user_substring_filter_type" env:"LDAP_USER_SUBSTRING_FILTER_TYPE;USERS_LDAP_USER_SUBSTRING_FILTER_TYPE" desc:"Type of substring search filter to use for substring searches for users. Possible values: 'initial' for doing prefix only searches, 'final' for doing suffix only searches or 'any' for doing full substring searches" introductionVersion:"1.0.0"`
-	UserFilter               string           `yaml:"user_filter" env:"OC_LDAP_USER_FILTER;USERS_LDAP_USER_FILTER" desc:"LDAP filter to add to the default filters for user search like '(objectclass=openCloudUser)'." introductionVersion:"1.0.0"`
+	UserFilter               string           `yaml:"user_filter" env:"OC_LDAP_USER_FILTER;USERS_LDAP_USER_FILTER" desc:"LDAP filter to add to the default filters for user search like '(objectclass=quad4CloudUser)'." introductionVersion:"1.0.0"`
 	GroupFilter              string           `yaml:"group_filter" env:"OC_LDAP_GROUP_FILTER;USERS_LDAP_GROUP_FILTER" desc:"LDAP filter to add to the default filters for group searches." introductionVersion:"1.0.0"`
 	UserObjectClass          string           `yaml:"user_object_class" env:"OC_LDAP_USER_OBJECTCLASS;USERS_LDAP_USER_OBJECTCLASS" desc:"The object class to use for users in the default user search filter like 'inetOrgPerson'." introductionVersion:"1.0.0"`
 	GroupObjectClass         string           `yaml:"group_object_class" env:"OC_LDAP_GROUP_OBJECTCLASS;USERS_LDAP_GROUP_OBJECTCLASS" desc:"The object class to use for groups in the default group search filter like 'groupOfNames'." introductionVersion:"1.0.0"`
 	IDP                      string           `yaml:"idp" env:"OC_URL;OC_OIDC_ISSUER;USERS_IDP_URL" desc:"The identity provider value to set in the userids of the CS3 user objects for users returned by this user provider." introductionVersion:"1.0.0"`
 	DisableUserMechanism     string           `yaml:"disable_user_mechanism" env:"OC_LDAP_DISABLE_USER_MECHANISM;USERS_LDAP_DISABLE_USER_MECHANISM" desc:"An option to control the behavior for disabling users. Valid options are 'none', 'attribute' and 'group'. If set to 'group', disabling a user via API will add the user to the configured group for disabled users, if set to 'attribute' this will be done in the ldap user entry, if set to 'none' the disable request is not processed." introductionVersion:"1.0.0"`
-	UserTypeAttribute        string           `yaml:"user_type_attribute" env:"OC_LDAP_USER_SCHEMA_USER_TYPE;USERS_LDAP_USER_TYPE_ATTRIBUTE" desc:"LDAP Attribute to distinguish between 'Member' and 'Guest' users. Default is 'openCloudUserType'." introductionVersion:"1.0.0"`
+	UserTypeAttribute        string           `yaml:"user_type_attribute" env:"OC_LDAP_USER_SCHEMA_USER_TYPE;USERS_LDAP_USER_TYPE_ATTRIBUTE" desc:"LDAP Attribute to distinguish between 'Member' and 'Guest' users. Default is 'quad4CloudUserType'." introductionVersion:"1.0.0"`
 	LdapDisabledUsersGroupDN string           `yaml:"ldap_disabled_users_group_dn" env:"OC_LDAP_DISABLED_USERS_GROUP_DN;USERS_LDAP_DISABLED_USERS_GROUP_DN" desc:"The distinguished name of the group to which added users will be classified as disabled when 'disable_user_mechanism' is set to 'group'." introductionVersion:"1.0.0"`
 	UserSchema               LDAPUserSchema   `yaml:"user_schema"`
 	GroupSchema              LDAPGroupSchema  `yaml:"group_schema"`

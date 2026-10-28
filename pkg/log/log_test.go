@@ -5,8 +5,8 @@ import (
 
 	"github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/internal/testenv"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/internal/testenv"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 func TestDeprecation(t *testing.T) {

@@ -12,14 +12,14 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	searchMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchService "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/convert"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	searchMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchService "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/convert"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 const defaultBatchSize = 50

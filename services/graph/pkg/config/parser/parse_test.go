@@ -4,10 +4,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/parser"
 )
 
 var _ = Describe("Validate", func() {

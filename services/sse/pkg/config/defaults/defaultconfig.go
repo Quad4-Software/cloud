@@ -3,7 +3,7 @@ package defaults
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/services/sse/pkg/config"
+	"github.com/Quad4-Software/cloud/services/sse/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration which is needed for doc generation.
@@ -26,12 +26,12 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint: "127.0.0.1:9233",
-			Cluster:  "opencloud-cluster",
+			Cluster:  "quad4-cluster",
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9135",
 			Root:      "/",
-			Namespace: "eu.opencloud.sse",
+			Namespace: "io.quad4.sse",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
 				AllowedMethods:   []string{"GET"},

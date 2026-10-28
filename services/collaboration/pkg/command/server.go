@@ -15,20 +15,20 @@ import (
 	"go-micro.dev/v4/selector"
 	microstore "go-micro.dev/v4/store"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/font"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/helpers"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/server/grpc"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/server/http"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/font"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/helpers"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/server/grpc"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/server/http"
 )
 
 // Server is the entrypoint for the server command.
@@ -54,7 +54,7 @@ func Server(cfg *config.Config) *cobra.Command {
 			ctx := cfg.Context
 
 			// prepare components
-			if err := helpers.RegisterOpenCloudService(ctx, cfg, logger); err != nil {
+			if err := helpers.RegisterQuad4CloudService(ctx, cfg, logger); err != nil {
 				return err
 			}
 
@@ -155,7 +155,7 @@ func Server(cfg *config.Config) *cobra.Command {
 				fontServiceRootURI := cfg.Font.BaseURL
 				if fontServiceRootURI == "" {
 					var err error
-					fontServiceRootURI, err = url.JoinPath(cfg.Commons.OpenCloudURL, "/collaboration/fonts")
+					fontServiceRootURI, err = url.JoinPath(cfg.Commons.Quad4CloudURL, "/collaboration/fonts")
 					if err != nil {
 						logger.Error().Err(err).Msg("Failed to build font service root uri")
 						return err

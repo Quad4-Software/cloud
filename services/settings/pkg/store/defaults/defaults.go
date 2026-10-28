@@ -1,8 +1,8 @@
 package defaults
 
 import (
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
 )
 
 const (
@@ -73,7 +73,7 @@ func ServiceAccountBundle() *settingsmsg.Bundle {
 		Id:          BundleUUIDServiceAccount,
 		Name:        "service-account",
 		Type:        settingsmsg.Bundle_TYPE_ROLE,
-		Extension:   "opencloud-roles",
+		Extension:   "quad4-roles",
 		DisplayName: "Service Account",
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,
@@ -112,7 +112,7 @@ func generateBundleAdminRole() *settingsmsg.Bundle {
 		Id:          BundleUUIDRoleAdmin,
 		Name:        "admin",
 		Type:        settingsmsg.Bundle_TYPE_ROLE,
-		Extension:   "opencloud-roles",
+		Extension:   "quad4-roles",
 		DisplayName: "Admin",
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,
@@ -163,7 +163,7 @@ func generateBundleSpaceAdminRole() *settingsmsg.Bundle {
 		Id:          BundleUUIDRoleSpaceAdmin,
 		Name:        "spaceadmin",
 		Type:        settingsmsg.Bundle_TYPE_ROLE,
-		Extension:   "opencloud-roles",
+		Extension:   "quad4-roles",
 		DisplayName: "Space Admin",
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,
@@ -205,7 +205,7 @@ func generateBundleUserRole() *settingsmsg.Bundle {
 		Id:          BundleUUIDRoleUser,
 		Name:        "user",
 		Type:        settingsmsg.Bundle_TYPE_ROLE,
-		Extension:   "opencloud-roles",
+		Extension:   "quad4-roles",
 		DisplayName: "User",
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,
@@ -241,7 +241,7 @@ func generateBundleUserLightRole() *settingsmsg.Bundle {
 		Id:          BundleUUIDRoleUserLight,
 		Name:        "user-light",
 		Type:        settingsmsg.Bundle_TYPE_ROLE,
-		Extension:   "opencloud-roles",
+		Extension:   "quad4-roles",
 		DisplayName: "User Light",
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,
@@ -259,7 +259,7 @@ func generateBundleProfileRequest() *settingsmsg.Bundle {
 	return &settingsmsg.Bundle{
 		Id:        BundleUUIDProfile,
 		Name:      "profile",
-		Extension: "opencloud-accounts",
+		Extension: "quad4-accounts",
 		Type:      settingsmsg.Bundle_TYPE_DEFAULT,
 		Resource: &settingsmsg.Resource{
 			Type: settingsmsg.Resource_TYPE_SYSTEM,

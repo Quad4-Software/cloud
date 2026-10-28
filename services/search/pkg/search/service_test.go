@@ -17,14 +17,14 @@ import (
 	"github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	searchmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	contentMocks "github.com/opencloud-eu/opencloud/services/search/pkg/content/mocks"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
-	engineMocks "github.com/opencloud-eu/opencloud/services/search/pkg/search/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	searchmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	contentMocks "github.com/Quad4-Software/cloud/services/search/pkg/content/mocks"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
+	engineMocks "github.com/Quad4-Software/cloud/services/search/pkg/search/mocks"
 )
 
 var _ = Describe("Searchprovider", func() {
@@ -77,11 +77,11 @@ var _ = Describe("Searchprovider", func() {
 	)
 
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},

@@ -18,15 +18,15 @@ import (
 	"go-micro.dev/v4/metadata"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
-	"github.com/opencloud-eu/opencloud/services/sharing/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
+	"github.com/Quad4-Software/cloud/services/sharing/pkg/config"
 )
 
 var _registeredEvents = []events.Unmarshaller{
@@ -90,7 +90,7 @@ func ListenForEvents(ctx context.Context, cfg *config.Config, l log.Logger) erro
 		return err
 	}
 
-	valueService := settingssvc.NewValueService("eu.opencloud.api.settings", grpcClient)
+	valueService := settingssvc.NewValueService("io.quad4.api.settings", grpcClient)
 
 	wg := sync.WaitGroup{}
 	for i := 0; i < cfg.MaxConcurrency; i++ {

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/jinzhu/now"
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 func toNode[T ast.Node](in any) (T, error) {

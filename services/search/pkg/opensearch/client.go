@@ -9,7 +9,7 @@ import (
 	opensearchgo "github.com/opensearch-project/opensearch-go/v4"
 	opensearchgoAPI "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
 )
 
 // NewClient builds an OpenSearch API client from the engine client config.

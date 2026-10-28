@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	"github.com/stretchr/testify/require"
 )
 
@@ -26,28 +26,28 @@ func TestAccessTokenAudiences(t *testing.T) {
 		{name: "disabled null", aud: nil},
 		{name: "disabled empty array", aud: []string{}},
 		{name: "explicitly empty configuration", audiences: []string{}, aud: "immich"},
-		{name: "single audience", audiences: []string{"opencloud"}, aud: "opencloud"},
-		{name: "array first match", audiences: []string{"opencloud"}, aud: []string{"opencloud", "immich"}},
-		{name: "array last match", audiences: []string{"opencloud"}, aud: []string{"immich", "opencloud"}},
-		{name: "any allowed audience", audiences: []string{"opencloud", "opencloud-api"}, aud: "opencloud-api"},
-		{name: "any allowed audience in array", audiences: []string{"opencloud", "opencloud-api"}, aud: []string{"immich", "opencloud-api"}},
-		{name: "duplicate audiences", audiences: []string{"opencloud", "opencloud"}, aud: []string{"opencloud", "opencloud"}},
+		{name: "single audience", audiences: []string{"quad4"}, aud: "quad4"},
+		{name: "array first match", audiences: []string{"quad4"}, aud: []string{"quad4", "immich"}},
+		{name: "array last match", audiences: []string{"quad4"}, aud: []string{"immich", "quad4"}},
+		{name: "any allowed audience", audiences: []string{"quad4", "quad4-api"}, aud: "quad4-api"},
+		{name: "any allowed audience in array", audiences: []string{"quad4", "quad4-api"}, aud: []string{"immich", "quad4-api"}},
+		{name: "duplicate audiences", audiences: []string{"quad4", "quad4"}, aud: []string{"quad4", "quad4"}},
 		{name: "URI audience", audiences: []string{"https://cloud.example/api"}, aud: "https://cloud.example/api"},
-		{name: "foreign", audiences: []string{"opencloud"}, aud: "immich", wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "foreign array", audiences: []string{"opencloud"}, aud: []string{"immich", "account"}, wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "case sensitive", audiences: []string{"opencloud"}, aud: "OpenCloud", wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "exact match", audiences: []string{"opencloud"}, aud: "opencloud-api", wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "no token normalization", audiences: []string{"opencloud"}, aud: " opencloud ", wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "no wildcard matching", audiences: []string{"*"}, aud: "opencloud", wantErr: jwt.ErrTokenInvalidAudience},
-		{name: "missing", audiences: []string{"opencloud"}, missing: true, wantErr: jwt.ErrTokenRequiredClaimMissing},
-		{name: "null", audiences: []string{"opencloud"}, aud: nil, wantErr: jwt.ErrTokenRequiredClaimMissing},
-		{name: "empty string", audiences: []string{"opencloud"}, aud: "", wantErr: jwt.ErrTokenRequiredClaimMissing},
-		{name: "empty array", audiences: []string{"opencloud"}, aud: []string{}, wantErr: jwt.ErrTokenRequiredClaimMissing},
-		{name: "array empty string", audiences: []string{"opencloud"}, aud: []string{""}, wantErr: jwt.ErrTokenRequiredClaimMissing},
-		{name: "number", audiences: []string{"opencloud"}, aud: 123, wantErr: jwt.ErrTokenMalformed},
-		{name: "object", audiences: []string{"opencloud"}, aud: map[string]string{"aud": "opencloud"}, wantErr: jwt.ErrTokenMalformed},
-		{name: "mixed array", audiences: []string{"opencloud"}, aud: []any{"opencloud", 123}, wantErr: jwt.ErrTokenMalformed},
-		{name: "null array entry", audiences: []string{"opencloud"}, aud: []any{"opencloud", nil}, wantErr: jwt.ErrTokenMalformed},
+		{name: "foreign", audiences: []string{"quad4"}, aud: "immich", wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "foreign array", audiences: []string{"quad4"}, aud: []string{"immich", "account"}, wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "case sensitive", audiences: []string{"quad4"}, aud: "Quad4 Cloud", wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "exact match", audiences: []string{"quad4"}, aud: "quad4-api", wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "no token normalization", audiences: []string{"quad4"}, aud: " quad4 ", wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "no wildcard matching", audiences: []string{"*"}, aud: "quad4", wantErr: jwt.ErrTokenInvalidAudience},
+		{name: "missing", audiences: []string{"quad4"}, missing: true, wantErr: jwt.ErrTokenRequiredClaimMissing},
+		{name: "null", audiences: []string{"quad4"}, aud: nil, wantErr: jwt.ErrTokenRequiredClaimMissing},
+		{name: "empty string", audiences: []string{"quad4"}, aud: "", wantErr: jwt.ErrTokenRequiredClaimMissing},
+		{name: "empty array", audiences: []string{"quad4"}, aud: []string{}, wantErr: jwt.ErrTokenRequiredClaimMissing},
+		{name: "array empty string", audiences: []string{"quad4"}, aud: []string{""}, wantErr: jwt.ErrTokenRequiredClaimMissing},
+		{name: "number", audiences: []string{"quad4"}, aud: 123, wantErr: jwt.ErrTokenMalformed},
+		{name: "object", audiences: []string{"quad4"}, aud: map[string]string{"aud": "quad4"}, wantErr: jwt.ErrTokenMalformed},
+		{name: "mixed array", audiences: []string{"quad4"}, aud: []any{"quad4", 123}, wantErr: jwt.ErrTokenMalformed},
+		{name: "null array entry", audiences: []string{"quad4"}, aud: []any{"quad4", nil}, wantErr: jwt.ErrTokenMalformed},
 		{name: "disabled still rejects invalid type", aud: 123, wantErr: jwt.ErrTokenMalformed},
 	}
 
@@ -109,11 +109,11 @@ func TestAccessTokenValidationWithAudiences(t *testing.T) {
 			if tt.exp.IsZero() {
 				tt.exp = time.Now().Add(time.Hour)
 			}
-			claims := jwt.MapClaims{"iss": tt.issuer, "sub": "alice", "aud": "opencloud", "exp": tt.exp.Unix()}
+			claims := jwt.MapClaims{"iss": tt.issuer, "sub": "alice", "aud": "quad4", "exp": tt.exp.Unix()}
 			if !tt.nbf.IsZero() {
 				claims["nbf"] = tt.nbf.Unix()
 			}
-			client := newAccessTokenTestClient(t, key, []string{"opencloud"}, tt.provider)
+			client := newAccessTokenTestClient(t, key, []string{"quad4"}, tt.provider)
 			_, _, err := client.VerifyAccessToken(context.Background(), signAccessToken(t, tt.signingKey, claims))
 			require.ErrorIs(t, err, tt.wantErr)
 		})
@@ -126,13 +126,13 @@ func TestAccessTokenAudienceConfiguration(t *testing.T) {
 			// No HTTP client is supplied: invalid configuration must fail before discovery.
 			client, err := oidc.NewOIDCClient(
 				oidc.WithAccessTokenVerifyMethod(method),
-				oidc.WithAccessTokenAudiences([]string{"opencloud"}),
+				oidc.WithAccessTokenAudiences([]string{"quad4"}),
 			)
 			require.ErrorContains(t, err, "requires the jwt verification method")
 			require.Nil(t, client)
 		})
 	}
-	for _, audiences := range [][]string{{""}, {" \t"}, {"opencloud", ""}} {
+	for _, audiences := range [][]string{{""}, {" \t"}, {"quad4", ""}} {
 		client, err := oidc.NewOIDCClient(
 			oidc.WithAccessTokenVerifyMethod(config.AccessTokenVerificationJWT),
 			oidc.WithAccessTokenAudiences(audiences),
@@ -152,7 +152,7 @@ func TestAccessTokenAudienceConfiguration(t *testing.T) {
 	})
 	t.Run("caller cannot mutate the policy", func(t *testing.T) {
 		key := newRSAKey(t)
-		audiences := []string{"opencloud"}
+		audiences := []string{"quad4"}
 		client := newAccessTokenTestClient(t, key, audiences, &oidc.ProviderMetadata{})
 		audiences[0] = "immich"
 		_, _, err := client.VerifyAccessToken(context.Background(), signAccessToken(t, key,
@@ -163,7 +163,7 @@ func TestAccessTokenAudienceConfiguration(t *testing.T) {
 
 func TestAccessTokenAudiencesDoNotApplyToLogoutTokens(t *testing.T) {
 	key := newRSAKey(t)
-	client := newAccessTokenTestClient(t, key, []string{"opencloud"}, &oidc.ProviderMetadata{})
+	client := newAccessTokenTestClient(t, key, []string{"quad4"}, &oidc.ProviderMetadata{})
 	token := signAccessToken(t, key, jwt.MapClaims{
 		"iss": "https://issuer.example",
 		"sub": "alice",

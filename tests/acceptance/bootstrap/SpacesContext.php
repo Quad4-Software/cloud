@@ -40,7 +40,7 @@ use Behat\Step\When;
 require_once 'bootstrap.php';
 
 /**
- * Context for OpenCloud spaces specific steps
+ * Context for Quad4 Cloud spaces specific steps
  */
 class SpacesContext implements Context {
 	private FeatureContext $featureContext;

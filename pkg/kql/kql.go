@@ -5,7 +5,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 // The operator node value definition

@@ -3,8 +3,8 @@ package kql_test
 import (
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/kql"
 	tAssert "github.com/stretchr/testify/assert"
 )
 

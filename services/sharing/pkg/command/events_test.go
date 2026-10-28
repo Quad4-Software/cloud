@@ -15,12 +15,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	settingsmocks "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0/mocks"
-	"github.com/opencloud-eu/opencloud/services/sharing/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	settingsmocks "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0/mocks"
+	"github.com/Quad4-Software/cloud/services/sharing/pkg/config"
 )
 
 type gatewayTestSelector struct {

@@ -1,0 +1,58 @@
+
+syntax = "proto3";
+
+package quad4.services.eventhistory.v0;
+
+option go_package = "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0";
+
+import "quad4/messages/eventhistory/v0/eventhistory.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Quad4 Cloud eventhistory";
+    version: "1.0.0";
+    contact: {
+      name: "Quad4 Cloud GmbH";
+      url: "https://github.com/Quad4-Software/cloud";
+      email: "support@quad4.io";
+    };
+    license: {
+      name: "Apache-2.0";
+      url: "https://github.com/Quad4-Software/cloud/blob/main/LICENSE";
+    };
+  };
+  schemes: HTTP;
+  schemes: HTTPS;
+  consumes: "application/json";
+  produces: "application/json";
+  external_docs: {
+    description: "Developer Manual";
+    url: "https://github.com/Quad4-Software/cloud/services/eventhistory/";
+  };
+};
+
+// A Service for storing events
+service EventHistoryService {
+    // returns the specified events
+    rpc GetEvents(GetEventsRequest) returns (GetEventsResponse);
+    // returns all events for the specified userID
+    rpc GetEventsForUser(GetEventsForUserRequest) returns (GetEventsResponse);
+}
+
+// A request to retrieve events
+message GetEventsRequest {
+    // the ids of the events we want to get
+    repeated string ids = 1;
+}
+
+// A request to retrieve events belonging to a userID
+message GetEventsForUserRequest {
+    // the userID of the events we want to get
+    string userID = 1;
+}
+
+// The service response
+message GetEventsResponse {
+    repeated quad4.messages.eventhistory.v0.Event events = 1;
+}

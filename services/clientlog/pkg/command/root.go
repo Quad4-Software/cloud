@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/clientlog/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/clientlog/pkg/config"
 
 	"github.com/spf13/cobra"
 )

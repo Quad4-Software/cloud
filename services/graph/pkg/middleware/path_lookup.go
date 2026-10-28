@@ -15,8 +15,8 @@ import (
 
 	"github.com/rs/zerolog"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
@@ -244,10 +244,10 @@ func rewriteColonPath(
 //	/items/{id}:/notes.txt:/children -> itemID "{id}", path "/notes.txt", suffix "/children"
 //
 // Clients must percent-encode each path segment, exactly as MS Graph requires
-// (an unencoded path is ambiguous). The one OpenCloud-specific point: ':' must
+// (an unencoded path is ambiguous). The one Quad4 Cloud-specific point: ':' must
 // be encoded as "%3A". The split is on the literal ":/", so an encoded ':' is
 // never a delimiter and decodes back to ':' with the rest of the path (e.g.
-// "/root:/weird%3A/file.txt" -> "/weird:/file.txt"). OpenCloud allows ':' in
+// "/root:/weird%3A/file.txt" -> "/weird:/file.txt"). Quad4 Cloud allows ':' in
 // names whereas MS Graph/OneDrive forbid it, hence this extra character.
 //
 // The returned fields are the raw (still percent-encoded) substrings; the

@@ -6,10 +6,10 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend:
+  github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend:
     interfaces:
       UserBackend: {}
-  github.com/opencloud-eu/opencloud/services/proxy/pkg/userroles:
+  github.com/Quad4-Software/cloud/services/proxy/pkg/userroles:
     interfaces:
       UserRoleAssigner: {}
   go-micro.dev/v4/store:

@@ -26,13 +26,13 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/cache"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/linktype"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/cache"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/linktype"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 // BaseGraphProvider is the interface that wraps shared methods between the different graph providers

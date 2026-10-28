@@ -21,7 +21,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
 	"github.com/stretchr/testify/mock"
 	"github.com/tidwall/gjson"
 
@@ -32,15 +32,15 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 	cs3mocks "github.com/opencloud-eu/reva/v2/tests/cs3mocks/mocks"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	identitycache "github.com/opencloud-eu/opencloud/services/graph/pkg/identity/cache"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/linktype"
-	svc "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	identitycache "github.com/Quad4-Software/cloud/services/graph/pkg/identity/cache"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/linktype"
+	svc "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var _ = Describe("DriveItemPermissionsService", func() {

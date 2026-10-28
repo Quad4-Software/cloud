@@ -1,7 +1,7 @@
 package command
 
 import (
-	"github.com/opencloud-eu/opencloud/services/clientlog/pkg/config"
+	"github.com/Quad4-Software/cloud/services/clientlog/pkg/config"
 
 	"github.com/spf13/cobra"
 )

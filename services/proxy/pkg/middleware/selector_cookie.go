@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/proxy/policy"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/proxy/policy"
 	"go.opentelemetry.io/otel/trace"
 )
 

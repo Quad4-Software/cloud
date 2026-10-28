@@ -7,15 +7,15 @@ pkgname: mocks
 template: testify
 include-auto-generated: true
 packages:
-  github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0:
+  github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0:
     interfaces:
       EventHistoryService: {}
-  github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0:
+  github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0:
     interfaces:
       PoliciesProviderService: {}
-  github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0:
+  github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0:
     interfaces:
       SearchProviderService: {}
-  github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0:
+  github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0:
     interfaces:
       ValueService: {}

@@ -1,0 +1,45 @@
+# This LDIF files describes the LDAP schema related to the Education
+# endpoints of the libregraph API
+dn: cn=quad4CloudEdu,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: quad4CloudEdu
+olcAttributeTypes: ( quad4CloudOid:1.1.6 NAME 'quad4CloudMemberOfSchool'
+  DESC 'Used as a backreference to the school(s) to which a user or class is assigned'
+  EQUALITY uuidMatch
+  SYNTAX 1.3.6.1.1.16.1 )
+olcAttributeTypes: ( quad4CloudOid:1.1.7 NAME 'quad4CloudEducationExternalId'
+  DESC 'An externally assigned string id for an education related object'
+  EQUALITY caseIgnoreMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: ( quad4CloudOid:1.1.8 NAME 'quad4CloudEducationClassType'
+  DESC 'category of a class e.g. "course" or "class"'
+  EQUALITY caseIgnoreMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: ( quad4CloudOid:1.1.9 NAME 'quad4CloudEducationTeacherMember'
+  DESC 'references a user who is assigned as a teacher to a class'
+  EQUALITY distinguishedNameMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.12 )
+olcAttributeTypes: ( quad4CloudOid:1.1.10 NAME 'quad4CloudEducationSchoolNumber'
+  DESC 'An externally assigned identifier for a school'
+  EQUALITY caseIgnoreMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 )
+olcAttributeTypes: ( quad4CloudOid:1.1.11 NAME 'quad4CloudEducationSchoolTerminationTimestamp'
+  DESC 'A Timestamp at which a school is considered to be disabled'
+  EQUALITY generalizedTimeMatch
+  ORDERING generalizedTimeOrderingMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.24 )
+olcObjectClasses: ( quad4CloudOid:1.2.3 NAME 'quad4CloudEducationUser'
+  DESC 'Quad4 Cloud education user objectclass'
+  SUP quad4CloudUser
+  AUXILIARY
+  MAY ( quad4CloudEducationExternalId $ userClass $ quad4CloudMemberOfSchool ) )
+olcObjectClasses: ( quad4CloudOid:1.2.4 NAME 'quad4CloudEducationClass'
+  DESC 'Quad4 Cloud education class objectclass'
+  SUP quad4CloudObject
+  AUXILIARY
+  MAY ( quad4CloudEducationExternalId $ quad4CloudEducationClassType $ quad4CloudEducationTeacherMember $ quad4CloudMemberOfSchool ) )
+olcObjectClasses: ( quad4CloudOid:1.2.5 NAME 'quad4CloudEducationSchool'
+  DESC 'Quad4 Cloud education school objectclass'
+  SUP quad4CloudObject
+  AUXILIARY
+  MAY ( quad4CloudEducationSchoolNumber $ quad4CloudEducationSchoolTerminationTimestamp $ quad4CloudEducationExternalId) )

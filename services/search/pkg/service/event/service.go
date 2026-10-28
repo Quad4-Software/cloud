@@ -14,15 +14,15 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 var tracer trace.Tracer
 
 func init() {
-	tracer = otel.Tracer("github.com/opencloud-eu/opencloud/services/search/pkg/service/event")
+	tracer = otel.Tracer("github.com/Quad4-Software/cloud/services/search/pkg/service/event")
 }
 
 // Service defines the service handlers.

@@ -11,10 +11,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/tidwall/gjson"
 
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/theme"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/web/pkg/theme"
 )
 
 func TestNewService(t *testing.T) {

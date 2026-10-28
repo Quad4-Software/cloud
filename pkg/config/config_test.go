@@ -3,7 +3,7 @@ package config_test
 import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config"
 	"gopkg.in/yaml.v2"
 )
 

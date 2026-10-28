@@ -30,12 +30,12 @@ import (
 	"google.golang.org/grpc"
 	grpcmetadata "google.golang.org/grpc/metadata"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/constants"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/dav/requests"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/generator"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail/cache"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/constants"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/dav/requests"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/generator"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail/cache"
 )
 
 // testJPEG returns a valid JPEG of the given dimensions.
@@ -290,7 +290,7 @@ var _ = Describe("ThumbnailWorkflow", func() {
 		gatewayClient.On("WhoAmI", mock.Anything, mock.Anything).Maybe().Return(&gatewayv1beta1.WhoAmIResponse{
 			Status: status.NewOK(context.Background()),
 			User: &userv1beta1.User{
-				Id:       &userv1beta1.UserId{Idp: "https://opencloud-server:9200", OpaqueId: "test-opaque", Type: userv1beta1.UserType_USER_TYPE_PRIMARY},
+				Id:       &userv1beta1.UserId{Idp: "https://quad4-server:9200", OpaqueId: "test-opaque", Type: userv1beta1.UserType_USER_TYPE_PRIMARY},
 				Username: "test",
 			},
 		}, nil)
@@ -396,7 +396,7 @@ var _ = Describe("ThumbnailWorkflow", func() {
 				Status: status.NewOK(context.Background()),
 				User: &userv1beta1.User{
 					Id: &userv1beta1.UserId{
-						Idp:      "https://opencloud-server:9200",
+						Idp:      "https://quad4-server:9200",
 						OpaqueId: "test-opaque",
 						Type:     userv1beta1.UserType_USER_TYPE_PRIMARY,
 					},
@@ -492,7 +492,7 @@ var _ = Describe("ThumbnailWorkflow", func() {
 				Status: status.NewOK(context.Background()),
 				User: &userv1beta1.User{
 					Id: &userv1beta1.UserId{
-						Idp:      "https://opencloud-server:9200",
+						Idp:      "https://quad4-server:9200",
 						OpaqueId: "alice-opaque",
 						Type:     userv1beta1.UserType_USER_TYPE_PRIMARY,
 					},
@@ -695,7 +695,7 @@ var _ = Describe("ThumbnailWorkflow", func() {
 				Status: status.NewOK(context.Background()),
 				User: &userv1beta1.User{
 					Id: &userv1beta1.UserId{
-						Idp:      "https://opencloud-server:9200",
+						Idp:      "https://quad4-server:9200",
 						OpaqueId: "alice-opaque",
 						Type:     userv1beta1.UserType_USER_TYPE_PRIMARY,
 					},

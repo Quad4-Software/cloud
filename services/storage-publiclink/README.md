@@ -1,6 +1,6 @@
 # Storage PublicLink
 
-The `storage-publiclink` service provides storage backend functionality for public link shares in OpenCloud. It implements the CS3 storage provider interface specifically for working with public link shared resources.
+The `storage-publiclink` service provides storage backend functionality for public link shares in Quad4 Cloud. It implements the CS3 storage provider interface specifically for working with public link shared resources.
 
 ## Overview
 

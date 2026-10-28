@@ -1,6 +1,6 @@
 package config
 
-import "github.com/opencloud-eu/opencloud/pkg/shared"
+import "github.com/Quad4-Software/cloud/pkg/shared"
 
 type HTTPMetrics struct {
 	Disabled bool `yaml:"disabled" env:"GRAPH_HTTP_METRICS_DISABLE" desc:"Disables the metrics for the HTTP service." introductionVersion:"8.0.0"`

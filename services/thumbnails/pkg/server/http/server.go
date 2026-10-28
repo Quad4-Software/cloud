@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/cors"
-	opencloudmiddleware "github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	svc "github.com/opencloud-eu/opencloud/services/thumbnails/pkg/service/http/v0"
+	"github.com/Quad4-Software/cloud/pkg/cors"
+	quad4middleware "github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	svc "github.com/Quad4-Software/cloud/services/thumbnails/pkg/service/http/v0"
 	"go-micro.dev/v4"
 )
 
@@ -39,18 +39,18 @@ func Server(opts ...Option) (http.Service, error) {
 		svc.Middleware(
 			middleware.RealIP,
 			middleware.RequestID,
-			opencloudmiddleware.Cors(
+			quad4middleware.Cors(
 				cors.Logger(options.Logger),
 				cors.AllowedOrigins(options.Config.HTTP.CORS.AllowedOrigins),
 				cors.AllowedMethods(options.Config.HTTP.CORS.AllowedMethods),
 				cors.AllowedHeaders(options.Config.HTTP.CORS.AllowedHeaders),
 				cors.AllowCredentials(options.Config.HTTP.CORS.AllowCredentials),
 			),
-			opencloudmiddleware.Version(
+			quad4middleware.Version(
 				options.Config.Service.Name,
 				version.GetString(),
 			),
-			opencloudmiddleware.Logger(options.Logger),
+			quad4middleware.Logger(options.Logger),
 		),
 	)
 

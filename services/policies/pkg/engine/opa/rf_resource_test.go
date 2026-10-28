@@ -13,14 +13,14 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/open-policy-agent/opa/rego"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine/opa"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine/opa"
 )
 
-var _ = Describe("opa opencloud resource functions", func() {
-	Describe("opencloud.resource.download", func() {
+var _ = Describe("opa quad4 resource functions", func() {
+	Describe("quad4.resource.download", func() {
 		It("downloads reva resources", func() {
 			ts := []byte("Lorem Ipsum is simply dummy text of the printing and typesetting")
 			srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +28,7 @@ var _ = Describe("opa opencloud resource functions", func() {
 			}))
 			defer srv.Close()
 
-			r := rego.New(rego.Query(`opencloud.resource.download("`+srv.URL+`")`), opa.RFResourceDownload(srv.Client()))
+			r := rego.New(rego.Query(`quad4.resource.download("`+srv.URL+`")`), opa.RFResourceDownload(srv.Client()))
 			rs, err := r.Eval(context.Background())
 			Expect(err).ToNot(HaveOccurred())
 
@@ -57,7 +57,7 @@ var _ = Describe("opa opencloud resource functions", func() {
 			defer srv.Close()
 
 			path := filepath.Join(GinkgoT().TempDir(), "download.rego")
-			source := "package download\n\nimport future.keywords.if\n\ndefault granted := true\n\ngranted = false if {\n    opencloud.resource.download(input.resource.url)\n}\n"
+			source := "package download\n\nimport future.keywords.if\n\ndefault granted := true\n\ngranted = false if {\n    quad4.resource.download(input.resource.url)\n}\n"
 			Expect(os.WriteFile(path, []byte(source), 0o600)).To(Succeed())
 
 			e, err := opa.NewOPA(timeout, log.NopLogger(), config.Engine{Policies: []string{path}}, nil)
@@ -76,7 +76,7 @@ var _ = Describe("opa opencloud resource functions", func() {
 			}))
 			defer srv.Close()
 
-			r := rego.New(rego.Query(`opencloud.resource.download("`+srv.URL+`")`), opa.RFResourceDownload(srv.Client()))
+			r := rego.New(rego.Query(`quad4.resource.download("`+srv.URL+`")`), opa.RFResourceDownload(srv.Client()))
 
 			rs, err := r.Eval(context.Background())
 			Expect(err).ToNot(HaveOccurred())

@@ -12,7 +12,7 @@ PROXY_ENABLE_APP_AUTH=false      # mandatory, disables app authentication. In ca
 ## App Tokens
 
 App Tokens are passwords specifically generated to be used by 3rd party applications
-for authentication when accessing the OpenCloud API endpoints. To
+for authentication when accessing the Quad4 Cloud API endpoints. To
 be able to use an app token, one must first create a token. There are different
 options of creating a token.
 
@@ -143,7 +143,7 @@ can use any time abbreviation from the following list: `h, m, s`. Examples:
 `72h` or `1h` or `1m` or `1s.` Default is `72h`.
 
 ```bash
-opencloud auth-app create --user-name={user-name} --expiration={token-expiration}
+quad4 auth-app create --user-name={user-name} --expiration={token-expiration}
 ```
 
 ## Authenticating using App Tokens

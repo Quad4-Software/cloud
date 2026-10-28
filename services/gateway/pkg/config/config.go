@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 type Config struct {
@@ -26,7 +26,7 @@ type Config struct {
 	DisableHomeCreationOnLogin bool   `yaml:"disable_home_creation_on_login" env:"GATEWAY_DISABLE_HOME_CREATION_ON_LOGIN" desc:"Disable creation of the home space on login." introductionVersion:"1.0.0"`
 	Cache                      Cache  `yaml:"cache"`
 
-	FrontendPublicURL string `yaml:"frontend_public_url" env:"OC_URL;GATEWAY_FRONTEND_PUBLIC_URL" desc:"The public facing URL of the OpenCloud frontend." introductionVersion:"1.0.0"`
+	FrontendPublicURL string `yaml:"frontend_public_url" env:"OC_URL;GATEWAY_FRONTEND_PUBLIC_URL" desc:"The public facing URL of the Quad4 Cloud frontend." introductionVersion:"1.0.0"`
 
 	UsersEndpoint             string `yaml:"users_endpoint" env:"GATEWAY_USERS_ENDPOINT" desc:"The endpoint of the users service. Can take a service name or a gRPC URI with the dns, kubernetes or unix protocol." introductionVersion:"1.0.0"`
 	GroupsEndpoint            string `yaml:"groups_endpoint" env:"GATEWAY_GROUPS_ENDPOINT" desc:"The endpoint of the groups service. Can take a service name or a gRPC URI with the dns, kubernetes or unix protocol." introductionVersion:"1.0.0"`

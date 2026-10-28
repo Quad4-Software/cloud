@@ -11,8 +11,8 @@ import (
 
 	ic "github.com/opencloud-eu/icap-client"
 
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/scanners"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/scanners/mocks"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/scanners"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/scanners/mocks"
 )
 
 func TestICAP_Scan(t *testing.T) {

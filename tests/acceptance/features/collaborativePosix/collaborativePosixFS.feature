@@ -1,4 +1,4 @@
-@env-config @skipOnOpencloud-decomposed-Storage @skipOnOpencloud-decomposeds3-Storage
+@env-config @skipOnQuad4cloud-decomposed-Storage @skipOnQuad4cloud-decomposeds3-Storage
 Feature: create a resources using collaborative posixfs
 
   Background:

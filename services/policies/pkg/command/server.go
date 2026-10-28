@@ -5,23 +5,23 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	ocmetrics "github.com/opencloud-eu/opencloud/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	svcProtogen "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine/opa"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/server/debug"
-	svcEvent "github.com/opencloud-eu/opencloud/services/policies/pkg/service/event"
-	svcGRPC "github.com/opencloud-eu/opencloud/services/policies/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	ocmetrics "github.com/Quad4-Software/cloud/pkg/metrics"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	svcProtogen "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine/opa"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/server/debug"
+	svcEvent "github.com/Quad4-Software/cloud/services/policies/pkg/service/event"
+	svcGRPC "github.com/Quad4-Software/cloud/services/policies/pkg/service/grpc"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
 	"github.com/prometheus/client_golang/prometheus"
 
@@ -77,7 +77,7 @@ func Server(cfg *config.Config) *cobra.Command {
 			}
 
 			gr := runner.NewGroup()
-			if !cfg.GRPC.Disabled { // only run the GRPC consumer when enabled, https://github.com/opencloud-eu/opencloud/issues/1312
+			if !cfg.GRPC.Disabled { // only run the GRPC consumer when enabled, https://github.com/Quad4-Software/cloud/issues/1312
 				grpcClient, err := grpc.NewClient(
 					append(
 						grpc.GetClientOptions(cfg.GRPCClientTLS),
@@ -122,7 +122,7 @@ func Server(cfg *config.Config) *cobra.Command {
 				gr.Add(runner.NewGoMicroGrpcServerRunner(cfg.Service.Name+".grpc", svc))
 			}
 
-			if !cfg.Events.Disabled { // only run the event consumer when enabled, https://github.com/opencloud-eu/opencloud/issues/1312
+			if !cfg.Events.Disabled { // only run the event consumer when enabled, https://github.com/Quad4-Software/cloud/issues/1312
 				connName := generators.GenerateConnectionName(cfg.Service.Name, generators.NTypeBus)
 				bus, err := stream.NatsFromConfig(connName, false, cfg.Events.ToNatsConfig())
 				if err != nil {

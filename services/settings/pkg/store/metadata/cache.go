@@ -4,8 +4,8 @@ import (
 	"context"
 	"path"
 
-	olog "github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
+	olog "github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 	"github.com/vmihailenco/msgpack/v5"
 	microstore "go-micro.dev/v4/store"

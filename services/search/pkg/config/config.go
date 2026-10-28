@@ -5,7 +5,7 @@ import (
 
 	"go-micro.dev/v4/client"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 // Config combines all available configuration parts.

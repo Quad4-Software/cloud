@@ -1,0 +1,24 @@
+dn: dc=quad4,dc=eu
+objectClass: organization
+objectClass: dcObject
+dc: quad4
+o: quad4Cloud
+
+dn: ou=users,dc=quad4,dc=eu
+objectClass: organizationalUnit
+ou: users
+
+dn: cn=admin,dc=quad4,dc=eu
+objectClass: inetOrgPerson
+objectClass: person
+cn: admin
+sn: admin
+uid: ldapadmin
+
+dn: ou=groups,dc=quad4,dc=eu
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=custom,ou=groups,dc=quad4,dc=eu
+objectClass: organizationalUnit
+ou: custom

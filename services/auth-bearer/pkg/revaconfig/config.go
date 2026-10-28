@@ -2,10 +2,10 @@
 package revaconfig
 
 import (
-	"github.com/opencloud-eu/opencloud/services/auth-bearer/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-bearer/pkg/config"
 )
 
-// AuthBearerConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// AuthBearerConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func AuthBearerConfigFromStruct(cfg *config.Config) map[string]any {
 	return map[string]any{
 		"shared": map[string]any{
@@ -39,7 +39,7 @@ func AuthBearerConfigFromStruct(cfg *config.Config) map[string]any {
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "auth_bearer",
 				},
 			},

@@ -9,16 +9,16 @@ import (
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
 )
 
-// RegisterOpenCloudService will register this service.
+// RegisterQuad4CloudService will register this service.
 // There are no explicit requirements for the context, and it will be passed
 // without changes to the underlying RegisterService method.
-func RegisterOpenCloudService(ctx context.Context, cfg *config.Config, logger log.Logger) error {
+func RegisterQuad4CloudService(ctx context.Context, cfg *config.Config, logger log.Logger) error {
 	svc := registry.BuildGRPCService(cfg.GRPC.Namespace+"."+cfg.Service.Name, cfg.GRPC.Protocol, cfg.GRPC.Addr, version.GetString())
 	return registry.RegisterService(ctx, logger, svc, cfg.Debug.Addr)
 }

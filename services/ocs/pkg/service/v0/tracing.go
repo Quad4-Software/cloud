@@ -3,7 +3,7 @@ package svc
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
 )
 
 // NewTracing returns a service that instruments traces.

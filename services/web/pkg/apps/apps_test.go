@@ -7,9 +7,9 @@ import (
 
 	"github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/apps"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/web/pkg/apps"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
 )
 
 func TestApplication_ToExternal(t *testing.T) {

@@ -99,7 +99,7 @@ then
 			IFS=${OLD_IFS}
 			SUITE_FEATURE="${FEATURE_PARTS[0]}"
 			FEATURE_LINE="${FEATURE_PARTS[1]}"
-			EXPECTED_LINK="https://github.com/opencloud-eu/opencloud/blob/main/tests/acceptance/features/${SUITE_FEATURE}#L${FEATURE_LINE}"
+			EXPECTED_LINK="https://github.com/Quad4-Software/cloud/blob/main/tests/acceptance/features/${SUITE_FEATURE}#L${FEATURE_LINE}"
 			if [[ "${ACTUAL_LINK}" != "${EXPECTED_LINK}" ]]; then
 				log_error "> Line ${LINE_NUMBER}: Link is not correct for ${SUITE_SCENARIO_LINE}"
 				log_error "  + Actual link   : ${ACTUAL_LINK}"

@@ -8,7 +8,7 @@ import (
 	"github.com/go-ldap/ldap/v3"
 	"github.com/libregraph/idm/pkg/ldapdn"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 type educationClassAttributeMap struct {
@@ -19,9 +19,9 @@ type educationClassAttributeMap struct {
 
 func newEducationClassAttributeMap() educationClassAttributeMap {
 	return educationClassAttributeMap{
-		externalID:     "openCloudEducationExternalId",
-		classification: "openCloudEducationClassType",
-		teachers:       "openCloudEducationTeacherMember",
+		externalID:     "quad4CloudEducationExternalId",
+		classification: "quad4CloudEducationClassType",
+		teachers:       "quad4CloudEducationTeacherMember",
 	}
 }
 
@@ -68,7 +68,7 @@ func (i *LDAP) GetEducationClasses(ctx context.Context) ([]*libregraph.Education
 
 // CreateEducationClass implements the EducationBackend interface for the LDAP backend.
 // An EducationClass is mapped to an LDAP entry of the "groupOfNames" structural ObjectClass.
-// With a few additional Attributes added on top via the "openCloudEducationClass" auxiliary ObjectClass.
+// With a few additional Attributes added on top via the "quad4CloudEducationClass" auxiliary ObjectClass.
 func (i *LDAP) CreateEducationClass(ctx context.Context, class libregraph.EducationClass) (*libregraph.EducationClass, error) {
 	logger := i.logger.SubloggerWithRequestID(ctx)
 	logger.Debug().Msg("create educationClass")
@@ -211,7 +211,7 @@ func (i *LDAP) UpdateEducationClass(ctx context.Context, id string, class libreg
 
 func (i *LDAP) updateClassExternalID(ctx context.Context, dn, externalID string) (string, error) {
 	logger := i.logger.SubloggerWithRequestID(ctx)
-	newDN := fmt.Sprintf("openCloudEducationExternalId=%s", externalID)
+	newDN := fmt.Sprintf("quad4CloudEducationExternalId=%s", externalID)
 
 	mrdn := ldap.NewModifyDNRequest(dn, newDN, true, "")
 	i.logger.Debug().
@@ -348,7 +348,7 @@ func (i *LDAP) groupToEducationClass(group libregraph.Group, e *ldap.Entry) (*li
 
 func (i *LDAP) getEducationClassLDAPDN(class libregraph.EducationClass) string {
 	attributeTypeAndValue := ldap.AttributeTypeAndValue{
-		Type:  "openCloudEducationExternalId",
+		Type:  "quad4CloudEducationExternalId",
 		Value: class.GetExternalId(),
 	}
 	return fmt.Sprintf("%s,%s", attributeTypeAndValue.String(), i.groupBaseDN)

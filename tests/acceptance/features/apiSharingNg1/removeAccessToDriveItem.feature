@@ -1,5 +1,5 @@
 Feature: Remove access to a drive item
-  https://docs.opencloud.eu/libre-graph-api/#/drives.permissions/DeletePermission
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/drives.permissions/DeletePermission
 
   Background:
     Given these users have been created with default attributes:

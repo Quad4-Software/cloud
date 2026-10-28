@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package quad4.messages.eventhistory.v0;
+
+option go_package = "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/eventhistory/v0";
+
+message Event {
+    // REQUIRED.
+    string type = 1;
+    // REQUIRED.
+    string id = 2;
+    // REQUIRED
+    bytes event = 3;
+
+}
+

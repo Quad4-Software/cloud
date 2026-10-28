@@ -10,9 +10,9 @@ import (
 	"github.com/go-playground/validator/v10"
 	"golang.org/x/exp/maps"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/x/path/filepathx"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/x/path/filepathx"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
 )
 
 var (

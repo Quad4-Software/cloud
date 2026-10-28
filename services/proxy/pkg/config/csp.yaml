@@ -5,7 +5,7 @@ directives:
     - '''self'''
     - 'blob:'
     - 'https://raw.githubusercontent.com/opencloud-eu/awesome-apps/'
-    - 'https://update.opencloud.eu/'
+    - 'https://update.quad4.io/'
   default-src:
     - '''none'''
   font-src:

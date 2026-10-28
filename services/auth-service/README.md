@@ -1,10 +1,10 @@
 # Auth-Service
 
-The OpenCloud Auth Service is used to authenticate service accounts. Compared to normal accounts, service accounts are OpenCloud internal only and not available as ordinary users like via LDAP.
+The Quad4 Cloud Auth Service is used to authenticate service accounts. Compared to normal accounts, service accounts are Quad4 Cloud internal only and not available as ordinary users like via LDAP.
 
 ## The `auth` Service Family
 
-OpenCloud uses serveral authentication services for different use cases. All services that start with `auth-` are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
+Quad4 Cloud uses serveral authentication services for different use cases. All services that start with `auth-` are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
   -   `auth-app` handles authentication of external 3rd party apps
   -   `auth-basic` handles basic authentication
   -   `auth-bearer` handles oidc authentication

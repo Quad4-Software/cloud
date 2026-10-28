@@ -4,21 +4,21 @@ import (
 	"math"
 	"net/url"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/ocm/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/ocm/pkg/config"
 )
 
-// OCMConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// OCMConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func OCMConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 
-	// Construct the ocm provider domain from the OpenCloud URL
+	// Construct the ocm provider domain from the Quad4 Cloud URL
 	providerDomain := ""
-	u, err := url.Parse(cfg.Commons.OpenCloudURL)
+	u, err := url.Parse(cfg.Commons.Quad4CloudURL)
 	switch {
 	case err != nil:
-		logger.Error().Err(err).Msg("could not parse OpenCloud URL")
-	case u.Host == "OpenCloud":
-		logger.Error().Msg("OpenCloud URL has no host")
+		logger.Error().Err(err).Msg("could not parse Quad4 Cloud URL")
+	case u.Host == "Quad4 Cloud":
+		logger.Error().Msg("Quad4 Cloud URL has no host")
 	default:
 		providerDomain = u.Host
 	}
@@ -50,7 +50,7 @@ func OCMConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 					"credentials_by_user_agent": cfg.Middleware.Auth.CredentialsByUserAgent,
 				},
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "ocm",
 				},
 				"requestid": map[string]any{},
@@ -61,8 +61,8 @@ func OCMConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 					"prefix": ".well-known",
 					"ocmprovider": map[string]any{
 						"ocm_prefix":           cfg.OCMD.Prefix,
-						"endpoint":             cfg.Commons.OpenCloudURL,
-						"provider":             "OpenCloud",
+						"endpoint":             cfg.Commons.Quad4CloudURL,
+						"provider":             "Quad4 Cloud",
 						"webdav_root":          "/dav/ocm",
 						"webapp_root":          cfg.ScienceMesh.Prefix,
 						"invite_accept_dialog": cfg.ScienceMesh.InviteAcceptDialog,
@@ -162,7 +162,7 @@ func OCMConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 					},
 					"gatewaysvc":      cfg.Reva.Address,
 					"provider_domain": providerDomain,
-					"webdav_endpoint": cfg.Commons.OpenCloudURL,
+					"webdav_endpoint": cfg.Commons.Quad4CloudURL,
 					"webapp_template": cfg.OCMShareProvider.WebappTemplate,
 					"client_insecure": cfg.OCMShareProvider.Insecure,
 				},

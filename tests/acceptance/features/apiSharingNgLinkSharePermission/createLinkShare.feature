@@ -1,5 +1,5 @@
 Feature: Create a link share for a resource
-  https://docs.opencloud.eu/libre-graph-api/#/drives.permissions/CreateLink
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/drives.permissions/CreateLink
 
   Background:
     Given these users have been created with default attributes:
@@ -541,7 +541,7 @@ Feature: Create a link share for a resource
       | banned-password |
       | 123             |
       | password        |
-      | OpenCloud        |
+      | Quad4 Cloud        |
 
   @issue-7879
   Scenario Outline: create a link share of a folder inside project-space using permissions endpoint
@@ -799,16 +799,16 @@ Feature: Create a link share for a resource
       | banned-password | permissions-role |
       | 123             | view             |
       | password        | view             |
-      | OpenCloud       | view             |
+      | Quad4 Cloud       | view             |
       | 123             | edit             |
       | password        | edit             |
-      | OpenCloud       | edit             |
+      | Quad4 Cloud       | edit             |
       | 123             | upload           |
       | password        | upload           |
-      | OpenCloud       | upload           |
+      | Quad4 Cloud       | upload           |
       | 123             | createOnly       |
       | password        | createOnly       |
-      | OpenCloud       | createOnly       |
+      | Quad4 Cloud       | createOnly       |
 
   @env-config @issue-7879
   Scenario Outline: create a link share of a file inside project-space without password using permissions endpoint
@@ -1199,10 +1199,10 @@ Feature: Create a link share for a resource
       | banned-password | permissions-role |
       | 123             | view             |
       | password        | view             |
-      | OpenCloud       | view             |
+      | Quad4 Cloud       | view             |
       | 123             | edit             |
       | password        | edit             |
-      | OpenCloud       | edit             |
+      | Quad4 Cloud       | edit             |
 
   @env-config @issue-9724 @issue-10331
   Scenario: set password on a existing link share of a file inside project-space using permissions endpoint
@@ -1652,16 +1652,16 @@ Feature: Create a link share for a resource
       | banned-password | permissions-role |
       | 123             | view             |
       | password        | view             |
-      | OpenCloud        | view             |
+      | Quad4 Cloud        | view             |
       | 123             | edit             |
       | password        | edit             |
-      | OpenCloud        | edit             |
+      | Quad4 Cloud        | edit             |
       | 123             | upload           |
       | password        | upload           |
-      | OpenCloud        | upload           |
+      | Quad4 Cloud        | upload           |
       | 123             | createOnly       |
       | password        | createOnly       |
-      | OpenCloud        | createOnly       |
+      | Quad4 Cloud        | createOnly       |
 
 
   Scenario Outline: create a link share of a project-space without password using permissions endpoint

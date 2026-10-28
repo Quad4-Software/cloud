@@ -3,10 +3,10 @@ package command
 import (
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/version"
 	"github.com/spf13/cobra"
 
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config"
 )
 
 // Version prints the service versions of all running instances.

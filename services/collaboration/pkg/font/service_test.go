@@ -23,8 +23,8 @@ import (
 	"github.com/tidwall/gjson"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/font"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/font"
 )
 
 //go:embed testdata/*
@@ -41,7 +41,7 @@ func newGatewaySelector() pool.Selectable[gateway.GatewayAPIClient] {
 		}, nil)
 	gatewaySelector := pool.GetSelector[gateway.GatewayAPIClient](
 		"GatewaySelector",
-		"eu.opencloud.api.gateway",
+		"io.quad4.api.gateway",
 		func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 			return gatewayAPIClient
 		},

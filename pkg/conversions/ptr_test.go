@@ -6,7 +6,7 @@ import (
 
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
 )
 
 func checkIdentical[T any](t *testing.T, p T, want string) {

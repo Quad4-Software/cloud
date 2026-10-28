@@ -32,7 +32,7 @@ Feature: ocm well-known URI
             "pattern": "^%base_url%/ocm"
           },
           "provider": {
-            "const": "OpenCloud"
+            "const": "Quad4 Cloud"
           },
           "resourceTypes": {
             "type": "array",

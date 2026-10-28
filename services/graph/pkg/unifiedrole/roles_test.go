@@ -9,7 +9,7 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 func TestGetDefinition(t *testing.T) {

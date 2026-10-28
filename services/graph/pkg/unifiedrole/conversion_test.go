@@ -9,8 +9,8 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	cs3Conversions "github.com/opencloud-eu/reva/v2/pkg/conversions"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 func TestPermissionsToCS3ResourcePermissions(t *testing.T) {

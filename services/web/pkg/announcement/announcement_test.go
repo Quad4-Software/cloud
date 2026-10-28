@@ -20,9 +20,9 @@ import (
 	"github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/web/mocks"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/announcement"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/web/mocks"
+	"github.com/Quad4-Software/cloud/services/web/pkg/announcement"
 )
 
 func newGatewaySelector(allowed bool) pool.Selectable[gateway.GatewayAPIClient] {
@@ -40,7 +40,7 @@ func newGatewaySelector(allowed bool) pool.Selectable[gateway.GatewayAPIClient] 
 	// pool.GetSelector caches by name, so allow/deny must use distinct names
 	return pool.GetSelector[gateway.GatewayAPIClient](
 		name,
-		"eu.opencloud.api.gateway",
+		"io.quad4.api.gateway",
 		func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient { return client },
 	)
 }

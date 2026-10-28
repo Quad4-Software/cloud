@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package service
@@ -12,9 +12,9 @@ import (
 	"github.com/rs/zerolog"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 
-	ocevents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/email"
+	ocevents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/email"
 )
 
 // handleGuestTokenCreated sends the guest link to the guest's email address.
@@ -89,7 +89,7 @@ func (s eventsNotifier) sendGuestLinkMail(logger zerolog.Logger, template email.
 		shareFolder = resourceInfo.GetName()
 	}
 
-	shareLink, err := urlJoinPath(s.openCloudURL, "g", token)
+	shareLink, err := urlJoinPath(s.quad4CloudURL, "g", token)
 	if err != nil {
 		logger.Error().Err(err).Msg("could not create guest link")
 		return

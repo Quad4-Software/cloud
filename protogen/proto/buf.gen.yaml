@@ -24,16 +24,16 @@ plugins:
     opt:
       - paths=source_relative
       - "ignore_packages=\
-         opencloud.services.thumbnails.v0;\
-         opencloud.messages.thumbnails.v0;\
-         opencloud.services.store.v0;\
-         opencloud.messages.store.v0;\
-         opencloud.services.eventhistory.v0;\
-         opencloud.messages.eventhistory.v0;\
-         opencloud.services.policies.v0;\
-         opencloud.messages.policies.v0;\
-         opencloud.services.search.v0;\
-         opencloud.messages.search.v0"
+         quad4.services.thumbnails.v0;\
+         quad4.messages.thumbnails.v0;\
+         quad4.services.store.v0;\
+         quad4.messages.store.v0;\
+         quad4.services.eventhistory.v0;\
+         quad4.messages.eventhistory.v0;\
+         quad4.services.policies.v0;\
+         quad4.messages.policies.v0;\
+         quad4.services.search.v0;\
+         quad4.messages.search.v0"
 
   - name: openapiv2
     path: ../../.bingo/protoc-gen-openapiv2

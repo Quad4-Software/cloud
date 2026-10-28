@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/cors"
+	"github.com/Quad4-Software/cloud/pkg/cors"
 
 	rscors "github.com/rs/cors"
 )

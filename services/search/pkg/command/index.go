@@ -11,10 +11,10 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config/parser"
 
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"

@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -28,7 +28,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9220",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 		Service: config.Service{
 			Name: "search",
@@ -41,7 +41,7 @@ func DefaultConfig() *config.Config {
 			},
 			OpenSearch: config.EngineOpenSearch{
 				ResourceIndex: config.EngineOpenSearchResourceIndex{
-					Name: "opencloud-resource",
+					Name: "quad4-resource",
 				},
 			},
 		},
@@ -55,7 +55,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint:         "127.0.0.1:9233",
-			Cluster:          "opencloud-cluster",
+			Cluster:          "quad4-cluster",
 			DebounceDuration: 1000,
 			AsyncUploads:     true,
 			NumConsumers:     1,

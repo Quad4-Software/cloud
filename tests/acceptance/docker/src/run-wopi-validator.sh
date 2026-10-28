@@ -17,7 +17,7 @@ done
 echo "Collaboration is up"
 
 if [ -z "$OC_URL" ]; then
-    OC_URL="https://opencloud-server:9200"
+    OC_URL="https://quad4-server:9200"
 fi
 
 curl -vk -X DELETE "$OC_URL/remote.php/webdav/test.wopitest" -u admin:admin   

@@ -3,8 +3,8 @@ package defaults
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/relations"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/relations"
 )
 
 var (
@@ -32,7 +32,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9275",
 			Root:      "/",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"https://localhost:9200"},
 				AllowCredentials: false,
@@ -42,25 +42,25 @@ func DefaultConfig() *config.Config {
 			Name: "webfinger",
 		},
 
-		OpenCloudURL: "https://localhost:9200",
-		Relations:    []string{relations.OpenIDConnectRel, relations.OpenCloudInstanceRel},
+		Quad4CloudURL: "https://localhost:9200",
+		Relations:    []string{relations.OpenIDConnectRel, relations.Quad4CloudInstanceRel},
 		Instances: []config.Instance{
 			{
 				Claim: "sub",
 				Regex: ".+",
 				Href:  "{{.OC_URL}}",
 				Titles: map[string]string{
-					"en": "OpenCloud Instance",
+					"en": "Quad4 Cloud Instance",
 				},
 			},
 		},
 		IDP:                 "https://localhost:9200",
 		Insecure:            false,
-		AndroidClientID:     "OpenCloudAndroid",
+		AndroidClientID:     "Quad4CloudAndroid",
 		AndroidClientScopes: nativeAppScopes,
-		DesktopClientID:     "OpenCloudDesktop",
+		DesktopClientID:     "Quad4CloudDesktop",
 		DesktopClientScopes: nativeAppScopes,
-		IOSClientID:         "OpenCloudIOS",
+		IOSClientID:         "Quad4CloudIOS",
 		IOSClientScopes:     nativeAppScopes,
 		WebClientID:         "web",
 		WebClientScopes:     webAppScopes,
@@ -77,11 +77,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.HTTP.TLS = cfg.Commons.HTTPServiceTLS
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

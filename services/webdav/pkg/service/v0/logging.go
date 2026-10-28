@@ -3,7 +3,7 @@ package svc
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // NewLogging returns a service that logs messages.

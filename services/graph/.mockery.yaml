@@ -6,7 +6,7 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0:
+  github.com/Quad4-Software/cloud/services/graph/pkg/service/v0:
     config:
       dir: mocks
     interfaces:
@@ -34,7 +34,7 @@ packages:
       Selectable:
         config:
           filename: gateway_selector.go
-  github.com/opencloud-eu/opencloud/services/graph/pkg/identity:
+  github.com/Quad4-Software/cloud/services/graph/pkg/identity:
     interfaces:
       Backend: {}
       EducationBackend: {}

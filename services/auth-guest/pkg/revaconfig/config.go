@@ -1,10 +1,10 @@
 package revaconfig
 
 import (
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
 )
 
-// GuestLinksConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// GuestLinksConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func GuestLinksConfigFromStruct(cfg *config.Config) map[string]any {
 	rcfg := map[string]any{
 		"shared": map[string]any{
@@ -36,7 +36,7 @@ func GuestLinksConfigFromStruct(cfg *config.Config) map[string]any {
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "auth_guest",
 				},
 			},

@@ -3,10 +3,10 @@ package defaults
 import (
 	"path/filepath"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/sharing/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/sharing/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -28,7 +28,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9150",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		Service: config.Service{
@@ -41,11 +41,11 @@ func DefaultConfig() *config.Config {
 				File: filepath.Join(defaults.BaseDataPath(), "storage", "shares.json"),
 			},
 			CS3: config.UserSharingCS3Driver{
-				ProviderAddr:  "eu.opencloud.api.storage-system",
+				ProviderAddr:  "io.quad4.api.storage-system",
 				SystemUserIDP: "internal",
 			},
 			JSONCS3: config.UserSharingJSONCS3Driver{
-				ProviderAddr:   "eu.opencloud.api.storage-system",
+				ProviderAddr:   "io.quad4.api.storage-system",
 				SystemUserIDP:  "internal",
 				MaxConcurrency: 1,
 			},
@@ -62,18 +62,18 @@ func DefaultConfig() *config.Config {
 				File: filepath.Join(defaults.BaseDataPath(), "storage", "publicshares.json"),
 			},
 			CS3: config.PublicSharingCS3Driver{
-				ProviderAddr:  "eu.opencloud.api.storage-system", // system storage
+				ProviderAddr:  "io.quad4.api.storage-system", // system storage
 				SystemUserIDP: "internal",
 			},
 			JSONCS3: config.PublicSharingJSONCS3Driver{
-				ProviderAddr:  "eu.opencloud.api.storage-system", // system storage
+				ProviderAddr:  "io.quad4.api.storage-system", // system storage
 				SystemUserIDP: "internal",
 			},
 			// TODO implement and add owncloudsql publicshare driver
 		},
 		Events: config.Events{
 			Addr:      "127.0.0.1:9233",
-			ClusterID: "opencloud-cluster",
+			ClusterID: "quad4-cluster",
 			EnableTLS: false,
 		},
 		EnableExpiredSharesCleanup:  true,

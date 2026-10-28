@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"go-micro.dev/v4/server"
 	"go.opentelemetry.io/otel/trace"
 )

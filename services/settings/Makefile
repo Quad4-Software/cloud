@@ -22,7 +22,7 @@ go-generate: $(MOCKERY) protobuf
 
 .PHONY: protobuf
 protobuf: buf-generate $(PROTOC_GO_INJECT_TAG)
-	cd ../../protogen/gen/ && $(PROTOC_GO_INJECT_TAG) -input="opencloud/messages/settings/v0/*.pb.go"
+	cd ../../protogen/gen/ && $(PROTOC_GO_INJECT_TAG) -input="quad4/messages/settings/v0/*.pb.go"
 
 .PHONY: l10n-pull
 l10n-pull:

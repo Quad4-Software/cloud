@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/proofkeys"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/proofkeys"
 	"github.com/rs/zerolog"
 )
 

@@ -12,10 +12,10 @@ BEHAT_FILTER_TAGS='~@skip'
 EXPECTED_FAILURES_FILE=''
 
 if [ "$STORAGE_DRIVER" = "posix" ]; then
-    BEHAT_FILTER_TAGS+='&&~@skipOnOpencloud-posix-Storage'
+    BEHAT_FILTER_TAGS+='&&~@skipOnQuad4cloud-posix-Storage'
     EXPECTED_FAILURES_FILE="${OC_ROOT}/tests/acceptance/expected-failures-posix-storage.md"
 elif [ "$STORAGE_DRIVER" = "decomposed" ]; then
-    BEHAT_FILTER_TAGS+='&&~@skipOnOpencloud-decomposed-Storage'
+    BEHAT_FILTER_TAGS+='&&~@skipOnQuad4cloud-decomposed-Storage'
     EXPECTED_FAILURES_FILE="${OC_ROOT}/tests/acceptance/expected-failures-decomposed-storage.md"
 fi
 

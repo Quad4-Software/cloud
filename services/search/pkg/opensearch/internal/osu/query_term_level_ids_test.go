@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
 )
 
 func TestIDsQuery(t *testing.T) {

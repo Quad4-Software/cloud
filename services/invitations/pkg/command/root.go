@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/invitations/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/invitations/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -23,11 +23,11 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 	}
 }
 
-// Execute is the entry point for the opencloud invitations command.
+// Execute is the entry point for the quad4 invitations command.
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "invitations",
-		Short: "Serve invitations API for OpenCloud",
+		Short: "Serve invitations API for Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

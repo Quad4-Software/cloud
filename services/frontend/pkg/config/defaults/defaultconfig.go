@@ -3,9 +3,9 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/frontend/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/frontend/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -27,7 +27,7 @@ func DefaultConfig() *config.Config {
 		},
 		HTTP: config.HTTPConfig{
 			Addr:      "127.0.0.1:9140",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Protocol:  "tcp",
 			Prefix:    "",
 			CORS: config.CORS{
@@ -94,7 +94,7 @@ func DefaultConfig() *config.Config {
 		},
 		AppHandler: config.AppHandler{
 			Prefix:            "app",
-			SecureViewAppAddr: "eu.opencloud.api.collaboration",
+			SecureViewAppAddr: "io.quad4.api.collaboration",
 		},
 		Archiver: config.Archiver{
 			Insecure:    false,
@@ -179,11 +179,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.MachineAuthAPIKey = cfg.Commons.MachineAuthAPIKey
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

@@ -5,7 +5,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
 )
 
 // NewTCPCheck returns a check that connects to a given tcp endpoint.

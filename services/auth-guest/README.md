@@ -1,7 +1,7 @@
 # auth-guest
 
 The `auth-guest` service gives guest users access to a share without a full
-OpenCloud account. When a share is created for a user of type
+Quad4 Cloud account. When a share is created for a user of type
 `USER_TYPE_GUEST`, the service issues a one-time guest link token; redeeming
 that token exchanges it for a signed session cookie that authenticates the
 guest.
@@ -46,7 +46,7 @@ sequenceDiagram
     actor User as Guest user
     participant Web as Web client
     participant Redeem as Redeem endpoint
-    participant Proxy as OpenCloud proxy
+    participant Proxy as Quad4 Cloud proxy
     participant Graph as Graph / sharedWithMe
     participant DAV as WebDAV
     participant Reva as Reva

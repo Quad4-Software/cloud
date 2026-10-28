@@ -8,7 +8,7 @@ import (
 	"context"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
 	mock "github.com/stretchr/testify/mock"
 	"golang.org/x/oauth2"
 )

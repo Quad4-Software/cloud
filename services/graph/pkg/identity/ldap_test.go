@@ -11,16 +11,16 @@ import (
 	"github.com/CiscoM31/godata"
 	"github.com/go-ldap/ldap/v3"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
 
 func getMockedBackend(l ldap.Client, lc config.LDAP, logger *log.Logger) (*LDAP, error) {
-	return NewLDAPBackend(l, lc, logger, "opencloud", "test", prometheus.NewRegistry())
+	return NewLDAPBackend(l, lc, logger, "quad4", "test", prometheus.NewRegistry())
 }
 
 const (
@@ -101,13 +101,13 @@ var invalidUserEntry = ldap.NewEntry("uid=user",
 
 var logger = log.NewLogger(log.Level("debug"))
 
-var ldapUserAttributes = []string{"displayname", "entryUUID", "mail", "uid", "sn", "givenname", "userEnabledAttribute", "userTypeAttribute", "openCloudExternalIdentity", "openCloudLastSignInTimestamp"}
+var ldapUserAttributes = []string{"displayname", "entryUUID", "mail", "uid", "sn", "givenname", "userEnabledAttribute", "userTypeAttribute", "quad4CloudExternalIdentity", "quad4CloudLastSignInTimestamp"}
 
 func TestNewLDAPBackend(t *testing.T) {
 	l := &mocks.Client{}
 
 	newBackend := func(c config.LDAP) (*LDAP, error) {
-		return NewLDAPBackend(l, c, &logger, "opencloud", "test", prometheus.NewRegistry())
+		return NewLDAPBackend(l, c, &logger, "quad4", "test", prometheus.NewRegistry())
 	}
 
 	tc := lconfig
@@ -156,7 +156,7 @@ func TestCreateUser(t *testing.T) {
 	ar.Attribute(lconfig.UserEnabledAttribute, []string{"TRUE"})
 	ar.Attribute(lconfig.UserTypeAttribute, []string{"Member"})
 	ar.Attribute("cn", []string{userName})
-	ar.Attribute("objectClass", []string{"inetOrgPerson", "organizationalPerson", "person", "top", "openCloudUser"})
+	ar.Attribute("objectClass", []string{"inetOrgPerson", "organizationalPerson", "person", "top", "quad4CloudUser"})
 
 	l := &mocks.Client{}
 	l.On("Search", mock.Anything).
@@ -177,7 +177,7 @@ func TestCreateUser(t *testing.T) {
 
 	c := lconfig
 	c.UseServerUUID = true
-	b, _ := NewLDAPBackend(l, c, &logger, "opencloud", "test", prometheus.NewRegistry())
+	b, _ := NewLDAPBackend(l, c, &logger, "quad4", "test", prometheus.NewRegistry())
 
 	newUser, err := b.CreateUser(context.Background(), *user)
 	assert.Nil(t, err)
@@ -194,7 +194,7 @@ func TestCreateUserModelFromLDAP(t *testing.T) {
 	l := &mocks.Client{}
 	logger := log.NewLogger(log.Level("debug"))
 
-	b, _ := NewLDAPBackend(l, lconfig, &logger, "opencloud", "test", prometheus.NewRegistry())
+	b, _ := NewLDAPBackend(l, lconfig, &logger, "quad4", "test", prometheus.NewRegistry())
 	{
 		res, err := b.createUserModelFromLDAP(nil)
 		assert.NoError(t, err)

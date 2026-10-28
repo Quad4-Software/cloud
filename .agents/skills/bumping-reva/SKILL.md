@@ -1,15 +1,15 @@
 ---
 name: bumping-reva
-description: Use when the user asks to bump, update, or upgrade the OpenCloud reva dependency to a specific version (e.g. "reva bump to 2.48.0", "bump reva to v2.48.0"). Covers editing go.mod, re-vendoring, bumping the OpenCloud LatestTag, the single commit, and opening the PR against main.
+description: Use when the user asks to bump, update, or upgrade the Quad4 Cloud reva dependency to a specific version (e.g. "reva bump to 2.48.0", "bump reva to v2.48.0"). Covers editing go.mod, re-vendoring, bumping the Quad4 Cloud LatestTag, the single commit, and opening the PR against main.
 ---
 
 # Bumping Reva
 
 ## Overview
 
-Bumping reva updates the pinned [opencloud-eu/reva](https://github.com/opencloud-eu/reva) dependency (`github.com/opencloud-eu/reva/v2`) to a tagged release, re-vendors the module graph, and bumps the OpenCloud dev version. It touches `go.mod`, `go.sum`, `vendor/**` and `pkg/version/version.go`, lands as one commit, and ships as a PR whose body is the reva changelog for that version.
+Bumping reva updates the pinned [opencloud-eu/reva](https://github.com/opencloud-eu/reva) dependency (`github.com/opencloud-eu/reva/v2`) to a tagged release, re-vendors the module graph, and bumps the Quad4 Cloud dev version. It touches `go.mod`, `go.sum`, `vendor/**` and `pkg/version/version.go`, lands as one commit, and ships as a PR whose body is the reva changelog for that version.
 
-Template PR: https://github.com/opencloud-eu/opencloud/pull/3127
+Template PR: https://github.com/Quad4-Software/cloud/pull/3127
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Template PR: https://github.com/opencloud-eu/opencloud/pull/3127
 ## Inputs
 
 - `REVA_VERSION` — the new reva tag, always normalized to a leading `v` (e.g. `v2.48.0`). If the user didn't give it, ask (or take the latest reva release tag).
-- `OC_VERSION` — the OpenCloud target for `LatestTag`, **without** the `+dev` suffix (e.g. `7.4.0`). **Do not ask or guess** — derive it from the open OpenCloud release PR (step 3). It can be a new major (e.g. `8.0.0`) when release-please picked up a breaking change.
+- `OC_VERSION` — the Quad4 Cloud target for `LatestTag`, **without** the `+dev` suffix (e.g. `7.4.0`). **Do not ask or guess** — derive it from the open Quad4 Cloud release PR (step 3). It can be a new major (e.g. `8.0.0`) when release-please picked up a breaking change.
 
 ## What changes
 
@@ -60,12 +60,12 @@ go mod vendor
 - Right after a fresh tag the module proxy can lag; if `go get` reports the version as unknown, retry, or use `GOPROXY=direct go get github.com/opencloud-eu/reva/v2@$REVA_VERSION`.
 - `go mod tidy` will also bump indirect dependencies that reva pulled in — that is expected (the template PR did the same).
 
-### 3. Bump the OpenCloud dev version
+### 3. Bump the Quad4 Cloud dev version
 
-`OC_VERSION` is the version of the **open OpenCloud release PR** — the release-please PR from branch `next-release/main`, titled `🎉 Release X.Y.Z` (e.g. #3143). Derive it, don't ask:
+`OC_VERSION` is the version of the **open Quad4 Cloud release PR** — the release-please PR from branch `next-release/main`, titled `🎉 Release X.Y.Z` (e.g. #3143). Derive it, don't ask:
 
 ```bash
-gh pr list --repo opencloud-eu/opencloud --head next-release/main --state open \
+gh pr list --repo Quad4-Software/cloud --head next-release/main --state open \
   --json title --jq '.[0].title' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1
 ```
 
@@ -88,7 +88,7 @@ Take **only the section for this version** and trim it exactly like the web bump
 Then **prepend two summary bullets** so the final PR body is:
 
 ```
-- bump opencloud version to <OC_VERSION>
+- bump quad4 version to <OC_VERSION>
 - reva bump <REVA_VERSION without the leading v>
 
 ### 🐛 Bug Fixes
@@ -135,7 +135,7 @@ gh pr create --base main \
 ```bash
 REVA_VERSION=v2.48.0
 gh api repos/opencloud-eu/reva/commits/$REVA_VERSION --jq '.sha'                       # verify tag exists
-OC_VERSION=$(gh pr list --repo opencloud-eu/opencloud --head next-release/main --state open \
+OC_VERSION=$(gh pr list --repo Quad4-Software/cloud --head next-release/main --state open \
   --json title --jq '.[0].title' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)         # from open release PR
 go get github.com/opencloud-eu/reva/v2@$REVA_VERSION && go mod tidy && go mod vendor    # bump + re-vendor
 # edit pkg/version/version.go -> LatestTag = "$OC_VERSION+dev"

@@ -7,10 +7,10 @@ import (
 	. "github.com/onsi/gomega"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/bleve"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/bleve"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	"github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // geoFixture builds an in-memory bleve index with a single resource carrying

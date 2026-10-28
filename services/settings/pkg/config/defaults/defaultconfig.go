@@ -6,9 +6,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
-	rdefaults "github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
+	rdefaults "github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 	"github.com/pkg/errors"
 )
 
@@ -34,7 +34,7 @@ func DefaultConfig() *config.Config {
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9190",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Root:      "/",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
@@ -45,12 +45,12 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9191",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 		SetupDefaultAssignments: false,
 		Metadata: config.Metadata{
-			GatewayAddress: "eu.opencloud.api.storage-system",
-			StorageAddress: "eu.opencloud.api.storage-system",
+			GatewayAddress: "io.quad4.api.storage-system",
+			StorageAddress: "io.quad4.api.storage-system",
 			SystemUserIDP:  "internal",
 			Cache: &config.Cache{
 				Store:          "memory",

@@ -4,9 +4,9 @@ import (
 	"context"
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/auth-bearer/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-bearer/pkg/config"
 
 	"github.com/spf13/cobra"
 	"github.com/thejerf/suture/v4"
@@ -26,11 +26,11 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 	}
 }
 
-// Execute is the entry point for the opencloud auth-bearer command.
+// Execute is the entry point for the quad4 auth-bearer command.
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "auth-bearer",
-		Short: "Provide bearer authentication for OpenCloud",
+		Short: "Provide bearer authentication for Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

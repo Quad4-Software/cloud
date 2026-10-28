@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	olog "github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config/defaults"
+	olog "github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config/defaults"
 	"github.com/stretchr/testify/require"
 )
 
@@ -33,7 +33,7 @@ var (
 			Type:        settingsmsg.Bundle_TYPE_ROLE,
 			DisplayName: "test role - reads | update",
 			Name:        "TEST_ROLE",
-			Extension:   "opencloud-settings",
+			Extension:   "quad4-settings",
 			Resource: &settingsmsg.Resource{
 				Type: settingsmsg.Resource_TYPE_BUNDLE,
 			},
@@ -69,7 +69,7 @@ var (
 			Type:        settingsmsg.Bundle_TYPE_ROLE,
 			DisplayName: "another",
 			Name:        "ANOTHER_TEST_ROLE",
-			Extension:   "opencloud-settings",
+			Extension:   "quad4-settings",
 			Resource: &settingsmsg.Resource{
 				Type: settingsmsg.Resource_TYPE_BUNDLE,
 			},

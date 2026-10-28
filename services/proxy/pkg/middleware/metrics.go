@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/metrics"
 )
 
 // Instrumenter provides a middleware to create metrics

@@ -6,10 +6,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/convert"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/convert"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
 )
 
 func TestTranspileKQLToOpenSearch(t *testing.T) {
@@ -19,19 +19,19 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Name: "word-broken field matches the value as a phrase on its words sibling",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 				},
 			},
-			Want: osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+			Want: osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 		},
 		{
 			Name: "case-insensitive term routes to the lowercased sibling",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Tags", Value: "openCloud", CaseInsensitive: true},
+					&ast.StringNode{Key: "Tags", Value: "quad4Cloud", CaseInsensitive: true},
 				},
 			},
-			Want: osu.NewTermQuery[string]("Tags_lowercase").Value("opencloud"),
+			Want: osu.NewTermQuery[string]("Tags_lowercase").Value("quad4"),
 		},
 		{
 			Name: "case-insensitive wildcard routes to the lowercased sibling",
@@ -199,22 +199,22 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Name: "[*]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 				},
 			},
-			Want: osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+			Want: osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 		},
 		{
 			Name: "[* *]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 					&ast.StringNode{Key: "age", Value: "32"},
 				},
 			},
 			Want: osu.NewBoolQuery().
 				Must(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 					osu.NewTermQuery[string]("age").Value("32"),
 				),
 		},
@@ -222,14 +222,14 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Name: "[* AND *]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 					&ast.OperatorNode{Value: "AND"},
 					&ast.StringNode{Key: "age", Value: "32"},
 				},
 			},
 			Want: osu.NewBoolQuery().
 				Must(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 					osu.NewTermQuery[string]("age").Value("32"),
 				),
 		},
@@ -237,7 +237,7 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Name: "[* OR *]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 					&ast.OperatorNode{Value: "OR"},
 					&ast.StringNode{Key: "age", Value: "32"},
 				},
@@ -245,7 +245,7 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Want: osu.NewBoolQuery().
 				Params(&osu.BoolQueryParams{MinimumShouldMatch: 1}).
 				Should(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 					osu.NewTermQuery[string]("age").Value("32"),
 				),
 		},
@@ -266,14 +266,14 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Name: "[* NOT *]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 					&ast.OperatorNode{Value: "NOT"},
 					&ast.StringNode{Key: "age", Value: "32"},
 				},
 			},
 			Want: osu.NewBoolQuery().
 				Must(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 				).
 				MustNot(
 					osu.NewTermQuery[string]("age").Value("32"),
@@ -288,7 +288,7 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 					&ast.OperatorNode{Value: "NOT"},
 					&ast.StringNode{Key: "age", Value: "32"},
 					&ast.OperatorNode{Value: "AND"},
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 				},
 			},
 			Want: osu.NewBoolQuery().
@@ -296,14 +296,14 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 					osu.NewTermQuery[string]("age").Value("32"),
 				).
 				Must(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 				),
 		},
 		{
 			Name: "[* OR * OR *]",
 			Got: &ast.Ast{
 				Nodes: []ast.Node{
-					&ast.StringNode{Key: "Name", Value: "openCloud"},
+					&ast.StringNode{Key: "Name", Value: "quad4Cloud"},
 					&ast.OperatorNode{Value: "OR"},
 					&ast.StringNode{Key: "age", Value: "32"},
 					&ast.OperatorNode{Value: "OR"},
@@ -313,7 +313,7 @@ func TestTranspileKQLToOpenSearch(t *testing.T) {
 			Want: osu.NewBoolQuery().
 				Params(&osu.BoolQueryParams{MinimumShouldMatch: 1}).
 				Should(
-					osu.NewMatchPhraseQuery("Name_words").Query("openCloud"),
+					osu.NewMatchPhraseQuery("Name_words").Query("quad4Cloud"),
 					osu.NewTermQuery[string]("age").Value("32"),
 					osu.NewTermQuery[string]("age").Value("44"),
 				),

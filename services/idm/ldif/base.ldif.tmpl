@@ -19,8 +19,8 @@ ou: groups
 dn: uid=admin,ou=users,o=libregraph-idm
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
-objectClass: openCloudUser
-objectClass: openCloudObject
+objectClass: quad4CloudUser
+objectClass: quad4CloudObject
 objectClass: person
 objectClass: top
 uid: admin
@@ -28,10 +28,10 @@ givenName: Admin
 sn: Admin
 cn: admin
 displayName: Admin
-description: An admin for this OpenCloud instance.
+description: An admin for this Quad4 Cloud instance.
 mail: admin@example.org
-openCloudUUID: {{ .ID }}
-openCloudExternalIdentity:  $ {{ .Issuer }} $ {{ .ID }}
+quad4CloudUUID: {{ .ID }}
+quad4CloudExternalIdentity:  $ {{ .Issuer }} $ {{ .ID }}
 {{ else -}}
 dn: uid={{ .Name }},ou=sysusers,o=libregraph-idm
 objectClass: account

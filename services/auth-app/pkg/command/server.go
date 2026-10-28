@@ -5,19 +5,19 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	ogrpc "github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/revaconfig"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/server/http"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	ogrpc "github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/revaconfig"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/server/http"
 	"github.com/opencloud-eu/reva/v2/cmd/revad/runtime"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
@@ -114,7 +114,7 @@ func Server(cfg *config.Config) *cobra.Command {
 			}
 
 			{
-				rClient := settingssvc.NewRoleService("eu.opencloud.api.settings", grpcClient)
+				rClient := settingssvc.NewRoleService("io.quad4.api.settings", grpcClient)
 				server, err := http.Server(
 					http.Logger(logger),
 					http.Context(ctx),

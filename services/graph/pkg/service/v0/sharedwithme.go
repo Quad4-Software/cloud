@@ -11,7 +11,7 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	"github.com/opencloud-eu/reva/v2/pkg/share"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 // ListSharedWithMe lists the files shared with the current user.
@@ -71,7 +71,7 @@ func (g Graph) listSharedWithMe(ctx context.Context, expandThumbnails bool) ([]l
 
 	if expandThumbnails {
 		for k, item := range driveItems {
-			setShareThumbnails(&item, item.RemoteItem.GetId(), g.config.Commons.OpenCloudURL, g.sourceTypes)
+			setShareThumbnails(&item, item.RemoteItem.GetId(), g.config.Commons.Quad4CloudURL, g.sourceTypes)
 			driveItems[k] = item
 		}
 	}

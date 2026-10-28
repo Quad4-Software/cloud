@@ -3,7 +3,7 @@ package config
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 // CS3Api defines the available configuration in order to access to the CS3 gateway.

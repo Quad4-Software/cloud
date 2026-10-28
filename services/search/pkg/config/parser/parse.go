@@ -7,14 +7,14 @@ import (
 
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
 )
 
 // ParseConfig loads configuration from known paths.

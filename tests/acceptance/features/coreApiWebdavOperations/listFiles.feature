@@ -1,7 +1,7 @@
 Feature: list files
   As a user
   I want to be able to list my files and folders (resources)
-  So that I can understand my file structure in OpenCloud
+  So that I can understand my file structure in Quad4 Cloud
 
   Background:
     Given user "Alice" has been created with default attributes

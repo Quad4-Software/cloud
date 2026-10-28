@@ -1,0 +1,6 @@
+---
+services:
+  quad4:
+    environment:
+      STORAGE_USERS_DRIVER: decomposed
+      

@@ -6,6 +6,6 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/settings/pkg/settings:
+  github.com/Quad4-Software/cloud/services/settings/pkg/settings:
     interfaces:
       Manager: {}

@@ -13,7 +13,7 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	bcl "github.com/opencloud-eu/opencloud/services/proxy/pkg/staticroutes/backchannellogout"
+	bcl "github.com/Quad4-Software/cloud/services/proxy/pkg/staticroutes/backchannellogout"
 )
 
 // backchannelLogout handles backchannel logout requests from the identity provider and invalidates the related sessions in the cache

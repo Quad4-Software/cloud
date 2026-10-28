@@ -1,0 +1,15 @@
+---
+services:
+  quad4:
+    depends_on:
+      unzip-init:
+        condition: service_completed_successfully
+
+  unzip-init:
+    image: quad4-software/web-extensions:unzip-1.0.2
+    user: root
+    volumes:
+      - quad4-apps:/apps
+    entrypoint:
+      - /bin/sh
+    command: ["-c", "cp -R /usr/share/nginx/html/unzip/ /apps"]

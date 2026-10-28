@@ -1,0 +1,25 @@
+package runtime
+
+import (
+	"context"
+
+	"github.com/Quad4-Software/cloud/quad4/pkg/runtime/service"
+	"github.com/Quad4-Software/cloud/pkg/config"
+)
+
+// Runtime represents an Quad4 Cloud runtime environment.
+type Runtime struct {
+	c *config.Config
+}
+
+// New creates a new Quad4 Cloud + micro runtime
+func New(cfg *config.Config) Runtime {
+	return Runtime{
+		c: cfg,
+	}
+}
+
+// Start rpc runtime
+func (r *Runtime) Start(ctx context.Context) error {
+	return service.Start(ctx, service.WithConfig(r.c))
+}

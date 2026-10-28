@@ -14,7 +14,7 @@ import (
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	"github.com/jellydator/ttlcache/v2"
 	"github.com/nats-io/nats.go"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/vmihailenco/msgpack/v5"
 	"go.opentelemetry.io/otel"
@@ -24,7 +24,7 @@ import (
 var tracer trace.Tracer
 
 func init() {
-	tracer = otel.Tracer("github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/activitylog")
+	tracer = otel.Tracer("github.com/Quad4-Software/cloud/services/activitylog/pkg/service/activitylog")
 }
 
 var (

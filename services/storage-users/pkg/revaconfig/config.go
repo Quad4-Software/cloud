@@ -5,11 +5,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 )
 
-// StorageUsersConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// StorageUsersConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func StorageUsersConfigFromStruct(cfg *config.Config) map[string]any {
 	rcfg := map[string]any{
 		"core": map[string]any{
@@ -64,7 +64,7 @@ func StorageUsersConfigFromStruct(cfg *config.Config) map[string]any {
 					"password":         cfg.Events.AuthPassword,
 				},
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "storage_users",
 				},
 			},

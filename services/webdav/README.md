@@ -86,7 +86,7 @@ In the single binary nothing has to be set: the generator URL defaults to the bu
 
 The webdav service provides access to the search functionality. It offers multiple `REPORT` endpoints for getting search results.
 
-See the [search](https://github.com/opencloud-eu/opencloud/tree/main/services/search) service for more details about search functionality.
+See the [search](https://github.com/Quad4-Software/cloud/tree/main/services/search) service for more details about search functionality.
 
 ## Scalability
 

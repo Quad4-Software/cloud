@@ -7,7 +7,7 @@ import (
 	"github.com/onsi/gomega"
 	"github.com/spf13/afero"
 
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
 )
 
 func TestLayeredFS(t *testing.T) {

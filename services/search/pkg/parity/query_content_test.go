@@ -1,7 +1,7 @@
 package parity
 
 import (
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 func contentGroup() queryGroup {
@@ -9,7 +9,7 @@ func contentGroup() queryGroup {
 		name: "content",
 		fixtures: []search.Resource{
 			fixtureDoc("monthly.txt", withContent("the monthly reports are due")),
-			fixtureDoc("links.txt", withContent("see https://opencloud.example.com/help or write to alan@example.org")),
+			fixtureDoc("links.txt", withContent("see https://quad4.example.com/help or write to alan@example.org")),
 		},
 		cases: []queryCase{
 			{id: 1, query: `Content:report`},
@@ -19,9 +19,9 @@ func contentGroup() queryGroup {
 			{id: 5, query: `Content:report*`, want: []string{"monthly.txt"}},
 			{id: 6, query: `Content:*eport*`, want: []string{"monthly.txt"}},
 			{id: 7, query: `Content:month*`, want: []string{"monthly.txt"}},
-			{id: 8, query: `Content:"https://opencloud.example.com/help"`, want: []string{"links.txt"}},
+			{id: 8, query: `Content:"https://quad4.example.com/help"`, want: []string{"links.txt"}},
 			{id: 9, query: `Content:"alan@example.org"`, want: []string{"links.txt"}},
-			{id: 10, query: `Content:opencloud`, want: []string{"links.txt"}},
+			{id: 10, query: `Content:quad4`, want: []string{"links.txt"}},
 		},
 	}
 }

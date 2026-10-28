@@ -7,8 +7,8 @@ package mocks
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/authguest"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/token"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/authguest"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/token"
 	mock "github.com/stretchr/testify/mock"
 )
 

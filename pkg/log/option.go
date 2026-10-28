@@ -15,7 +15,7 @@ type Options struct {
 // newOptions initializes the available default options.
 func newOptions(opts ...Option) Options {
 	opt := Options{
-		Name:   "opencloud",
+		Name:   "quad4",
 		Level:  "info",
 		Pretty: true,
 		Color:  true,

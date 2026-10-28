@@ -1,8 +1,8 @@
-## OpenCloud Wrapper
+## Quad4 Cloud Wrapper
 
-A tool that wraps the OpenCloud binary and provides a way to re-configure the running OpenCloud instance.
+A tool that wraps the Quad4 Cloud binary and provides a way to re-configure the running Quad4 Cloud instance.
 
-When run, **ocwrapper** starts an API server that exposes some endpoints to re-configure the OpenCloud server.
+When run, **ocwrapper** starts an API server that exposes some endpoints to re-configure the Quad4 Cloud server.
 
 ### Usage
 
@@ -15,7 +15,7 @@ When run, **ocwrapper** starts an API server that exposes some endpoints to re-c
 2.  Run
 
     ```bash
-    ./bin/ocwrapper serve --bin=<path-to-opencloud-binary>
+    ./bin/ocwrapper serve --bin=<path-to-quad4-binary>
     ```
 
     To check other available options:
@@ -25,11 +25,11 @@ When run, **ocwrapper** starts an API server that exposes some endpoints to re-c
     ```
 
     ```bash
-     --url string              OpenCloud server url (default "https://localhost:9200")
-     --retry string            Number of retries to start OpenCloud server (default "5")
+     --url string              Quad4 Cloud server url (default "https://localhost:9200")
+     --retry string            Number of retries to start Quad4 Cloud server (default "5")
      -p, --port string         Wrapper API server port (default "5200")
-     --admin-username string   admin username for OpenCloud server
-     --admin-password string   admin password for OpenCloud server
+     --admin-username string   admin username for Quad4 Cloud server
+     --admin-password string   admin password for Quad4 Cloud server
     ```
 
 Access the API server at `http://localhost:5200`.
@@ -42,7 +42,7 @@ Also, see `./bin/ocwrapper help` for more information.
 
 1.  `PUT /config`
 
-    Updates the configuration of the running OpenCloud instance.
+    Updates the configuration of the running Quad4 Cloud instance.
     Body of the request should be a JSON object with the following structure:
 
     ```json
@@ -54,9 +54,9 @@ Also, see `./bin/ocwrapper help` for more information.
 
     Returns:
 
-    - `200 OK` - OpenCloud is successfully reconfigured
+    - `200 OK` - Quad4 Cloud is successfully reconfigured
     - `400 Bad Request` - request body is not a valid JSON object
-    - `500 Internal Server Error` - OpenCloud server is not running
+    - `500 Internal Server Error` - Quad4 Cloud server is not running
 
 2.  `DELETE /rollback`
 
@@ -65,15 +65,15 @@ Also, see `./bin/ocwrapper help` for more information.
     Returns:
 
     - `200 OK` - rollback is successful
-    - `500 Internal Server Error` - OpenCloud server is not running
+    - `500 Internal Server Error` - Quad4 Cloud server is not running
 
 3.  `POST /command`
 
-    Executes the provided command on the OpenCloud server. The body of the request should be a JSON object with the following structure:
+    Executes the provided command on the Quad4 Cloud server. The body of the request should be a JSON object with the following structure:
 
     ```yml
     {
-      "command": "<opencloud-command>", # without the OpenCloud binary. e.g. "list"
+      "command": "<quad4-command>", # without the Quad4 Cloud binary. e.g. "list"
     }
     ```
 
@@ -81,7 +81,7 @@ Also, see `./bin/ocwrapper help` for more information.
 
     ```json
     {
-      "command": "<opencloud-command>",
+      "command": "<quad4-command>",
       "inputs": ["value1"]
     }
     ```
@@ -108,19 +108,19 @@ Also, see `./bin/ocwrapper help` for more information.
 
 4.  `POST /start`
 
-    Starts the OpenCloud server.
+    Starts the Quad4 Cloud server.
 
     Returns:
 
-    - `200 OK` - OpenCloud server is started
-    - `409 Conflict` - OpenCloud server is already running
-    - `500 Internal Server Error` - Unable to start OpenCloud server
+    - `200 OK` - Quad4 Cloud server is started
+    - `409 Conflict` - Quad4 Cloud server is already running
+    - `500 Internal Server Error` - Unable to start Quad4 Cloud server
 
 5.  `POST /stop`
 
-    Stops the OpenCloud server.
+    Stops the Quad4 Cloud server.
 
     Returns:
 
-    - `200 OK` - OpenCloud server is stopped
-    - `500 Internal Server Error` - Unable to stop OpenCloud server
+    - `200 OK` - Quad4 Cloud server is stopped
+    - `500 Internal Server Error` - Unable to stop Quad4 Cloud server

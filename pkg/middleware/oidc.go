@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	goidc "github.com/coreos/go-oidc/v3/oidc"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
 	"golang.org/x/oauth2"
 )
 

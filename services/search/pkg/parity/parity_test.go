@@ -11,9 +11,9 @@ import (
 
 	"github.com/opencloud-eu/reva/v2/pkg/errtypes"
 
-	searchMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchService "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	searchMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchService "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 type queryCase struct {
@@ -264,7 +264,7 @@ var _ = Describe("Queries", func() {
 			var engines []testEngine
 
 			BeforeAll(func() {
-				engines = newEngines("opencloud-test-engine-parity-"+group.name, group.fixtures)
+				engines = newEngines("quad4-test-engine-parity-"+group.name, group.fixtures)
 			})
 
 			for caseAt, c := range group.cases {
@@ -329,7 +329,7 @@ var _ = Describe("Operations", func() {
 					fixtures = group.fixtures
 				}
 
-				index := fmt.Sprintf("opencloud-test-engine-parity-%s-%d", group.name, c.id)
+				index := fmt.Sprintf("quad4-test-engine-parity-%s-%d", group.name, c.id)
 				rows := c.matrixRows(group.name, offset+groupAt, caseAt)
 				planRow(rows...)
 
@@ -406,7 +406,7 @@ var _ = Describe("Response", func() {
 			var shared []testEngine
 
 			BeforeAll(func() {
-				shared = newEngines("opencloud-test-engine-parity-"+group.name, group.fixtures)
+				shared = newEngines("quad4-test-engine-parity-"+group.name, group.fixtures)
 			})
 
 			for caseAt, c := range group.cases {
@@ -417,7 +417,7 @@ var _ = Describe("Response", func() {
 				}
 				planRow(row)
 
-				index := fmt.Sprintf("opencloud-test-engine-parity-%s-%d", group.name, c.id)
+				index := fmt.Sprintf("quad4-test-engine-parity-%s-%d", group.name, c.id)
 
 				Describe(c.name(group.name), func() {
 					for _, name := range engineNames {

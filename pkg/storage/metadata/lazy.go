@@ -9,7 +9,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/opencloud-eu/reva/v2/pkg/storage/utils/metadata"
 
-	"github.com/opencloud-eu/opencloud/pkg/storage"
+	"github.com/Quad4-Software/cloud/pkg/storage"
 )
 
 // Lazy is a lazy storage implementation that initializes the underlying storage only when needed.

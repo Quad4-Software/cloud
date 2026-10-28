@@ -1,10 +1,10 @@
 package revaconfig
 
 import (
-	"github.com/opencloud-eu/opencloud/services/auth-service/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-service/pkg/config"
 )
 
-// AuthMachineConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// AuthMachineConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func AuthMachineConfigFromStruct(cfg *config.Config) map[string]any {
 	return map[string]any{
 		"shared": map[string]any{
@@ -38,7 +38,7 @@ func AuthMachineConfigFromStruct(cfg *config.Config) map[string]any {
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "auth_service",
 				},
 			},

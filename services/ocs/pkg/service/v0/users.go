@@ -6,8 +6,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/service/v0/data"
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/service/v0/response"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/service/v0/data"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/service/v0/response"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"go-micro.dev/v4/store"
 )

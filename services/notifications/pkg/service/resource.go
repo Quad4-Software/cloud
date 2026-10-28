@@ -7,11 +7,11 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/email"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/email"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 )
 
 func (s eventsNotifier) handleResourceMention(e ocEvents.ResourceMention, eventId string) {
@@ -45,7 +45,7 @@ func (s eventsNotifier) handleResourceMention(e ocEvents.ResourceMention, eventI
 		}
 		data.resourceName = resourceInfo.GetName()
 
-		data.resourceLink, err = urlJoinPath(s.openCloudURL, "f", storagespace.FormatResourceID(resourceInfo.GetId()))
+		data.resourceLink, err = urlJoinPath(s.quad4CloudURL, "f", storagespace.FormatResourceID(resourceInfo.GetId()))
 		if err != nil {
 			logger.Error().Err(err).Msg("failed to generate resource link.")
 			return

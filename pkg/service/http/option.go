@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 
 	"github.com/spf13/pflag"
 	"go.opentelemetry.io/otel/trace"

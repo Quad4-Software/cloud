@@ -207,8 +207,8 @@ trait WebDav {
 
 	/**
 	 * gives the DAV path of a file including the subfolder of the webserver
-	 * e.g. when the server runs in `http://localhost/opencloud/`
-	 * this function will return `opencloud/webdav/prueba.txt`
+	 * e.g. when the server runs in `http://localhost/quad4/`
+	 * this function will return `quad4/webdav/prueba.txt`
 	 *
 	 * @param string $user
 	 * @param string $spaceId
@@ -3196,7 +3196,7 @@ trait WebDav {
 	 */
 	public function encodePath(string $path): string {
 		// slashes need to stay
-		// in OpenCloud even brackets are encoded
+		// in Quad4 Cloud even brackets are encoded
 		return \str_replace('%2F', '/', \rawurlencode($path));
 	}
 

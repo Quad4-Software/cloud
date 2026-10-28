@@ -115,10 +115,10 @@ thumbnails service is able to utilize the
 libvips needs to be enabled at buildtime and has a couple of implications:
 
 - With libvips support enabled, it is not possible to create a statically
-   linked OpenCloud binary.
+   linked Quad4 Cloud binary.
 - Therefore, the libvips shared libraries need to be available at runtime in
-   the same release that was used to build the OpenCloud binary.
-- When using the OpenCloud docker images, the libvips shared libraries are
+   the same release that was used to build the Quad4 Cloud binary.
+- When using the Quad4 Cloud docker images, the libvips shared libraries are
    included in the image and are correctly embedded.
 
 Support of libvips is disabled by default. To enable it, make sure libvips
@@ -133,15 +133,15 @@ export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 Then you just need to set the `ENABLE_VIPS` variable on the `make` command:
 
 ```shell
-make -C opencloud build ENABLE_VIPS=1
+make -C quad4 build ENABLE_VIPS=1
 ```
 
 Or include the `enable_vips` build tag in the `go build` command:
 
 ```shell
-go build -tags enable_vips -o opencloud -o bin/opencloud ./cmd/opencloud
+go build -tags enable_vips -o quad4 -o bin/quad4 ./cmd/quad4
 ```
 
 When building a docker image using the Dockerfile in the top-level directory of
-OpenCloud, libvips support is enabled and the libvips shared libraries are
+Quad4 Cloud, libvips support is enabled and the libvips shared libraries are
 included in the resulting docker image.

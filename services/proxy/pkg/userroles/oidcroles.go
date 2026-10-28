@@ -7,9 +7,9 @@ import (
 	"time"
 
 	cs3 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 	"go-micro.dev/v4/metadata"
 )
@@ -92,19 +92,19 @@ func (ra oidcRoleAssigner) UpdateUserRoleAssignment(ctx context.Context, user *c
 	}
 
 	// the roleMapping config is supposed to have the role mappings ordered from the highest privileged role
-	// down to the lowest privileged role. Since OpenCloud currently only can handle a single role assignment we
+	// down to the lowest privileged role. Since Quad4 Cloud currently only can handle a single role assignment we
 	// pick the highest privileged role that matches a value from the claims
 	roleIDFromClaim := ""
 	for _, mapping := range ra.Options.roleMapping {
 		if _, ok := claimRoles[mapping.ClaimValue]; ok {
-			logger.Debug().Str("opencloudRole", mapping.RoleName).Str("role id", roleNamesToRoleIDs[mapping.RoleName]).Msg("first matching role")
+			logger.Debug().Str("quad4Role", mapping.RoleName).Str("role id", roleNamesToRoleIDs[mapping.RoleName]).Msg("first matching role")
 			roleIDFromClaim = roleNamesToRoleIDs[mapping.RoleName]
 			break
 		}
 	}
 
 	if roleIDFromClaim == "" {
-		err := errors.New("no role in claim maps to an OpenCloud role")
+		err := errors.New("no role in claim maps to an Quad4 Cloud role")
 		logger.Error().Err(err).Msg("")
 		return nil, err
 	}

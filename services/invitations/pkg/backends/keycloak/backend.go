@@ -5,9 +5,9 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/opencloud-eu/opencloud/pkg/keycloak"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/invitations/pkg/invitations"
+	"github.com/Quad4-Software/cloud/pkg/keycloak"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/invitations/pkg/invitations"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 )
 

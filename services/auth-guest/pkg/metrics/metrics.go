@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package metrics
@@ -7,7 +7,7 @@ import "github.com/prometheus/client_golang/prometheus"
 
 var (
 	// Namespace defines the namespace for the defines metrics.
-	Namespace = "opencloud"
+	Namespace = "quad4"
 
 	// Subsystem defines the subsystem for the defines metrics.
 	Subsystem = "auth-guest"

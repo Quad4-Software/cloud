@@ -7,7 +7,7 @@ package mocks
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	mock "github.com/stretchr/testify/mock"
 	"go-micro.dev/v4/client"
 	"google.golang.org/protobuf/types/known/emptypb"

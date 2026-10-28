@@ -3,9 +3,9 @@ package grpcSVC
 import (
 	"context"
 
-	v0 "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/metrics"
+	v0 "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/metrics"
 )
 
 // Service defines the service handlers.

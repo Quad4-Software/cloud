@@ -99,8 +99,8 @@ To use policies, they have to be saved to a location that is accessible to the p
 
 The list of files or directories specified there (or as comma-separated strings in the environment variable `POLICIES_ENGINE_FILES`) may make use of two magic prefixes that are resolved at runtime, for convenience:
 
-* in paths starting with `config:`, that string is replaced by the OpenCloud configuration directory
-* in paths starting with `data:`, that string is replaced by the OpenCloud base directory
+* in paths starting with `config:`, that string is replaced by the Quad4 Cloud configuration directory
+* in paths starting with `data:`, that string is replaced by the Quad4 Cloud base directory
 
 If this is done, it's required to configure the policies service to use these files:
 
@@ -181,7 +181,7 @@ Note that additional steps can be configured and their position in the list defi
 
 ## Rego Key Match
 
-To identify available keys for OPA, you need to look at [`engine.go`](https://github.com/opencloud-eu/opencloud/blob/main/services/policies/pkg/engine/engine.go) and the [`policies.swagger.json`](https://github.com/opencloud-eu/opencloud/blob/master/protogen/gen/opencloud/services/policies/v0/policies.swagger.json) file.
+To identify available keys for OPA, you need to look at [`engine.go`](https://github.com/Quad4-Software/cloud/blob/main/services/policies/pkg/engine/engine.go) and the [`policies.swagger.json`](https://github.com/Quad4-Software/cloud/blob/master/protogen/gen/quad4/services/policies/v0/policies.swagger.json) file.
 
 Note that which keys are available depends on the module it is used in.
 
@@ -191,25 +191,25 @@ Besides the standard rego built-in functions, the following functions are added 
 
 | Function | Result | Description |
 | -------- | ------ | ----------- |
-| `opencloud.mimetype.extensions("application/pdf")` | `[".pdf"]` | Lists the file extensions associated with a mimetype. See [Extend Mimetype File Extension Mapping](#extend-mimetype-file-extension-mapping). |
-| `opencloud.mimetype.detect(bytes)` | `"application/pdf"` | Detects a mimetype from content. The list of known mimetypes is limited. |
-| `opencloud.resource.download(input.resource.url)` | bytes | Downloads a resource. Available in the event service (postprocessing) where `input.resource.url` is set. |
+| `quad4.mimetype.extensions("application/pdf")` | `[".pdf"]` | Lists the file extensions associated with a mimetype. See [Extend Mimetype File Extension Mapping](#extend-mimetype-file-extension-mapping). |
+| `quad4.mimetype.detect(bytes)` | `"application/pdf"` | Detects a mimetype from content. The list of known mimetypes is limited. |
+| `quad4.resource.download(input.resource.url)` | bytes | Downloads a resource. Available in the event service (postprocessing) where `input.resource.url` is set. |
 
-Rego has no byte type, so `opencloud.resource.download` hands the content to the policy as base64.
-`opencloud.mimetype.detect` takes that value as it is, a policy working on the content itself has to run it through `base64.decode` first.
+Rego has no byte type, so `quad4.resource.download` hands the content to the policy as base64.
+`quad4.mimetype.detect` takes that value as it is, a policy working on the content itself has to run it through `base64.decode` first.
 
-Note that `opencloud.resource.download` performs an HTTP request and holds the whole resource in memory. Use it in postprocessing policies only, not in policies evaluated by the proxy middleware.
+Note that `quad4.resource.download` performs an HTTP request and holds the whole resource in memory. Use it in postprocessing policies only, not in policies evaluated by the proxy middleware.
 
 ## Extend Mimetype File Extension Mapping
 
 In the extended set of the rego query language, it is possible to get a list of associated file extensions based on a
-mimetype, for example `opencloud.mimetype.extensions("application/pdf")`.
+mimetype, for example `quad4.mimetype.extensions("application/pdf")`.
 
-The list of mappings is restricted by default and is provided by the host system OpenCloud is installed on.
+The list of mappings is restricted by default and is provided by the host system Quad4 Cloud is installed on.
 
-In order to extend this list, OpenCloud must be provided with the path to a custom `mime.types` file that maps mimetypes
+In order to extend this list, Quad4 Cloud must be provided with the path to a custom `mime.types` file that maps mimetypes
 to extensions. The location for the file must be accessible by all instances of the policy service. As a rule of thumb,
-use the directory where the OpenCloud configuration files are stored. Note that existing mappings from the host are
+use the directory where the Quad4 Cloud configuration files are stored. Note that existing mappings from the host are
 extended by the definitions from the mime types file, but not replaced.
 
 The path to that file can be provided via a yaml configuration or an environment variable. Note that the `config:` file path prefix is replaced by `$OC_CONFIG_DIR`.
@@ -228,7 +228,7 @@ A good example of how such a file should be formatted can be found in the [Apach
 
 ## Example Policies
 
-The `policies` service contains a set of preconfigured example policies. See the [devtools policies](https://github.com/opencloud-eu/opencloud/tree/main/devtools/deployments/service_policies/policies/) directory for details. The contained policies disallow OpenCloud from creating certain file types, both via the `proxy` middleware and the events service via `postprocessing`.
+The `policies` service contains a set of preconfigured example policies. See the [devtools policies](https://github.com/Quad4-Software/cloud/tree/main/devtools/deployments/service_policies/policies/) directory for details. The contained policies disallow Quad4 Cloud from creating certain file types, both via the `proxy` middleware and the events service via `postprocessing`.
 
 ## Metrics
 
@@ -236,12 +236,12 @@ The `policies` service provides the following metrics:
 
 | Name | Description |
 | ---- | ----------- |
-| `opencloud_policies_build_info{version=...}` | Contains a label `version` that is set to the current version of the service, and always has a value of `1` |
-| `opencloud_policies_events_enabled` | Is set to `1` if the Events API handler is enabled, or `0` if not |
-| `opencloud_policies_grpc_enabled` | Is set to `1` if the gRPC API handler is enabled, or `0` if not |
-| `opencloud_policies_policies_processed{result=...,origin=...}` | A counter with the number of policy rule evaluations. Has a label `result` that is set to `allowed` or `not-allowed` depending on the outcome, as well as a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
-| `opencloud_policies_policies_failures{origin=...}` | A counter with the number of policy rule evaluation errors. Has a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
-| `opencloud_policies_policies_requests{origin=...}` | A counter with the number of received requests for evaluating policies. Has a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
+| `quad4_policies_build_info{version=...}` | Contains a label `version` that is set to the current version of the service, and always has a value of `1` |
+| `quad4_policies_events_enabled` | Is set to `1` if the Events API handler is enabled, or `0` if not |
+| `quad4_policies_grpc_enabled` | Is set to `1` if the gRPC API handler is enabled, or `0` if not |
+| `quad4_policies_policies_processed{result=...,origin=...}` | A counter with the number of policy rule evaluations. Has a label `result` that is set to `allowed` or `not-allowed` depending on the outcome, as well as a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
+| `quad4_policies_policies_failures{origin=...}` | A counter with the number of policy rule evaluation errors. Has a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
+| `quad4_policies_policies_requests{origin=...}` | A counter with the number of received requests for evaluating policies. Has a label `origin` that is set to `grpc` or `events` depending on how the request came in. |
 
 ## Testing
 
@@ -256,7 +256,7 @@ POLICIES_ENGINE_FILES: "data:policies"
 PROXY_POLICIES_QUERY: "data.proxy.granted"
 ```
 
-Create a directory `policies` under your `OC_CONFIG_DIR`, typically `~/.opencloud/policies/`, and then store the following file content in a file `proxy.rego` under that directory:
+Create a directory `policies` under your `OC_CONFIG_DIR`, typically `~/.quad4/policies/`, and then store the following file content in a file `proxy.rego` under that directory:
 
 ```rego
 package proxy
@@ -286,7 +286,7 @@ Create a `prometheus.yml` file with the following content:
 
 ```yaml
 scrape_configs:
-  - job_name: 'opencloud'
+  - job_name: 'quad4'
     scrape_interval: 5s
     static_configs:
     - targets:

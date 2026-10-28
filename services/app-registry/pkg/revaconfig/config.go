@@ -2,11 +2,11 @@ package revaconfig
 
 import (
 	"github.com/go-viper/mapstructure/v2"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/app-registry/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/app-registry/pkg/config"
 )
 
-// AppRegistryConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// AppRegistryConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func AppRegistryConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 	rcfg := map[string]any{
 		"shared": map[string]any{
@@ -35,7 +35,7 @@ func AppRegistryConfigFromStruct(cfg *config.Config, logger log.Logger) map[stri
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "app_registry",
 				},
 			},

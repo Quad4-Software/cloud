@@ -16,14 +16,14 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/staticroutes"
-	bcl "github.com/opencloud-eu/opencloud/services/proxy/pkg/staticroutes/backchannellogout"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/staticroutes"
+	bcl "github.com/Quad4-Software/cloud/services/proxy/pkg/staticroutes/backchannellogout"
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/require"
 	"github.com/vmihailenco/msgpack/v5"
@@ -34,17 +34,17 @@ import (
 func TestOIDCAudienceAuthentication(t *testing.T) {
 	for _, skipUserInfo := range []bool{false, true} {
 		t.Run(fmt.Sprintf("skip_user_info=%t", skipUserInfo), func(t *testing.T) {
-			idp := newAudienceTestIDP(t, "opencloud")
+			idp := newAudienceTestIDP(t, "quad4")
 			for _, tt := range []struct {
 				name      string
 				audiences []string
 				aud       any
 				want      int
 			}{
-				{name: "matching string", audiences: []string{"opencloud"}, aud: "opencloud", want: http.StatusOK},
-				{name: "matching array", audiences: []string{"opencloud", "opencloud-api"}, aud: []string{"immich", "opencloud-api"}, want: http.StatusOK},
-				{name: "foreign despite matching userinfo", audiences: []string{"opencloud"}, aud: "immich", want: http.StatusUnauthorized},
-				{name: "missing despite matching userinfo", audiences: []string{"opencloud"}, want: http.StatusUnauthorized},
+				{name: "matching string", audiences: []string{"quad4"}, aud: "quad4", want: http.StatusOK},
+				{name: "matching array", audiences: []string{"quad4", "quad4-api"}, aud: []string{"immich", "quad4-api"}, want: http.StatusOK},
+				{name: "foreign despite matching userinfo", audiences: []string{"quad4"}, aud: "immich", want: http.StatusUnauthorized},
+				{name: "missing despite matching userinfo", audiences: []string{"quad4"}, want: http.StatusUnauthorized},
 				{name: "disabled accepts foreign", aud: "immich", want: http.StatusOK},
 				{name: "disabled accepts missing", want: http.StatusOK},
 			} {
@@ -84,9 +84,9 @@ func TestOIDCAudienceAuthentication(t *testing.T) {
 func TestOIDCAudienceUsesAccessTokenInsteadOfUserinfo(t *testing.T) {
 	idp := newAudienceTestIDP(t, "different-userinfo-audience")
 	cache := newAudienceTestCache()
-	auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"opencloud"}, false), cache, idp.server.Client())
+	auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"quad4"}, false), cache, idp.server.Client())
 	require.NoError(t, err)
-	token := idp.accessToken(t, jwt.MapClaims{"aud": "opencloud"})
+	token := idp.accessToken(t, jwt.MapClaims{"aud": "quad4"})
 	require.Equal(t, http.StatusOK, audienceRequest(auth, token).status)
 	cache.waitForSession(t)
 	response := audienceRequest(auth, token)
@@ -98,7 +98,7 @@ func TestOIDCAudienceUsesAccessTokenInsteadOfUserinfo(t *testing.T) {
 }
 
 func TestOIDCAudienceValidatesTokensOnCacheMiss(t *testing.T) {
-	idp := newAudienceTestIDP(t, "opencloud")
+	idp := newAudienceTestIDP(t, "quad4")
 	for _, tt := range []struct {
 		name   string
 		claims jwt.MapClaims
@@ -121,7 +121,7 @@ func TestOIDCAudienceValidatesTokensOnCacheMiss(t *testing.T) {
 				parts[2] = base64.RawURLEncoding.EncodeToString(sig)
 				token = strings.Join(parts, ".")
 			}
-			auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"opencloud"}, false), cache, idp.server.Client())
+			auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"quad4"}, false), cache, idp.server.Client())
 			require.NoError(t, err)
 			require.Equal(t, http.StatusUnauthorized, audienceRequest(auth, token).status)
 			require.Zero(t, idp.userinfoRequests.Load())
@@ -134,7 +134,7 @@ func TestOIDCAudienceRefreshesExpiredOrCorruptCachedClaims(t *testing.T) {
 	for _, skipUserInfo := range []bool{false, true} {
 		for _, corrupt := range []bool{false, true} {
 			t.Run(fmt.Sprintf("skip_user_info=%t/corrupt=%t", skipUserInfo, corrupt), func(t *testing.T) {
-				idp := newAudienceTestIDP(t, "opencloud")
+				idp := newAudienceTestIDP(t, "quad4")
 				cache := newAudienceTestCache()
 				token := idp.accessToken(t, nil)
 				cached, err := msgpack.Marshal(map[string]any{"sub": "stale", "exp": time.Now().Add(-time.Hour).Unix()})
@@ -143,7 +143,7 @@ func TestOIDCAudienceRefreshesExpiredOrCorruptCachedClaims(t *testing.T) {
 					cached = []byte{0xc1} // Reserved/invalid MessagePack marker.
 				}
 				require.NoError(t, cache.Store.Write(&store.Record{Key: audienceTokenCacheKey(token), Value: cached, Expiry: time.Hour}))
-				auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"opencloud"}, skipUserInfo), cache, idp.server.Client())
+				auth, err := newOIDCAuthenticator(log.NopLogger(), audienceTestConfig(idp, []string{"quad4"}, skipUserInfo), cache, idp.server.Client())
 				require.NoError(t, err)
 				response := audienceRequest(auth, token)
 				require.Equal(t, http.StatusOK, response.status)
@@ -159,9 +159,9 @@ func TestOIDCAudienceRefreshesExpiredOrCorruptCachedClaims(t *testing.T) {
 func TestOIDCAudiencePreservesBackchannelLogout(t *testing.T) {
 	for _, skipUserInfo := range []bool{false, true} {
 		t.Run(fmt.Sprintf("skip_user_info=%t", skipUserInfo), func(t *testing.T) {
-			idp := newAudienceTestIDP(t, "opencloud")
+			idp := newAudienceTestIDP(t, "quad4")
 			cache := newAudienceTestCache()
-			cfg := audienceTestConfig(idp, []string{"opencloud"}, skipUserInfo)
+			cfg := audienceTestConfig(idp, []string{"quad4"}, skipUserInfo)
 			auth, err := newOIDCAuthenticator(log.NopLogger(), cfg, cache, idp.server.Client())
 			require.NoError(t, err)
 			token := idp.accessToken(t, nil)
@@ -180,7 +180,7 @@ func TestOIDCAudiencePreservesBackchannelLogout(t *testing.T) {
 				oidc.WithOidcIssuer(idp.server.URL),
 				oidc.WithHTTPClient(idp.server.Client()),
 				oidc.WithAccessTokenVerifyMethod(config.AccessTokenVerificationJWT),
-				oidc.WithAccessTokenAudiences([]string{"opencloud"}),
+				oidc.WithAccessTokenAudiences([]string{"quad4"}),
 			)
 			require.NoError(t, err)
 			routes := &staticroutes.StaticRouteHandler{
@@ -213,8 +213,8 @@ func TestOIDCAuthenticatorRejectsInvalidAudienceConfiguration(t *testing.T) {
 		audiences []string
 		wantErr   string
 	}{
-		{name: "verification disabled", method: config.AccessTokenVerificationNone, audiences: []string{"opencloud"}, wantErr: "requires the jwt verification method"},
-		{name: "blank audience", method: config.AccessTokenVerificationJWT, audiences: []string{"opencloud", " \t"}, wantErr: "empty or whitespace-only"},
+		{name: "verification disabled", method: config.AccessTokenVerificationNone, audiences: []string{"quad4"}, wantErr: "requires the jwt verification method"},
+		{name: "blank audience", method: config.AccessTokenVerificationJWT, audiences: []string{"quad4", " \t"}, wantErr: "empty or whitespace-only"},
 	} {
 		t.Run(tt.name, func(t *testing.T) {
 			cfg := defaults.FullDefaultConfig()
@@ -233,7 +233,7 @@ func TestOIDCAudienceStartupWarning(t *testing.T) {
 	previousLevel := zerolog.GlobalLevel()
 	zerolog.SetGlobalLevel(zerolog.TraceLevel)
 	t.Cleanup(func() { zerolog.SetGlobalLevel(previousLevel) })
-	idp := newAudienceTestIDP(t, "opencloud")
+	idp := newAudienceTestIDP(t, "quad4")
 	for _, tt := range []struct {
 		name       string
 		audiences  []string
@@ -243,7 +243,7 @@ func TestOIDCAudienceStartupWarning(t *testing.T) {
 		want       int
 	}{
 		{name: "disabled", level: zerolog.WarnLevel, want: 1},
-		{name: "enabled", audiences: []string{"opencloud"}, level: zerolog.WarnLevel},
+		{name: "enabled", audiences: []string{"quad4"}, level: zerolog.WarnLevel},
 		{name: "filtered", level: zerolog.ErrorLevel},
 		{name: "OIDC inactive", inactive: true, level: zerolog.WarnLevel},
 		{name: "verification disabled", verifyNone: true, level: zerolog.WarnLevel},
@@ -335,7 +335,7 @@ func (idp *audienceTestIDP) sign(t *testing.T, claims jwt.MapClaims) string {
 func (idp *audienceTestIDP) accessToken(t *testing.T, overrides jwt.MapClaims) string {
 	t.Helper()
 	claims := jwt.MapClaims{
-		"iss": idp.server.URL, "sub": "alice", "sid": "session", "aud": "opencloud",
+		"iss": idp.server.URL, "sub": "alice", "sid": "session", "aud": "quad4",
 		"exp": time.Now().Add(time.Hour).Unix(),
 	}
 	for key, value := range overrides {

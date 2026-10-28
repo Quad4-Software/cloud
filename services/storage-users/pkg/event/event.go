@@ -1,8 +1,8 @@
 package event
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
 	"go-micro.dev/v4/events"
 )

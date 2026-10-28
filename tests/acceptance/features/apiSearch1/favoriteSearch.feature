@@ -55,7 +55,7 @@ Feature: search for favorites
     And user "Alice" has created folder "parent"
     And user "Alice" has created folder "parent/sub"
     And user "Alice" has created folder "parent/sub/sub2"
-    And user "Alice" has uploaded file with content "OpenCloud test text file" to "parent/sub/sub2/textfile.txt"
+    And user "Alice" has uploaded file with content "Quad4 Cloud test text file" to "parent/sub/sub2/textfile.txt"
     And user "Alice" has sent the following resource share invitation:
       | resource        | parent   |
       | space           | Personal |
@@ -150,7 +150,7 @@ Feature: search for favorites
 
   Scenario: search for favorite shared files after removing the access to the shared file
     Given user "Brian" has been created with default attributes
-    And user "Alice" has uploaded file with content "OpenCloud test text file" to "textfile.txt"
+    And user "Alice" has uploaded file with content "Quad4 Cloud test text file" to "textfile.txt"
     And user "Alice" has sent the following resource share invitation:
       | resource        | textfile.txt |
       | space           | Personal     |

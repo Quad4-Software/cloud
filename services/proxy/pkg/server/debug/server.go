@@ -6,12 +6,12 @@ import (
 
 	"github.com/ggwhite/go-masker"
 
-	"github.com/opencloud-eu/opencloud/pkg/checks"
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
-	"github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/service/debug"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/checks"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/service/debug"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 )
 
 // Server initializes the debug service and server.

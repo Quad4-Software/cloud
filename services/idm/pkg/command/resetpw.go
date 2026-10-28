@@ -8,10 +8,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/idm/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/idm/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/idm/pkg/config"
+	"github.com/Quad4-Software/cloud/services/idm/pkg/config/parser"
 
 	"github.com/go-ldap/ldap/v3"
 	"github.com/libregraph/idm/pkg/ldbbolt"
@@ -76,7 +76,7 @@ func resetPassword(_ context.Context, logger log.Logger, cfg *config.Config, use
 		Timeout: 1 * time.Millisecond,
 	}
 	if err := bdb.Configure(servercfg.Logger, servercfg.LDAPBaseDN, servercfg.BoltDBFile, &opts); err != nil {
-		fmt.Fprintf(os.Stderr, "Failed to open database: '%s'. Please stop any running OpenCloud idm instance, as this tool requires exclusive access to the database.\n", err)
+		fmt.Fprintf(os.Stderr, "Failed to open database: '%s'. Please stop any running Quad4 Cloud idm instance, as this tool requires exclusive access to the database.\n", err)
 		return err
 	}
 	defer bdb.Close()

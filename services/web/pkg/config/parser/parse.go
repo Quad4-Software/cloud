@@ -3,11 +3,11 @@ package parser
 import (
 	"errors"
 
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config/defaults"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config/defaults"
 )
 
 // ParseConfig loads configuration from known paths.

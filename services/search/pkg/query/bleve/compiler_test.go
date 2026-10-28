@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/blevesearch/bleve/v2/search/query"
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	searchquery "github.com/opencloud-eu/opencloud/services/search/pkg/query"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	searchquery "github.com/Quad4-Software/cloud/services/search/pkg/query"
 	tAssert "github.com/stretchr/testify/assert"
 )
 

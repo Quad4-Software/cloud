@@ -9,7 +9,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 // HTTPDataHandler returns data from the request, it should exit early and return false in the case of any error

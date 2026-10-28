@@ -12,9 +12,9 @@ import (
 	nserver "github.com/nats-io/nats-server/v2/server"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/command"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/activitylog"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/command"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/config"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/service/activitylog"
 )
 
 var (

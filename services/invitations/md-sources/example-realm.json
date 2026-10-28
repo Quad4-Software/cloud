@@ -1,6 +1,6 @@
 {
   "id": "c59e5222-f0b8-4169-a7a2-0cb6bfed8d33",
-  "realm": "opencloud",
+  "realm": "quad4",
   "notBefore": 0,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
@@ -46,7 +46,7 @@
   "failureFactor": 30,
   "defaultRole": {
     "id": "66d42d82-e003-4dca-931d-ac25fe27fcdc",
-    "name": "default-roles-opencloud",
+    "name": "default-roles-quad4",
     "description": "${role_default-roles}",
     "composite": true,
     "clientRole": false,
@@ -130,8 +130,8 @@
   "clients": [
     {
       "id": "c3adac0c-94b5-46ee-a851-5274be719ab6",
-      "clientId": "OpenCloudAndroid",
-      "name": "OpenCloud Android App",
+      "clientId": "Quad4CloudAndroid",
+      "name": "Quad4 Cloud Android App",
       "description": "",
       "rootUrl": "",
       "adminUrl": "",
@@ -141,7 +141,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "oc://android.opencloud.eu"
+        "oc://android.quad4.io"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -200,7 +200,7 @@
         "web-origins",
         "profile",
         "roles",
-        "opencloud",
+        "quad4",
         "basic",
         "email"
       ],
@@ -213,8 +213,8 @@
     },
     {
       "id": "dba27084-63ad-4718-8195-a2abd9cebe2e",
-      "clientId": "OpenCloudDesktop",
-      "name": "OpenCloud Desktop Client",
+      "clientId": "Quad4CloudDesktop",
+      "name": "Quad4 Cloud Desktop Client",
       "description": "",
       "rootUrl": "",
       "adminUrl": "",
@@ -283,7 +283,7 @@
         "web-origins",
         "profile",
         "roles",
-        "opencloud",
+        "quad4",
         "basic",
         "email"
       ],
@@ -296,8 +296,8 @@
     },
     {
       "id": "72b2cef0-6c24-424e-9204-03aef6e6f520",
-      "clientId": "OpenCloudIOS",
-      "name": "OpenCloud iOS App",
+      "clientId": "Quad4CloudIOS",
+      "name": "Quad4 Cloud iOS App",
       "description": "",
       "rootUrl": "",
       "adminUrl": "",
@@ -307,7 +307,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "oc://ios.opencloud.eu"
+        "oc://ios.quad4.io"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -365,7 +365,7 @@
         "web-origins",
         "profile",
         "roles",
-        "opencloud",
+        "quad4",
         "basic",
         "email"
       ],
@@ -381,13 +381,13 @@
       "clientId": "account",
       "name": "${client_account}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/opencloud/account/",
+      "baseUrl": "/realms/quad4/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/opencloud/account/*"
+        "/realms/quad4/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -426,13 +426,13 @@
       "clientId": "account-console",
       "name": "${client_account-console}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/opencloud/account/",
+      "baseUrl": "/realms/quad4/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/realms/opencloud/account/*"
+        "/realms/quad4/account/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -653,7 +653,7 @@
         "acr",
         "profile",
         "roles",
-        "opencloud",
+        "quad4",
         "basic",
         "email"
       ],
@@ -717,13 +717,13 @@
       "clientId": "security-admin-console",
       "name": "${client_security-admin-console}",
       "rootUrl": "${authAdminUrl}",
-      "baseUrl": "/admin/opencloud/console/",
+      "baseUrl": "/admin/quad4/console/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "/admin/opencloud/console/*"
+        "/admin/quad4/console/*"
       ],
       "webOrigins": [
         "+"
@@ -780,17 +780,17 @@
     {
       "id": "06dc1405-3631-4714-b4b1-19580e7c0465",
       "clientId": "web",
-      "name": "OpenCloud Web",
+      "name": "Quad4 Cloud Web",
       "description": "",
-      "rootUrl": "https://cloud.schule.opencloud.eu",
-      "adminUrl": "https://cloud.schule.opencloud.eu",
-      "baseUrl": "https://cloud.schule.opencloud.eu",
+      "rootUrl": "https://cloud.schule.quad4.io",
+      "adminUrl": "https://cloud.schule.quad4.io",
+      "baseUrl": "https://cloud.schule.quad4.io",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://cloud.schule.opencloud.eu/*"
+        "https://cloud.schule.quad4.io/*"
       ],
       "webOrigins": [
         "+"
@@ -808,7 +808,7 @@
       "attributes": {
         "oidc.ciba.grant.enabled": "false",
         "backchannel.logout.session.required": "true",
-        "post.logout.redirect.uris": "https://cloud.schule.opencloud.eu/*",
+        "post.logout.redirect.uris": "https://cloud.schule.quad4.io/*",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false"
       },
@@ -820,7 +820,7 @@
         "acr",
         "profile",
         "roles",
-        "opencloud",
+        "quad4",
         "basic",
         "email"
       ],
@@ -902,8 +902,8 @@
     },
     {
       "id": "c2db58e8-ea51-4151-83dd-c862c6d28ee3",
-      "name": "opencloud",
-      "description": "OpenCloud UUID",
+      "name": "quad4",
+      "description": "Quad4 Cloud UUID",
       "protocol": "openid-connect",
       "attributes": {
         "include.in.token.scope": "true",
@@ -914,7 +914,7 @@
       "protocolMappers": [
         {
           "id": "596f067b-ae2f-4771-96c5-d0c3942b04da",
-          "name": "opencloud-uuid",
+          "name": "quad4-uuid",
           "protocol": "openid-connect",
           "protocolMapper": "oidc-usermodel-attribute-mapper",
           "consentRequired": false,
@@ -927,7 +927,7 @@
             "id.token.claim": "true",
             "lightweight.claim": "false",
             "access.token.claim": "true",
-            "claim.name": "opencloud\\.user\\.uuid",
+            "claim.name": "quad4\\.user\\.uuid",
             "jsonType.label": "String"
           }
         }
@@ -1422,7 +1422,7 @@
     "web-origins",
     "acr",
     "basic",
-    "opencloud"
+    "quad4"
   ],
   "defaultOptionalClientScopes": [
     "offline_access",
@@ -1447,7 +1447,7 @@
     "port": "2500",
     "host": "inbucket",
     "replyTo": "",
-    "from": "admin@opencloud.test",
+    "from": "admin@quad4.test",
     "fromDisplayName": "AdminTest",
     "envelopeFrom": "",
     "ssl": "false"
@@ -1765,12 +1765,12 @@
             },
             {
               "id": "b5d0c6e6-2b2c-4403-ba2f-7e7ea711cbdc",
-              "name": "opencloud-usertype",
+              "name": "quad4-usertype",
               "providerId": "user-attribute-ldap-mapper",
               "subComponents": {},
               "config": {
                 "ldap.attribute": [
-                  "openCloudUserType"
+                  "quad4CloudUserType"
                 ],
                 "attribute.default.value": [
                   "Guest"
@@ -1791,7 +1791,7 @@
                   "true"
                 ],
                 "user.model.attribute": [
-                  "OPENCLOUD_USER_TYPE"
+                  "QUAD4CLOUD_USER_TYPE"
                 ]
               }
             },
@@ -1889,12 +1889,12 @@
             },
             {
               "id": "92aa0407-daed-4780-89b5-72b23f4ddbca",
-              "name": "opencloud-uuid",
+              "name": "quad4-uuid",
               "providerId": "user-attribute-ldap-mapper",
               "subComponents": {},
               "config": {
                 "ldap.attribute": [
-                  "openCloudUUID"
+                  "quad4CloudUUID"
                 ],
                 "is.mandatory.in.ldap": [
                   "true"
@@ -1912,7 +1912,7 @@
                   "false"
                 ],
                 "user.model.attribute": [
-                  "OPENCLOUD_ID"
+                  "QUAD4CLOUD_ID"
                 ]
               }
             }
@@ -1968,7 +1968,7 @@
             "other"
           ],
           "uuidLDAPAttribute": [
-            "openCloudUUID"
+            "quad4CloudUUID"
           ],
           "allowKerberosAuthentication": [
             "false"
@@ -1995,7 +1995,7 @@
             "true"
           ],
           "userObjectClasses": [
-            "inetOrgPerson, organizationalPerson, openCloudUser"
+            "inetOrgPerson, organizationalPerson, quad4CloudUser"
           ],
           "evictionMinute": [
             "0"

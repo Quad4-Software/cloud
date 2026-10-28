@@ -7,8 +7,8 @@ import (
 	"fmt"
 
 	"github.com/google/uuid"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/settings"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/settings"
 	"github.com/opencloud-eu/reva/v2/pkg/errtypes"
 )
 

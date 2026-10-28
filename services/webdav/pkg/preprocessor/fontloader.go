@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/sync"
+	"github.com/Quad4-Software/cloud/pkg/sync"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/gofont/goregular"
 	"golang.org/x/image/font/opentype"

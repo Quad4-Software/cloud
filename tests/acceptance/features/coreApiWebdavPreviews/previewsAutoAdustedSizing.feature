@@ -4,7 +4,7 @@ Feature: sizing of previews of files downloaded through the webdav API
   I want the aspect-ratio of previews to be preserved even when I ask for an unusual preview size
   So that the previews always have a similar look-and-feel to the original file
 
-  This is optional behavior of an implementation. OpenCloud happens like this,
+  This is optional behavior of an implementation. Quad4 Cloud happens like this,
   but oC10 does not do this auto-fix of the aspect ratio.
 
   Background:
@@ -57,7 +57,7 @@ Feature: sizing of previews of files downloaded through the webdav API
     #   fill -> center-crop to the exact box (may upscale/downscale to cover)
     #   resize -> stretch to the exact box (distorts aspect ratio)
     #
-    # The OpenCloud web client always sends a processor: list view requests
+    # The Quad4 Cloud web client always sends a processor: list view requests
     # processor=thumbnail at 64x64, tiles view requests processor=fit at a dynamic
     # square between 320 and 768.
     Examples:

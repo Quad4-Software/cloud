@@ -56,7 +56,7 @@ func (w *Watcher) Next() (*registry.Result, error) {
 			return nil, errors.New("invalid service key")
 		}
 		svc.Name = parts[0]
-		// OpenCloud registers nodes with a - separator
+		// Quad4 Cloud registers nodes with a - separator
 		svc.Nodes = []*registry.Node{{Id: parts[0] + "-" + parts[1]}}
 		svc.Version = parts[2]
 	} else {

@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/userroles"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/userroles"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/signedurl"
 	microstore "go-micro.dev/v4/store"
@@ -104,7 +104,7 @@ func (m SignedURLAuthenticator) validate(req *http.Request) (err error) {
 func (m SignedURLAuthenticator) allRequiredParametersArePresent(query url.Values) (err error) {
 	// check if required query parameters exist in given request query parameters
 	// OC-Signature - the computed signature - server will verify the request upon this REQUIRED
-	// OC-Credential - defines the user scope (shall we use the opencloud user id here - this might leak internal data ....) REQUIRED
+	// OC-Credential - defines the user scope (shall we use the quad4 user id here - this might leak internal data ....) REQUIRED
 	// OC-Date - defined the date the url was signed (ISO 8601 UTC) REQUIRED
 	// OC-Expires - defines the expiry interval in seconds (between 1 and 604800 = 7 days) REQUIRED
 	// TODO OC-Verb - defines for which http verb the request is valid - defaults to GET OPTIONAL

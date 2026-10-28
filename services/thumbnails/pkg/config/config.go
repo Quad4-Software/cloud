@@ -1,4 +1,4 @@
-// Package config contains the configuration for the opencloud-thumbnails service
+// Package config contains the configuration for the quad4-thumbnails service
 package config
 
 import (
@@ -8,7 +8,7 @@ import (
 
 	"github.com/opencloud-eu/reva/v2/pkg/bytesize"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 // Config combines all available configuration parts.

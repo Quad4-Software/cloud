@@ -13,13 +13,13 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	"github.com/opencloud-eu/opencloud/pkg/kql"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 
-	searchMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchService "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	searchQuery "github.com/opencloud-eu/opencloud/services/search/pkg/query"
+	searchMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchService "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	searchQuery "github.com/Quad4-Software/cloud/services/search/pkg/query"
 )
 
 const defaultBatchSize = 50

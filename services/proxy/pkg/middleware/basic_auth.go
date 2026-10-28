@@ -3,9 +3,9 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
 )
 
 // BasicAuthenticator is the authenticator responsible for HTTP Basic authentication.
@@ -45,7 +45,7 @@ func (m BasicAuthenticator) Authenticate(r *http.Request) AuthenticationResult {
 		oidc.Iss:               user.Id.Idp,
 		oidc.PreferredUsername: user.Username,
 		oidc.Email:             user.Mail,
-		oidc.OpenCloudUUID:     user.Id.OpaqueId,
+		oidc.Quad4CloudUUID:     user.Id.OpaqueId,
 	}
 
 	if m.UserCS3Claim == "userid" {

@@ -1,7 +1,7 @@
 Feature: re-share resources
   As a user
   I cannot to re-share resources
-  This feature has been removed from OpenCloud
+  This feature has been removed from Quad4 Cloud
 
   Background:
     Given these users have been created with default attributes:

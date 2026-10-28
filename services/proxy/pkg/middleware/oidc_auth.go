@@ -15,10 +15,10 @@ import (
 	"golang.org/x/crypto/sha3"
 	"golang.org/x/oauth2"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	bcl "github.com/opencloud-eu/opencloud/services/proxy/pkg/staticroutes/backchannellogout"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	bcl "github.com/Quad4-Software/cloud/services/proxy/pkg/staticroutes/backchannellogout"
 )
 
 const (

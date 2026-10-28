@@ -7,11 +7,11 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
-	svc "github.com/opencloud-eu/opencloud/services/search/pkg/service/grpc/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
+	svc "github.com/Quad4-Software/cloud/services/search/pkg/service/grpc/v0"
 )
 
 // Option defines a single option function.

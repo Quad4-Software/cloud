@@ -9,13 +9,13 @@ import (
 	"github.com/riandyrn/otelchi"
 	"go-micro.dev/v4"
 
-	"github.com/opencloud-eu/opencloud/pkg/account"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	colabmiddleware "github.com/opencloud-eu/opencloud/services/collaboration/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/account"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	colabmiddleware "github.com/Quad4-Software/cloud/services/collaboration/pkg/middleware"
 )
 
 // Server initializes the http service and server.

@@ -6,10 +6,10 @@ import (
 
 	opensearchgoAPI "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
 )
 
 func searchResourceByID(ctx context.Context, client *opensearchgoAPI.Client, index string, id string) (search.Resource, error) {

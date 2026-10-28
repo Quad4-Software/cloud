@@ -3,9 +3,9 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/gateway/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/gateway/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -27,7 +27,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9142",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		Service: config.Service{
@@ -50,20 +50,20 @@ func DefaultConfig() *config.Config {
 
 		FrontendPublicURL: "https://localhost:9200",
 
-		AppRegistryEndpoint:       "eu.opencloud.api.app-registry",
-		AuthAppEndpoint:           "eu.opencloud.api.auth-app",
-		AuthBasicEndpoint:         "eu.opencloud.api.auth-basic",
-		AuthGuestLinkEndpoint:     "eu.opencloud.api.auth-guest",
-		AuthMachineEndpoint:       "eu.opencloud.api.auth-machine",
-		AuthServiceEndpoint:       "eu.opencloud.api.auth-service",
-		GroupsEndpoint:            "eu.opencloud.api.groups",
-		PermissionsEndpoint:       "eu.opencloud.api.settings",
-		SharingEndpoint:           "eu.opencloud.api.sharing",
-		StoragePublicLinkEndpoint: "eu.opencloud.api.storage-publiclink",
-		StorageSharesEndpoint:     "eu.opencloud.api.storage-shares",
-		StorageUsersEndpoint:      "eu.opencloud.api.storage-users",
-		UsersEndpoint:             "eu.opencloud.api.users",
-		OCMEndpoint:               "eu.opencloud.api.ocm",
+		AppRegistryEndpoint:       "io.quad4.api.app-registry",
+		AuthAppEndpoint:           "io.quad4.api.auth-app",
+		AuthBasicEndpoint:         "io.quad4.api.auth-basic",
+		AuthGuestLinkEndpoint:     "io.quad4.api.auth-guest",
+		AuthMachineEndpoint:       "io.quad4.api.auth-machine",
+		AuthServiceEndpoint:       "io.quad4.api.auth-service",
+		GroupsEndpoint:            "io.quad4.api.groups",
+		PermissionsEndpoint:       "io.quad4.api.settings",
+		SharingEndpoint:           "io.quad4.api.sharing",
+		StoragePublicLinkEndpoint: "io.quad4.api.storage-publiclink",
+		StorageSharesEndpoint:     "io.quad4.api.storage-shares",
+		StorageUsersEndpoint:      "io.quad4.api.storage-users",
+		UsersEndpoint:             "io.quad4.api.users",
+		OCMEndpoint:               "io.quad4.api.ocm",
 
 		StorageRegistry: config.StorageRegistry{
 			Driver: "spaces",

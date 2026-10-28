@@ -6,11 +6,11 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/search/pkg/content:
+  github.com/Quad4-Software/cloud/services/search/pkg/content:
     interfaces:
       Extractor: {}
       Retriever: {}
-  github.com/opencloud-eu/opencloud/services/search/pkg/search:
+  github.com/Quad4-Software/cloud/services/search/pkg/search:
     interfaces:
       Searcher: {}
       Engine: { }

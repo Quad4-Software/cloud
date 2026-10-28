@@ -13,15 +13,15 @@ Fill the new index by indexing all spaces again:
 
 ```shell
 # the service keeps running while it happens
-opencloud search index --all-spaces --insecure
+quad4 search index --all-spaces --insecure
 ```
 
 Once the new index is filled, every index but the one with the highest
 `-v<N>` suffix can go (indexes up to 7.4 have no suffix):
 
 ```shell
-curl "https://os.example.com:9200/_cat/indices/opencloud-resource*"
-curl -X DELETE "https://os.example.com:9200/opencloud-resource"
+curl "https://os.example.com:9200/_cat/indices/quad4-resource*"
+curl -X DELETE "https://os.example.com:9200/quad4-resource"
 ```
 
 ### bleve
@@ -31,7 +31,7 @@ The new index is a directory next to the old `bleve` one, both in
 bleve index cannot be copied, index all spaces again:
 
 ```shell
-opencloud search index --all-spaces --insecure
+quad4 search index --all-spaces --insecure
 ```
 
 Once the new index is filled, every directory but the one with the highest

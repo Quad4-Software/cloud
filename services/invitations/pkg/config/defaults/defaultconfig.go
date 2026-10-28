@@ -3,7 +3,7 @@ package defaults
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/services/invitations/pkg/config"
+	"github.com/Quad4-Software/cloud/services/invitations/pkg/config"
 )
 
 func FullDefaultConfig() *config.Config {
@@ -24,7 +24,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9265",
 			Root:      "/graph/v1.0",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			CORS: config.CORS{
 				AllowedOrigins: []string{"https://localhost:9200"},
 			},
@@ -59,11 +59,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.TokenManager = &config.TokenManager{}
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

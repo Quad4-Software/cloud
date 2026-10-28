@@ -5,19 +5,19 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"github.com/opencloud-eu/reva/v2/cmd/revad/runtime"
 	"github.com/spf13/cobra"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/app-provider/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/app-provider/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/app-provider/pkg/revaconfig"
-	"github.com/opencloud-eu/opencloud/services/app-provider/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/app-provider/pkg/config"
+	"github.com/Quad4-Software/cloud/services/app-provider/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/app-provider/pkg/revaconfig"
+	"github.com/Quad4-Software/cloud/services/app-provider/pkg/server/debug"
 )
 
 // Server is the entry point for the server command.

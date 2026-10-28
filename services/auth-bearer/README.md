@@ -1,10 +1,10 @@
 # Auth-Bearer
 
-The OpenCloud Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.
+The Quad4 Cloud Auth Bearer service communicates with the configured OpenID Connect identity provider to authenticate requests. OpenID Connect is the default authentication mechanism for all clients: web, desktop and mobile. Basic auth is only used for testing and has to be explicity enabled.
 
 ## The `auth` Service Family
 
-OpenCloud uses serveral authentication services for different use cases. All services that start with `auth-` are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
+Quad4 Cloud uses serveral authentication services for different use cases. All services that start with `auth-` are part of the authentication service family. Each member authenticates requests with different scopes. As of now, these services exist:
   -   `auth-app` handles authentication of external 3rd party apps
   -   `auth-basic` handles basic authentication
   -   `auth-bearer` handles oidc authentication
@@ -13,7 +13,7 @@ OpenCloud uses serveral authentication services for different use cases. All ser
 
 ## Built in OpenID Connect Identity Provider
 
-A default OpenCloud deployment will start a [built in OpenID Connect identity provider](https://github.com/opencloud-eu/opencloud/tree/main/services/idp) but can be configured to use an external one as well.
+A default Quad4 Cloud deployment will start a [built in OpenID Connect identity provider](https://github.com/Quad4-Software/cloud/tree/main/services/idp) but can be configured to use an external one as well.
 
 ## Scalability
 

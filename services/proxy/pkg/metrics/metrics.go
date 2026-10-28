@@ -7,16 +7,16 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	ocmetrics "github.com/opencloud-eu/opencloud/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	ocmetrics "github.com/Quad4-Software/cloud/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
 var (
 	// Namespace defines the namespace for the defines metrics.
-	Namespace = "opencloud"
+	Namespace = "quad4"
 
 	// Subsystem defines the subsystem for the defines metrics.
 	Subsystem = "proxy"

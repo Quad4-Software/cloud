@@ -41,7 +41,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "disable-email-notifications" }
                 }
@@ -96,7 +96,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-share-created-options" }
                 }
@@ -192,7 +192,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-share-removed-options" }
                 }
@@ -288,7 +288,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-share-removed-options" }
                 }
@@ -376,7 +376,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{
                     "const": "event-share-expired-options"
@@ -532,7 +532,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-space-shared-options" }
                 }
@@ -629,7 +629,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-space-unshared-options" }
                 }
@@ -731,7 +731,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{ "const": "event-space-membership-expired-options" }
                 }
@@ -833,7 +833,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension","bundle","setting"],
                 "properties": {
-                  "extension":{ "const": "opencloud-accounts" },
+                  "extension":{ "const": "quad4-accounts" },
                   "bundle":{ "const": "profile" },
                   "setting":{
                     "const": "event-space-disabled-options"
@@ -929,7 +929,7 @@ Feature: Disable notifications for individual events
                 "type": "object",
                 "required": ["extension", "bundle", "setting"],
                 "properties": {
-                  "extension": { "const": "opencloud-accounts" },
+                  "extension": { "const": "quad4-accounts" },
                   "bundle": { "const": "profile" },
                   "setting": { "const": "event-space-deleted-options" }
                 }

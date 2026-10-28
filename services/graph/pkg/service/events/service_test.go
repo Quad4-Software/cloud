@@ -13,12 +13,12 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/test-go/testify/mock"
 
-	"github.com/opencloud-eu/opencloud/internal/eventstest"
-	"github.com/opencloud-eu/opencloud/internal/metricstest"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	g "github.com/opencloud-eu/opencloud/services/graph/pkg/service/events"
+	"github.com/Quad4-Software/cloud/internal/eventstest"
+	"github.com/Quad4-Software/cloud/internal/metricstest"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	g "github.com/Quad4-Software/cloud/services/graph/pkg/service/events"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/stretchr/testify/require"
 )

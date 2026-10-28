@@ -13,7 +13,7 @@ WHITE        := $(shell tput -Txterm setaf 7)
 
 RESET := $(shell tput -Txterm sgr0)
 
-COMPOSE_FILE := src/opencloud-base.yml
+COMPOSE_FILE := src/quad4-base.yml
 
 # run tests with ocwrapper by default
 WITH_WRAPPER ?= true
@@ -66,7 +66,7 @@ ifneq ($(strip $(OC_IMAGE)),)
 	endif
 endif
 
-COMPOSE_PROJECT_NAME := opencloud-acceptance-tests
+COMPOSE_PROJECT_NAME := quad4-acceptance-tests
 
 # Export variables for sub-make calls
 export COMPOSE_PROJECT_NAME
@@ -86,8 +86,8 @@ export USE_BEARER_TOKEN
 ## make definition
 .PHONY: help
 help:
-	@echo -e "Test suites: ${CYAN}https://github.com/opencloud-eu/opencloud/tree/main/tests/acceptance/features${RESET}"
-	@echo -e "Testing docs: ${CYAN}https://github.com/opencloud-eu/opencloud/tree/main/tests/README.md${RESET}"
+	@echo -e "Test suites: ${CYAN}https://github.com/Quad4-Software/cloud/tree/main/tests/acceptance/features${RESET}"
+	@echo -e "Testing docs: ${CYAN}https://github.com/Quad4-Software/cloud/tree/main/tests/README.md${RESET}"
 	@echo
 	@echo "Available commands (targets):"
 	@echo -e "  ${GREEN}run-api-tests\t\t${RESET}Build dev image, start services and run the tests."
@@ -102,13 +102,13 @@ help:
 	@echo -e "  ${YELLOW}clean-all\t\t${RESET}Clean all resources: images, containers, volumes, test files."
 	@echo
 	@echo "Available environment variables:"
-	@echo -e "  ${PURPLE}OC_IMAGE\t\t${RESET}${CYAN}[image_repo]${RESET} OpenCloud image to use. If provided, the dev image build is skipped."
-	@echo -e "  ${PURPLE}OC_IMAGE_TAG\t\t${RESET}${CYAN}[image_tag]${RESET} OpenCloud image tag to use. If provided, the dev image build is skipped."
-	@echo -e "  ${PURPLE}WITH_WRAPPER\t\t${RESET}${CYAN}[true|false]${RESET} Start OpenCloud server using ocwrapper. Default: ${YELLOW}true${RESET}"
+	@echo -e "  ${PURPLE}OC_IMAGE\t\t${RESET}${CYAN}[image_repo]${RESET} Quad4 Cloud image to use. If provided, the dev image build is skipped."
+	@echo -e "  ${PURPLE}OC_IMAGE_TAG\t\t${RESET}${CYAN}[image_tag]${RESET} Quad4 Cloud image tag to use. If provided, the dev image build is skipped."
+	@echo -e "  ${PURPLE}WITH_WRAPPER\t\t${RESET}${CYAN}[true|false]${RESET} Start Quad4 Cloud server using ocwrapper. Default: ${YELLOW}true${RESET}"
 	@echo -e "  ${PURPLE}STORAGE_DRIVER\t${RESET}${CYAN}[posix|decomposed|decomposeds3]${RESET} Storage driver to use. Default: ${YELLOW}posix${RESET}"
 	@echo -e "  ${PURPLE}BEHAT_FEATURE\t\t${RESET}${RESET}${CYAN}[path]${RESET} Path to a feature file. Example: ${YELLOW}tests/acceptance/features/apiGraph/changeRole.feature${RESET}"
 	@echo -e "  ${PURPLE}BEHAT_SUITE\t\t${RESET}${RESET}${CYAN}[suite_name]${RESET} Test suite to run. Example: ${YELLOW}apiGraph${RESET}"
-	@echo -e "  ${PURPLE}TEST_SERVER_URL\t${RESET}${CYAN}[url]${RESET} URL of the OpenCloud server to test against."
+	@echo -e "  ${PURPLE}TEST_SERVER_URL\t${RESET}${CYAN}[url]${RESET} URL of the Quad4 Cloud server to test against."
 	@echo -e "  ${PURPLE}USE_BEARER_TOKEN\t${RESET}${CYAN}[true|false]${RESET} Use a bearer token for authentication. Default: ${YELLOW}false${RESET}"
 	@echo
 	@echo -e "Example usage:"
@@ -123,7 +123,7 @@ run-api-tests: $(OC_WRAPPER) build-dev-image clean-containers
 	@echo "${BLUE}[INFO]${RESET} Compose file: ${YELLOW}$(COMPOSE_FILE)${RESET}"
 	@echo "${BLUE}[INFO]${RESET} Using storage driver: ${YELLOW}$(STORAGE_DRIVER)${RESET}"
 	# force use local server when using this command
-	export TEST_SERVER_URL=https://opencloud-server:9200
+	export TEST_SERVER_URL=https://quad4-server:9200
 	$(MAKE) --no-print-directory start-services
 	$(MAKE) --no-print-directory run-test-only
 
@@ -151,12 +151,12 @@ $(OC_WRAPPER):
 .PHONY: build-dev-image
 build-dev-image:
 	@if [ -z "$(OC_IMAGE)" ] && [ -z "$(OC_IMAGE_TAG)" ]; then \
-		$(MAKE) --no-print-directory -C ../../../opencloud dev-docker \
+		$(MAKE) --no-print-directory -C ../../../quad4 dev-docker \
 	; fi;
 
 .PHONY: clean-dev-image
 clean-dev-image: ## clean docker image built during acceptance tests
-	@docker image rm opencloudeu/opencloud:dev || true
+	@docker image rm quad4-software/quad4:dev || true
 
 .PHONY: clean-containers
 clean-containers: ## clean docker containers created during acceptance tests

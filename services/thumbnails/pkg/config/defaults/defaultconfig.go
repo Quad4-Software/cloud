@@ -1,7 +1,7 @@
 package defaults
 
 import (
-	"github.com/opencloud-eu/opencloud/services/thumbnails/pkg/config"
+	"github.com/Quad4-Software/cloud/services/thumbnails/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -23,7 +23,7 @@ func DefaultConfig() *config.Config {
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9186",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
 				AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},

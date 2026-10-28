@@ -7,13 +7,13 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	defaults2 "github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	defaults2 "github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 // ParseConfig loads configuration from known paths.
@@ -64,7 +64,7 @@ func Validate(cfg *config.Config) error {
 	if cfg.Application.ID == "" {
 		return fmt.Errorf("The application ID has not been configured for %s. "+
 			"Make sure your %s config contains the proper values "+
-			"(e.g. by running opencloud init or setting it manually in "+
+			"(e.g. by running quad4 init or setting it manually in "+
 			"the config/corresponding environment variable).",
 			"graph", defaults2.BaseConfigPath())
 	}
@@ -74,7 +74,7 @@ func Validate(cfg *config.Config) error {
 	default:
 		return fmt.Errorf("The username match validator is invalid for %s. "+
 			"Make sure your %s config contains the proper values "+
-			"(e.g. by running opencloud init or setting it manually in "+
+			"(e.g. by running quad4 init or setting it manually in "+
 			"the config/corresponding environment variable).",
 			"graph", defaults2.BaseConfigPath())
 	}

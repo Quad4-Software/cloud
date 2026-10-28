@@ -12,8 +12,8 @@ import (
 
 	"go-micro.dev/v4/store"
 
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
 
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
 	group "github.com/cs3org/go-cs3apis/cs3/identity/group/v1beta1"
@@ -27,13 +27,13 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/email"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/email"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 )
 
 // validate is the package level validator instance
@@ -55,7 +55,7 @@ func NewEventsNotifier(
 	logger log.Logger,
 	gatewaySelector pool.Selectable[gateway.GatewayAPIClient],
 	valueService settingssvc.ValueService,
-	serviceAccountID, serviceAccountSecret, emailTemplatePath, defaultLanguage, openCloudURL, translationPath, emailSender string,
+	serviceAccountID, serviceAccountSecret, emailTemplatePath, defaultLanguage, quad4CloudURL, translationPath, emailSender string,
 	store store.Store,
 	historyClient ehsvc.EventHistoryService,
 	registeredEvents map[string]events.Unmarshaller) Service {
@@ -71,7 +71,7 @@ func NewEventsNotifier(
 		emailTemplatePath:    emailTemplatePath,
 		defaultLanguage:      defaultLanguage,
 		defaultEmailSender:   emailSender,
-		openCloudURL:         openCloudURL,
+		quad4CloudURL:         quad4CloudURL,
 		translationPath:      translationPath,
 		filter:               newNotificationFilter(logger, valueService),
 		splitter:             newIntervalSplitter(logger, valueService),
@@ -92,7 +92,7 @@ type eventsNotifier struct {
 	translationPath      string
 	defaultLanguage      string
 	defaultEmailSender   string
-	openCloudURL         string
+	quad4CloudURL         string
 	serviceAccountID     string
 	serviceAccountSecret string
 	filter               *notificationFilter

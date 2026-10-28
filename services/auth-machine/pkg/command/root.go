@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/auth-machine/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/auth-machine/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -23,11 +23,11 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 	}
 }
 
-// Execute is the entry point for the opencloud auth-machine command.
+// Execute is the entry point for the quad4 auth-machine command.
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "auth-machine",
-		Short: "Provide machine authentication for OpenCloud",
+		Short: "Provide machine authentication for Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

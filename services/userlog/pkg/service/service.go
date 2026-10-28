@@ -17,14 +17,14 @@ import (
 	"go-micro.dev/v4/store"
 	"go.opentelemetry.io/otel/trace"
 
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/roles"
-	ehmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/eventhistory/v0"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/config"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/roles"
+	ehmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/eventhistory/v0"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/config"
 )
 
 // UserlogService is the service responsible for user activities
@@ -69,7 +69,7 @@ func NewUserlogService(opts ...Option) (*UserlogService, error) {
 		valueClient:      o.ValueClient,
 		registeredEvents: make(map[string]events.Unmarshaller),
 		tp:               o.TraceProvider,
-		tracer:           o.TraceProvider.Tracer("github.com/opencloud-eu/opencloud/services/userlog/pkg/service"),
+		tracer:           o.TraceProvider.Tracer("github.com/Quad4-Software/cloud/services/userlog/pkg/service"),
 		publisher:        o.Stream,
 		filter:           newUserlogFilter(o.Logger, o.ValueClient),
 	}

@@ -16,11 +16,11 @@ yarn.lock
 # build artifacts
 */bin
 services/*/bin
-/opencloud/dist/
+/quad4/dist/
 services/*/assets
-opencloud/opencloud
-opencloud/cmd/opencloud/__debug_bin
-opencloud/cmd/opencloud/config/
+quad4/quad4
+quad4/cmd/quad4/__debug_bin
+quad4/cmd/quad4/config/
 
 # docs
 /hugo
@@ -64,4 +64,5 @@ go.work.sum
 .DS_Store
 
 # example deployments
-**/opencloud-sandbox-*
+**/quad4-sandbox-*
+.brand-assets/

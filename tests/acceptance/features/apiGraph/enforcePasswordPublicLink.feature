@@ -371,7 +371,7 @@ Feature: enforce password on public link
       | password  | message                                                                                               |
       | 123       | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
       | password  | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
-      | OpenCloud | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
+      | Quad4 Cloud | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
 
 
   Scenario Outline: create  a public link with a password that is listed in the Banned-Password-List
@@ -402,4 +402,4 @@ Feature: enforce password on public link
       | password  | message                                                                                               |
       | 123       | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
       | password  | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
-      | OpenCloud | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |
+      | Quad4 Cloud | unfortunately, your password is commonly used. please pick a harder-to-guess password for your safety |

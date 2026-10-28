@@ -6,6 +6,6 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/services/antivirus/pkg/scanners:
+  github.com/Quad4-Software/cloud/services/antivirus/pkg/scanners:
     interfaces:
       Scanner: {}

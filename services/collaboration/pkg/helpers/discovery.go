@@ -9,8 +9,8 @@ import (
 	"sync/atomic"
 
 	"github.com/beevik/etree"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
 	"github.com/opencloud-eu/reva/v2/pkg/mime"
 	"github.com/pkg/errors"
 )

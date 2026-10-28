@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package command
@@ -9,24 +9,24 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/revaconfig"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/server/http"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/authguest"
-	svcEvents "github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/events"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/jwt"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/storage"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/token"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/revaconfig"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/server/http"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/authguest"
+	svcEvents "github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/events"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/jwt"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/storage"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/token"
 	"github.com/opencloud-eu/reva/v2/cmd/revad/runtime"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"

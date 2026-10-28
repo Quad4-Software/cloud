@@ -14,22 +14,22 @@ import (
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/events"
 
-	"github.com/opencloud-eu/opencloud/pkg/account"
-	"github.com/opencloud-eu/opencloud/pkg/cors"
-	"github.com/opencloud-eu/opencloud/pkg/keycloak"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/storage/metadata"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	graphMiddleware "github.com/opencloud-eu/opencloud/services/graph/pkg/middleware"
-	svc "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/account"
+	"github.com/Quad4-Software/cloud/pkg/cors"
+	"github.com/Quad4-Software/cloud/pkg/keycloak"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/storage/metadata"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	graphMiddleware "github.com/Quad4-Software/cloud/services/graph/pkg/middleware"
+	svc "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 )
 
 // Server initializes the http service and server.
@@ -97,8 +97,8 @@ func Server(identityBackend identity.Backend, eduBackend identity.EducationBacke
 				account.Logger(options.Logger),
 				account.JWTSecret(options.Config.TokenManager.JWTSecret),
 			))
-		roleService = settingssvc.NewRoleService("eu.opencloud.api.settings", grpcClient)
-		valueService = settingssvc.NewValueService("eu.opencloud.api.settings", grpcClient)
+		roleService = settingssvc.NewRoleService("io.quad4.api.settings", grpcClient)
+		valueService = settingssvc.NewValueService("io.quad4.api.settings", grpcClient)
 		gatewaySelector, err = pool.GatewaySelector(
 			options.Config.Reva.Address,
 			append(
@@ -128,7 +128,7 @@ func Server(identityBackend identity.Backend, eduBackend identity.EducationBacke
 		keyCloakClient = keycloak.New(kcc.BasePath, kcc.ClientID, kcc.ClientSecret, kcc.ClientRealm, kcc.InsecureSkipVerify)
 	}
 
-	hClient := ehsvc.NewEventHistoryService("eu.opencloud.api.eventhistory", grpcClient)
+	hClient := ehsvc.NewEventHistoryService("io.quad4.api.eventhistory", grpcClient)
 
 	var userProfilePhotoService svc.UsersUserProfilePhotoProvider
 	{
@@ -171,7 +171,7 @@ func Server(identityBackend identity.Backend, eduBackend identity.EducationBacke
 		svc.WithValueService(valueService),
 		svc.WithRequireAdminMiddleware(requireAdminMiddleware),
 		svc.WithGatewaySelector(gatewaySelector),
-		svc.WithSearchService(searchsvc.NewSearchProviderService("eu.opencloud.api.search", grpcClient)),
+		svc.WithSearchService(searchsvc.NewSearchProviderService("io.quad4.api.search", grpcClient)),
 		svc.KeycloakClient(keyCloakClient),
 		svc.EventHistoryClient(hClient),
 		svc.TraceProvider(options.TraceProvider),

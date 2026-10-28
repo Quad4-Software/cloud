@@ -6,14 +6,14 @@ import (
 	"os"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/service"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/service"
 	"github.com/spf13/cobra"
 )
 

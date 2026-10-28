@@ -4,7 +4,7 @@
 export START_TIKA=true
 export WITH_WRAPPER=false
 
-TEST_SERVER_URL="https://opencloud-server:9200"
+TEST_SERVER_URL="https://quad4-server:9200"
 
 # Start server
 make -C tests/acceptance/docker start-services

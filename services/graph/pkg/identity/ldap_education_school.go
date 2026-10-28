@@ -10,9 +10,9 @@ import (
 	"github.com/go-ldap/ldap/v3"
 	"github.com/google/uuid"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 type educationConfig struct {
@@ -57,15 +57,15 @@ var (
 
 func defaultEducationConfig() educationConfig {
 	return educationConfig{
-		schoolObjectClass:       "openCloudEducationSchool",
+		schoolObjectClass:       "quad4CloudEducationSchool",
 		schoolScope:             ldap.ScopeWholeSubtree,
-		memberOfSchoolAttribute: "openCloudMemberOfSchool",
+		memberOfSchoolAttribute: "quad4CloudMemberOfSchool",
 		schoolAttributeMap:      newSchoolAttributeMap(),
 
-		userObjectClass:  "openCloudEducationUser",
+		userObjectClass:  "quad4CloudEducationUser",
 		userAttributeMap: newEducationUserAttributeMap(),
 
-		classObjectClass:  "openCloudEducationClass",
+		classObjectClass:  "quad4CloudEducationClass",
 		classAttributeMap: newEducationClassAttributeMap(),
 	}
 }
@@ -106,10 +106,10 @@ func newEducationConfig(config config.LDAP) (educationConfig, error) {
 func newSchoolAttributeMap() schoolAttributeMap {
 	return schoolAttributeMap{
 		displayName:     "ou",
-		schoolNumber:    "openCloudEducationSchoolNumber",
-		externalId:      "openCloudEducationExternalId",
-		id:              "openCloudUUID",
-		terminationDate: "openCloudEducationSchoolTerminationTimestamp",
+		schoolNumber:    "quad4CloudEducationSchoolNumber",
+		externalId:      "quad4CloudEducationExternalId",
+		id:              "quad4CloudUUID",
+		terminationDate: "quad4CloudEducationSchoolTerminationTimestamp",
 	}
 }
 

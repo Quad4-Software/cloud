@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/frontend/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/frontend/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -23,11 +23,11 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 	}
 }
 
-// Execute is the entry point for the opencloud-frontend command.
+// Execute is the entry point for the quad4-frontend command.
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "frontend",
-		Short: "Provide various HTTP apis for OpenCloud",
+		Short: "Provide various HTTP apis for Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"path"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 //go:embed testdata/*.json

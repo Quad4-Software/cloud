@@ -16,14 +16,14 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/riandyrn/otelchi"
 
-	"github.com/opencloud-eu/opencloud/pkg/account"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/announcement"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/assets"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/theme"
+	"github.com/Quad4-Software/cloud/pkg/account"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/services/web/pkg/announcement"
+	"github.com/Quad4-Software/cloud/services/web/pkg/assets"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/services/web/pkg/theme"
 )
 
 // ErrConfigInvalid is returned when the config parse is invalid.

@@ -3,15 +3,15 @@ package relations
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/service/v0"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 )
 
 const (
 	OpenIDConnectRel = "http://openid.net/specs/connect/1.0/issuer"
-	clientIDProp     = "http://opencloud.eu/ns/oidc/client_id"
-	scopesProp       = "http://opencloud.eu/ns/oidc/scopes"
+	clientIDProp     = "http://quad4.io/ns/oidc/client_id"
+	scopesProp       = "http://quad4.io/ns/oidc/scopes"
 )
 
 type openIDDiscovery struct {

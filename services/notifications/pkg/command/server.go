@@ -10,26 +10,26 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/service"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/config"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/service"
 
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 	"github.com/spf13/cobra"
 	microstore "go-micro.dev/v4/store"
 
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
 )
 
 // Server is the entrypoint for the server command.
@@ -127,8 +127,8 @@ func Server(cfg *config.Config) *cobra.Command {
 			if err != nil {
 				logger.Fatal().Err(err).Str("addr", cfg.Notifications.RevaGateway).Msg("could not get reva gateway selector")
 			}
-			valueService := settingssvc.NewValueService("eu.opencloud.api.settings", grpcClient)
-			historyClient := ehsvc.NewEventHistoryService("eu.opencloud.api.eventhistory", grpcClient)
+			valueService := settingssvc.NewValueService("io.quad4.api.settings", grpcClient)
+			historyClient := ehsvc.NewEventHistoryService("io.quad4.api.eventhistory", grpcClient)
 
 			notificationStore := store.Create(
 				store.Store(cfg.Store.Store),

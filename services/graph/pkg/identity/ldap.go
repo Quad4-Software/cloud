@@ -18,18 +18,18 @@ import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/odata"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/odata"
 )
 
 const (
 	givenNameAttribute  = "givenname"
 	surNameAttribute    = "sn"
-	identitiesAttribute = "openCloudExternalIdentity"
-	lastSignAttribute   = "openCloudLastSignInTimestamp"
+	identitiesAttribute = "quad4CloudExternalIdentity"
+	lastSignAttribute   = "quad4CloudLastSignInTimestamp"
 	ldapDateFormat      = "20060102150405Z0700"
 )
 
@@ -1053,7 +1053,7 @@ func (i *LDAP) userToLDAPAttrValues(user libregraph.User) (map[string][]string, 
 		i.userAttributeMap.displayName: {user.GetDisplayName()},
 		i.userAttributeMap.userName:    {user.GetOnPremisesSamAccountName()},
 		i.userAttributeMap.mail:        {user.GetMail()},
-		"objectClass":                  {"inetOrgPerson", "organizationalPerson", "person", "top", "openCloudUser"},
+		"objectClass":                  {"inetOrgPerson", "organizationalPerson", "person", "top", "quad4CloudUser"},
 		"cn":                           {user.GetOnPremisesSamAccountName()},
 		i.userAttributeMap.userType:    {user.GetUserType()},
 	}

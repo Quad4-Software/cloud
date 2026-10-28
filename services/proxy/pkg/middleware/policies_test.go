@@ -20,11 +20,11 @@ import (
 	"go-micro.dev/v4/client"
 	"google.golang.org/grpc"
 
-	pMessage "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/policies/v0"
-	policiesPG "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0"
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0/mocks"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/net"
+	pMessage "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/policies/v0"
+	policiesPG "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0/mocks"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/net"
 )
 
 func TestPolicies_NoQuery_PassThrough(t *testing.T) {
@@ -216,12 +216,12 @@ func prepare(q string) (http.Handler, *mocks.PoliciesProviderService, *cs3mocks.
 	gatewayClient := &cs3mocks.GatewayAPIClient{}
 	gatewaySelector := pool.GetSelector[gateway.GatewayAPIClient](
 		"GatewaySelector",
-		"eu.opencloud.api.gateway",
+		"io.quad4.api.gateway",
 		func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 			return gatewayClient
 		},
 	)
-	defer pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	defer pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	// mocked policiesProviderService
 	policiesProviderService := &mocks.PoliciesProviderService{}

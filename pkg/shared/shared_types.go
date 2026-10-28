@@ -70,13 +70,13 @@ type Commons struct {
 	GRPCClientTLS      *GRPCClientTLS  `yaml:"grpc_client_tls"`
 	GRPCServiceTLS     *GRPCServiceTLS `yaml:"grpc_service_tls"`
 	HTTPServiceTLS     HTTPServiceTLS  `yaml:"http_service_tls"`
-	OpenCloudURL       string          `yaml:"opencloud_url" env:"OC_URL" desc:"URL, where OpenCloud is reachable for users." introductionVersion:"1.0.0"`
+	Quad4CloudURL       string          `yaml:"quad4_url" env:"OC_URL" desc:"URL, where Quad4 Cloud is reachable for users." introductionVersion:"1.0.0"`
 	TokenManager       *TokenManager   `mask:"struct" yaml:"token_manager"`
 	Reva               *Reva           `yaml:"reva"`
 	MachineAuthAPIKey  string          `mask:"password" yaml:"machine_auth_api_key" env:"OC_MACHINE_AUTH_API_KEY" desc:"Machine auth API key used to validate internal requests necessary for the access to resources from other services." introductionVersion:"1.0.0"`
 	TransferSecret     string          `mask:"password" yaml:"transfer_secret,omitempty" env:"REVA_TRANSFER_SECRET" desc:"The secret used for signing the requests towards the data gateway for up- and downloads." introductionVersion:"1.0.0"`
 	URLSigningSecret   string          `yaml:"url_signing_secret" env:"OC_URL_SIGNING_SECRET" desc:"The shared secret used to sign URLs e.g. for image downloads by the web office suite." introductionVersion:"4.0.0"`
-	SystemUserID       string          `yaml:"system_user_id" env:"OC_SYSTEM_USER_ID" desc:"ID of the OpenCloud storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format." introductionVersion:"1.0.0"`
+	SystemUserID       string          `yaml:"system_user_id" env:"OC_SYSTEM_USER_ID" desc:"ID of the Quad4 Cloud storage-system system user. Admins need to set the ID for the storage-system system user in this config option which is then used to reference the user. Any reasonable long string is possible, preferably this would be an UUIDv4 format." introductionVersion:"1.0.0"`
 	SystemUserAPIKey   string          `mask:"password" yaml:"system_user_api_key" env:"SYSTEM_USER_API_KEY" desc:"API key for all system users." introductionVersion:"1.0.0"`
 	AdminUserID        string          `yaml:"admin_user_id" env:"OC_ADMIN_USER_ID" desc:"ID of a user, that should receive admin privileges. Consider that the UUID can be encoded in some LDAP deployment configurations like in .ldif files. These need to be decoded beforehand." introductionVersion:"1.0.0"`
 	MultiTenantEnabled bool            `yaml:"multi_tenant_enabled" env:"OC_MULTI_TENANT_ENABLED" desc:"Set this to true to enable multi-tenant support." introductionVersion:"4.0.0"`

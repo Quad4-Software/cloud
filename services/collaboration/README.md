@@ -1,8 +1,8 @@
 # Collaboration
 
-The collaboration service connects opencloud with document servers such as Collabora, ONLYOFFICE or Microsoft using the WOPI protocol.
+The collaboration service connects quad4 with document servers such as Collabora, ONLYOFFICE or Microsoft using the WOPI protocol.
 
-Since this service requires an external document server, it is not enabled by default. You need to add it to `OC_RUN_SERVICES`, `OC_ADD_RUN_SERVICES` or start it in a separate process with the `opencloud collaboration server` command.
+Since this service requires an external document server, it is not enabled by default. You need to add it to `OC_RUN_SERVICES`, `OC_ADD_RUN_SERVICES` or start it in a separate process with the `quad4 collaboration server` command.
 
 Because the collaboration service needs to be started manually, the following prerequisite applies: On collaboration service startup, particular environment variables are required to be populated. If environment variables have a default like the `MICRO_REGISTRY_ADDRESS`, the default will be used, if not set otherwise. Use for all others the instance values as defined. If these environment variables are not provided or misconfigured, the collaboration service will not start up.
 
@@ -14,12 +14,12 @@ Required environment variables:
 
 ## Requirements
 
-The collaboration periodically checks the target document server (ONLYOFFICE, Collabora, etc.) to update the available edit options. Additionally, some OpenCloud services are required to be running in order to register the GRPC service for the `open in app` action in the webUI. The following internal and external services need to be available:
+The collaboration periodically checks the target document server (ONLYOFFICE, Collabora, etc.) to update the available edit options. Additionally, some Quad4 Cloud services are required to be running in order to register the GRPC service for the `open in app` action in the webUI. The following internal and external services need to be available:
 
 * The gateway service.
 * The app-registry service.
 
-If any of the named services above have not been started or are not reachable, the collaboration service won't start. For the binary or the docker release of OpenCloud, check with the `opencloud list` command if they have been started. If not, you must start them manually upfront before starting the collaboration service.
+If any of the named services above have not been started or are not reachable, the collaboration service won't start. For the binary or the docker release of Quad4 Cloud, check with the `quad4 list` command if they have been started. If not, you must start them manually upfront before starting the collaboration service.
 
 ## WOPI Configuration
 
@@ -43,7 +43,7 @@ There are a few variables that you need to set:
   In case you are using a self signed certificate for the WOPI app you can tell the collaboration service to allow an insecure connection.
 
 * `COLLABORATION_WOPI_SRC`:\
-  The external address of the collaboration service. The target app (onlyoffice, collabora, etc) will use this address to read and write files from OpenCloud.\
+  The external address of the collaboration service. The target app (onlyoffice, collabora, etc) will use this address to read and write files from Quad4 Cloud.\
   For example: `https://wopi.example.com`.
 
 * `COLLABORATION_WOPI_SHORTTOKENS`:\

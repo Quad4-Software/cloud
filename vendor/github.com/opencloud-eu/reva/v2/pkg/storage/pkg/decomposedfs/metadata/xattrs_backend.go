@@ -107,7 +107,7 @@ func (b XattrsBackend) list(ctx context.Context, n MetadataNode, acquireLock boo
 			return nil, err
 		}
 		n.SetLockHeld(true)
-		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/opencloud-eu/opencloud/issues/1793
+		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/Quad4-Software/cloud/issues/1793
 		defer func() {
 			n.SetLockHeld(false)
 			_ = f.Close()
@@ -189,7 +189,7 @@ func (b XattrsBackend) SetMultiple(ctx context.Context, n MetadataNode, attribs 
 			return err
 		}
 		n.SetLockHeld(true)
-		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/opencloud-eu/opencloud/issues/1793
+		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/Quad4-Software/cloud/issues/1793
 		defer func() {
 			n.SetLockHeld(false)
 			_ = lockedFile.Close()
@@ -228,7 +228,7 @@ func (b XattrsBackend) Remove(ctx context.Context, n MetadataNode, key string) e
 			return err
 		}
 		n.SetLockHeld(true)
-		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/opencloud-eu/opencloud/issues/1793
+		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/Quad4-Software/cloud/issues/1793
 		defer func() {
 			n.SetLockHeld(false)
 			_ = lockedFile.Close()
@@ -305,7 +305,7 @@ func (b XattrsBackend) Lock(n MetadataNode) (UnlockFunc, error) {
 	n.SetLockHeld(true)
 	return func() error {
 		n.SetLockHeld(false)
-		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/opencloud-eu/opencloud/issues/1793
+		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/Quad4-Software/cloud/issues/1793
 		return mlock.Close()
 	}, nil
 }

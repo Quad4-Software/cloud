@@ -1,7 +1,7 @@
-@env-config @skipOnOpencloud-decomposed-Storage @skipOnOpencloud-decomposeds3-Storage
+@env-config @skipOnQuad4cloud-decomposed-Storage @skipOnQuad4cloud-decomposeds3-Storage
 Feature: posixfs scan CLI command
   As an administrator
-  I want to scan the posix filesystem for files that were added outside of OpenCloud
+  I want to scan the posix filesystem for files that were added outside of Quad4 Cloud
   So that their metadata (ID cache and file metadata) gets assimilated and they become usable
 
   # WATCH_FS=false so only the scan command assimilates the files; proof read via getfattr from disk

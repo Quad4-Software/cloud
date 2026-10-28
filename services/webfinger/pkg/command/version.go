@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/version"
 	"github.com/spf13/cobra"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/olekukonko/tablewriter/tw"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
 )
 
 // Version prints the service versions of all running instances.

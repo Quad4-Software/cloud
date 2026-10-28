@@ -4,8 +4,8 @@ package config
 type Options struct {
 	Announcement           *Announcement       `json:"announcement,omitempty" yaml:"-"`
 	AccountEditLink        *AccountEditLink    `json:"accountEditLink,omitempty" yaml:"accountEditLink"`
-	DisableFeedbackLink    bool                `json:"disableFeedbackLink,omitempty" yaml:"disableFeedbackLink" env:"WEB_OPTION_DISABLE_FEEDBACK_LINK" desc:"Set this option to 'true' to disable the feedback link in the top bar. Keeping it enabled by setting the value to 'false' or with the absence of the option, allows OpenCloud to get feedback from your user base through a dedicated survey website." introductionVersion:"1.0.0"`
-	DisableSponsorLink     bool                `json:"disableSponsorLink,omitempty" yaml:"disableSponsorLink" env:"WEB_OPTION_DISABLE_SPONSOR_LINK" desc:"Set this option to 'true' to disable the sponsor link in the left sidebar. Keeping it enabled by setting the value to 'false' or by leaving the option unset allows OpenCloud to get support from the community through a dedicated sponsorship program on GitHub." introductionVersion:"7.3.0"`
+	DisableFeedbackLink    bool                `json:"disableFeedbackLink,omitempty" yaml:"disableFeedbackLink" env:"WEB_OPTION_DISABLE_FEEDBACK_LINK" desc:"Set this option to 'true' to disable the feedback link in the top bar. Keeping it enabled by setting the value to 'false' or with the absence of the option, allows Quad4 Cloud to get feedback from your user base through a dedicated survey website." introductionVersion:"1.0.0"`
+	DisableSponsorLink     bool                `json:"disableSponsorLink,omitempty" yaml:"disableSponsorLink" env:"WEB_OPTION_DISABLE_SPONSOR_LINK" desc:"Set this option to 'true' to disable the sponsor link in the left sidebar. Keeping it enabled by setting the value to 'false' or by leaving the option unset allows Quad4 Cloud to get support from the community through a dedicated sponsorship program on GitHub." introductionVersion:"7.3.0"`
 	FeedbackLink           *FeedbackLink       `json:"feedbackLink,omitempty" yaml:"feedbackLink"`
 	RunningOnEOS           bool                `json:"runningOnEos,omitempty" yaml:"runningOnEos" env:"WEB_OPTION_RUNNING_ON_EOS" desc:"Set this option to 'true' if running on an EOS storage backend (https://eos-web.web.cern.ch/eos-web/) to enable its specific features. Defaults to 'false'." introductionVersion:"1.0.0" deprecationVersion:"6.2.0" removalVersion:"%%NEXT_PRODUCTION_VERSION%%" deprecationInfo:"WEB_OPTION_RUNNING_ON_EOS is deprecated and will be removed in a future release."`
 	CernFeatures           bool                `json:"cernFeatures,omitempty" yaml:"cernFeatures" deprecationVersion:"6.2.0" removalVersion:"%%NEXT_PRODUCTION_VERSION%%"`
@@ -42,9 +42,9 @@ type AccountEditLink struct {
 
 // FeedbackLink are the feedback link options
 type FeedbackLink struct {
-	Href        string `json:"href,omitempty" yaml:"href" env:"WEB_OPTION_FEEDBACKLINK_HREF" desc:"Set a target URL for the feedback link. Make sure to prepend it with 'http(s)://'. Defaults to 'https://opencloud.eu/web-design-feedback'." introductionVersion:"1.0.0"`
-	AriaLabel   string `json:"ariaLabel,omitempty" yaml:"ariaLabel" env:"WEB_OPTION_FEEDBACKLINK_ARIALABEL" desc:"Since the feedback link only has an icon, a screen reader accessible label can be set. The text defaults to 'OpenCloud feedback survey'." introductionVersion:"1.0.0"`
-	Description string `json:"description,omitempty" yaml:"description" env:"WEB_OPTION_FEEDBACKLINK_DESCRIPTION" desc:"For feedbacks, provide any description you want to see as tooltip and as accessible description. Defaults to 'Provide your feedback: We'd like to improve the web design and would be happy to hear your feedback. Thank you! Your OpenCloud team'." introductionVersion:"1.0.0"`
+	Href        string `json:"href,omitempty" yaml:"href" env:"WEB_OPTION_FEEDBACKLINK_HREF" desc:"Set a target URL for the feedback link. Make sure to prepend it with 'http(s)://'. Defaults to 'https://quad4.io/web-design-feedback'." introductionVersion:"1.0.0"`
+	AriaLabel   string `json:"ariaLabel,omitempty" yaml:"ariaLabel" env:"WEB_OPTION_FEEDBACKLINK_ARIALABEL" desc:"Since the feedback link only has an icon, a screen reader accessible label can be set. The text defaults to 'Quad4 Cloud feedback survey'." introductionVersion:"1.0.0"`
+	Description string `json:"description,omitempty" yaml:"description" env:"WEB_OPTION_FEEDBACKLINK_DESCRIPTION" desc:"For feedbacks, provide any description you want to see as tooltip and as accessible description. Defaults to 'Provide your feedback: We'd like to improve the web design and would be happy to hear your feedback. Thank you! Your Quad4 Cloud team'." introductionVersion:"1.0.0"`
 }
 
 // Upload are the upload options

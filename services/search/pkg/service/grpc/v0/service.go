@@ -24,11 +24,11 @@ import (
 	grpcmetadata "google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/durationpb"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	v0 "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	v0 "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // _spaceStateTrashed is the value the storage provider sets in the space's

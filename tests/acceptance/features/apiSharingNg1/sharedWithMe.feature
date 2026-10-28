@@ -3,7 +3,7 @@ Feature: an user gets the resources shared to them
   I want to get resources shared with me
   So that I can know about what resources I have access to
 
-  https://docs.opencloud.eu/libre-graph-api/#/me.drive/ListSharedWithMe
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/me.drive/ListSharedWithMe
 
   Background:
     Given these users have been created with default attributes:

@@ -8,8 +8,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/constants"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/dav/requests"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/constants"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/dav/requests"
 )
 
 func thumbnailRequest(rawQuery string) *http.Request {

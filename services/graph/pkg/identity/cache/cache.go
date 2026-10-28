@@ -13,8 +13,8 @@ import (
 	rpc "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	"github.com/jellydator/ttlcache/v3"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	revautils "github.com/opencloud-eu/reva/v2/pkg/utils"
 )

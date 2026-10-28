@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"github.com/spf13/cobra"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config/parser"
 )
 
 // Health is the entrypoint for the health command.

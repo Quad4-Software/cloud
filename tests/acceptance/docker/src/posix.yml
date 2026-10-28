@@ -1,6 +1,6 @@
 ---
 services:
-  opencloud-server:
+  quad4-server:
     environment:
       # posix requires a shared cache store
       STORAGE_USERS_ID_CACHE_STORE: "nats-js-kv"

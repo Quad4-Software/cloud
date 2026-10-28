@@ -6,10 +6,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine/opa"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/config"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine/opa"
 )
 
 func benchEngine(tb testing.TB) engine.Engine {

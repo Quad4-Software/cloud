@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 const (

@@ -4,7 +4,7 @@ package test
 import (
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 // DiffAst returns a human-readable report of the differences between two values

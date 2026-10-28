@@ -1,4 +1,4 @@
-OC_REPO := github.com/opencloud-eu/opencloud
+OC_REPO := github.com/Quad4-Software/cloud
 IMPORT := ($OC_REPO)/$(NAME)
 BIN := bin
 DIST := dist
@@ -48,8 +48,8 @@ DEBUG_LDFLAGS += -X google.golang.org/protobuf/reflect/protoregistry.conflictPol
 	-X "$(OC_REPO)/pkg/version.Tag=$(VERSION)" \
 	-X "$(OC_REPO)/pkg/version.Date=$(DATE)"
 
-DOCKER_LDFLAGS += -X "$(OC_REPO)/pkg/config/defaults.BaseDataPathType=path" -X "$(OC_REPO)/pkg/config/defaults.BaseDataPathValue=/var/lib/opencloud"
-DOCKER_LDFLAGS += -X "$(OC_REPO)/pkg/config/defaults.BaseConfigPathType=path" -X "$(OC_REPO)/pkg/config/defaults.BaseConfigPathValue=/etc/opencloud"
+DOCKER_LDFLAGS += -X "$(OC_REPO)/pkg/config/defaults.BaseDataPathType=path" -X "$(OC_REPO)/pkg/config/defaults.BaseDataPathValue=/var/lib/quad4"
+DOCKER_LDFLAGS += -X "$(OC_REPO)/pkg/config/defaults.BaseConfigPathType=path" -X "$(OC_REPO)/pkg/config/defaults.BaseConfigPathValue=/etc/quad4"
 
 GCFLAGS += all=-N -l
 

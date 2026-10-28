@@ -3,7 +3,7 @@ package activitylog
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // Option for the activitylog service

@@ -9,8 +9,8 @@ import (
 	"reflect"
 
 	"github.com/leonelquinteros/gotext"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	micrometadata "go-micro.dev/v4/metadata"
 )
 

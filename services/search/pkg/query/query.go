@@ -1,7 +1,7 @@
 // Package query provides functions to work with the different search query flavours.
 package query
 
-import "github.com/opencloud-eu/opencloud/pkg/ast"
+import "github.com/Quad4-Software/cloud/pkg/ast"
 
 // Builder is the interface that wraps the basic Build method.
 type Builder interface {

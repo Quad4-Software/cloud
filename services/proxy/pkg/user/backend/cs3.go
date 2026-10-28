@@ -12,10 +12,10 @@ import (
 	cs3 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	utils "github.com/opencloud-eu/reva/v2/pkg/utils"
@@ -427,7 +427,7 @@ func (c cs3backend) updateLibregraphUser(userid string, user libregraph.UserUpda
 
 func (c cs3backend) setupLibregraphClient(_ context.Context, cs3token string) (*libregraph.APIClient, error) {
 	// Use micro registry to resolve next graph service endpoint
-	next, err := c.graphSelector.Select("eu.opencloud.web.graph")
+	next, err := c.graphSelector.Select("io.quad4.web.graph")
 	if err != nil {
 		c.logger.Debug().Err(err).Msg("setupLibregraphClient: error during Select")
 		return nil, err

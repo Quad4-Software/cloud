@@ -1,4 +1,4 @@
-module github.com/opencloud-eu/opencloud
+module github.com/Quad4-Software/cloud
 
 go 1.26.0
 

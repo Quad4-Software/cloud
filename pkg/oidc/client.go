@@ -16,8 +16,8 @@ import (
 	"github.com/MicahParks/keyfunc/v2"
 	goidc "github.com/coreos/go-oidc/v3/oidc"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	"golang.org/x/oauth2"
 )
 

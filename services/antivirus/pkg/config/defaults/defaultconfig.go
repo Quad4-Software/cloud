@@ -3,7 +3,7 @@ package defaults
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/config"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration which is needed for doc generation.
@@ -26,7 +26,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint: "127.0.0.1:9233",
-			Cluster:  "opencloud-cluster",
+			Cluster:  "quad4-cluster",
 		},
 		Workers:              10,
 		InfectedFileHandling: "delete",

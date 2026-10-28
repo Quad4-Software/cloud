@@ -39,7 +39,7 @@ abstract class StorageDriver {
 /**
  * Class OcHelper
  *
- * Helper functions that are needed to run tests on OpenCloud server
+ * Helper functions that are needed to run tests on Quad4 Cloud server
  *
  * @package TestHelpers
  */
@@ -267,7 +267,7 @@ class OcHelper {
 	private static function getOcRevaDataRoot(): string {
 		$root = \getenv("OC_REVA_DATA_ROOT");
 		if ($root === false || $root === "") {
-			$root = "/var/tmp/opencloud/opencloud/";
+			$root = "/var/tmp/quad4/quad4/";
 		}
 		if (!\file_exists($root)) {
 			echo "WARNING: reva data root folder ($root) does not exist\n";

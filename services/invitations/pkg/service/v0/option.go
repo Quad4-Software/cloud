@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/invitations/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/invitations/pkg/config"
 )
 
 // Option defines a single option function.

@@ -3,10 +3,10 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/roles"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	settings "github.com/opencloud-eu/opencloud/services/settings/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/roles"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	settings "github.com/Quad4-Software/cloud/services/settings/pkg/service/v0"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 )
 

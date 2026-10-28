@@ -1,8 +1,8 @@
 # TODO
 Currently, clients need to make subsequent calls to:
 *   /status.php to check if the instance is in maintenance mode or if the version is supported
-*   /config.json to get the available apps for OpenCloud web to determine which routes require authentication
-*   /themes/opencloud/theme.json for theming info
+*   /config.json to get the available apps for Quad4 Cloud web to determine which routes require authentication
+*   /themes/quad4/theme.json for theming info
 *   /.well-known/openid-configuration, auth2 token and oidc userinfo endpoints to authenticate the user
 *   /ocs/v1.php/cloud/user to get the username, eg. alan ... again? it contains the oc10 user id (mary, not the uuid)
 *   /ocs/v1.php/cloud/capabilities to fetch instance capabilites
@@ -26,45 +26,45 @@ The /.well-known/webfinger enpdoint allows us to not only get rid of some of the
 
 ```json
 {
-    "subject": "https://drive.opencloud.test",
+    "subject": "https://drive.quad4.test",
     "properties": {
-        "http://webfinger.opencloud/prop/maintenance": "false",
-        "http://webfinger.opencloud/prop/version": "10.11.0.6"
+        "http://webfinger.quad4/prop/maintenance": "false",
+        "http://webfinger.quad4/prop/version": "10.11.0.6"
     },
     "links": [
         {
             "rel": "http://openid.net/specs/connect/1.0/issuer",
-            "href": "https://idp.opencloud.test"
+            "href": "https://idp.quad4.test"
         }
     ]
 }
 ```
 
-## Introduce Dedicated OpenCloud web Endpoint
+## Introduce Dedicated Quad4 Cloud web Endpoint
 
-It also allows us to move some services out of a sharded deployment. We could e.g. introduce a relation for a common OpenCloud web endpoint to not exponse the different instances in the browser bar:
+It also allows us to move some services out of a sharded deployment. We could e.g. introduce a relation for a common Quad4 Cloud web endpoint to not exponse the different instances in the browser bar:
 ```json
 {
-    "subject": "acct:alan@drive.opencloud.test",
+    "subject": "acct:alan@drive.quad4.test",
     "links": [
         {
             "rel": "http://openid.net/specs/connect/1.0/issuer",
-            "href": "https://idp.opencloud.test"
+            "href": "https://idp.quad4.test"
         },
         {
-            "rel": "http://webfinger.opencloud/rel/web",
-            "href": "https://drive.opencloud.test"
+            "rel": "http://webfinger.quad4/rel/web",
+            "href": "https://drive.quad4.test"
         },
         {
-            "rel": "http://webfinger.opencloud/rel/server-instance",
-            "href": "https://abc.drive.opencloud.test",
+            "rel": "http://webfinger.quad4/rel/server-instance",
+            "href": "https://abc.drive.quad4.test",
     	    "titles": {
     	      "en": "Readable Instance Name"
     	    }
         },
         {
-            "rel": "http://webfinger.opencloud/rel/server-instance",
-            "href": "https://xyz.drive.opencloud.test",
+            "rel": "http://webfinger.quad4/rel/server-instance",
+            "href": "https://xyz.drive.quad4.test",
     	    "titles": {
     	      "en": "Readable Other Instance Name"
     	    }
@@ -73,24 +73,24 @@ It also allows us to move some services out of a sharded deployment. We could e.
 }
 ```
 
-## Dedicated OpenCloud web Endpoint
+## Dedicated Quad4 Cloud web Endpoint
 
-We could also omit the `http://webfinger.opencloud/rel/server-instance` relation and go straight for a graph service with e.g. `rel=http://libregraph.org/rel/graph`:
+We could also omit the `http://webfinger.quad4/rel/server-instance` relation and go straight for a graph service with e.g. `rel=http://libregraph.org/rel/graph`:
 ```json
 {
-    "subject": "acct:alan@drive.opencloud.test",
+    "subject": "acct:alan@drive.quad4.test",
     "links": [
         {
             "rel": "http://openid.net/specs/connect/1.0/issuer",
-            "href": "https://idp.opencloud.test"
+            "href": "https://idp.quad4.test"
         },
         {
-            "rel": "http://webfinger.opencloud/rel/web",
-            "href": "https://drive.opencloud.test"
+            "rel": "http://webfinger.quad4/rel/web",
+            "href": "https://drive.quad4.test"
         },
         {
             "rel": "http://libregraph.org/rel/graph",
-            "href": "https://abc.drive.opencloud.test/graph/v1.0",
+            "href": "https://abc.drive.quad4.test/graph/v1.0",
     	    "titles": {
     	      "en": "Readable Instance Name"
     	    }
@@ -103,10 +103,10 @@ In theory the graph endpoint would allow discovering drives on any domain. But t
 
 ## Subject Properties
 
-We could also embed subject metadata, however since apps like OpenCloud web also need the groups a user is member of a dedicated call to the libregraph api is probably better. In any case, we could return properties for the subject:
+We could also embed subject metadata, however since apps like Quad4 Cloud web also need the groups a user is member of a dedicated call to the libregraph api is probably better. In any case, we could return properties for the subject:
 ```json
 {
-    "subject": "acct:alan@drive.opencloud.test",
+    "subject": "acct:alan@drive.quad4.test",
     "properties": {
         "http://libregraph.org/prop/user/id": "b1f74ec4-dd7e-11ef-a543-03775734d0f7",
         "http://libregraph.org/prop/user/onPremisesSamAccountName": "alan",
@@ -116,18 +116,18 @@ We could also embed subject metadata, however since apps like OpenCloud web also
     "links": [
         {
             "rel": "http://openid.net/specs/connect/1.0/issuer",
-            "href": "https://idp.opencloud.test"
+            "href": "https://idp.quad4.test"
         },
         {
-            "rel": "http://webfinger.opencloud/rel/server-instance",
-            "href": "https://abc.drive.opencloud.test",
+            "rel": "http://webfinger.quad4/rel/server-instance",
+            "href": "https://abc.drive.quad4.test",
     	    "titles": {
     	      "en": "Readable Instance Name"
     	    }
         },
         {
-            "rel": "http://webfinger.opencloud/rel/server-instance",
-            "href": "https://xyz.drive.opencloud.test",
+            "rel": "http://webfinger.quad4/rel/server-instance",
+            "href": "https://xyz.drive.quad4.test",
     	    "titles": {
     	      "en": "Readable Other Instance Name"
     	    }

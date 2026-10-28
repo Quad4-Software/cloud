@@ -7,7 +7,7 @@ import (
 
 	"dario.cat/mergo"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
 )
 
 type Builder interface {

@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch/internal/osu"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch/internal/osu"
 )
 
 func TestRequestBody(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/x/path/filepathx"
+	"github.com/Quad4-Software/cloud/pkg/x/path/filepathx"
 	"github.com/stretchr/testify/require"
 )
 

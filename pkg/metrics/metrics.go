@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/version"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

@@ -25,15 +25,15 @@ import (
 	"github.com/stretchr/testify/mock"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	identitymocks "github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	service "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	identitymocks "github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	service "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 )
 
 type educationUserList struct {
@@ -63,11 +63,11 @@ var _ = Describe("EducationUsers", func() {
 	BeforeEach(func() {
 		eventsPublisher.On("Publish", mock.Anything, mock.Anything, mock.Anything).Return(nil)
 
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},

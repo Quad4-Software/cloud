@@ -9,7 +9,7 @@ import (
 	"github.com/test-go/testify/require"
 	"github.com/vmihailenco/msgpack/v5"
 
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 )
 
 func TestBuildInfo(t *testing.T) {

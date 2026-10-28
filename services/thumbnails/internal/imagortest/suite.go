@@ -14,7 +14,7 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/opencloud-eu/opencloud/services/thumbnails/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/thumbnails/pkg/config/defaults"
 )
 
 const (
@@ -118,7 +118,7 @@ func Setup(ctx context.Context, v Variant) (string, func(), error) {
 		}
 	}
 
-	name := strings.NewReplacer("/", "__", ":", "_").Replace("opencloud/test/" + v.Image)
+	name := strings.NewReplacer("/", "__", ":", "_").Replace("quad4/test/" + v.Image)
 	container, err := testcontainers.Run(ctx, v.Image,
 		testcontainers.WithExposedPorts(port),
 		testcontainers.WithCmd(Args()...),

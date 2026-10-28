@@ -1,6 +1,0 @@
----
-services:
-  opencloud:
-    environment:
-      STORAGE_USERS_DRIVER: decomposed
-      

@@ -7,7 +7,7 @@ import (
 
 	gofig "github.com/gookit/config/v2"
 	"github.com/gookit/config/v2/yaml"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	"github.com/unrolled/secure"
 	"github.com/unrolled/secure/cspbuilder"
 	yamlv3 "gopkg.in/yaml.v3"

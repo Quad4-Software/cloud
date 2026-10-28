@@ -1,21 +1,21 @@
 ---
 services:
-  opencloud:
+  quad4:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.opencloud.entrypoints=https"
-      - "traefik.http.routers.opencloud.rule=Host(`${OC_DOMAIN:-cloud.opencloud.test}`)"
-      - "traefik.http.routers.opencloud.service=opencloud"
-      - "traefik.http.services.opencloud.loadbalancer.server.port=9200"
-      - "traefik.http.routers.opencloud.${TRAEFIK_SERVICES_TLS_CONFIG}"
+      - "traefik.http.routers.quad4.entrypoints=https"
+      - "traefik.http.routers.quad4.rule=Host(`${OC_DOMAIN:-cloud.quad4.test}`)"
+      - "traefik.http.routers.quad4.service=quad4"
+      - "traefik.http.services.quad4.loadbalancer.server.port=9200"
+      - "traefik.http.routers.quad4.${TRAEFIK_SERVICES_TLS_CONFIG}"
   traefik:
     image: traefik:v3.6.7
     # release notes: https://github.com/traefik/traefik/releases
     networks:
-      opencloud-net:
+      quad4-net:
         aliases:
-          - ${OC_DOMAIN:-cloud.opencloud.test}
-          - ${KEYCLOAK_DOMAIN:-keycloak.opencloud.test}
+          - ${OC_DOMAIN:-cloud.quad4.test}
+          - ${KEYCLOAK_DOMAIN:-keycloak.quad4.test}
     entrypoint: [ "/bin/sh", "/opt/traefik/bin/docker-entrypoint-override.sh"]
     environment:
       - "TRAEFIK_SERVICES_TLS_CONFIG=${TRAEFIK_SERVICES_TLS_CONFIG:-tls.certresolver=letsencrypt}"
@@ -36,7 +36,7 @@ services:
       # defaults to admin:admin
       - "traefik.http.middlewares.traefik-auth.basicauth.users=${TRAEFIK_BASIC_AUTH_USERS:-admin:$$apr1$$4vqie50r$$YQAmQdtmz5n9rEALhxJ4l.}"
       - "traefik.http.routers.traefik.entrypoints=https"
-      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_DOMAIN:-traefik.opencloud.test}`)"
+      - "traefik.http.routers.traefik.rule=Host(`${TRAEFIK_DOMAIN:-traefik.quad4.test}`)"
       - "traefik.http.routers.traefik.middlewares=traefik-auth"
       - "traefik.http.routers.traefik.${TRAEFIK_SERVICES_TLS_CONFIG}"
       - "traefik.http.routers.traefik.service=api@internal"

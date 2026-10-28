@@ -4,9 +4,9 @@ import (
 	"context"
 
 	permissions "github.com/cs3org/go-cs3apis/cs3/permissions/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	"go-micro.dev/v4/api"
 	"go-micro.dev/v4/server"
 )

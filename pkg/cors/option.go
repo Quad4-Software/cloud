@@ -1,7 +1,7 @@
 package cors
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // Option defines a single option function.

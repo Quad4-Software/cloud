@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/broker"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/broker"
+	"github.com/Quad4-Software/cloud/pkg/registry"
 
 	mhttps "github.com/go-micro/plugins/v4/server/http"
 	mtracer "github.com/go-micro/plugins/v4/wrapper/trace/opentelemetry"
-	occrypto "github.com/opencloud-eu/opencloud/pkg/crypto"
+	occrypto "github.com/Quad4-Software/cloud/pkg/crypto"
 	"go-micro.dev/v4"
 	"go-micro.dev/v4/server"
 )

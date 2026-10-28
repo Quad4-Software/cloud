@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/audit/pkg/types"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/audit/pkg/types"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 
 	group "github.com/cs3org/go-cs3apis/cs3/identity/group/v1beta1"
@@ -564,11 +564,11 @@ var testCases = []struct {
 		SystemEvent: events.Event{
 			Event: events.ScienceMeshInviteTokenGenerated{
 				Sharer:        userID("sharer-user-id"),
-				RecipientMail: "mail@opencloud.test",
+				RecipientMail: "mail@quad4.test",
 				Token:         "token-123",
 				Description:   "some-description",
 				Expiration:    uint64(10e8),
-				InviteLink:    "http://opencloud.test/invite",
+				InviteLink:    "http://quad4.test/invite",
 				Timestamp:     timestamp(10e8),
 			},
 		},
@@ -579,11 +579,11 @@ var testCases = []struct {
 			// AuditEvent fields
 			checkBaseAuditEvent(t, ev.AuditEvent, "sharer-user-id", "2001-09-09T01:46:40Z", "user 'sharer-user-id' generated a ScienceMesh invite with token 'token-123'", "science_mesh_invite_token_generated")
 			// AuditEventScienceMeshInviteTokenGenerated fields
-			require.Equal(t, "mail@opencloud.test", ev.RecipientMail)
+			require.Equal(t, "mail@quad4.test", ev.RecipientMail)
 			require.Equal(t, "token-123", ev.Token)
 			require.Equal(t, "some-description", ev.Description)
 			require.Equal(t, uint64(10e8), ev.Expiration)
-			require.Equal(t, "http://opencloud.test/invite", ev.InviteLink)
+			require.Equal(t, "http://quad4.test/invite", ev.InviteLink)
 		},
 	},
 }

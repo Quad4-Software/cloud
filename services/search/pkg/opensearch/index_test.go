@@ -15,19 +15,19 @@ import (
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	searchmapping "github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	searchmapping "github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // TestVersionedIndexName guards that the index name and the generator identity
 // carry the same schema version.
 func TestVersionedIndexName(t *testing.T) {
 	require.Equal(t,
-		fmt.Sprintf("opencloud-resource-v%d", search.SchemaVersion),
-		opensearch.VersionedIndexName("opencloud-resource"),
+		fmt.Sprintf("quad4-resource-v%d", search.SchemaVersion),
+		opensearch.VersionedIndexName("quad4-resource"),
 	)
 	require.Equal(t,
 		fmt.Sprintf("resource_v%d", search.SchemaVersion),
@@ -92,7 +92,7 @@ func TestIndexManager(t *testing.T) {
 
 		for _, test := range tests {
 			t.Run(test.Name, func(t *testing.T) {
-				indexName := "opencloud-test-resource"
+				indexName := "quad4-test-resource"
 				tc.Require.IndicesReset([]string{indexName})
 
 				body, err := test.Got.MarshalJSON()
@@ -107,7 +107,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("does not create index if it already exists and is up to date", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -118,7 +118,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("fails when the analysis settings drift", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -132,7 +132,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("tolerates replica drift", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -146,7 +146,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("tolerates shard drift", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -160,7 +160,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("is idempotent", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -171,7 +171,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("adds a new field to an existing index in place", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -189,7 +189,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("adds a new nested field to an existing index in place", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -207,7 +207,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("fails when an existing field changed its definition", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -221,7 +221,7 @@ func TestIndexManager(t *testing.T) {
 
 	t.Run("fails when the index contains a field the code schema does not know", func(t *testing.T) {
 		indexManager := opensearch.IndexManagerLatest
-		indexName := "opencloud-test-resource"
+		indexName := "quad4-test-resource"
 
 		tc := opensearchtest.NewDefaultTestClient(t, defaultConfig.Engine.OpenSearch.Client)
 		tc.Require.IndicesReset([]string{indexName})
@@ -241,7 +241,7 @@ func TestIndexManager(t *testing.T) {
 		})
 		require.NoError(t, err)
 
-		err = opensearch.IndexManagerLatest.Apply(t.Context(), "opencloud-test-resource", client, log.NopLogger())
+		err = opensearch.IndexManagerLatest.Apply(t.Context(), "quad4-test-resource", client, log.NopLogger())
 		require.Error(t, err)
 		require.NotErrorIs(t, err, opensearch.ErrManualActionRequired)
 	})

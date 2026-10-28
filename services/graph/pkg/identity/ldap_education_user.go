@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
 )
 
 type educationUserAttributeMap struct {
@@ -18,7 +18,7 @@ type educationUserAttributeMap struct {
 func newEducationUserAttributeMap() educationUserAttributeMap {
 	return educationUserAttributeMap{
 		primaryRole: "userClass",
-		externalID:  "openCloudEducationExternalId",
+		externalID:  "quad4CloudEducationExternalId",
 	}
 }
 

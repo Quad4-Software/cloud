@@ -8,7 +8,7 @@ import (
 	"context"
 
 	"github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/pkg/keycloak"
+	"github.com/Quad4-Software/cloud/pkg/keycloak"
 	mock "github.com/stretchr/testify/mock"
 )
 

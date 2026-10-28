@@ -10,8 +10,8 @@ granted = false if {
 }
 
 granted = false if {
-    bytes := opencloud.resource.download(input.resource.url)
-    mimetype := opencloud.mimetype.detect(bytes)
+    bytes := quad4.resource.download(input.resource.url)
+    mimetype := quad4.mimetype.detect(bytes)
 
     not utils.is_mimetype_allowed(mimetype)
 }

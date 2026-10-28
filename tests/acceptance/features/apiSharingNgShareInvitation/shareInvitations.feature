@@ -4,7 +4,7 @@ Feature: Send a sharing invitations
   I want to be able to send invitations to other users
   So that they can have access to it
 
-  https://docs.opencloud.eu/libre-graph-api/#/drives.permissions/Invite
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/drives.permissions/Invite
 
   Background:
     Given these users have been created with default attributes:

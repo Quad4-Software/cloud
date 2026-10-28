@@ -6,7 +6,7 @@ title: "5. Unified Search Index Mapping"
 * Deciders: @aduffeck, @butonic, @dschmidt, @fschade
 * Date: 2026-04-23, accepted and updated to the implemented state 2026-08-31
 
-Reference: implemented by https://github.com/opencloud-eu/opencloud/pull/3345 (reflection-based mapping, search siblings, shared query lowering) and https://github.com/opencloud-eu/opencloud/pull/3197 (schema versioning and startup checks). https://github.com/opencloud-eu/opencloud/pull/2659 was the original proof-of-concept.
+Reference: implemented by https://github.com/Quad4-Software/cloud/pull/3345 (reflection-based mapping, search siblings, shared query lowering) and https://github.com/Quad4-Software/cloud/pull/3197 (schema versioning and startup checks). https://github.com/Quad4-Software/cloud/pull/2659 was the original proof-of-concept.
 
 ## Context and Problem Statement
 
@@ -79,7 +79,7 @@ that works today stops working as a result.
 
 ## Decision Drivers
 
-* **Predictable OpenCloud API behavior independent of backend.**
+* **Predictable Quad4 Cloud API behavior independent of backend.**
   Consumers of the search service should be able to rely on the
   documented behavior of the API, not on which backend happens to
   be configured. Today the same query can give different results
@@ -108,7 +108,7 @@ that works today stops working as a result.
 
 Accept that bleve and OpenSearch each fall back to their own
 dynamic-mapping defaults for whatever is not explicitly declared,
-and treat the observable search behavior of OpenCloud as "whatever
+and treat the observable search behavior of Quad4 Cloud as "whatever
 the configured backend happens to do". Adding a facet stays a
 copy-paste coordination across half a dozen sites; the existing
 divergence between bleve (keyword) and OpenSearch (`text + keyword`
@@ -116,7 +116,7 @@ multi-field plus auto-date detection) stays silently in place
 until a working query actually reaches the diverging field and
 returns different answers on the two backends.
 
-Low upfront work, but it makes the OpenCloud API behavior a
+Low upfront work, but it makes the Quad4 Cloud API behavior a
 function of the backend rather than a contract, and it keeps the
 per-facet boilerplate cost for every new field.
 
@@ -192,7 +192,7 @@ The query side derives from the same source: the shared lowering pass resolves f
 
 ### Schema versioning and upgrades
 
-Index names carry a schema version derived from the single `search.SchemaVersion` constant (`opencloud-resource-v4`, `bleve-v4`). On startup the service classifies the stored mapping against the code: additive changes (new fields, unchanged analyzers) are reconciled in place without a version bump, breaking changes make the service refuse to start and name the reindex steps. The upgrade path is a plain reindex (`opencloud search index --all-spaces`) into the new versioned index; older indexes stay untouched and can be deleted afterwards (services/search/MIGRATION.md). Golden mapping tests on both backends pin the rendered mappings and reuse the same classifier to tell a contributor whether a change needs only a golden regeneration or a version bump.
+Index names carry a schema version derived from the single `search.SchemaVersion` constant (`quad4-resource-v4`, `bleve-v4`). On startup the service classifies the stored mapping against the code: additive changes (new fields, unchanged analyzers) are reconciled in place without a version bump, breaking changes make the service refuse to start and name the reindex steps. The upgrade path is a plain reindex (`quad4 search index --all-spaces`) into the new versioned index; older indexes stay untouched and can be deleted afterwards (services/search/MIGRATION.md). Golden mapping tests on both backends pin the rendered mappings and reuse the same classifier to tell a contributor whether a change needs only a golden regeneration or a version bump.
 
 ### Known trade-off
 

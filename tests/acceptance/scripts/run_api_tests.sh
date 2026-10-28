@@ -8,8 +8,8 @@ export STORAGE_DRIVER=${STORAGE_DRIVER:-posix}
 export TEST_ROOT_PATH="/drone/src/tests"
 
 # LOCAL TEST WITHOUT EXTRA ENVS
-TEST_SERVER_URL="https://opencloud-server:9200"
-OC_WRAPPER_URL="http://opencloud-server:5200"
+TEST_SERVER_URL="https://quad4-server:9200"
+OC_WRAPPER_URL="http://quad4-server:5200"
 
 if [ "$STORAGE_DRIVER" = "posix" ]; then
     EXPECTED_FAILURES_FILE="tests/acceptance/expected-failures-posix-storage.md"

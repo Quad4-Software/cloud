@@ -3,8 +3,8 @@ package command
 import (
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/sse/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/sse/pkg/config"
 
 	"github.com/spf13/cobra"
 )

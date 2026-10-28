@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 
 	user "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	v0 "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/eventhistory/v0"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	v0 "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/eventhistory/v0"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
 	"github.com/pkg/errors"
 	"go-micro.dev/v4/store"
 )

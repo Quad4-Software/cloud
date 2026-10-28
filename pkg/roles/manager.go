@@ -4,16 +4,16 @@ import (
 	"context"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 	microstore "go-micro.dev/v4/store"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
 const (
-	cacheDatabase  = "opencloud-pkg"
+	cacheDatabase  = "quad4-pkg"
 	cacheTableName = "roles"
 	cacheTTL       = 24 * time.Hour
 )

@@ -276,11 +276,11 @@ Feature: checksums
   @skipOnStorage:ceph @skipOnStorage:scality @issue-1291
   Scenario Outline: uploading a file with invalid SHA1 checksum overwriting an existing file
     Given using <dav-path-version> DAV path
-    And user "Alice" has uploaded file with content "OpenCloud test text file 0" to "/textfile0.txt"
+    And user "Alice" has uploaded file with content "Quad4 Cloud test text file 0" to "/textfile0.txt"
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "/textfile0.txt" with checksum "SHA1:f005ba11f005ba11f005ba11f005ba11f005ba11" using the WebDAV API
     Then the HTTP status code should be "400"
     And as user "Alice" the webdav checksum of "/textfile0.txt" via propfind should match "SHA1:294acb3a34f7e11f8eac865183d30aac04fba0c7 MD5:7f41994bdd25f722cd715bb376eff10e ADLER32:83ca095f"
-    And the content of file "/textfile0.txt" for user "Alice" should be "OpenCloud test text file 0"
+    And the content of file "/textfile0.txt" for user "Alice" should be "Quad4 Cloud test text file 0"
     Examples:
       | dav-path-version |
       | old              |

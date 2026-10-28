@@ -14,8 +14,8 @@ const (
 	UIDNumber              = "uidnumber"
 	GIDNumber              = "gidnumber"
 	Groups                 = "groups"
-	OpenCloudUUID          = "openclouduuid"
-	OpenCloudRoutingPolicy = "opencloud.routing.policy"
+	Quad4CloudUUID          = "quad4uuid"
+	Quad4CloudRoutingPolicy = "quad4.routing.policy"
 )
 
 // SplitWithEscaping splits s into segments using separator which can be escaped using the escape string

@@ -10,9 +10,9 @@ import (
 
 	"github.com/opencloud-eu/reva/v2/pkg/conversions"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity"
-	graphl10n "github.com/opencloud-eu/opencloud/services/graph/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity"
+	graphl10n "github.com/Quad4-Software/cloud/services/graph/pkg/l10n"
 )
 
 const (

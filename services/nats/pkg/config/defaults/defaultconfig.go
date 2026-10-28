@@ -3,8 +3,8 @@ package defaults
 import (
 	"path/filepath"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/nats/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/nats/pkg/config"
 )
 
 // NOTE: Most of this configuration is not needed to keep it as simple as possible
@@ -34,7 +34,7 @@ func DefaultConfig() *config.Config {
 		Nats: config.Nats{
 			Host:      "127.0.0.1",
 			Port:      9233,
-			ClusterID: "opencloud-cluster",
+			ClusterID: "quad4-cluster",
 			StoreDir:  filepath.Join(baseDataPath, "nats"),
 			TLSCert:   filepath.Join(baseDataPath, "nats", "tls.crt"),
 			TLSKey:    filepath.Join(baseDataPath, "nats", "tls.key"),

@@ -30,12 +30,12 @@ import (
 
 	"github.com/opencloud-eu/reva/v2/pkg/storage/utils/templates"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/dav/requests"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/generator"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/preprocessor"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail/cache"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/dav/requests"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/generator"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/preprocessor"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail/cache"
 )
 
 // Stater stats a file via the CS3 gateway.

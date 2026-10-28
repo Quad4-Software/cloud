@@ -4,8 +4,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/web/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/web/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -28,7 +28,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9100",
 			Root:      "/",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			CacheTTL:  604800, // 7 days
 
 			CORS: config.CORS{
@@ -84,14 +84,14 @@ func DefaultConfig() *config.Config {
 			AppsPath:   filepath.Join(defaults.BaseDataPath(), "web/assets/apps"),
 			ThemesPath: filepath.Join(defaults.BaseDataPath(), "web/assets/themes"),
 		},
-		GatewayAddress: "eu.opencloud.api.gateway",
+		GatewayAddress: "io.quad4.api.gateway",
 		Store: config.Store{
 			Nodes:    []string{"127.0.0.1:9233"},
 			Database: "web",
 		},
 		Web: config.Web{
 			ThemeServer: "https://localhost:9200",
-			ThemePath:   "/themes/opencloud/theme.json",
+			ThemePath:   "/themes/quad4/theme.json",
 			Config: config.WebConfig{
 				Server: "https://localhost:9200",
 				Theme:  "",
@@ -139,11 +139,11 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.HTTP.TLS = cfg.Commons.HTTPServiceTLS
 	}
 
-	if (cfg.Commons != nil && cfg.Commons.OpenCloudURL != "") &&
+	if (cfg.Commons != nil && cfg.Commons.Quad4CloudURL != "") &&
 		(cfg.HTTP.CORS.AllowedOrigins == nil ||
 			len(cfg.HTTP.CORS.AllowedOrigins) == 1 &&
 				cfg.HTTP.CORS.AllowedOrigins[0] == "https://localhost:9200") {
-		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.OpenCloudURL}
+		cfg.HTTP.CORS.AllowedOrigins = []string{cfg.Commons.Quad4CloudURL}
 	}
 }
 

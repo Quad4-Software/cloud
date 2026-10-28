@@ -8,18 +8,18 @@ import (
 	"sync"
 
 	"github.com/google/uuid"
-	olog "github.com/opencloud-eu/opencloud/pkg/log"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/settings"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	olog "github.com/Quad4-Software/cloud/pkg/log"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/settings"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 	"github.com/opencloud-eu/reva/v2/pkg/errtypes"
 	"github.com/opencloud-eu/reva/v2/pkg/storage/utils/metadata"
 )
 
 var (
 	// Name is the default name for the settings store
-	Name                   = "opencloud-settings"
+	Name                   = "quad4-settings"
 	managerName            = "metadata"
 	settingsSpaceID        = "f1bdd61a-da7c-49fc-8203-0558109d1b4f" // uuid.NewString()
 	rootFolderLocation     = "settings"

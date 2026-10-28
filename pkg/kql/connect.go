@@ -3,7 +3,7 @@ package kql
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 // connectNodes connects given nodes

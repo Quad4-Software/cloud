@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This folder contains Architecture Decision Records (ADRs) for the OpenCloud related topics.
+This folder contains Architecture Decision Records (ADRs) for the Quad4 Cloud related topics.
 ADRs capture important architectural decisions, their context, alternatives, and rationale.
 
 They help us:
@@ -25,7 +25,7 @@ They make it easier to:
 Not every technical or architectural decision needs a dedicated ADR.
 Use an ADR to document decisions which are significant, such as:
 
-* It substantially affects the architecture, design, or direction of OpenCloud.
+* It substantially affects the architecture, design, or direction of Quad4 Cloud.
 * It involves trade-offs between multiple options.
 * It needs Team consensus or input from multiple stakeholders.
 

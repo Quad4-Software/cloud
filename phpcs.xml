@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="opencloud Standard">
-	<description>opencloud coding standard</description>
+<ruleset name="quad4 Standard">
+	<description>quad4 coding standard</description>
 	<arg name="colors" />
 	<arg value="sp" />
 

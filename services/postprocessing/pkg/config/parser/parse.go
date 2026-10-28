@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"strings"
 
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/postprocessing/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/postprocessing/pkg/config/defaults"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/services/postprocessing/pkg/config"
+	"github.com/Quad4-Software/cloud/services/postprocessing/pkg/config/defaults"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
 )
 
 // ParseConfig loads configuration from known paths.

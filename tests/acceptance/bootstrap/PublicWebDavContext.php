@@ -349,7 +349,7 @@ class PublicWebDavContext implements Context {
 
 	/**
 	 *
-	 * @param string $baseUrl URL of OpenCloud
+	 * @param string $baseUrl URL of Quad4 Cloud
 	 * @param string $source
 	 * @param string $destination
 	 *

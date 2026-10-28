@@ -15,18 +15,18 @@ As an example, user profile settings that can be changed in the Web UI must be p
 The settings service persists the settings data via the `storage-system` service.
 
 <!--- Note: The diagramm is outdate, leaving it here for a future rework
-The diagram shows how the settings service integrates into OpenCloud:
+The diagram shows how the settings service integrates into Quad4 Cloud:
 
-The diagram shows how the settings service integrates into OpenCloud:
+The diagram shows how the settings service integrates into Quad4 Cloud:
 
 ```mermaid
 graph TD
-    ows ---|"listSettingsBundles(),<br>saveSettingsValue(value)"| os[opencloud-settings]
+    ows ---|"listSettingsBundles(),<br>saveSettingsValue(value)"| os[quad4-settings]
     owc ---|"listSettingsValues()"| sdk[oC SDK]
-    sdk --- sdks{opencloud-settings<br>available?}
+    sdk --- sdks{quad4-settings<br>available?}
     sdks ---|"yes"| os
     sdks ---|"no"| defaults[Use set of<br>default values]
-    oa[OpenCloud services<br>e.g. opencloud-accounts] ---|"saveSettingsBundle(bundle)"| os
+    oa[Quad4 Cloud services<br>e.g. quad4-accounts] ---|"saveSettingsBundle(bundle)"| os
 ```
 -->
 
@@ -54,11 +54,11 @@ Store specific notes:
 
 ## Settings Management
 
-OpenCloud services can register *settings bundles* with the settings service.
+Quad4 Cloud services can register *settings bundles* with the settings service.
 
 ## Settings Usage
 
-Services can set or query OpenCloud *setting values* of a user from settings bundles.
+Services can set or query Quad4 Cloud *setting values* of a user from settings bundles.
 
 ## Service Accounts
 
@@ -78,7 +78,7 @@ For example, for the language `de`, one needs to place the corresponding transla
 
 <!-- also see the notifications readme -->
 
-Important: For the time being, the embedded OpenCloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
+Important: For the time being, the embedded Quad4 Cloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
 
 ### Translation Rules
 
@@ -90,7 +90,7 @@ which is the source of the texts provided by the code.
 
 The default language can be defined via the `OC_DEFAULT_LANGUAGE` environment variable. If this variable is not defined, English will be used as default. The value has the ISO 639-1 format ("de", "en", etc.) and is limited by the list supported languages. This setting can be used to set the default language for notification and invitation emails.
 
-Important developer note: the list of supported languages is at the moment not easy defineable, as it is the minimum intersection of languages shown in the WebUI and languages defined in the OpenCloud code for the use of notifications and userlog. Even more, not all languages where there are translations available on transifex, are available in the WebUI respectively for OpenCloud notifications, and the translation rate for existing languages is partially not that high. You will see therefore quite often English default strings though a supported language may exist and was selected.
+Important developer note: the list of supported languages is at the moment not easy defineable, as it is the minimum intersection of languages shown in the WebUI and languages defined in the Quad4 Cloud code for the use of notifications and userlog. Even more, not all languages where there are translations available on transifex, are available in the WebUI respectively for Quad4 Cloud notifications, and the translation rate for existing languages is partially not that high. You will see therefore quite often English default strings though a supported language may exist and was selected.
 
 The `OC_DEFAULT_LANGUAGE` setting impacts the `notification` and `userlog` services and the WebUI. Note that translations must exist for all named components to be presented correctly.
 
@@ -106,7 +106,7 @@ The `OC_DEFAULT_LANGUAGE` setting impacts the `notification` and `userlog` servi
 
 It is possible to define custom roles that contain custom permissions. Set `SETTINGS_BUNDLES_PATH` to the path of a `json` file containing the roles.
 
-The roles are bootstrapped when OpenCloud starts for the first time. To prevent the default OpenCloud roles (`admin`, `user`) from being created, `SETTINGS_BUNDLES_PATH` must be configured before that first start. If OpenCloud has already been started without `SETTINGS_BUNDLES_PATH`, configuring it later does not remove the existing default roles. On subsequent starts, roles defined in the referenced file are added or updated, but roles that already exist in the system and are omitted from the file are not deleted. This avoids dangling role assignments for users whose assigned role would otherwise no longer exist.
+The roles are bootstrapped when Quad4 Cloud starts for the first time. To prevent the default Quad4 Cloud roles (`admin`, `user`) from being created, `SETTINGS_BUNDLES_PATH` must be configured before that first start. If Quad4 Cloud has already been started without `SETTINGS_BUNDLES_PATH`, configuring it later does not remove the existing default roles. On subsequent starts, roles defined in the referenced file are added or updated, but roles that already exist in the system and are omitted from the file are not deleted. This avoids dangling role assignments for users whose assigned role would otherwise no longer exist.
 
 Role Example:
 ```json
@@ -115,7 +115,7 @@ Role Example:
         "id": "38071a68-456a-4553-846a-fa67bf5596cc", // ID of the role. Recommendation is to use a random uuidv4. But any unique string will do.
         "name": "user-light",                         // Internal name of the role. This is used by the system to identify the role. Any string will do here, but it should be unique among the other roles.
         "type": "TYPE_ROLE",                          // Always use `TYPE_ROLE`
-        "extension": "opencloud-roles",               // Always use `opencloud-roles`
+        "extension": "quad4-roles",               // Always use `quad4-roles`
         "displayName": "User Light",                  // DisplayName of the role used in webui
         "settings": [
         ],                                            // Permissions attached to the role. See Details below.
@@ -130,7 +130,7 @@ To create custom roles:
 * Copy the role example to a `json` file.
 * Change `id`, `name`, and `displayName` to your liking.
 * Copy the desired permissions from the `user-all-permissions` example below to the `settings` array of the role.
-* Set the `SETTINGS_BUNDLES_PATH` envvar to the path of the json file and start OpenCloud.
+* Set the `SETTINGS_BUNDLES_PATH` envvar to the path of the json file and start Quad4 Cloud.
 
 Example File:
 ```json
@@ -139,7 +139,7 @@ Example File:
         "id": "38071a68-456a-4553-846a-fa67bf5596cc",
         "name": "user-1-permission",
         "type": "TYPE_ROLE",
-        "extension": "opencloud-roles",
+        "extension": "quad4-roles",
         "displayName": "User with one permission only",
         "settings": [
             {
@@ -164,7 +164,7 @@ Example File:
         "id": "71881883-1768-46bd-a24d-a356a2afdf7f",
         "name": "user-all-permissions",
         "type": "TYPE_ROLE",
-        "extension": "opencloud-roles",
+        "extension": "quad4-roles",
         "displayName": "User with all available permissions",
         "settings": [
             {

@@ -8,7 +8,7 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storage/utils/grants"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 // NoPermissionMatchError is the message returned by a failed conversion

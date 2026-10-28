@@ -790,7 +790,7 @@ func (fs *Decomposedfs) DeleteStorageSpace(ctx context.Context, req *provider.De
 		// and group indexes for the owner and every grantee, or they keep stale
 		// entries pointing at the purged space. best effort, like the expired
 		// grant removal: log and continue.
-		// https://github.com/opencloud-eu/opencloud/issues/2985
+		// https://github.com/Quad4-Software/cloud/issues/2985
 		sublog := appctx.GetLogger(ctx).With().Str("spaceid", spaceID).Logger()
 		if ownerID, err := n.XattrString(ctx, prefixes.OwnerIDAttr); err != nil {
 			sublog.Error().Err(err).Msg("could not read space owner")

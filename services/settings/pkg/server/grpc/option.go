@@ -3,10 +3,10 @@ package grpc
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/settings"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/settings"
 	"go.opentelemetry.io/otel/trace"
 )
 

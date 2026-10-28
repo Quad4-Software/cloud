@@ -58,7 +58,7 @@ define it as well:
 {{- end }}
 ```
 
-The emails show the OpenCloud logo as an inline image, `opencloud-logo.png` in the light and `opencloud-logo-dark.png` in the dark mode of mail clients that support it.
+The emails show the Quad4 Cloud logo as an inline image, `quad4-logo.png` in the light and `quad4-logo-dark.png` in the dark mode of mail clients that support it.
 
 ### Custom Templates
 
@@ -70,12 +70,12 @@ The notifications service supports custom templates. Custom email templates take
 {NOTIFICATIONS_EMAIL_TEMPLATE_PATH}/templates/html/digest.html.tmpl
 {NOTIFICATIONS_EMAIL_TEMPLATE_PATH}/templates/html/img/
 ```
-The source templates provided by OpenCloud you can derive from are located in the following base folder [https://github.com/opencloud-eu/opencloud/tree/main/services/notifications/pkg/email/templates](https://github.com/opencloud-eu/opencloud/tree/main/services/notifications/pkg/email/templates) with subfolders `templates/text` and `templates/html`.
+The source templates provided by Quad4 Cloud you can derive from are located in the following base folder [https://github.com/Quad4-Software/cloud/tree/main/services/notifications/pkg/email/templates](https://github.com/Quad4-Software/cloud/tree/main/services/notifications/pkg/email/templates) with subfolders `templates/text` and `templates/html`.
 
--   [text/email.text.tmpl](https://github.com/opencloud-eu/opencloud/blob/main/services/notifications/pkg/email/templates/text/email.text.tmpl)
--   [html/layout.html.tmpl](https://github.com/opencloud-eu/opencloud/blob/main/services/notifications/pkg/email/templates/html/layout.html.tmpl)
--   [html/message.html.tmpl](https://github.com/opencloud-eu/opencloud/blob/main/services/notifications/pkg/email/templates/html/message.html.tmpl)
--   [html/digest.html.tmpl](https://github.com/opencloud-eu/opencloud/blob/main/services/notifications/pkg/email/templates/html/digest.html.tmpl)
+-   [text/email.text.tmpl](https://github.com/Quad4-Software/cloud/blob/main/services/notifications/pkg/email/templates/text/email.text.tmpl)
+-   [html/layout.html.tmpl](https://github.com/Quad4-Software/cloud/blob/main/services/notifications/pkg/email/templates/html/layout.html.tmpl)
+-   [html/message.html.tmpl](https://github.com/Quad4-Software/cloud/blob/main/services/notifications/pkg/email/templates/html/message.html.tmpl)
+-   [html/digest.html.tmpl](https://github.com/Quad4-Software/cloud/blob/main/services/notifications/pkg/email/templates/html/digest.html.tmpl)
 
 To only change the look shared by all emails, such as the logo or the colors, a custom `layout.html.tmpl` is enough, but the custom folder still needs all three html templates.
 
@@ -91,15 +91,15 @@ templates
 │   │   digest.html.tmpl
 │   │
 │   └───img
-│       │   opencloud-logo.png
-│       │   opencloud-logo-dark.png
+│       │   quad4-logo.png
+│       │   quad4-logo-dark.png
 │
 └───text
     │   email.text.tmpl
 ```
 
 Custom email templates referenced via `NOTIFICATIONS_EMAIL_TEMPLATE_PATH` must also be located in subfolder `templates/text` and `templates/html` and must have the same names as the embedded templates. It is important that the names of these files and folders match the embedded ones.
-When using a custom HTML template, hosted images can either be linked with standard HTML code like ```<img src="https://raw.githubusercontent.com/opencloud-eu/opencloud/master/opencloud/img/logo-mail.gif" alt="logo-mail"/>``` or embedded as a CID source ```<img src="cid:logo-mail.gif" alt="logo-mail"/>```. In the latter case, image files must be located in the `templates/html/img` subfolder. Supported embedded image types are png, jpeg, and gif.
+When using a custom HTML template, hosted images can either be linked with standard HTML code like ```<img src="https://raw.githubusercontent.com/Quad4-Software/cloud/master/quad4/img/logo-mail.gif" alt="logo-mail"/>``` or embedded as a CID source ```<img src="cid:logo-mail.gif" alt="logo-mail"/>```. In the latter case, image files must be located in the `templates/html/img` subfolder. Supported embedded image types are png, jpeg, and gif.
 Consider that embedding images via a CID resource may not be fully supported in all email web clients.
 
 ## Sending Grouped Emails
@@ -110,7 +110,7 @@ Grouped events are stored for the TTL defined in `OC_PERSISTENT_STORE_TTL`. This
 
 Grouped events that have passed the TTL are removed automatically without further notice or sending!
 
-To initiate sending grouped emails like via a cron job, use the `opencloud notifications send-email` command. Note that the command mandatory requires at least one option which is `--daily` or `--weekly`. Note that both options can be used together.
+To initiate sending grouped emails like via a cron job, use the `quad4 notifications send-email` command. Note that the command mandatory requires at least one option which is `--daily` or `--weekly`. Note that both options can be used together.
 
 A grouped email has the subject "Your daily notifications" or "Your weekly notifications". The html email shows the events as a timeline, oldest first, each with the time of the event in UTC, as the notifications service does not know the time zone of the recipient. Where an event has a link, the name of the shared resource or space is the link. The text email lists the events with their call to action.
 
@@ -150,7 +150,7 @@ For example, for the language `de`, one needs to place the corresponding transla
 
 <!-- also see the userlog readme -->
 
-Important: For the time being, the embedded OpenCloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
+Important: For the time being, the embedded Quad4 Cloud Web frontend only supports the main language code but does not handle any territory. When strings are available in the language code `language_territory`, the web frontend does not see it as it only requests `language`. In consequence, any translations made must exist in the requested `language` to avoid a fallback to the default.
 
 ### Translation Rules
 

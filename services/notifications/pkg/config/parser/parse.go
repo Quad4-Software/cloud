@@ -6,12 +6,12 @@ import (
 	"net/mail"
 	"strings"
 
-	occfg "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/config/defaults"
+	occfg "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/config"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/config/defaults"
 )
 
 // ParseConfig loads configuration from known paths.

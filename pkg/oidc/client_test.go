@@ -8,7 +8,7 @@ import (
 
 	"github.com/MicahParks/keyfunc/v2"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
 )
 
 type signingKey struct {

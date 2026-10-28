@@ -1,9 +1,9 @@
 package defaults
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/clientlog/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/clientlog/pkg/config"
 )
 
 // FullDefaultConfig returns the full default config
@@ -28,7 +28,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		RevaGateway: shared.DefaultRevaConfig().Address,

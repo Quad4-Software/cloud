@@ -5,22 +5,22 @@ import (
 	"fmt"
 	"os/signal"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	ogrpc "github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/server/http"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	ogrpc "github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/config"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/server/http"
 
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
@@ -116,9 +116,9 @@ func Server(cfg *config.Config) *cobra.Command {
 				return fmt.Errorf("could not get reva client selector: %s", err)
 			}
 
-			hClient := ehsvc.NewEventHistoryService("eu.opencloud.api.eventhistory", grpcClient)
-			vClient := settingssvc.NewValueService("eu.opencloud.api.settings", grpcClient)
-			rClient := settingssvc.NewRoleService("eu.opencloud.api.settings", grpcClient)
+			hClient := ehsvc.NewEventHistoryService("io.quad4.api.eventhistory", grpcClient)
+			vClient := settingssvc.NewValueService("io.quad4.api.settings", grpcClient)
+			rClient := settingssvc.NewRoleService("io.quad4.api.settings", grpcClient)
 
 			gr := runner.NewGroup()
 			{

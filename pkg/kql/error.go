@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 // DanglingOperatorError records an error and the operator that caused it.

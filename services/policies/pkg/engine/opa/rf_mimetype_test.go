@@ -9,25 +9,25 @@ import (
 	. "github.com/onsi/gomega"
 	"github.com/open-policy-agent/opa/rego"
 
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine/opa"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine/opa"
 )
 
-var _ = Describe("opa opencloud mimetype functions", func() {
-	Describe("opencloud.mimetype.detect", func() {
+var _ = Describe("opa quad4 mimetype functions", func() {
+	Describe("quad4.mimetype.detect", func() {
 		It("detects the mimetype", func() {
-			r := rego.New(rego.Query(`opencloud.mimetype.detect("")`), opa.RFMimetypeDetect)
+			r := rego.New(rego.Query(`quad4.mimetype.detect("")`), opa.RFMimetypeDetect)
 			rs, err := r.Eval(context.Background())
 			Expect(err).ToNot(HaveOccurred())
 			Expect(rs[0].Expressions[0].String()).To(Equal("text/plain"))
 		})
 	})
-	Describe("opencloud.mimetype.extensions", func() {
+	Describe("quad4.mimetype.extensions", func() {
 		DescribeTable("resolves extensions by mimetype",
 			func(mimetype string, expectations []string, f io.Reader) {
 				rfMimetypeExtensions, err := opa.RFMimetypeExtensions(f)
 				Expect(err).ToNot(HaveOccurred())
 
-				r := rego.New(rego.Query(`opencloud.mimetype.extensions("`+mimetype+`")`), rfMimetypeExtensions)
+				r := rego.New(rego.Query(`quad4.mimetype.extensions("`+mimetype+`")`), rfMimetypeExtensions)
 				rs, err := r.Eval(context.Background())
 				Expect(err).ToNot(HaveOccurred())
 
@@ -48,10 +48,10 @@ var _ = Describe("opa opencloud mimetype functions", func() {
 				}
 			},
 			Entry("With default mimetype", "application/pdf", []string{".pdf"}, nil),
-			Entry("With unknown mimetype", "opencloud/with.custom.mt", []string{}, nil),
-			Entry("With custom mimetype", "opencloud/with.custom.mt", []string{".with.custom.mt"}, strings.NewReader("opencloud/with.custom.mt    with.custom.mt")),
-			Entry("With multiple custom mimetypes", "opencloud/with.multiple.custom.mt", []string{".with.multiple.custom.1.mt", ".with.multiple.custom.2.mt"}, strings.NewReader("opencloud/with.multiple.custom.mt                                with.multiple.custom.1.mt with.multiple.custom.2.mt")),
-			Entry("With custom ignored mimetype", "opencloud/with.multiple.custom.ignored.mt", []string{}, strings.NewReader("#opencloud/with.multiple.custom.ignored.mt with.multiple.custom.ignored.mt")),
+			Entry("With unknown mimetype", "quad4/with.custom.mt", []string{}, nil),
+			Entry("With custom mimetype", "quad4/with.custom.mt", []string{".with.custom.mt"}, strings.NewReader("quad4/with.custom.mt    with.custom.mt")),
+			Entry("With multiple custom mimetypes", "quad4/with.multiple.custom.mt", []string{".with.multiple.custom.1.mt", ".with.multiple.custom.2.mt"}, strings.NewReader("quad4/with.multiple.custom.mt                                with.multiple.custom.1.mt with.multiple.custom.2.mt")),
+			Entry("With custom ignored mimetype", "quad4/with.multiple.custom.ignored.mt", []string{}, strings.NewReader("#quad4/with.multiple.custom.ignored.mt with.multiple.custom.ignored.mt")),
 		)
 	})
 })

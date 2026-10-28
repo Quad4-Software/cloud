@@ -3,7 +3,7 @@ package config
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 	"go-micro.dev/v4/client"
 )
 
@@ -21,7 +21,7 @@ type Config struct {
 
 	HTTP HTTP `yaml:"http"`
 
-	OpenCloudPublicURL string `yaml:"opencloud_public_url" env:"OC_URL;OC_PUBLIC_URL" desc:"URL, where OpenCloud is reachable for users." introductionVersion:"1.0.0"`
+	Quad4CloudPublicURL string `yaml:"quad4_public_url" env:"OC_URL;OC_PUBLIC_URL" desc:"URL, where Quad4 Cloud is reachable for users." introductionVersion:"1.0.0"`
 	WebdavNamespace    string `yaml:"webdav_namespace" env:"WEBDAV_WEBDAV_NAMESPACE" desc:"CS3 path layout to use when forwarding /webdav requests" introductionVersion:"1.0.0"`
 	RevaGateway        string `yaml:"reva_gateway" env:"OC_REVA_GATEWAY" desc:"CS3 gateway used to look up user metadata" introductionVersion:"1.0.0"`
 	DisablePreviews    bool   `yaml:"disablePreviews" env:"OC_DISABLE_PREVIEWS;WEBDAV_DISABLE_PREVIEWS" desc:"Set this option to 'true' to disable rendering of thumbnails triggered via webdav access. Note that when disabled, all access to preview related webdav paths will return a 404." introductionVersion:"1.0.0"`

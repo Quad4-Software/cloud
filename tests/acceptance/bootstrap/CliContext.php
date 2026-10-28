@@ -38,12 +38,12 @@ class CliContext implements Context {
 	private SpacesContext $spacesContext;
 
 	/**
-	 * opencloud storage root path (with $HOME/~ expanded for CI)
+	 * quad4 storage root path (with $HOME/~ expanded for CI)
 	 *
 	 * @return string
 	 */
 	public static function getStorageRootPath(): string {
-		$path = getenv('OC_STORAGE_PATH') ?: '/var/lib/opencloud/storage/users';
+		$path = getenv('OC_STORAGE_PATH') ?: '/var/lib/quad4/storage/users';
 		// need for CI
 		$home = getenv('HOME');
 		$path = preg_replace('#^~/#', $home . '/', $path);
@@ -53,7 +53,7 @@ class CliContext implements Context {
 	}
 
 	/**
-	 * opencloud users storage path
+	 * quad4 users storage path
 	 *
 	 * @return string
 	 */
@@ -62,7 +62,7 @@ class CliContext implements Context {
 	}
 
 	/**
-	 * opencloud project spaces storage path
+	 * quad4 project spaces storage path
 	 *
 	 * @return string
 	 */
@@ -136,7 +136,7 @@ class CliContext implements Context {
 	 */
 	#[Given('the administrator has stopped the server')]
 	public function theAdministratorHasStoppedTheServer(): void {
-		$response = OcConfigHelper::stopOpencloud();
+		$response = OcConfigHelper::stopQuad4cloud();
 		$this->featureContext->theHTTPStatusCodeShouldBe(200, '', $response);
 	}
 
@@ -146,7 +146,7 @@ class CliContext implements Context {
 	 */
 	#[Given('/^the administrator (?:starts|has started) the server$/')]
 	public function theAdministratorHasStartedTheServer(): void {
-		$response = OcConfigHelper::startOpencloud();
+		$response = OcConfigHelper::startQuad4cloud();
 		$this->featureContext->theHTTPStatusCodeShouldBe(200, '', $response);
 	}
 

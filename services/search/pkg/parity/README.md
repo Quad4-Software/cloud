@@ -134,7 +134,7 @@ Fixtures:
 Fixtures:
 
 - `monthly.txt`, Content = "the monthly reports are due"
-- `links.txt`, Content = "see https://opencloud.example.com/help or write to alan@example.org"
+- `links.txt`, Content = "see https://quad4.example.com/help or write to alan@example.org"
 
 | Case | Query | expected | bleve | OpenSearch | same? |
 |---|---|---|---|---|---|
@@ -145,9 +145,9 @@ Fixtures:
 | CONTENT-05 | `Content:report*` | monthly.txt | monthly.txt | monthly.txt | ✅ |
 | CONTENT-06 | `Content:*eport*` | monthly.txt | monthly.txt | monthly.txt | ✅ |
 | CONTENT-07 | `Content:month*` | monthly.txt | monthly.txt | monthly.txt | ✅ |
-| CONTENT-08 | `Content:"https://opencloud.example.com/help"` | links.txt | links.txt | links.txt | ✅ |
+| CONTENT-08 | `Content:"https://quad4.example.com/help"` | links.txt | links.txt | links.txt | ✅ |
 | CONTENT-09 | `Content:"alan@example.org"` | links.txt | links.txt | links.txt | ✅ |
-| CONTENT-10 | `Content:opencloud` | links.txt | links.txt | links.txt | ✅ |
+| CONTENT-10 | `Content:quad4` | links.txt | links.txt | links.txt | ✅ |
 
 ### cjk
 

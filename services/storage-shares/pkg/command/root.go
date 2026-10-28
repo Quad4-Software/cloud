@@ -3,8 +3,8 @@ package command
 import (
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/clihelper"
-	"github.com/opencloud-eu/opencloud/services/storage-shares/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/clihelper"
+	"github.com/Quad4-Software/cloud/services/storage-shares/pkg/config"
 
 	"github.com/spf13/cobra"
 )
@@ -27,7 +27,7 @@ func GetCommands(cfg *config.Config) []*cobra.Command {
 func Execute(cfg *config.Config) error {
 	app := clihelper.DefaultApp(&cobra.Command{
 		Use:   "storage-shares",
-		Short: "Provide a virtual storage for shares in OpenCloud",
+		Short: "Provide a virtual storage for shares in Quad4 Cloud",
 	})
 	app.AddCommand(GetCommands(cfg)...)
 	app.SetArgs(os.Args[1:])

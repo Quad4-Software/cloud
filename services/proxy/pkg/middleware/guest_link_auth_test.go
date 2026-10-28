@@ -12,7 +12,7 @@ import (
 	userpb "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	typesv1beta1 "github.com/cs3org/go-cs3apis/cs3/types/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"google.golang.org/grpc"
@@ -51,7 +51,7 @@ func TestGuestLinkAuthenticator_Applicability(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+			pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 			authenticator := &GuestLinkAuthenticator{
 				Logger: logger,
 				Config: GuestLinkAuthConfig{
@@ -59,7 +59,7 @@ func TestGuestLinkAuthenticator_Applicability(t *testing.T) {
 				},
 				RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 					"GatewaySelector",
-					"eu.opencloud.api.gateway",
+					"io.quad4.api.gateway",
 					func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 						return mockGatewayClient{
 							AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -118,7 +118,7 @@ func TestGuestLinkAuthenticator_PublicShareToken(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+			pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 			authenticator := &GuestLinkAuthenticator{
 				Logger: log.NewLogger(),
 				Config: GuestLinkAuthConfig{
@@ -126,7 +126,7 @@ func TestGuestLinkAuthenticator_PublicShareToken(t *testing.T) {
 				},
 				RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 					"GatewaySelector",
-					"eu.opencloud.api.gateway",
+					"io.quad4.api.gateway",
 					func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 						return mockGatewayClient{
 							AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -154,7 +154,7 @@ func TestGuestLinkAuthenticator_PublicShareToken(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_Success(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 	authenticator := &GuestLinkAuthenticator{
 		Logger: log.NewLogger(),
 		Config: GuestLinkAuthConfig{
@@ -162,7 +162,7 @@ func TestGuestLinkAuthenticator_Success(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClientWithUser{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, *userpb.User, rpcv1beta1.Code) {
@@ -214,7 +214,7 @@ func TestGuestLinkAuthenticator_Success(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_MissingUserOnOK(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 	authenticator := &GuestLinkAuthenticator{
 		Logger: log.NewLogger(),
 		Config: GuestLinkAuthConfig{
@@ -222,7 +222,7 @@ func TestGuestLinkAuthenticator_MissingUserOnOK(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClient{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -244,7 +244,7 @@ func TestGuestLinkAuthenticator_MissingUserOnOK(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_MissingTokenOnOK(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	authenticator := &GuestLinkAuthenticator{
 		Logger: log.NewLogger(),
@@ -253,7 +253,7 @@ func TestGuestLinkAuthenticator_MissingTokenOnOK(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClient{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -275,11 +275,11 @@ func TestGuestLinkAuthenticator_MissingTokenOnOK(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_ExpiredSession(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	expiredInnerError := &typesv1beta1.OpaqueEntry{
 		Decoder: "json",
-		Value:   []byte(`{"type":"opencloud_guest_link_error","reason":"session_expired","share_id":"share-abc-123"}`),
+		Value:   []byte(`{"type":"quad4_guest_link_error","reason":"session_expired","share_id":"share-abc-123"}`),
 	}
 
 	authenticator := &GuestLinkAuthenticator{
@@ -289,7 +289,7 @@ func TestGuestLinkAuthenticator_ExpiredSession(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClientWithInnerError{
 					innerError: expiredInnerError,
@@ -327,7 +327,7 @@ func TestGuestLinkAuthenticator_ExpiredSession(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_GenericUnauthenticated(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	authenticator := &GuestLinkAuthenticator{
 		Logger: log.NewLogger(),
@@ -336,7 +336,7 @@ func TestGuestLinkAuthenticator_GenericUnauthenticated(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClient{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -367,7 +367,7 @@ func TestGuestLinkAuthenticator_GenericUnauthenticated(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_Unavailable(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	authenticator := &GuestLinkAuthenticator{
 		Logger: log.NewLogger(),
@@ -376,7 +376,7 @@ func TestGuestLinkAuthenticator_Unavailable(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClient{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -430,7 +430,7 @@ func TestGuestLinkAuthenticator_JwtNotLogged(t *testing.T) {
 }
 
 func TestGuestLinkAuthenticator_GatewayCall(t *testing.T) {
-	pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+	pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 	var lastAuthType, lastClientID, lastClientSecret string
 	authenticator := &GuestLinkAuthenticator{
@@ -440,7 +440,7 @@ func TestGuestLinkAuthenticator_GatewayCall(t *testing.T) {
 		},
 		RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return mockGatewayClient{
 					AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -521,7 +521,7 @@ func TestParseInnerError(t *testing.T) {
 		},
 		{
 			name:        "wrong decoder",
-			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "xml", Value: []byte(`{"type":"opencloud_guest_link_error"}`)},
+			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "xml", Value: []byte(`{"type":"quad4_guest_link_error"}`)},
 			wantExpired: false,
 		},
 		{
@@ -536,23 +536,23 @@ func TestParseInnerError(t *testing.T) {
 		},
 		{
 			name:        "wrong reason",
-			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"opencloud_guest_link_error","reason":"wrong_reason","share_id":"s1"}`)},
+			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"quad4_guest_link_error","reason":"wrong_reason","share_id":"s1"}`)},
 			wantExpired: false,
 		},
 		{
 			name:        "empty share ID",
-			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"opencloud_guest_link_error","reason":"session_expired","share_id":""}`)},
+			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"quad4_guest_link_error","reason":"session_expired","share_id":""}`)},
 			wantExpired: false,
 		},
 		{
 			name:        "valid expired session",
-			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"opencloud_guest_link_error","reason":"session_expired","share_id":"share-abc-123"}`)},
+			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"quad4_guest_link_error","reason":"session_expired","share_id":"share-abc-123"}`)},
 			wantExpired: true,
 			wantShareID: "share-abc-123",
 		},
 		{
 			name:        "share ID too long",
-			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"opencloud_guest_link_error","reason":"session_expired","share_id":"` + strings.Repeat("x", 513) + `"}`)},
+			innerError:  &typesv1beta1.OpaqueEntry{Decoder: "json", Value: []byte(`{"type":"quad4_guest_link_error","reason":"session_expired","share_id":"` + strings.Repeat("x", 513) + `"}`)},
 			wantExpired: false,
 		},
 	}

@@ -9,9 +9,9 @@ import (
 	"github.com/go-chi/chi/v5"
 
 	gatewayv1beta1 "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector/utf7"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/locks"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector/utf7"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/locks"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/rs/zerolog"
 	"go-micro.dev/v4/selector"

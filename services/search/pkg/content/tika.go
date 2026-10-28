@@ -13,8 +13,8 @@ import (
 	"github.com/google/go-tika/tika"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
 )
 
 // Tika is used to extract content from a resource,

@@ -23,17 +23,17 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/riandyrn/otelchi"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/constants"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/dav/requests"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/generator"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail/cache"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail/workflow"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/constants"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/dav/requests"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/generator"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail/cache"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail/workflow"
 )
 
 var (
@@ -102,7 +102,7 @@ func NewService(opts ...Option) (Service, error) {
 		sourceTypes:     sourceTypes,
 		log:             options.Logger,
 		mux:             m,
-		searchClient:    searchsvc.NewSearchProviderService("eu.opencloud.api.search", conf.GrpcClient),
+		searchClient:    searchsvc.NewSearchProviderService("io.quad4.api.search", conf.GrpcClient),
 		workflow:        wf,
 		gatewaySelector: gatewaySelector,
 	}

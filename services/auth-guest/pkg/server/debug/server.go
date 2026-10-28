@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package debug
@@ -6,11 +6,11 @@ package debug
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/checks"
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
-	"github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/service/debug"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/checks"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/service/debug"
+	"github.com/Quad4-Software/cloud/pkg/version"
 )
 
 // Server initializes the debug service and server.

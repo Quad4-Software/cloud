@@ -5,13 +5,13 @@ import (
 	"os"
 	"strings"
 
-	pkgconfig "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/gateway/pkg/config"
+	pkgconfig "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/gateway/pkg/config"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 )
 
-// GatewayConfigFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// GatewayConfigFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func GatewayConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]any {
 	localEndpoint := pkgconfig.LocalEndpoint(cfg.GRPC.Protocol, cfg.GRPC.Addr)
 
@@ -108,7 +108,7 @@ func GatewayConfigFromStruct(cfg *config.Config, logger log.Logger) map[string]a
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "gateway",
 				},
 			},

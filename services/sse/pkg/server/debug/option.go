@@ -3,8 +3,8 @@ package debug
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/sse/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/sse/pkg/config"
 )
 
 // Option defines a single option function.

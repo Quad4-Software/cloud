@@ -5,7 +5,7 @@
 package mocks
 
 import (
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 	mock "github.com/stretchr/testify/mock"
 )
 

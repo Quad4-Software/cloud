@@ -12,9 +12,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/services/collaboration/mocks"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector/fileinfo"
+	"github.com/Quad4-Software/cloud/services/collaboration/mocks"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector/fileinfo"
 	"github.com/stretchr/testify/mock"
 )
 

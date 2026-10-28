@@ -1,8 +1,8 @@
 package parity
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 func purgeLifecycle() lifecycleGroup {

@@ -50,7 +50,7 @@ Whether a user should be able to create new files of that MIME type (true or fal
 
 ### Listing available apps and mime types
 
-Clients, for example OpenCloud Web, need to offer users the available apps to open files and mime types for new file creation. This information can be obtained from this endpoint.
+Clients, for example Quad4 Cloud Web, need to offer users the available apps to open files and mime types for new file creation. This information can be obtained from this endpoint.
 
 **Endpoint**: specified in the capabilities in `apps_url`, currently `/app/list`
 
@@ -61,7 +61,7 @@ Clients, for example OpenCloud Web, need to offer users the available apps to op
 **Request example**:
 
 ```bash
-curl 'https://opencloud.test/app/list'
+curl 'https://quad4.test/app/list'
 ```
 
 **Response example**:
@@ -142,7 +142,7 @@ HTTP status code: 200
 }
 ```
 
-### Open a File With OpenCloud Web
+### Open a File With Quad4 Cloud Web
 
 **Endpoint**: specified in the capabilities in `open_web_url`, currently `/app/open-with-web`
 
@@ -150,7 +150,7 @@ HTTP status code: 200
 
 **Authentication** (one of them):
 
-- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in OpenCloud)
+- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in Quad4 Cloud)
 - `X-Access-Token` header with a REVA token for authenticated users
 
 **Query parameters**:
@@ -163,14 +163,14 @@ HTTP status code: 200
 **Request examples**:
 
 ```bash
-curl -X POST 'https://opencloud.test/app/open-with-web?file_id=ZmlsZTppZAo='
+curl -X POST 'https://quad4.test/app/open-with-web?file_id=ZmlsZTppZAo='
 
-curl -X POST 'https://opencloud.test/app/open-with-web?file_id=ZmlsZTppZAo=&app_name=Collabora'
+curl -X POST 'https://quad4.test/app/open-with-web?file_id=ZmlsZTppZAo=&app_name=Collabora'
 ```
 
 **Response examples**:
 
-The URI from the response JSON is intended to be opened with a GET request in a browser. If the user has not yet a session in the browser, a login flow is handled by OpenCloud Web.
+The URI from the response JSON is intended to be opened with a GET request in a browser. If the user has not yet a session in the browser, a login flow is handled by Quad4 Cloud Web.
 
 HTTP status code: 200
 
@@ -192,7 +192,7 @@ See error cases for [Open a file with the app provider](#open-a-file-with-the-ap
 
 **Authentication** (one of them):
 
-- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in OpenCloud)
+- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in Quad4 Cloud)
 - `Public-Token` header with public link token for public links
 - `X-Access-Token` header with a REVA token for authenticated users
 
@@ -219,15 +219,15 @@ See error cases for [Open a file with the app provider](#open-a-file-with-the-ap
 **Request examples**:
 
 ```bash
-curl -X POST 'https://opencloud.test/app/open?file_id=ZmlsZTppZAo='
+curl -X POST 'https://quad4.test/app/open?file_id=ZmlsZTppZAo='
 
-curl -X POST 'https://opencloud.test/app/open?file_id=ZmlsZTppZAo=&lang=de'
+curl -X POST 'https://quad4.test/app/open?file_id=ZmlsZTppZAo=&lang=de'
 
-curl -X POST 'https://opencloud.test/app/open?file_id=ZmlsZTppZAo=&app_name=Collabora'
+curl -X POST 'https://quad4.test/app/open?file_id=ZmlsZTppZAo=&app_name=Collabora'
 
-curl -X POST 'https://opencloud.test/app/open?file_id=ZmlsZTppZAo=&view_mode=read'
+curl -X POST 'https://quad4.test/app/open?file_id=ZmlsZTppZAo=&view_mode=read'
 
-curl -X POST 'https://opencloud.test/app/open?file_id=ZmlsZTppZAo=&app_name=Collabora&view_mode=write'
+curl -X POST 'https://quad4.test/app/open?file_id=ZmlsZTppZAo=&app_name=Collabora&view_mode=write'
 ```
 
 **Response examples**:
@@ -353,7 +353,7 @@ HTTP status code: 200
 
 **Authentication** (one of them):
 
-- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in OpenCloud)
+- `Authorization` header with OIDC Bearer token for authenticated users or basic auth credentials (if enabled in Quad4 Cloud)
 - `Public-Token` header with public link token for public links
 - `X-Access-Token` header with a REVA token for authenticated users
 
@@ -366,7 +366,7 @@ HTTP status code: 200
 **Request examples**:
 
 ```bash
-curl -X POST 'https://opencloud.test/app/new?parent_container_id=c2lkOmNpZAo=&filename=test.odt'
+curl -X POST 'https://quad4.test/app/new?parent_container_id=c2lkOmNpZAo=&filename=test.odt'
 ```
 
 **Response example**:

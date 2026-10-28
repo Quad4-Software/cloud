@@ -13,7 +13,7 @@ Feature: get applications
     Then the HTTP status code should be "200"
     And the user API response should contain the following application information:
       | key         | value     |
-      | displayName | OpenCloud |
+      | displayName | Quad4 Cloud |
       | id          | %uuid_v4% |
     And the user API response should contain the following app roles:
       | Admin       |

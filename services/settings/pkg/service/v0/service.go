@@ -16,16 +16,16 @@ import (
 	"go-micro.dev/v4/metadata"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/roles"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/settings"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
-	metastore "github.com/opencloud-eu/opencloud/services/settings/pkg/store/metadata"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/roles"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/settings"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
+	metastore "github.com/Quad4-Software/cloud/services/settings/pkg/store/metadata"
 )
 
 //go:embed l10n/locale
@@ -44,7 +44,7 @@ type Service struct {
 // NewService returns a service implementation for Service.
 func NewService(cfg *config.Config, logger log.Logger) settings.ServiceHandler {
 	service := Service{
-		id:     "opencloud-settings",
+		id:     "quad4-settings",
 		config: cfg,
 		logger: logger,
 	}

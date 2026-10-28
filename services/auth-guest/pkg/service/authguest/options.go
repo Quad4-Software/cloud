@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package authguest
@@ -7,8 +7,8 @@ import (
 	"time"
 
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/service/jwt"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/service/jwt"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 )

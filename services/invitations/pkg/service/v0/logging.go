@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/invitations/pkg/invitations"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/invitations/pkg/invitations"
 )
 
 // NewLogging returns a service that logs messages.

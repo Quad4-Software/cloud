@@ -41,9 +41,9 @@ var (
 	//Date = time.Now().Format("20060102")
 	Date = Dev
 
-	// Legacy defines the old long 4 number OpenCloud version needed for some clients
+	// Legacy defines the old long 4 number Quad4 Cloud version needed for some clients
 	Legacy = "0.1.0.0"
-	// LegacyString defines the old OpenCloud version needed for some clients
+	// LegacyString defines the old Quad4 Cloud version needed for some clients
 	LegacyString = "0.1.0"
 
 	// Edition describes the build channel (stable, rolling, nightly, daily, dev)

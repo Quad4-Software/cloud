@@ -3,7 +3,7 @@ package svc_test
 import (
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/registry"
 	mRegistry "go-micro.dev/v4/registry"
 
 	. "github.com/onsi/ginkgo/v2"
@@ -12,7 +12,7 @@ import (
 
 func init() {
 	r := registry.GetRegistry(registry.Inmemory())
-	service := registry.BuildGRPCService("eu.opencloud.api.gateway", "", "", "")
+	service := registry.BuildGRPCService("io.quad4.api.gateway", "", "", "")
 	service.Nodes = []*mRegistry.Node{{
 		Address: "any",
 	}}

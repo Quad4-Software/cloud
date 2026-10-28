@@ -312,7 +312,7 @@ func (b MessagePackBackend) Lock(n MetadataNode) (UnlockFunc, error) {
 	n.SetLockHeld(true)
 	return func() error {
 		n.SetLockHeld(false)
-		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/opencloud-eu/opencloud/issues/1793
+		// Warning: do not remove the lockfile or we may lock the same file more than once, https://github.com/Quad4-Software/cloud/issues/1793
 		return mlock.Close()
 	}, nil
 }

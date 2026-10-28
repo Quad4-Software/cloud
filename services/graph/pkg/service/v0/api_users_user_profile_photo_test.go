@@ -13,9 +13,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	svc "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	svc "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
 )
 
 func TestNewUsersUserProfilePhotoService(t *testing.T) {

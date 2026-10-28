@@ -17,10 +17,10 @@ import (
 	"github.com/blevesearch/bleve/v2/mapping"
 	"github.com/blevesearch/bleve/v2/search/query"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/bleve/hierarchy"
-	searchmapping "github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/pkg/bleve/hierarchy"
+	searchmapping "github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // bolt_timeout makes a second process on the same datapath fail after 5s

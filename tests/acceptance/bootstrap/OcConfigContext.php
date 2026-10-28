@@ -27,7 +27,7 @@ use PHPUnit\Framework\Assert;
 use Behat\Step\Given;
 
 /**
- * steps needed to re-configure OpenCloud server
+ * steps needed to re-configure Quad4 Cloud server
  */
 class OcConfigContext implements Context {
 	private array $enabledPermissionsRoles = [];
@@ -243,7 +243,7 @@ class OcConfigContext implements Context {
 		Assert::assertEquals(
 			200,
 			$response->getStatusCode(),
-			"Failed to rollback OpenCloud server. Check if OpenCloud is started with ocwrapper."
+			"Failed to rollback Quad4 Cloud server. Check if Quad4 Cloud is started with ocwrapper."
 		);
 	}
 }

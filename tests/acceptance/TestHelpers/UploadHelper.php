@@ -32,7 +32,7 @@ use Psr\Http\Message\ResponseInterface;
 class UploadHelper extends Assert {
 	/**
 	 *
-	 * @param string|null $baseUrl URL of OpenCloud
+	 * @param string|null $baseUrl URL of Quad4 Cloud
 	 * @param string|null $user
 	 * @param string|null $password
 	 * @param string|null $source

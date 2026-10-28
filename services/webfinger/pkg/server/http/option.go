@@ -3,9 +3,9 @@ package http
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	svc "github.com/opencloud-eu/opencloud/services/webfinger/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	svc "github.com/Quad4-Software/cloud/services/webfinger/pkg/service/v0"
 
 	"github.com/spf13/pflag"
 	"go.opentelemetry.io/otel/trace"

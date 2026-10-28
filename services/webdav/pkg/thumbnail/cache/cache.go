@@ -7,7 +7,7 @@ import (
 
 	"github.com/minio/minio-go/v7/pkg/credentials"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
 )
 
 var ErrCacheMiss = errors.New("thumbnail cache miss")

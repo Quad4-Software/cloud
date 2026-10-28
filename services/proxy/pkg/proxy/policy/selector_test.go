@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	userv1beta1 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 )
 
@@ -38,9 +38,9 @@ func TestLoadSelector(t *testing.T) {
 }
 
 func TestStaticSelector(t *testing.T) {
-	sel := NewStaticSelector(&config.StaticSelectorConf{Policy: "opencloud"})
+	sel := NewStaticSelector(&config.StaticSelectorConf{Policy: "quad4"})
 	req := httptest.NewRequest("GET", "https://example.org/foo", nil)
-	want := "opencloud"
+	want := "quad4"
 	got, err := sel(req)
 	if got != want {
 		t.Errorf("Expected policy %v got %v", want, got)
@@ -79,10 +79,10 @@ func TestClaimsSelector(t *testing.T) {
 
 	var tests = []testCase{
 		{"unauthenticated", context.Background(), nil, "unauthenticated"},
-		{"default", oidc.NewContext(context.Background(), map[string]any{oidc.OpenCloudRoutingPolicy: ""}), nil, "default"},
-		{"claim-value", oidc.NewContext(context.Background(), map[string]any{oidc.OpenCloudRoutingPolicy: "opencloud.routing.policy-value"}), nil, "opencloud.routing.policy-value"},
+		{"default", oidc.NewContext(context.Background(), map[string]any{oidc.Quad4CloudRoutingPolicy: ""}), nil, "default"},
+		{"claim-value", oidc.NewContext(context.Background(), map[string]any{oidc.Quad4CloudRoutingPolicy: "quad4.routing.policy-value"}), nil, "quad4.routing.policy-value"},
 		{"cookie-only", context.Background(), &http.Cookie{Name: SelectorCookieName, Value: "cookie"}, "cookie"},
-		{"claim-can-override-cookie", oidc.NewContext(context.Background(), map[string]any{oidc.OpenCloudRoutingPolicy: "opencloud.routing.policy-value"}), &http.Cookie{Name: SelectorCookieName, Value: "cookie"}, "opencloud.routing.policy-value"},
+		{"claim-can-override-cookie", oidc.NewContext(context.Background(), map[string]any{oidc.Quad4CloudRoutingPolicy: "quad4.routing.policy-value"}), &http.Cookie{Name: SelectorCookieName, Value: "cookie"}, "quad4.routing.policy-value"},
 	}
 	for _, tc := range tests {
 		r := httptest.NewRequest("GET", "https://example.com", nil)
@@ -105,11 +105,11 @@ func TestRegexSelector(t *testing.T) {
 	sel := NewRegexSelector(&config.RegexSelectorConf{
 		DefaultPolicy: "default",
 		MatchesPolicies: []config.RegexRuleConf{
-			{Priority: 10, Property: "mail", Match: "mary@example.org", Policy: "opencloud"},
+			{Priority: 10, Property: "mail", Match: "mary@example.org", Policy: "quad4"},
 			{Priority: 20, Property: "mail", Match: "[^@]+@example.org", Policy: "oc10"},
-			{Priority: 30, Property: "username", Match: "(alan|feynman)", Policy: "opencloud"},
+			{Priority: 30, Property: "username", Match: "(alan|feynman)", Policy: "quad4"},
 			{Priority: 40, Property: "username", Match: ".+", Policy: "oc10"},
-			{Priority: 50, Property: "id", Match: "b1f74ec4-dd7e-11ef-a543-03775734d0f7", Policy: "opencloud"},
+			{Priority: 50, Property: "id", Match: "b1f74ec4-dd7e-11ef-a543-03775734d0f7", Policy: "quad4"},
 			{Priority: 60, Property: "id", Match: "056fc874-dd7f-11ef-ba84-af6fca4b7289", Policy: "oc10"},
 		},
 		UnauthenticatedPolicy: "unauthenticated",
@@ -118,13 +118,13 @@ func TestRegexSelector(t *testing.T) {
 	var tests = []testCase{
 		{"unauthenticated", context.Background(), nil, "unauthenticated"},
 		{"default", revactx.ContextSetUser(context.Background(), &userv1beta1.User{}), nil, "default"},
-		{"mail-opencloud", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Mail: "mary@example.org"}), nil, "opencloud"},
+		{"mail-quad4", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Mail: "mary@example.org"}), nil, "quad4"},
 		{"mail-oc10", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Mail: "alan@example.org"}), nil, "oc10"},
-		{"username-alan", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Username: "alan"}), nil, "opencloud"},
-		{"username-feynman", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Username: "feynman"}), nil, "opencloud"},
+		{"username-alan", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Username: "alan"}), nil, "quad4"},
+		{"username-feynman", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Username: "feynman"}), nil, "quad4"},
 		{"username-mary", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Username: "mary"}), nil, "oc10"},
 		{"id-nil", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Id: &userv1beta1.UserId{}}), nil, "default"},
-		{"id-1", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Id: &userv1beta1.UserId{OpaqueId: "b1f74ec4-dd7e-11ef-a543-03775734d0f7"}}), nil, "opencloud"},
+		{"id-1", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Id: &userv1beta1.UserId{OpaqueId: "b1f74ec4-dd7e-11ef-a543-03775734d0f7"}}), nil, "quad4"},
 		{"id-2", revactx.ContextSetUser(context.Background(), &userv1beta1.User{Id: &userv1beta1.UserId{OpaqueId: "056fc874-dd7f-11ef-ba84-af6fca4b7289"}}), nil, "oc10"},
 	}
 

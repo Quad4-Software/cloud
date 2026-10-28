@@ -17,7 +17,7 @@ const OUT_DIR = path.join(TESTS_DIR, '.docs-dist')
 
 // tests, relative to the repo root, used to resolve README-relative links.
 const TESTS_REL = path.relative(REPO_ROOT, TESTS_DIR).split(path.sep).join('/')
-const GH_BLOB = 'https://github.com/opencloud-eu/opencloud/blob/main'
+const GH_BLOB = 'https://github.com/Quad4-Software/cloud/blob/main'
 
 const FRONT_MATTER = `---
 title: 'Acceptance Testing'

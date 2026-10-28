@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // ContextLogger is a middleware to use a logger associated with the request's

@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package parser_test
@@ -7,10 +7,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	thumbnailsdefaults "github.com/opencloud-eu/opencloud/services/thumbnails/pkg/config/defaults"
-	thumbnailsparser "github.com/opencloud-eu/opencloud/services/thumbnails/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/config/parser"
+	thumbnailsdefaults "github.com/Quad4-Software/cloud/services/thumbnails/pkg/config/defaults"
+	thumbnailsparser "github.com/Quad4-Software/cloud/services/thumbnails/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/config/parser"
 )
 
 var _ = Describe("ParseConfig", func() {

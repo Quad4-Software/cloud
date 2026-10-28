@@ -122,7 +122,7 @@ func createTenant(client *libregraph.APIClient, tenant libregraph.EducationSchoo
 func setUserRoles() {
 	tls := tls.Config{InsecureSkipVerify: true}
 	restyClient := resty.New().SetTLSClientConfig(&tls)
-	client := gocloak.NewClient("https://keycloak.opencloud.test")
+	client := gocloak.NewClient("https://keycloak.quad4.test")
 	client.SetRestyClient(restyClient)
 	ctx := context.Background()
 	token, err := client.LoginAdmin(ctx, "kcadmin", "admin", "master")
@@ -131,14 +131,14 @@ func setUserRoles() {
 		panic("Something wrong with the credentials or url")
 	}
 
-	role, _ := client.GetRealmRole(ctx, token.AccessToken, "openCloud", "opencloudUser")
-	users, err := client.GetUsers(ctx, token.AccessToken, "openCloud", gocloak.GetUsersParams{})
+	role, _ := client.GetRealmRole(ctx, token.AccessToken, "quad4Cloud", "quad4User")
+	users, err := client.GetUsers(ctx, token.AccessToken, "quad4Cloud", gocloak.GetUsersParams{})
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		panic("Oh no!, failed to list users :(")
 	}
 	for _, user := range users {
-		err := client.AddRealmRoleToUser(ctx, token.AccessToken, "openCloud", *user.ID, []gocloak.Role{
+		err := client.AddRealmRoleToUser(ctx, token.AccessToken, "quad4Cloud", *user.ID, []gocloak.Role{
 			*role,
 		})
 		if err != nil {
@@ -150,7 +150,7 @@ func setUserRoles() {
 func resetAllUserPasswords() {
 	tls := tls.Config{InsecureSkipVerify: true}
 	restyClient := resty.New().SetTLSClientConfig(&tls)
-	client := gocloak.NewClient("https://keycloak.opencloud.test")
+	client := gocloak.NewClient("https://keycloak.quad4.test")
 	client.SetRestyClient(restyClient)
 	ctx := context.Background()
 	token, err := client.LoginAdmin(ctx, "kcadmin", "admin", "master")
@@ -159,14 +159,14 @@ func resetAllUserPasswords() {
 		panic("Something wrong with the credentials or url")
 	}
 
-	users, err := client.GetUsers(ctx, token.AccessToken, "openCloud", gocloak.GetUsersParams{})
+	users, err := client.GetUsers(ctx, token.AccessToken, "quad4Cloud", gocloak.GetUsersParams{})
 	if err != nil {
 		fmt.Printf("%s\n", err)
 		panic("Oh no!, failed to list users :(")
 	}
 	for _, user := range users {
 		fmt.Printf("Setting password for user: %s\n", *user.Username)
-		err = client.SetPassword(ctx, token.AccessToken, *user.ID, "openCloud", "demo", false)
+		err = client.SetPassword(ctx, token.AccessToken, *user.ID, "quad4Cloud", "demo", false)
 		if err != nil {
 			fmt.Printf("Failed to set password for user %s: %s\n", *user.Username, err)
 		}

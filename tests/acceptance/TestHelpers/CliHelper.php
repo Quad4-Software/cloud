@@ -25,7 +25,7 @@ use Psr\Http\Message\ResponseInterface;
 use TestHelpers\OcConfigHelper;
 
 /**
- * A helper class for running OpenCloud CLI commands
+ * A helper class for running Quad4 Cloud CLI commands
  */
 class CliHelper {
 	/**

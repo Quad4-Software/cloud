@@ -3,7 +3,7 @@ package svc
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/services/ocs/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/ocs/pkg/metrics"
 )
 
 // NewInstrument returns a service that instruments metrics.

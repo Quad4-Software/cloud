@@ -4,10 +4,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -37,7 +37,7 @@ func DefaultConfig() *config.Config {
 		},
 		Font: config.Font{
 			AssetPath:   filepath.Join(defaults.BaseDataPath(), "collaboration/fonts"),
-			PreviewText: "OpenCloud",
+			PreviewText: "Quad4 Cloud",
 		},
 		Store: config.Store{
 			Store:    "nats-js-kv",
@@ -49,11 +49,11 @@ func DefaultConfig() *config.Config {
 		GRPC: config.GRPC{
 			Addr:      "127.0.0.1:9301",
 			Protocol:  "tcp",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9300",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 		},
 		Debug: config.Debug{
 			Addr:   "127.0.0.1:9304",

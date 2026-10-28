@@ -1,15 +1,15 @@
 ---
 name: bumping-web
-description: Use when the user asks to bump, update, or upgrade the OpenCloud web assets/frontend to a specific version (e.g. "bump web to v7.0.0", "update web to v7.1.2"). Covers editing the version files, the single commit, and opening the PR against the right branch.
+description: Use when the user asks to bump, update, or upgrade the Quad4 Cloud web assets/frontend to a specific version (e.g. "bump web to v7.0.0", "update web to v7.1.2"). Covers editing the version files, the single commit, and opening the PR against the right branch.
 ---
 
 # Bumping Web
 
 ## Overview
 
-Bumping web updates the pinned OpenCloud web frontend (assets + UI-test runner) to a tagged release of [opencloud-eu/web](https://github.com/opencloud-eu/web). It touches exactly two files, lands as one commit, and ships as a PR whose body is the web changelog for that version.
+Bumping web updates the pinned Quad4 Cloud web frontend (assets + UI-test runner) to a tagged release of [opencloud-eu/web](https://github.com/opencloud-eu/web). It touches exactly two files, lands as one commit, and ships as a PR whose body is the web changelog for that version.
 
-Template PR: https://github.com/opencloud-eu/opencloud/pull/2733
+Template PR: https://github.com/Quad4-Software/cloud/pull/2733
 
 ## Prerequisites
 

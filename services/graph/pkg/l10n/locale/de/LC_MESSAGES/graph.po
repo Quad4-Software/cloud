@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Jörn Friedrich Dreyer <jfd@butonic.de>, 2025
-# OpenCloud Ops, 2026
+# Quad4 Cloud Ops, 2026
 # Jannick Kuhr, 2026
 # 
 #, fuzzy

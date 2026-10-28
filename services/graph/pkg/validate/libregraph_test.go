@@ -8,9 +8,9 @@ import (
 	. "github.com/onsi/gomega"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/validate"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/validate"
 )
 
 type validatableFactory[T any] func() (T, bool)

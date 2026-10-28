@@ -2,7 +2,7 @@
 Feature: restore deleted files/folders
   As a user
   I would like to restore files/folders
-  So that I can recover accidentally deleted files/folders in OpenCloud
+  So that I can recover accidentally deleted files/folders in Quad4 Cloud
 
   Background:
     Given user "Alice" has been created with default attributes

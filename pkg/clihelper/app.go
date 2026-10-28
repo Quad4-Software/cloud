@@ -3,7 +3,7 @@ package clihelper
 import (
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/version"
 
 	"github.com/spf13/cobra"
 )
@@ -12,7 +12,7 @@ import (
 func DefaultApp(app *cobra.Command) *cobra.Command {
 	// TODO: when migration is done this has to become DefaultApp
 	// version info
-	app.Version = fmt.Sprintf("%s (%s <%s>) (%s)", version.String, "OpenCloud GmbH", "support@opencloud.eu", version.Compiled())
+	app.Version = fmt.Sprintf("%s (%s <%s>) (%s)", version.String, "Quad4 Cloud GmbH", "support@quad4.io", version.Compiled())
 
 	// cobra would print the error on top of what main() already prints
 	app.SilenceErrors = true

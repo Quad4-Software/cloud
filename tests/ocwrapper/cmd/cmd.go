@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"ocwrapper/common"
-	opencloud "ocwrapper/opencloud"
-	opencloudConfig "ocwrapper/opencloud/config"
+	quad4 "ocwrapper/quad4"
+	quad4Config "ocwrapper/quad4/config"
 	wrapper "ocwrapper/wrapper"
 	wrapperConfig "ocwrapper/wrapper/config"
 
@@ -14,7 +14,7 @@ import (
 
 var rootCmd = &cobra.Command{
 	Use:   "ocwrapper",
-	Short: "ocwrapper is a wrapper for opencloud server",
+	Short: "ocwrapper is a wrapper for quad4 server",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
 			fmt.Printf("error executing help command: %v\n", err)
@@ -31,19 +31,19 @@ func serveCmd() *cobra.Command {
 
 			// set configs
 			binFlag, _ := cmd.Flags().GetString("bin")
-			opencloudConfig.Set("bin", binFlag)
+			quad4Config.Set("bin", binFlag)
 			urlFlag, _ := cmd.Flags().GetString("url")
-			opencloudConfig.Set("url", urlFlag)
+			quad4Config.Set("url", urlFlag)
 			retryFlag, _ := cmd.Flags().GetString("retry")
-			opencloudConfig.Set("retry", retryFlag)
+			quad4Config.Set("retry", retryFlag)
 			adminUsernameFlag, _ := cmd.Flags().GetString("admin-username")
-			opencloudConfig.Set("adminUsername", adminUsernameFlag)
+			quad4Config.Set("adminUsername", adminUsernameFlag)
 			adminPasswordFlag, _ := cmd.Flags().GetString("admin-password")
-			opencloudConfig.Set("adminPassword", adminPasswordFlag)
+			quad4Config.Set("adminPassword", adminPasswordFlag)
 
-			skipOpenCloudRunFlag, _ := cmd.Flags().GetBool("skip-OpenCloud-run")
-			if !skipOpenCloudRunFlag {
-				go opencloud.Start(nil)
+			skipQuad4CloudRunFlag, _ := cmd.Flags().GetBool("skip-Quad4 Cloud-run")
+			if !skipQuad4CloudRunFlag {
+				go quad4.Start(nil)
 			}
 			portFlag, _ := cmd.Flags().GetString("port")
 			go wrapper.Start(portFlag)
@@ -52,13 +52,13 @@ func serveCmd() *cobra.Command {
 
 	// serve command args
 	serveCmd.Flags().SortFlags = false
-	serveCmd.Flags().StringP("bin", "", opencloudConfig.Get("bin"), "Full opencloud binary path")
-	serveCmd.Flags().StringP("url", "", opencloudConfig.Get("url"), "opencloud server url")
-	serveCmd.Flags().StringP("retry", "", opencloudConfig.Get("retry"), "Number of retries to start opencloud server")
+	serveCmd.Flags().StringP("bin", "", quad4Config.Get("bin"), "Full quad4 binary path")
+	serveCmd.Flags().StringP("url", "", quad4Config.Get("url"), "quad4 server url")
+	serveCmd.Flags().StringP("retry", "", quad4Config.Get("retry"), "Number of retries to start quad4 server")
 	serveCmd.Flags().StringP("port", "p", wrapperConfig.Get("port"), "Wrapper API server port")
-	serveCmd.Flags().StringP("admin-username", "", "", "admin username for opencloud server")
-	serveCmd.Flags().StringP("admin-password", "", "", "admin password for opencloud server")
-	serveCmd.Flags().Bool("skip-OpenCloud-run", false, "Skip running opencloud server")
+	serveCmd.Flags().StringP("admin-username", "", "", "admin username for quad4 server")
+	serveCmd.Flags().StringP("admin-password", "", "", "admin password for quad4 server")
+	serveCmd.Flags().Bool("skip-Quad4 Cloud-run", false, "Skip running quad4 server")
 
 	return serveCmd
 }

@@ -1,6 +1,6 @@
 package log
 
-import "github.com/opencloud-eu/opencloud/pkg/shared"
+import "github.com/Quad4-Software/cloud/pkg/shared"
 
 // Configure initializes a service-specific logger instance.
 func Configure(name string, commons *shared.Commons, localServiceLogLevel string) Logger {

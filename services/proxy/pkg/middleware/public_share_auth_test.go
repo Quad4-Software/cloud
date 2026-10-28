@@ -10,7 +10,7 @@ import (
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"google.golang.org/grpc"
 )
@@ -18,12 +18,12 @@ import (
 var _ = Describe("Authenticating requests", Label("PublicShareAuthenticator"), func() {
 	var authenticator Authenticator
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		authenticator = PublicShareAuthenticator{
 			Logger: log.NewLogger(),
 			RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 				"GatewaySelector",
-				"eu.opencloud.api.gateway",
+				"io.quad4.api.gateway",
 				func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 					return mockGatewayClient{
 						AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {

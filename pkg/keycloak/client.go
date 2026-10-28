@@ -13,8 +13,8 @@ import (
 // Some attribute constants.
 // TODO: Make these configurable in the future.
 const (
-	_idAttr       = "OPENCLOUD_ID"
-	_userTypeAttr = "OPENCLOUD_USER_TYPE"
+	_idAttr       = "QUAD4CLOUD_ID"
+	_userTypeAttr = "QUAD4CLOUD_USER_TYPE"
 )
 
 // ConcreteClient represents a concrete implementation of a keycloak client

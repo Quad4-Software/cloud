@@ -3,9 +3,9 @@ package defaults
 import (
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/auth-app/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/auth-app/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -27,12 +27,12 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9246",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9247",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Root:      "/",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
@@ -47,7 +47,7 @@ func DefaultConfig() *config.Config {
 		StorageDriver: "jsoncs3",
 		StorageDrivers: config.StorageDrivers{
 			JSONCS3: config.JSONCS3Driver{
-				ProviderAddr:      "eu.opencloud.api.storage-system",
+				ProviderAddr:      "io.quad4.api.storage-system",
 				SystemUserIDP:     "internal",
 				PasswordGenerator: "diceware",
 				PasswordGeneratorOptions: config.PasswordGeneratorOptions{

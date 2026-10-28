@@ -4,11 +4,11 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/opencloud-eu/opencloud/pkg/checks"
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
-	"github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/service/debug"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/checks"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/service/debug"
+	"github.com/Quad4-Software/cloud/pkg/version"
 )
 
 // Server initializes the debug service and server.

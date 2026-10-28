@@ -1,8 +1,8 @@
 package defaults
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/eventhistory/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/eventhistory/pkg/config"
 )
 
 // FullDefaultConfig returns the full default config
@@ -27,7 +27,7 @@ func DefaultConfig() *config.Config {
 		},
 		Events: config.Events{
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		Store: config.Store{
@@ -39,7 +39,7 @@ func DefaultConfig() *config.Config {
 		},
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9274",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 		},
 	}
 }

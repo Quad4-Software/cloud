@@ -249,7 +249,7 @@ class CapabilitiesContext implements Context {
 		$jsonExpectedDecoded['product'] = $product;
 		$jsonExpectedDecoded['productname'] = $productName;
 
-		// We are on OpenCloud or reva or some other implementation. We cannot do "occ status".
+		// We are on Quad4 Cloud or reva or some other implementation. We cannot do "occ status".
 		// So get the expected version values by looking in the capabilities response.
 		$version = $this->getParameterValueFromXml(
 			$responseXmlObject,

@@ -13,9 +13,9 @@ import (
 	"github.com/testcontainers/testcontainers-go/modules/opensearch"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config/parser"
 )
 
 const (
@@ -73,7 +73,7 @@ func setupOpenSearchTestContainer(ctx context.Context, cfg *config.Config) (func
 		}
 	}
 
-	containerName := fmt.Sprintf("opencloud/test/%s", openSearchImage)
+	containerName := fmt.Sprintf("quad4/test/%s", openSearchImage)
 	containerName = strings.Replace(containerName, "/", "__", -1)
 	containerName = strings.Replace(containerName, ":", "_", -1)
 	container, err := opensearch.Run(

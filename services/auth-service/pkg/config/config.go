@@ -3,7 +3,7 @@ package config
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/shared"
 )
 
 type Config struct {

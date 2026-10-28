@@ -56,7 +56,7 @@ class SharingHelper {
 
 	/**
 	 *
-	 * @param string $baseUrl baseURL of the OpenCloud installation without /ocs.
+	 * @param string $baseUrl baseURL of the Quad4 Cloud installation without /ocs.
 	 * @param string $user user that creates the share.
 	 * @param string $password password of the user that creates the share.
 	 * @param string $path The path to the file or folder which should be shared.

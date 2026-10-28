@@ -7,7 +7,7 @@ import (
 
 	mRegistry "go-micro.dev/v4/registry"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 // RegisterService publishes an arbitrary endpoint to the service-registry. This allows querying nodes of

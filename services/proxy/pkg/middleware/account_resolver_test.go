@@ -10,13 +10,13 @@ import (
 	tenantpb "github.com/cs3org/go-cs3apis/cs3/identity/tenant/v1beta1"
 	userv1beta1 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
 	rpcpb "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend/mocks"
-	userRoleMocks "github.com/opencloud-eu/opencloud/services/proxy/pkg/userroles/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend/mocks"
+	userRoleMocks "github.com/Quad4-Software/cloud/services/proxy/pkg/userroles/mocks"
 	"github.com/opencloud-eu/reva/v2/pkg/auth/scope"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
@@ -370,12 +370,12 @@ func TestTenantIDMapping(t *testing.T) {
 		t.Helper()
 		gatewaySelector := pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},
 		)
-		t.Cleanup(func() { pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway") })
+		t.Cleanup(func() { pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway") })
 
 		ub := mocks.UserBackend{}
 		ub.On("GetUserByClaims", mock.Anything, mock.Anything, mock.Anything, mock.Anything).Return(user, token, nil)

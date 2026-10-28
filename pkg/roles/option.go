@@ -1,8 +1,8 @@
 package roles
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
 	"go-micro.dev/v4/store"
 )
 

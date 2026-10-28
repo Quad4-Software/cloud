@@ -17,28 +17,28 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/signedurl"
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	pkgmiddleware "github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	"github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	policiessvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/policies/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/proxy"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/server/debug"
-	proxyHTTP "github.com/opencloud-eu/opencloud/services/proxy/pkg/server/http"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/staticroutes"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/userroles"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	pkgmiddleware "github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	"github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	policiessvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/policies/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/proxy"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/server/debug"
+	proxyHTTP "github.com/Quad4-Software/cloud/services/proxy/pkg/server/http"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/staticroutes"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/userroles"
 
 	chimiddleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/spf13/cobra"
@@ -296,8 +296,8 @@ func loadMiddlewares(logger log.Logger, cfg *config.Config,
 	userProvider backend.UserBackend, publisher events.Publisher,
 	gatewaySelector pool.Selectable[gateway.GatewayAPIClient], serviceSelector selector.Selector) (alice.Chain, error) {
 
-	rolesClient := settingssvc.NewRoleService("eu.opencloud.api.settings", cfg.GrpcClient)
-	policiesProviderClient := policiessvc.NewPoliciesProviderService("eu.opencloud.api.policies", cfg.GrpcClient)
+	rolesClient := settingssvc.NewRoleService("io.quad4.api.settings", cfg.GrpcClient)
+	policiesProviderClient := policiessvc.NewPoliciesProviderService("io.quad4.api.policies", cfg.GrpcClient)
 
 	var roleAssigner userroles.UserRoleAssigner
 	switch cfg.RoleAssignment.Driver {

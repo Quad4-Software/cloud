@@ -9,25 +9,25 @@ import (
 	"github.com/olekukonko/errors"
 	"github.com/spf13/cobra"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/configlog"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	natspkg "github.com/opencloud-eu/opencloud/pkg/nats"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/runner"
-	ogrpc "github.com/opencloud-eu/opencloud/pkg/service/grpc"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/config/parser"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/server/debug"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/server/http"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/activitylog"
-	svcEvents "github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/events"
-	svcHttp "github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/config/configlog"
+	"github.com/Quad4-Software/cloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	natspkg "github.com/Quad4-Software/cloud/pkg/nats"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/runner"
+	ogrpc "github.com/Quad4-Software/cloud/pkg/service/grpc"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/config"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/config/parser"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/server/debug"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/server/http"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/service/activitylog"
+	svcEvents "github.com/Quad4-Software/cloud/services/activitylog/pkg/service/events"
+	svcHttp "github.com/Quad4-Software/cloud/services/activitylog/pkg/service/http"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/events/stream"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
@@ -114,7 +114,7 @@ func Server(cfg *config.Config) *cobra.Command {
 
 			if !cfg.HTTP.Disabled {
 
-				hClient := ehsvc.NewEventHistoryService("eu.opencloud.api.eventhistory", grpcClient)
+				hClient := ehsvc.NewEventHistoryService("io.quad4.api.eventhistory", grpcClient)
 
 				svc, err := svcHttp.New(
 					activityLog,
@@ -131,7 +131,7 @@ func Server(cfg *config.Config) *cobra.Command {
 				// TODO svc = service.NewInstrument(svc, metrics)
 				// TODO svc = service.NewLogging(svc, logger) // this logs service specific data
 				// TODO svc = service.NewTracing(svc, traceProvider)
-				vClient := settingssvc.NewValueService("eu.opencloud.api.settings", grpcClient)
+				vClient := settingssvc.NewValueService("io.quad4.api.settings", grpcClient)
 
 				server, err := http.Server(
 					http.ValueClient(vClient),

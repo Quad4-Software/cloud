@@ -387,7 +387,7 @@ trait Provisioning {
 			} elseif ($setDefaultAttributes) {
 				$userAttribute['email'] = $this->getEmailAddressForUser($row['username']);
 				if ($userAttribute['email'] === null) {
-					$userAttribute['email'] = $row['username'] . '@opencloud.eu';
+					$userAttribute['email'] = $row['username'] . '@quad4.io';
 				}
 			} else {
 				$userAttribute['email'] = null;
@@ -442,14 +442,14 @@ trait Provisioning {
 		if (isset($setting["email"])) {
 			$entry['mail'] = $setting["email"];
 		} elseif (!OcHelper::isTestingOnReva()) {
-			$entry['mail'] = $userId . '@opencloud.eu';
+			$entry['mail'] = $userId . '@quad4.io';
 		}
 		$entry['gidNumber'] = 5000;
 		$entry['uidNumber'] = $uidNumber;
 
 		if (!OcHelper::isTestingOnReva()) {
-			$entry['objectclass'][] = 'openCloudObject';
-			$entry['openCloudUUID'] = WebDavHelper::generateUUIDv4();
+			$entry['objectclass'][] = 'quad4CloudObject';
+			$entry['quad4CloudUUID'] = WebDavHelper::generateUUIDv4();
 		}
 
 		try {
@@ -501,7 +501,7 @@ trait Provisioning {
 		if ($email === null) {
 			$email = $this->getEmailAddressForUser($userName);
 			if ($email === null) {
-				$email = \str_replace(["@", " "], "", $userName) . '@opencloud.eu';
+				$email = \str_replace(["@", " "], "", $userName) . '@quad4.io';
 			}
 		}
 		$reqUser = $byUser ? $this->getActualUsername($byUser) : $this->getAdminUsername();
@@ -567,8 +567,8 @@ trait Provisioning {
 			$entry['member'] = "";
 		}
 		if (!OcHelper::isTestingOnReva()) {
-			$entry['objectclass'][] = 'openCloudObject';
-			$entry['openCloudUUID'] = WebDavHelper::generateUUIDv4();
+			$entry['objectclass'][] = 'quad4CloudObject';
+			$entry['quad4CloudUUID'] = WebDavHelper::generateUUIDv4();
 		}
 
 		try {
@@ -1082,7 +1082,7 @@ trait Provisioning {
 
 			if ($email === null) {
 				// escape @ & space if present in userId
-				$email = \str_replace(["@", " "], "", $user) . '@opencloud.eu';
+				$email = \str_replace(["@", " "], "", $user) . '@quad4.io';
 			}
 		}
 		$user = $this->getActualUsername($user);

@@ -1,7 +1,7 @@
 package revaconfig
 
 import (
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config"
 )
 
 // StorageProviderDrivers are the drivers for the storage provider

@@ -8,10 +8,10 @@ import (
 
 	"github.com/blevesearch/bleve/v2"
 	bleveQuery "github.com/blevesearch/bleve/v2/search/query"
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	searchQuery "github.com/opencloud-eu/opencloud/services/search/pkg/query"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	searchQuery "github.com/Quad4-Software/cloud/services/search/pkg/query"
 )
 
 // The following quoted string enumerates the characters which may be escaped: "+-=&|><!(){}[]^\"~*?:\\/ "

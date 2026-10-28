@@ -1,6 +1,6 @@
 # Users
 
-The `users` service provides the CS3 Users API for OpenCloud. It is responsible for managing user information and authentication within the OpenCloud instance.
+The `users` service provides the CS3 Users API for Quad4 Cloud. It is responsible for managing user information and authentication within the Quad4 Cloud instance.
 
 This service implements the CS3 identity user provider interface, allowing other services to query and manage user accounts. It works as a backend provider for the `graph` service when using the CS3 backend mode.
 
@@ -21,7 +21,7 @@ The service provides CS3 gRPC APIs for:
 
 ## Usage
 
-The users service is only used internally by other OpenCloud services and not being accessed directly by clients. The `frontend`, `ocs`, and `graph` services translate HTTP API requests into CS3 API calls to this service.
+The users service is only used internally by other Quad4 Cloud services and not being accessed directly by clients. The `frontend`, `ocs`, and `graph` services translate HTTP API requests into CS3 API calls to this service.
 
 ## Scalability
 

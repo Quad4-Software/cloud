@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
 	"github.com/opencloud-eu/reva/v2/pkg/store"
 
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
@@ -13,14 +13,14 @@ import (
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	ocEvents "github.com/opencloud-eu/opencloud/pkg/events"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	settingsmocks "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/service"
+	ocEvents "github.com/Quad4-Software/cloud/pkg/events"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	settingsmocks "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/service"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
@@ -38,14 +38,14 @@ var _ = Describe("Notifications", func() {
 			Id: &user.UserId{
 				OpaqueId: "sharer",
 			},
-			Mail:        "sharer@opencloud.eu",
+			Mail:        "sharer@quad4.io",
 			DisplayName: "Dr. S. Harer",
 		}
 		sharee = &user.User{
 			Id: &user.UserId{
 				OpaqueId: "sharee",
 			},
-			Mail:        "sharee@opencloud.eu",
+			Mail:        "sharee@quad4.io",
 			DisplayName: "Eric Expireling",
 		}
 		resourceid = &provider.ResourceId{
@@ -56,11 +56,11 @@ var _ = Describe("Notifications", func() {
 	)
 
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},
@@ -99,7 +99,7 @@ var _ = Describe("Notifications", func() {
 			cfg.GRPCClientTLS = &shared.GRPCClientTLS{}
 			ch := make(chan events.Event)
 			evts := service.NewEventsNotifier(ch, tc, log.NewLogger(), gatewaySelector, vs, "",
-				"", "", "", testOpenCloudURL, "", "",
+				"", "", "", testQuad4CloudURL, "", "",
 				store.Create(), nil, nil)
 			go evts.Run()
 
@@ -123,11 +123,11 @@ Click here to view it: https://cloud.example.com/files/shares/with-me
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/files/shares/with-me",
+			expectedLink:   testQuad4CloudURL + "/files/shares/with-me",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: events.ShareCreated{
@@ -149,8 +149,8 @@ Even though this share has been revoked you still might have access through othe
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
 			done:           make(chan struct{}),
@@ -174,8 +174,8 @@ Even though this share has been revoked you still might have access through othe
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
 			done:           make(chan struct{}),
@@ -198,11 +198,11 @@ Click here to view it: https://cloud.example.com/f/spaceid
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/f/spaceid",
+			expectedLink:   testQuad4CloudURL + "/f/spaceid",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: events.SpaceShared{
@@ -226,11 +226,11 @@ Click here to check it: https://cloud.example.com/f/spaceid
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/f/spaceid",
+			expectedLink:   testQuad4CloudURL + "/f/spaceid",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: events.SpaceUnshared{
@@ -251,8 +251,8 @@ Even though this membership has expired you still might have access through othe
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: "",
 			done:           make(chan struct{}),
@@ -281,8 +281,8 @@ Click here to view it: https://cloud.example.com/g/v1.sharehash.secret
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedHTMLParts: []string{
 				`<p style="margin: 0;">Hello,</p>`,
@@ -292,7 +292,7 @@ https://opencloud.eu
 				`The link is only valid for 30 minutes.</td>`,
 			},
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/g/v1.sharehash.secret",
+			expectedLink:   testQuad4CloudURL + "/g/v1.sharehash.secret",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: ocEvents.GuestTokenCreated{
@@ -321,11 +321,11 @@ Click here to view it: https://cloud.example.com/g/v1.sharehash.newsecret
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/g/v1.sharehash.newsecret",
+			expectedLink:   testQuad4CloudURL + "/g/v1.sharehash.newsecret",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: ocEvents.GuestTokenRenewed{
@@ -352,11 +352,11 @@ Click here to view it: https://cloud.example.com/g/v1.sharehash.newsecret
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
-			expectedLink:   testOpenCloudURL + "/g/v1.sharehash.newsecret",
+			expectedLink:   testQuad4CloudURL + "/g/v1.sharehash.newsecret",
 			done:           make(chan struct{}),
 		}, events.Event{
 			Event: ocEvents.GuestTokenRenewed{
@@ -378,14 +378,14 @@ var _ = Describe("Notifications X-Site Scripting", func() {
 			Id: &user.UserId{
 				OpaqueId: "sharer",
 			},
-			Mail:        "sharer@opencloud.eu",
+			Mail:        "sharer@quad4.io",
 			DisplayName: "Dr. O'reilly",
 		}
 		sharee = &user.User{
 			Id: &user.UserId{
 				OpaqueId: "sharee",
 			},
-			Mail:        "sharee@opencloud.eu",
+			Mail:        "sharee@quad4.io",
 			DisplayName: "<script>alert('Eric Expireling');</script>",
 		}
 		resourceid = &provider.ResourceId{
@@ -396,11 +396,11 @@ var _ = Describe("Notifications X-Site Scripting", func() {
 	)
 
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},
@@ -444,7 +444,7 @@ var _ = Describe("Notifications X-Site Scripting", func() {
 			cfg.GRPCClientTLS = &shared.GRPCClientTLS{}
 			ch := make(chan events.Event)
 			evts := service.NewEventsNotifier(ch, tc, log.NewLogger(), gatewaySelector, vs, "",
-				"", "", "", testOpenCloudURL, "", "",
+				"", "", "", testQuad4CloudURL, "", "",
 				store.Create(), nil, nil)
 			go evts.Run()
 
@@ -468,8 +468,8 @@ Click here to view it: https://cloud.example.com/files/shares/with-me
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedHTMLParts: []string{
 				`<p style="margin: 0;">Hello &lt;script&gt;alert(&#39;Eric Expireling&#39;);&lt;/script&gt;</p>`,
@@ -478,7 +478,7 @@ https://opencloud.eu
 			},
 			expectedSender: sharer.GetDisplayName(),
 
-			expectedLink: testOpenCloudURL + "/files/shares/with-me",
+			expectedLink: testQuad4CloudURL + "/files/shares/with-me",
 			done:         make(chan struct{}),
 		}, events.Event{
 			Event: events.ShareCreated{
@@ -500,8 +500,8 @@ Click here to view it: https://cloud.example.com/f/spaceid
 
 
 ---
-OpenCloud - a safe home for all your data
-https://opencloud.eu
+Quad4 Cloud - a safe home for all your data
+https://quad4.io
 `,
 			expectedSender: sharer.GetDisplayName(),
 			expectedHTMLParts: []string{
@@ -509,7 +509,7 @@ https://opencloud.eu
 				`<p style="margin: 12px 0 0;">Dr. O&#39;reilly has invited you to join &#34;&lt;script&gt;alert(&#39;secret space&#39;);&lt;/script&gt;&#34;.</p>`,
 				`>Open space</a>`,
 			},
-			expectedLink: testOpenCloudURL + "/f/spaceid",
+			expectedLink: testQuad4CloudURL + "/f/spaceid",
 			done:         make(chan struct{}),
 		}, events.Event{
 			Event: events.SpaceShared{
@@ -522,7 +522,7 @@ https://opencloud.eu
 	)
 })
 
-const testOpenCloudURL = "https://cloud.example.com"
+const testQuad4CloudURL = "https://cloud.example.com"
 
 type testChannel struct {
 	expectedReceipients []string
@@ -530,7 +530,7 @@ type testChannel struct {
 	expectedTextBody    string
 	expectedHTMLParts   []string
 	expectedSender      string
-	// expectedLink, if set, must be an absolute URL on the OpenCloud instance
+	// expectedLink, if set, must be an absolute URL on the Quad4 Cloud instance
 	// and must be linked in the HTML body.
 	expectedLink string
 	done         chan struct{}
@@ -550,7 +550,7 @@ func (tc testChannel) SendMessage(ctx context.Context, m *channels.Message) erro
 	// user input must never reach the html body unescaped
 	Expect(m.HTMLBody).ToNot(ContainSubstring("<script>"))
 	if tc.expectedLink != "" {
-		Expect(tc.expectedLink).To(HavePrefix(testOpenCloudURL + "/"))
+		Expect(tc.expectedLink).To(HavePrefix(testQuad4CloudURL + "/"))
 		Expect(m.TextBody).To(ContainSubstring(tc.expectedLink))
 		Expect(m.HTMLBody).To(ContainSubstring(`href="` + tc.expectedLink + `"`))
 	}

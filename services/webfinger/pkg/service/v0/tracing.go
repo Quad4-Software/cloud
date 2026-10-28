@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
 )

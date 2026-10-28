@@ -13,10 +13,10 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/thumbnails/internal/imagortest"
-	"github.com/opencloud-eu/opencloud/services/thumbnails/pkg/config/defaults"
-	svc "github.com/opencloud-eu/opencloud/services/thumbnails/pkg/service/http/v0"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/thumbnails/internal/imagortest"
+	"github.com/Quad4-Software/cloud/services/thumbnails/pkg/config/defaults"
+	svc "github.com/Quad4-Software/cloud/services/thumbnails/pkg/service/http/v0"
 )
 
 var generatorNames = generatorList()

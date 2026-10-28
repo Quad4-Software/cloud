@@ -157,7 +157,7 @@ Feature: Space management
       | user  | code |
       # Brian is Space Admin and can currently list all Personal Spaces, so he
       # gets a 403 instead of a 404 here. This might change in the future see:
-      # https://github.com/opencloud-eu/opencloud/issues/2979
+      # https://github.com/Quad4-Software/cloud/issues/2979
       | Brian | 403  |
       | Carol | 404  |
 

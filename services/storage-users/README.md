@@ -8,7 +8,7 @@ You can define a graceful shutdown period for the `storage-users` service.
 
 IMPORTANT: The graceful shutdown period is only applicable if the `storage-users` service runs as standalone service. It does not apply if the `storage-users` service runs as part of the single binary or as single Docker environment. To build an environment where the `storage-users` service runs as a standalone service, you must start two instances, one _without_ the `storage-users` service and one _only with_ the the `storage-users` service. Note that both instances must be able to communicate on the same network.
 
-When hard-stopping OpenCloud, for example with the `kill <pid>` command (SIGKILL), it is possible and likely that not all data from the decomposedfs (metadata) has been written to the storage which may result in an inconsistent decomposedfs. When gracefully shutting down OpenCloud, using a command like SIGTERM, the process will no longer accept any write requests from _other_ services and will try to write the internal open  requests which can take an undefined duration based on many factors. To mitigate that situation, the following things have been implemented:
+When hard-stopping Quad4 Cloud, for example with the `kill <pid>` command (SIGKILL), it is possible and likely that not all data from the decomposedfs (metadata) has been written to the storage which may result in an inconsistent decomposedfs. When gracefully shutting down Quad4 Cloud, using a command like SIGTERM, the process will no longer accept any write requests from _other_ services and will try to write the internal open  requests which can take an undefined duration based on many factors. To mitigate that situation, the following things have been implemented:
 
 *   With the value of the environment variable `STORAGE_USERS_GRACEFUL_SHUTDOWN_TIMEOUT`, the `storage-users` service will delay its shutdown giving it time to finalize writing necessary data. This delay can be necessary if there is a lot of data to be saved and/or if storage access/thruput is slow. In such a case you would receive an error log entry informing you that not all data could be saved in time. To prevent such occurrences, you must increase the default value.
 
@@ -29,7 +29,7 @@ The `storage-users` CLI tool uses the default address to establish the connectio
 
 <!-- referencing: [oCIS FS] clean up aborted uploads https://github.com/owncloud/ocis/issues/2622 -->
 
-When using OpenCloud as user storage, a directory named `storage/users/uploads` can be found in the OpenCloud data folder. This is an intermediate directory based on [TUS](https://tus.io) which is an open protocol for resumable uploads. Each upload consists of a _blob_ and a _blob.info_ file. Note that the term _blob_ is just a placeholder.
+When using Quad4 Cloud as user storage, a directory named `storage/users/uploads` can be found in the Quad4 Cloud data folder. This is an intermediate directory based on [TUS](https://tus.io) which is an open protocol for resumable uploads. Each upload consists of a _blob_ and a _blob.info_ file. Note that the term _blob_ is just a placeholder.
 
 *   **If an upload succeeds**, the _blob_ file will be moved to the target and the _blob.info_ file will be deleted.
 
@@ -50,7 +50,7 @@ Example cases for expired uploads:
 The following commands are available to manage unfinished uploads:
 
 ```bash
-opencloud storage-users uploads <command>
+quad4 storage-users uploads <command>
 ```
 
 ```plaintext
@@ -72,15 +72,15 @@ The `sessions` command is the entry point for listing, restarting and cleaning u
 > When resuming an upload, processing will continue unfinished items from their last completed step.
 
 ```bash
-opencloud storage-users uploads sessions <commandoptions>
+quad4 storage-users uploads sessions <commandoptions>
 ```
 
 ```
 NAME:
-   opencloud storage-users uploads sessions - Print a list of upload sessions
+   quad4 storage-users uploads sessions - Print a list of upload sessions
 
 USAGE:
-   opencloud storage-users uploads sessions [command options]
+   quad4 storage-users uploads sessions [command options]
 
 OPTIONS:
    --id value    filter sessions by upload session id (default: unset)
@@ -106,7 +106,7 @@ Some additional information on returned information:
 Command to list ongoing upload sessions
 
 ```bash
-opencloud storage-users uploads sessions --expired=false --processing=false
+quad4 storage-users uploads sessions --expired=false --processing=false
 ```
 
 ```plaintext
@@ -122,12 +122,12 @@ Not expired sessions:
 The sessions command can also output json
 
 ```bash
-opencloud storage-users uploads sessions --expired=false --processing=false --json
+quad4 storage-users uploads sessions --expired=false --processing=false --json
 ```
 
 ```json
-{"id":"5e387954-7313-4223-a904-bf996da6ec0b","space":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c","filename":"foo.txt","offset":0,"size":1234,"executant":{"idp":"https://cloud.opencloud.test","opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"spaceowner":{"opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"expires":"2024-01-26T13:04:31+01:00","processing":false, "scanDate": "2024-04-24T11:24:14+02:00", "scanResult": "infected: virus A"}
-{"id":"f066244d-97b2-48e7-a30d-b40fcb60cec6","space":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c","filename":"bar.txt","offset":0,"size":4321,"executant":{"idp":"https://cloud.opencloud.test","opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"spaceowner":{"opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"expires":"2024-01-26T13:18:47+01:00","processing":false, "scanDate": "2024-04-24T14:38:29+02:00", "scanResult": ""}
+{"id":"5e387954-7313-4223-a904-bf996da6ec0b","space":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c","filename":"foo.txt","offset":0,"size":1234,"executant":{"idp":"https://cloud.quad4.test","opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"spaceowner":{"opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"expires":"2024-01-26T13:04:31+01:00","processing":false, "scanDate": "2024-04-24T11:24:14+02:00", "scanResult": "infected: virus A"}
+{"id":"f066244d-97b2-48e7-a30d-b40fcb60cec6","space":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c","filename":"bar.txt","offset":0,"size":4321,"executant":{"idp":"https://cloud.quad4.test","opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"spaceowner":{"opaque_id":"f7fbf8c8-139b-4376-b307-cf0a8c2d0d9c"},"expires":"2024-01-26T13:18:47+01:00","processing":false, "scanDate": "2024-04-24T14:38:29+02:00", "scanResult": ""}
 ```
 
 The sessions command can also clear and restart/resume uploads. The output is the same as if run without `--clean` or `--restart` flag.
@@ -135,10 +135,10 @@ Note: It is recommended to run to command first without the `--clean` (`--proces
 
 ```bash
 # cleans all expired uploads regardless of processing and virus state.
-opencloud storage-users uploads sessions --expired=true --clean
+quad4 storage-users uploads sessions --expired=true --clean
 
 # resumes all uploads that are processing and are not virus infected
-opencloud storage-users uploads sessions --processing=false --has-virus=false --resume
+quad4 storage-users uploads sessions --processing=false --has-virus=false --resume
 ```
 
 
@@ -149,13 +149,13 @@ It will check all nodes that are in postprocessing and find those without an upl
 The command reads the decomposed storage directly, so it only finds nodes when the msgpack metadata backend (`.mpk` files) is used. The stale nodes are cleaned up by `DeleteRevision` events, which are consumed by the running `storage-users` service: it needs to be up for the cleanup to actually happen.
 
 ```bash
-    opencloud storage-users uploads delete-stale-nodes <commandoptions>
+    quad4 storage-users uploads delete-stale-nodes <commandoptions>
 ```
 ```plaintext
 Delete (or revert) all nodes in processing state that are not referenced by any upload session
 
 Usage:
-  opencloud storage-users uploads delete-stale-nodes [flags]
+  quad4 storage-users uploads delete-stale-nodes [flags]
 
 Flags:
       --dry-run          Only show what would be deleted without actually deleting (default true)
@@ -169,19 +169,19 @@ Flags:
 Dry run to see what would be deleted (recommended first step)
 
 ```bash
-opencloud storage-users uploads delete-stale-nodes
+quad4 storage-users uploads delete-stale-nodes
 ```
 
 Set `--dry-run=false` to actually delete the stale nodes
 
 ```bash
-opencloud storage-users uploads delete-stale-nodes --dry-run=false
+quad4 storage-users uploads delete-stale-nodes --dry-run=false
 ```
 
 Use `--verbose` to get more information about what is happening
 
 ```bash
-opencloud storage-users uploads delete-stale-nodes --dry-run=false --verbose
+quad4 storage-users uploads delete-stale-nodes --dry-run=false --verbose
 ```
 
 
@@ -190,7 +190,7 @@ opencloud storage-users uploads delete-stale-nodes --dry-run=false --verbose
 The `blobstore` command group verifies connectivity to the configured blobstore and inspects individual blobs. The `ocis`/`decomposed` and `s3ng`/`decomposeds3` storage drivers are supported.
 
 ```bash
-opencloud storage-users blobstore <command>
+quad4 storage-users blobstore <command>
 ```
 
 ```plaintext
@@ -204,17 +204,17 @@ COMMANDS:
 Uploads a random blob, downloads and verifies it, then deletes it. All three steps must succeed.
 
 ```bash
-opencloud storage-users blobstore check [flags]
+quad4 storage-users blobstore check [flags]
 ```
 
 `--blob-size` sets the random payload size and accepts values such as `64`, `1KB`, `1MB`, or `4MiB` (default: `64` bytes).
 
 ```bash
 # Check the configured blobstore using the default payload
-opencloud storage-users blobstore check
+quad4 storage-users blobstore check
 
 # Use a larger payload
-opencloud storage-users blobstore check --blob-size=4MiB
+quad4 storage-users blobstore check --blob-size=4MiB
 ```
 
 #### Get
@@ -222,20 +222,20 @@ opencloud storage-users blobstore check --blob-size=4MiB
 Downloads a blob to verify that it is readable. Identify the blob by passing the raw path from a log line with `--path`, or by setting `--blob-id` and `--space-id`.
 
 ```bash
-opencloud storage-users blobstore get [flags]
+quad4 storage-users blobstore get [flags]
 ```
 
 For S3-backed drivers, `--blob-size` can specify the expected size when known. If it is wrong or omitted, the command retries once using the actual size returned by S3.
 
 ```bash
 # Use a path from an s3ng/decomposeds3 log line
-opencloud storage-users blobstore get --path="b19ec764-5398-458a-8ff1-1925bd906999/61/03/ab/c3/-b08a-4556-9937-2bf3065c1202"
+quad4 storage-users blobstore get --path="b19ec764-5398-458a-8ff1-1925bd906999/61/03/ab/c3/-b08a-4556-9937-2bf3065c1202"
 
 # Use a full filesystem path from an ocis/decomposed log line
-opencloud storage-users blobstore get --path="/var/lib/opencloud/storage/users/spaces/b1/9ec764-5398-458a-8ff1-1925bd906999/blobs/61/03/ab/c3/-b08a-4556-9937-2bf3065c1202"
+quad4 storage-users blobstore get --path="/var/lib/quad4/storage/users/spaces/b1/9ec764-5398-458a-8ff1-1925bd906999/blobs/61/03/ab/c3/-b08a-4556-9937-2bf3065c1202"
 
 # Or provide the space and blob IDs directly
-opencloud storage-users blobstore get --space-id=b19ec764-5398-458a-8ff1-1925bd906999 --blob-id=6103abc3-b08a-4556-9937-2bf3065c1202
+quad4 storage-users blobstore get --space-id=b19ec764-5398-458a-8ff1-1925bd906999 --blob-id=6103abc3-b08a-4556-9937-2bf3065c1202
 ```
 
 ### Manage Trash-Bin Items
@@ -243,7 +243,7 @@ opencloud storage-users blobstore get --space-id=b19ec764-5398-458a-8ff1-1925bd9
 This command set provides commands to get an overview of trash-bin items, restore items and purge old items of `personal` spaces and `project` spaces (spaces that have been created manually). `trash-bin` commands require a `spaceID` as parameter. 
 
 ```bash
-opencloud storage-users trash-bin <command>
+quad4 storage-users trash-bin <command>
 ```
 
 ```plaintext
@@ -258,7 +258,7 @@ COMMANDS:
 
 *   Purge all expired items from the trash-bin.
     ```bash
-    opencloud storage-users trash-bin purge-expired
+    quad4 storage-users trash-bin purge-expired
     ```
 
 The behaviour of the `purge-expired` command can be configured by using the following environment variables.
@@ -290,7 +290,7 @@ The `storage-users` CLI tool uses the default address to establish the connectio
 
 *   Print a list of all trash-bin items of a space
     ```bash
-    opencloud storage-users trash-bin list [command options] ['spaceID' required]
+    quad4 storage-users trash-bin list [command options] ['spaceID' required]
     ```
 
 The restore option defines the behavior for an item to be restored, when the item name already exists in the target space. Supported options are: `skip`, `replace` and `keep-both`. The default value is `skip`.
@@ -299,12 +299,12 @@ When the CLI tool restores the item with the `replace` option, the existing item
 
 * Restore all trash-bin items for a space
     ```bash
-    opencloud storage-users trash-bin restore-all [command options] ['spaceID' required]
+    quad4 storage-users trash-bin restore-all [command options] ['spaceID' required]
     ```
 
 * Restore a trash-bin item by ID
     ```bash
-    opencloud storage-users trash-bin restore [command options] ['spaceID' required] ['itemID' required]
+    quad4 storage-users trash-bin restore [command options] ['spaceID' required] ['itemID' required]
     ```
 
 ## Caching

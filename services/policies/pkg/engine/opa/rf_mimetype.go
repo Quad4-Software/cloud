@@ -16,7 +16,7 @@ import (
 // Be careful calling this multiple times with individual readers, the mime store is global,
 // which results in one global store which holds all known mimetype mappings at once.
 //
-// Rego: `opencloud.mimetype.extensions("application/pdf")`
+// Rego: `quad4.mimetype.extensions("application/pdf")`
 // Result `[.pdf]`
 func RFMimetypeExtensions(f io.Reader) (func(*rego.Rego), error) {
 	if f != nil {
@@ -44,7 +44,7 @@ func RFMimetypeExtensions(f io.Reader) (func(*rego.Rego), error) {
 
 	return rego.Function1(
 		&rego.Function{
-			Name:             "opencloud.mimetype.extensions",
+			Name:             "quad4.mimetype.extensions",
 			Decl:             types.NewFunction(types.Args(types.S), types.A),
 			Memoize:          true,
 			Nondeterministic: true,
@@ -74,11 +74,11 @@ func RFMimetypeExtensions(f io.Reader) (func(*rego.Rego), error) {
 // RFMimetypeDetect extends the rego dictionary with the possibility to detect mimetypes.
 // Be careful, the list of known mimetypes is limited.
 //
-// Rego: `opencloud.mimetype.extensions(".txt")`
+// Rego: `quad4.mimetype.extensions(".txt")`
 // Result `text/plain`
 var RFMimetypeDetect = rego.Function1(
 	&rego.Function{
-		Name:             "opencloud.mimetype.detect",
+		Name:             "quad4.mimetype.detect",
 		Decl:             types.NewFunction(types.Args(types.A), types.S),
 		Memoize:          true,
 		Nondeterministic: true,

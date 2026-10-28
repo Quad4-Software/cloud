@@ -4,8 +4,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/generator"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/generator"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
 )
 
 var _ = Describe("TypeMapping", func() {

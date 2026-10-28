@@ -23,13 +23,13 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/tags"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	searchmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/constants"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/net"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/prop"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/propfind"
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/thumbnail"
+	searchmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/constants"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/net"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/prop"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/propfind"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/thumbnail"
 )
 
 const (
@@ -117,7 +117,7 @@ func (g Webdav) Search(w http.ResponseWriter, r *http.Request) {
 
 func (g Webdav) sendSearchResponse(davPrefix string, rsp *searchsvc.SearchResponse, w http.ResponseWriter, r *http.Request, user *userv1beta1.User) {
 	logger := g.log.SubloggerWithRequestID(r.Context())
-	responsesXML, err := multistatusResponse(r.Context(), davPrefix, g.config.OpenCloudPublicURL, rsp.Matches, user, g.sourceTypes)
+	responsesXML, err := multistatusResponse(r.Context(), davPrefix, g.config.Quad4CloudPublicURL, rsp.Matches, user, g.sourceTypes)
 	if err != nil {
 		logger.Error().Err(err).Msg("error formatting propfind")
 		w.WriteHeader(http.StatusInternalServerError)

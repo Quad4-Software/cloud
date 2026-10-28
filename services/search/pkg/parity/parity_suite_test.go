@@ -8,8 +8,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/config"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	"github.com/Quad4-Software/cloud/services/search/pkg/config"
 )
 
 var (

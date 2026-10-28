@@ -101,7 +101,7 @@ We can run a single feature or a single test suite with different storage driver
 #### Run Tests Only
 
 If you want to re-run the tests because of some failures or any other reason, you can use the following command to run only the tests without starting the services again.
-Also, this command can be used to run the tests against the already hosted OpenCloud server by providing the `TEST_SERVER_URL` and `USE_BEARER_TOKEN` environment variables.
+Also, this command can be used to run the tests against the already hosted Quad4 Cloud server by providing the `TEST_SERVER_URL` and `USE_BEARER_TOKEN` environment variables.
 
 > [!NOTE]
 > You can utilize the following environment variables:
@@ -118,7 +118,7 @@ make -C tests/acceptance/docker run-test-only
 
 #### Skip Local Image Build While Running Tests
 
-While running the tests, opencloud docker image is built with `opencloudeu/opencloud:dev` tag. If you want to skip building the local image, you can use `OC_IMAGE_TAG` env which must contain an available docker tag of the [opencloudeu/opencloud registry on Docker Hub](https://hub.docker.com/r/opencloudeu/opencloud) (e.g. 'latest').
+While running the tests, quad4 docker image is built with `quad4-software/quad4:dev` tag. If you want to skip building the local image, you can use `OC_IMAGE_TAG` env which must contain an available docker tag of the [quad4-software/quad4 registry on Docker Hub](https://hub.docker.com/r/quad4-software/quad4) (e.g. 'latest').
 
 ```bash
 OC_IMAGE_TAG=latest \
@@ -174,30 +174,30 @@ TEST_GROUP=BaseWopiViewing docker compose -f tests/acceptance/docker/src/wopi-va
 Use the arm image for macOS to run the validator tests.
 
 ```bash
-WOPI_VALIDATOR_IMAGE=opencloudeu/wopi-validator \
+WOPI_VALIDATOR_IMAGE=quad4-software/wopi-validator \
 TEST_GROUP=BaseWopiViewing \
 docker compose -f tests/acceptance/docker/src/wopi-validator-test.yml up -d
 ```
 
 ## Running Test Suite in Local Environment
 
-### Run OpenCloud
+### Run Quad4 Cloud
 
-Create an up-to-date OpenCloud binary by [building OpenCloud]({{< ref "build" >}})
+Create an up-to-date Quad4 Cloud binary by [building Quad4 Cloud]({{< ref "build" >}})
 
-To start OpenCloud:
+To start Quad4 Cloud:
 
 ```bash
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
 OC_INSECURE=true PROXY_ENABLE_BASIC_AUTH=true \
-opencloud/bin/opencloud server
+quad4/bin/quad4 server
 ```
 
 `PROXY_ENABLE_BASIC_AUTH` will allow the acceptance tests to make requests against the provisioning api (and other endpoints) using basic auth.
 
-#### Run Local OpenCloud Tests (prefix `api`) and Tests Transferred From Core (prefix `coreApi`)
+#### Run Local Quad4 Cloud Tests (prefix `api`) and Tests Transferred From Core (prefix `coreApi`)
 
 ```bash
 make test-acceptance-api \
@@ -206,7 +206,7 @@ TEST_SERVER_URL=https://localhost:9200 \
 
 Useful environment variables:
 
-`TEST_SERVER_URL`: OpenCloud server url. Please, adjust the server url according to your setup.
+`TEST_SERVER_URL`: Quad4 Cloud server url. Please, adjust the server url according to your setup.
 
 `BEHAT_FEATURE`: to run a single feature
 
@@ -241,8 +241,8 @@ A specific scenario from a feature can be run by adding `:<line-number>` at the 
 
 ### Use Existing Tests for BDD
 
-As a lot of scenarios are written for core, we can use those tests for Behaviour driven development in OpenCloud.
-Every scenario that does not work in OpenCloud with `decomposed` storage, is listed in `tests/acceptance/expected-failures-decomposed-storage.md` with a link to the related issue.
+As a lot of scenarios are written for core, we can use those tests for Behaviour driven development in Quad4 Cloud.
+Every scenario that does not work in Quad4 Cloud with `decomposed` storage, is listed in `tests/acceptance/expected-failures-decomposed-storage.md` with a link to the related issue.
 
 Those scenarios are run in the ordinary acceptance test pipeline in CI. The scenarios that fail are checked against the
 expected failures. If there are any differences then the CI pipeline fails.
@@ -278,24 +278,24 @@ make test-acceptance-api
 
 ### Running ENV Config Tests (@env-Config)
 
-Test suites tagged with `@env-config` are used to test the environment variables that are used to configure OpenCloud. These tests are special tests that require the OpenCloud server to be run using [ocwrapper](https://github.com/opencloud-eu/opencloud/blob/main/tests/ocwrapper/README.md).
+Test suites tagged with `@env-config` are used to test the environment variables that are used to configure Quad4 Cloud. These tests are special tests that require the Quad4 Cloud server to be run using [ocwrapper](https://github.com/Quad4-Software/cloud/blob/main/tests/ocwrapper/README.md).
 
-#### Run OpenCloud With ocwrapper
+#### Run Quad4 Cloud With ocwrapper
 
 ```bash
-# working dir: OpenCloud repo root dir
+# working dir: Quad4 Cloud repo root dir
 
-# init OpenCloud
+# init Quad4 Cloud
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
 # build the wrapper
 cd tests/ocwrapper
 make build
 
-# run OpenCloud
+# run Quad4 Cloud
 PROXY_ENABLE_BASIC_AUTH=true \
-./bin/ocwrapper serve --bin=../../opencloud/bin/opencloud
+./bin/ocwrapper serve --bin=../../quad4/bin/quad4
 ```
 
 #### Run the Tests
@@ -309,10 +309,10 @@ make test-acceptance-api
 
 #### Writing New ENV Config Tests
 
-While writing tests for a new OpenCloud ENV configuration, please make sure to follow these guidelines:
+While writing tests for a new Quad4 Cloud ENV configuration, please make sure to follow these guidelines:
 
 1. Tag the test suite (or test scenarios) with `@env-config`
-2. Use `OcConfigHelper.php` for helper functions - provides functions to reconfigure the running OpenCloud instance.
+2. Use `OcConfigHelper.php` for helper functions - provides functions to reconfigure the running Quad4 Cloud instance.
 3. Recommended: add the new step implementations in `OcConfigContext.php`
 
 ### Running Test Suite With Email Service (@email)
@@ -327,23 +327,23 @@ Run the following command to setup inbucket
 docker run -d -p9000:9000 -p2500:2500 --name inbucket inbucket/inbucket
 ```
 
-#### Run OpenCloud
+#### Run Quad4 Cloud
 
-Documentation for environment variables is available [here](https://docs.opencloud.eu/services/notifications/#environment-variables)
+Documentation for environment variables is available [here](https://github.com/Quad4-Software/cloud/services/notifications/#environment-variables)
 
 ```bash
-# init OpenCloud
+# init Quad4 Cloud
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
-# run OpenCloud
+# run Quad4 Cloud
 PROXY_ENABLE_BASIC_AUTH=true \
 OC_ADD_RUN_SERVICES=notifications \
 NOTIFICATIONS_SMTP_HOST=localhost \
 NOTIFICATIONS_SMTP_PORT=2500 \
 NOTIFICATIONS_SMTP_INSECURE=true \
-NOTIFICATIONS_SMTP_SENDER="OpenCloud <noreply@example.com>" \
-opencloud/bin/opencloud server
+NOTIFICATIONS_SMTP_SENDER="Quad4 Cloud <noreply@example.com>" \
+quad4/bin/quad4 server
 ```
 
 #### Run the Acceptance Test
@@ -370,22 +370,22 @@ Run the following docker command to setup tika service
 docker run -d -p 127.0.0.1:9998:9998 apache/tika
 ```
 
-#### Run OpenCloud
+#### Run Quad4 Cloud
 
 TODO: Documentation related to the content based search and tika extractor will be added later.
 
 ```bash
-# init OpenCloud
+# init Quad4 Cloud
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
-# run OpenCloud
+# run Quad4 Cloud
 PROXY_ENABLE_BASIC_AUTH=true \
 OC_INSECURE=true \
 SEARCH_EXTRACTOR_TYPE=tika \
 SEARCH_EXTRACTOR_TIKA_TIKA_URL=http://localhost:9998 \
 SEARCH_EXTRACTOR_CS3SOURCE_INSECURE=true \
-opencloud/bin/opencloud server
+quad4/bin/quad4 server
 ```
 
 #### Run the Acceptance Test
@@ -437,26 +437,26 @@ Start ClamAV daemon
 Run `clamAV` through docker
 
 ```bash
-docker run -d -p 3310:3310 opencloudeu/clamav-ci:latest
+docker run -d -p 3310:3310 quad4-software/clamav-ci:latest
 ```
 
-#### Run OpenCloud
+#### Run Quad4 Cloud
 
-As `antivirus` service is not enabled by default we need to enable the service while running OpenCloud server. We also need to enable `async upload` and as virus scan is performed in post-processing step, we need to set it as well. Documentation for environment variables related to antivirus is available [here](https://docs.opencloud.eu/services/antivirus/#environment-variables)
+As `antivirus` service is not enabled by default we need to enable the service while running Quad4 Cloud server. We also need to enable `async upload` and as virus scan is performed in post-processing step, we need to set it as well. Documentation for environment variables related to antivirus is available [here](https://github.com/Quad4-Software/cloud/services/antivirus/#environment-variables)
 
 ```bash
-# init OpenCloud
+# init Quad4 Cloud
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
-# run OpenCloud
+# run Quad4 Cloud
 PROXY_ENABLE_BASIC_AUTH=true \
 ANTIVIRUS_SCANNER_TYPE="clamav" \
 ANTIVIRUS_CLAMAV_SOCKET="tcp://host.docker.internal:3310" \
 POSTPROCESSING_STEPS="virusscan" \
 OC_ASYNC_UPLOADS=true \
 OC_ADD_RUN_SERVICES="antivirus" \
-opencloud/bin/opencloud server
+quad4/bin/quad4 server
 ```
 
 Note:
@@ -478,16 +478,16 @@ make test-acceptance-api
 
 ### Running Test Suite With Federated Sharing (@ocm)
 
-Test suites that are tagged with `@ocm` require running two different OpenCloud instances. TODO More detailed information and configuration related to it will be added later.
+Test suites that are tagged with `@ocm` require running two different Quad4 Cloud instances. TODO More detailed information and configuration related to it will be added later.
 
-#### Setup First OpenCloud Instance
+#### Setup First Quad4 Cloud Instance
 
 ```bash
-# init OpenCloud
+# init Quad4 Cloud
 IDM_ADMIN_PASSWORD=admin \
-opencloud/bin/opencloud init --insecure true
+quad4/bin/quad4 init --insecure true
 
-# run OpenCloud
+# run Quad4 Cloud
 OC_URL="https://localhost:9200" \
 PROXY_ENABLE_BASIC_AUTH=true \
 OC_ENABLE_OCM=true \
@@ -496,31 +496,31 @@ OC_ADD_RUN_SERVICES="ocm" \
 OCM_OCM_INVITE_MANAGER_INSECURE=true \
 OCM_OCM_SHARE_PROVIDER_INSECURE=true \
 OCM_OCM_STORAGE_PROVIDER_INSECURE=true \
-WEB_UI_CONFIG_FILE="tests/config/local/opencloud-web.json" \
-opencloud/bin/opencloud server
+WEB_UI_CONFIG_FILE="tests/config/local/quad4-web.json" \
+quad4/bin/quad4 server
 ```
 
-The first OpenCloud instance should be available at: https://localhost:9200/
+The first Quad4 Cloud instance should be available at: https://localhost:9200/
 
-#### Setup Second OpenCloud Instance
+#### Setup Second Quad4 Cloud Instance
 
-You can run the second OpenCloud instance in two ways:
+You can run the second Quad4 Cloud instance in two ways:
 
 **Option 1. Using `.vscode/launch.json`**
 
-From the `Run and Debug` panel of VSCode, select `Fed OpenCloud Server` and start the debugger.
+From the `Run and Debug` panel of VSCode, select `Fed Quad4 Cloud Server` and start the debugger.
 
 **Option 2. Using env file**
 
 ```bash
-# init OpenCloud
-source tests/config/local/.env-federation && opencloud/bin/opencloud init
+# init Quad4 Cloud
+source tests/config/local/.env-federation && quad4/bin/quad4 init
 
-# run OpenCloud
-opencloud/bin/opencloud server
+# run Quad4 Cloud
+quad4/bin/quad4 server
 ```
 
-The second OpenCloud instance should be available at: https://localhost:10200/
+The second Quad4 Cloud instance should be available at: https://localhost:10200/
 
 Note:
 To enable ocm in the web interface, you need to set the following envs:
@@ -540,19 +540,19 @@ make test-acceptance-api
 
 ### Running Text Preview Tests Containing Unicode Characters
 
-There are some tests that check the text preview of files containing Unicode characters. The OpenCloud server by default cannot generate the thumbnail of such files correctly but it provides an environment variable to allow the use of custom fonts that support Unicode characters. So to run such tests successfully, we have to run the OpenCloud server with this environment variable.
+There are some tests that check the text preview of files containing Unicode characters. The Quad4 Cloud server by default cannot generate the thumbnail of such files correctly but it provides an environment variable to allow the use of custom fonts that support Unicode characters. So to run such tests successfully, we have to run the Quad4 Cloud server with this environment variable.
 
 ```bash
 ...
 THUMBNAILS_TXT_FONTMAP_FILE="/path/to/fontsMap.json"
-opencloud/bin/opencloud server
+quad4/bin/quad4 server
 ```
 
 The sample `fontsMap.json` file is located in `tests/config/drone/fontsMap.json`.
 
 ```json
 {
-  "defaultFont": "/path/to/opencloud/tests/config/drone/NotoSans.ttf"
+  "defaultFont": "/path/to/quad4/tests/config/drone/NotoSans.ttf"
 }
 ```
 
@@ -561,14 +561,14 @@ The sample `fontsMap.json` file is located in `tests/config/drone/fontsMap.json`
 ### Build dev docker
 
 ```bash
-make -C opencloud dev-docker
+make -C quad4 dev-docker
 ```
 
 ### Choose STORAGE_DRIVER
 
 By default, the system uses `posix` storage. However, you can override this by setting the `STORAGE_DRIVER` environment variable.
 
-### Run a script that starts the openCloud server in the docker and runs the API tests locally (for debugging purposes)
+### Run a script that starts the quad4Cloud server in the docker and runs the API tests locally (for debugging purposes)
 
 ```bash
 STORAGE_DRIVER=posix ./tests/acceptance/run_api_tests.sh

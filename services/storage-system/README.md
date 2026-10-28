@@ -1,6 +1,6 @@
 # Storage-System
 
-The OpenCloud Storage-System service persists and caches user related data that is defined via OpenCloud. This can be among other data role assignments, user settings and users shares.
+The Quad4 Cloud Storage-System service persists and caches user related data that is defined via Quad4 Cloud. This can be among other data role assignments, user settings and users shares.
 
 ## Caching
 

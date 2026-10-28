@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync/atomic"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/engine"
-	"github.com/opencloud-eu/opencloud/services/policies/pkg/metrics"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/engine"
+	"github.com/Quad4-Software/cloud/services/policies/pkg/metrics"
 	"github.com/opencloud-eu/reva/v2/pkg/events"
 	"go.opentelemetry.io/otel/trace"
 )

@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/metrics"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/metrics"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 	"github.com/prometheus/client_golang/prometheus"
 )
 

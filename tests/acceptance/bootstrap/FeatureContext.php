@@ -652,10 +652,10 @@ class FeatureContext extends BehatVariablesContext {
 	 *
 	 * @return void
 	 */
-	public function startOpencloudServer(): void {
-		$response = OcConfigHelper::startOpencloud();
+	public function startQuad4cloudServer(): void {
+		$response = OcConfigHelper::startQuad4cloud();
 		// 409 is returned if the server is already running
-		$this->theHTTPStatusCodeShouldBe([200, 409], 'Starting OpenCloud server', $response);
+		$this->theHTTPStatusCodeShouldBe([200, 409], 'Starting Quad4 Cloud server', $response);
 	}
 
 	/**
@@ -762,7 +762,7 @@ class FeatureContext extends BehatVariablesContext {
 	}
 
 	/**
-	 * removes the port from the OpenCloud URL
+	 * removes the port from the Quad4 Cloud URL
 	 *
 	 * @param string $url
 	 *
@@ -786,7 +786,7 @@ class FeatureContext extends BehatVariablesContext {
 	 * @return string
 	 */
 	public function getStorageUsersRoot(): string {
-		$ocDataPath = getenv("OC_BASE_DATA_PATH") ? getenv("OC_BASE_DATA_PATH") : getenv("HOME") . '/.opencloud';
+		$ocDataPath = getenv("OC_BASE_DATA_PATH") ? getenv("OC_BASE_DATA_PATH") : getenv("HOME") . '/.quad4';
 		return getenv("STORAGE_USERS_DECOMPOSED_ROOT")
 			? getenv("STORAGE_USERS_DECOMPOSED_ROOT")
 			: $ocDataPath . "/storage/users";
@@ -1724,7 +1724,7 @@ class FeatureContext extends BehatVariablesContext {
 	}
 
 	/**
-	 * Make a directory under the server root on the OpenCloud server
+	 * Make a directory under the server root on the Quad4 Cloud server
 	 *
 	 * @param string $dirPathFromServerRoot e.g. 'apps2/myapp/appinfo'
 	 *

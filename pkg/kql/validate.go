@@ -1,7 +1,7 @@
 package kql
 
 import (
-	"github.com/opencloud-eu/opencloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/ast"
 )
 
 func validateAst(a *ast.Ast) error {

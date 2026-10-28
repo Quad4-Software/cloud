@@ -8,9 +8,9 @@ import (
 
 	"github.com/go-ldap/ldap/v3"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/mocks"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 )
@@ -43,34 +43,34 @@ var eduConfig = config.LDAP{
 var schoolEntry = ldap.NewEntry("ou=Test School",
 	map[string][]string{
 		"ou":                             {"Test School"},
-		"openCloudEducationSchoolNumber": {"0123"},
-		"openCloudUUID":                  {"abcd-defg"},
-		"openCloudEducationExternalId":   {"abcd-defg"},
+		"quad4CloudEducationSchoolNumber": {"0123"},
+		"quad4CloudUUID":                  {"abcd-defg"},
+		"quad4CloudEducationExternalId":   {"abcd-defg"},
 	})
 
 var schoolEntry1 = ldap.NewEntry("ou=Test School1",
 	map[string][]string{
 		"ou":                             {"Test School1"},
-		"openCloudEducationSchoolNumber": {"0042"},
-		"openCloudUUID":                  {"hijk-defg"},
-		"openCloudEducationExternalId":   {"hijk-defg"},
+		"quad4CloudEducationSchoolNumber": {"0042"},
+		"quad4CloudUUID":                  {"hijk-defg"},
+		"quad4CloudEducationExternalId":   {"hijk-defg"},
 	})
 var schoolEntryWithTermination = ldap.NewEntry("ou=Test School",
 	map[string][]string{
 		"ou":                             {"Test School"},
-		"openCloudEducationSchoolNumber": {"0123"},
-		"openCloudUUID":                  {"abcd-defg"},
-		"openCloudEducationExternalId":   {"abcd-defg"},
-		"openCloudEducationSchoolTerminationTimestamp": {"20420131120000Z"},
+		"quad4CloudEducationSchoolNumber": {"0123"},
+		"quad4CloudUUID":                  {"abcd-defg"},
+		"quad4CloudEducationExternalId":   {"abcd-defg"},
+		"quad4CloudEducationSchoolTerminationTimestamp": {"20420131120000Z"},
 	})
 
 var (
-	filterSchoolSearchByIdExisting        = "(&(objectClass=openCloudEducationSchool)(|(openCloudUUID=abcd-defg)(openCloudEducationSchoolNumber=abcd-defg)))"
-	filterSchoolSearchByIdNonexistant     = "(&(objectClass=openCloudEducationSchool)(|(openCloudUUID=xxxx-xxxx)(openCloudEducationSchoolNumber=xxxx-xxxx)))"
-	filterSchoolSearchByNumberExisting    = "(&(objectClass=openCloudEducationSchool)(|(openCloudUUID=0123)(openCloudEducationSchoolNumber=0123)))"
-	filterSchoolSearchByNumberNonexistant = "(&(objectClass=openCloudEducationSchool)(|(openCloudUUID=3210)(openCloudEducationSchoolNumber=3210)))"
+	filterSchoolSearchByIdExisting        = "(&(objectClass=quad4CloudEducationSchool)(|(quad4CloudUUID=abcd-defg)(quad4CloudEducationSchoolNumber=abcd-defg)))"
+	filterSchoolSearchByIdNonexistant     = "(&(objectClass=quad4CloudEducationSchool)(|(quad4CloudUUID=xxxx-xxxx)(quad4CloudEducationSchoolNumber=xxxx-xxxx)))"
+	filterSchoolSearchByNumberExisting    = "(&(objectClass=quad4CloudEducationSchool)(|(quad4CloudUUID=0123)(quad4CloudEducationSchoolNumber=0123)))"
+	filterSchoolSearchByNumberNonexistant = "(&(objectClass=quad4CloudEducationSchool)(|(quad4CloudUUID=3210)(quad4CloudEducationSchoolNumber=3210)))"
 
-	schoolLDAPAttributeTypes = []string{"ou", "openCloudUUID", "openCloudEducationExternalId", "openCloudEducationSchoolNumber", "openCloudEducationSchoolTerminationTimestamp"}
+	schoolLDAPAttributeTypes = []string{"ou", "quad4CloudUUID", "quad4CloudEducationExternalId", "quad4CloudEducationSchoolNumber", "quad4CloudEducationSchoolTerminationTimestamp"}
 )
 
 func TestCreateEducationSchool(t *testing.T) {
@@ -109,7 +109,7 @@ func TestCreateEducationSchool(t *testing.T) {
 				return false
 			}
 			for _, attr := range ar.Attributes {
-				if attr.Type == "openCloudEducationSchoolTerminationTimestamp" {
+				if attr.Type == "quad4CloudEducationSchoolTerminationTimestamp" {
 					return false
 				}
 			}
@@ -129,7 +129,7 @@ func TestCreateEducationSchool(t *testing.T) {
 			BaseDN:     "",
 			Scope:      2,
 			SizeLimit:  1,
-			Filter:     "(&(objectClass=openCloudEducationSchool)(openCloudEducationSchoolNumber=0123))",
+			Filter:     "(&(objectClass=quad4CloudEducationSchool)(quad4CloudEducationSchoolNumber=0123))",
 			Attributes: schoolLDAPAttributeTypes,
 			Controls:   []ldap.Control(nil),
 		}
@@ -143,7 +143,7 @@ func TestCreateEducationSchool(t *testing.T) {
 			BaseDN:     "",
 			Scope:      2,
 			SizeLimit:  1,
-			Filter:     "(&(objectClass=openCloudEducationSchool)(openCloudEducationSchoolNumber=0666))",
+			Filter:     "(&(objectClass=quad4CloudEducationSchool)(quad4CloudEducationSchoolNumber=0666))",
 			Attributes: schoolLDAPAttributeTypes,
 			Controls:   []ldap.Control(nil),
 		}
@@ -157,7 +157,7 @@ func TestCreateEducationSchool(t *testing.T) {
 			BaseDN:     "",
 			Scope:      2,
 			SizeLimit:  1,
-			Filter:     "(&(objectClass=openCloudEducationSchool)(openCloudEducationSchoolNumber=1111))",
+			Filter:     "(&(objectClass=quad4CloudEducationSchool)(quad4CloudEducationSchoolNumber=1111))",
 			Attributes: schoolLDAPAttributeTypes,
 			Controls:   []ldap.Control(nil),
 		}
@@ -171,7 +171,7 @@ func TestCreateEducationSchool(t *testing.T) {
 			BaseDN:     "ou=Test School,",
 			Scope:      0,
 			SizeLimit:  1,
-			Filter:     "(objectClass=openCloudEducationSchool)",
+			Filter:     "(objectClass=quad4CloudEducationSchool)",
 			Attributes: schoolLDAPAttributeTypes,
 			Controls:   []ldap.Control(nil),
 		}
@@ -214,7 +214,7 @@ func TestUpdateEducationSchoolTerminationDate(t *testing.T) {
 		}
 		for _, mod := range mr.Changes {
 			if mod.Operation == ldap.ReplaceAttribute &&
-				mod.Modification.Type == "openCloudEducationSchoolTerminationTimestamp" &&
+				mod.Modification.Type == "quad4CloudEducationSchoolTerminationTimestamp" &&
 				mod.Modification.Vals[0] == "20420131120000Z" {
 				return true
 			}
@@ -462,7 +462,7 @@ func TestGetEducationSchools(t *testing.T) {
 		BaseDN:     "",
 		Scope:      2,
 		SizeLimit:  0,
-		Filter:     "(objectClass=openCloudEducationSchool)",
+		Filter:     "(objectClass=quad4CloudEducationSchool)",
 		Attributes: schoolLDAPAttributeTypes,
 		Controls:   []ldap.Control(nil),
 	}
@@ -497,7 +497,7 @@ var userByIDSearch1 *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=people,dc=test",
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationUser)(|(uid=abcd-defg)(entryUUID=abcd-defg)))",
+	Filter:     "(&(objectClass=quad4CloudEducationUser)(|(uid=abcd-defg)(entryUUID=abcd-defg)))",
 	Attributes: eduUserAttrs,
 	Controls:   []ldap.Control(nil),
 }
@@ -506,7 +506,7 @@ var userByIDSearch2 *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=people,dc=test",
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationUser)(|(uid=does-not-exist)(entryUUID=does-not-exist)))",
+	Filter:     "(&(objectClass=quad4CloudEducationUser)(|(uid=does-not-exist)(entryUUID=does-not-exist)))",
 	Attributes: eduUserAttrs,
 	Controls:   []ldap.Control(nil),
 }
@@ -517,7 +517,7 @@ var userToSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
 		{
 			Operation: ldap.AddAttribute,
 			Modification: ldap.PartialAttribute{
-				Type: "openCloudMemberOfSchool",
+				Type: "quad4CloudMemberOfSchool",
 				Vals: []string{"abcd-defg"},
 			},
 		},
@@ -530,7 +530,7 @@ var userFromSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
 		{
 			Operation: ldap.DeleteAttribute,
 			Modification: ldap.PartialAttribute{
-				Type: "openCloudMemberOfSchool",
+				Type: "quad4CloudMemberOfSchool",
 				Vals: []string{"abcd-defg"},
 			},
 		},
@@ -538,12 +538,12 @@ var userFromSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
 }
 
 var classToSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
-	DN: "openCloudEducationExternalId=Math0123",
+	DN: "quad4CloudEducationExternalId=Math0123",
 	Changes: []ldap.Change{
 		{
 			Operation: ldap.AddAttribute,
 			Modification: ldap.PartialAttribute{
-				Type: "openCloudMemberOfSchool",
+				Type: "quad4CloudMemberOfSchool",
 				Vals: []string{"abcd-defg"},
 			},
 		},
@@ -551,12 +551,12 @@ var classToSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
 }
 
 var classFromSchoolModRequest *ldap.ModifyRequest = &ldap.ModifyRequest{
-	DN: "openCloudEducationExternalId=Math0123",
+	DN: "quad4CloudEducationExternalId=Math0123",
 	Changes: []ldap.Change{
 		{
 			Operation: ldap.DeleteAttribute,
 			Modification: ldap.PartialAttribute{
-				Type: "openCloudMemberOfSchool",
+				Type: "quad4CloudMemberOfSchool",
 				Vals: []string{"abcd-defg"},
 			},
 		},
@@ -614,7 +614,7 @@ var usersBySchoolIDSearch *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=people,dc=test",
 	Scope:      2,
 	SizeLimit:  0,
-	Filter:     "(&(objectClass=openCloudEducationUser)(openCloudMemberOfSchool=abcd-defg))",
+	Filter:     "(&(objectClass=quad4CloudEducationUser)(quad4CloudMemberOfSchool=abcd-defg))",
 	Attributes: eduUserAttrs,
 	Controls:   []ldap.Control(nil),
 }
@@ -637,8 +637,8 @@ var classesBySchoolIDSearch *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=groups,dc=test",
 	Scope:      2,
 	SizeLimit:  0,
-	Filter:     "(&(objectClass=openCloudEducationClass)(openCloudMemberOfSchool=abcd-defg))",
-	Attributes: []string{"cn", "entryUUID", "openCloudEducationClassType", "openCloudEducationExternalId", "openCloudMemberOfSchool", "openCloudEducationTeacherMember"},
+	Filter:     "(&(objectClass=quad4CloudEducationClass)(quad4CloudMemberOfSchool=abcd-defg))",
+	Attributes: []string{"cn", "entryUUID", "quad4CloudEducationClassType", "quad4CloudEducationExternalId", "quad4CloudMemberOfSchool", "quad4CloudEducationTeacherMember"},
 	Controls:   []ldap.Control(nil),
 }
 
@@ -660,8 +660,8 @@ var classesByUUIDSearchNotFound *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=groups,dc=test",
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationClass)(|(entryUUID=does-not-exist)(openCloudEducationExternalId=does-not-exist)))",
-	Attributes: []string{"cn", "entryUUID", "openCloudEducationClassType", "openCloudEducationExternalId", "openCloudMemberOfSchool", "openCloudEducationTeacherMember"},
+	Filter:     "(&(objectClass=quad4CloudEducationClass)(|(entryUUID=does-not-exist)(quad4CloudEducationExternalId=does-not-exist)))",
+	Attributes: []string{"cn", "entryUUID", "quad4CloudEducationClassType", "quad4CloudEducationExternalId", "quad4CloudMemberOfSchool", "quad4CloudEducationTeacherMember"},
 	Controls:   []ldap.Control(nil),
 }
 
@@ -669,8 +669,8 @@ var classesByUUIDSearchFound *ldap.SearchRequest = &ldap.SearchRequest{
 	BaseDN:     "ou=groups,dc=test",
 	Scope:      2,
 	SizeLimit:  1,
-	Filter:     "(&(objectClass=openCloudEducationClass)(|(entryUUID=abcd-defg)(openCloudEducationExternalId=abcd-defg)))",
-	Attributes: []string{"cn", "entryUUID", "openCloudEducationClassType", "openCloudEducationExternalId", "openCloudMemberOfSchool", "openCloudEducationTeacherMember"},
+	Filter:     "(&(objectClass=quad4CloudEducationClass)(|(entryUUID=abcd-defg)(quad4CloudEducationExternalId=abcd-defg)))",
+	Attributes: []string{"cn", "entryUUID", "quad4CloudEducationClassType", "quad4CloudEducationExternalId", "quad4CloudMemberOfSchool", "quad4CloudEducationTeacherMember"},
 	Controls:   []ldap.Control(nil),
 }
 

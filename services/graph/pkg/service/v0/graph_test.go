@@ -30,17 +30,17 @@ import (
 	"github.com/tidwall/gjson"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	v0 "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/mocks"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/metrics"
-	service "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	v0 "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/graph/mocks"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/metrics"
+	service "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var _ = Describe("Graph", func() {
@@ -74,11 +74,11 @@ var _ = Describe("Graph", func() {
 		cfg.Commons = &shared.Commons{}
 		cfg.GRPCClientTLS = &shared.GRPCClientTLS{}
 
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},
@@ -809,7 +809,7 @@ var _ = Describe("Graph", func() {
 							Map: map[string]*typesv1beta1.OpaqueEntry{
 								"description": {Decoder: "plain", Value: []byte("This space is for testing")},
 								"spaceAlias":  {Decoder: "plain", Value: []byte("project/testspace")},
-								"contentType": {Decoder: "plain", Value: []byte("application/vnd.opencloud.test")},
+								"contentType": {Decoder: "plain", Value: []byte("application/vnd.quad4.test")},
 							},
 						},
 					},
@@ -827,7 +827,7 @@ var _ = Describe("Graph", func() {
 					TotalBytes: 500,
 				}, nil)
 
-				jsonBody := []byte(`{"name": "Test Space", "driveType": "project", "description": "This space is for testing", "DriveAlias": "project/testspace", "@libre.graph.contentType": "application/vnd.opencloud.test"}`)
+				jsonBody := []byte(`{"name": "Test Space", "driveType": "project", "description": "This space is for testing", "DriveAlias": "project/testspace", "@libre.graph.contentType": "application/vnd.quad4.test"}`)
 				r := httptest.NewRequest(http.MethodPost, "/graph/v1.0/drives", bytes.NewBuffer(jsonBody)).WithContext(ctx)
 				rr := httptest.NewRecorder()
 				svc.CreateDrive(rr, r)
@@ -841,7 +841,7 @@ var _ = Describe("Graph", func() {
 				Expect(*response.DriveType).To(Equal("project"))
 				Expect(*response.DriveAlias).To(Equal("project/testspace"))
 				Expect(*response.Description).To(Equal("This space is for testing"))
-				Expect(*response.LibreGraphContentType).To(Equal("application/vnd.opencloud.test"))
+				Expect(*response.LibreGraphContentType).To(Equal("application/vnd.quad4.test"))
 			})
 			It("Incomplete space", func() {
 				gatewayClient.On("CreateStorageSpace", mock.Anything, mock.Anything).Return(&provider.CreateStorageSpaceResponse{

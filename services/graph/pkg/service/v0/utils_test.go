@@ -17,11 +17,11 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storagespace"
 	"google.golang.org/protobuf/testing/protocmp"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/identity/cache"
-	service "github.com/opencloud-eu/opencloud/services/graph/pkg/service/v0"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/identity/cache"
+	service "github.com/Quad4-Software/cloud/services/graph/pkg/service/v0"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var _ = Describe("Utils", func() {

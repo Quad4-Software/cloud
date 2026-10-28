@@ -3,7 +3,7 @@ package thumbnail
 import (
 	"mime"
 
-	"github.com/opencloud-eu/opencloud/services/webdav/pkg/generator"
+	"github.com/Quad4-Software/cloud/services/webdav/pkg/generator"
 )
 
 // DefaultTypeMapping answers for every type in DefaultSourceTypes, so the

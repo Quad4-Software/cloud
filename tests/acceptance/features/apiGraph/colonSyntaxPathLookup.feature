@@ -13,8 +13,8 @@ Feature: colon-syntax path lookup on the Graph API
   resources the caller is not allowed to see.
 
   Clients must percent-encode each path segment, exactly as MS Graph requires.
-  The only OpenCloud-specific point: ':' must be encoded as "%3A" (the split is
-  on the literal ":/", so an encoded ':' is never a delimiter). OpenCloud allows
+  The only Quad4 Cloud-specific point: ':' must be encoded as "%3A" (the split is
+  on the literal ":/", so an encoded ':' is never a delimiter). Quad4 Cloud allows
   ':' in names whereas MS Graph/OneDrive forbid it, so "%3A" is the one extra
   character to encode.
 

@@ -9,10 +9,10 @@ import (
 	"github.com/stretchr/testify/mock"
 	"go-micro.dev/v4/client"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settings "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	settingsmocks "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settings "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	settingsmocks "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0/mocks"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

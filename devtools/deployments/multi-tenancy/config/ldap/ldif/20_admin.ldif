@@ -1,4 +1,4 @@
-dn: uid=admin,ou=users,dc=opencloud,dc=eu
+dn: uid=admin,ou=users,dc=quad4,dc=eu
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
@@ -8,13 +8,13 @@ givenName: Admin
 sn: Admin
 cn: admin
 displayName: Admin
-description: An admin for this OpenCloud instance.
+description: An admin for this Quad4 Cloud instance.
 mail: admin@example.org
 userPassword:: e1NTSEF9UWhmaFB3dERydTUydURoWFFObDRMbzVIckI3TkI5Nmo==
 
-dn: cn=administrators,ou=groups,dc=opencloud,dc=eu
+dn: cn=administrators,ou=groups,dc=quad4,dc=eu
 objectClass: groupOfNames
 objectClass: top
 cn: administrators
-description: OpenCloud Administrators
-member: uid=admin,ou=users,dc=opencloud,dc=eu
+description: Quad4 Cloud Administrators
+member: uid=admin,ou=users,dc=quad4,dc=eu

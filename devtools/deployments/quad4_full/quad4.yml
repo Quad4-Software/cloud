@@ -1,0 +1,82 @@
+---
+services:
+  traefik:
+    networks:
+      quad4-net:
+        aliases:
+          - ${OC_DOMAIN:-cloud.quad4.test}
+  quad4:
+    image: ${OC_DOCKER_IMAGE:-quad4-software/quad4-rolling}:${OC_DOCKER_TAG:-latest}
+    # changelog: https://github.com/Quad4-Software/cloud/tree/main/changelog
+    # release notes: https://github.com/Quad4-Software/cloud/quad4_release_notes.html
+    networks:
+      quad4-net:
+    entrypoint:
+      - /bin/sh
+    # run quad4 init to initialize a configuration file with random secrets
+    # it will fail on subsequent runs, because the config file already exists
+    # therefore we ignore the error and then start the quad4 server
+    command: ["-c", "quad4 init || true; quad4 server"]
+    environment:
+      # enable services that are not started automatically
+      OC_ADD_RUN_SERVICES: ${START_ADDITIONAL_SERVICES}
+      OC_URL: https://${OC_DOMAIN:-cloud.quad4.test}
+      OC_LOG_LEVEL: ${LOG_LEVEL:-info}
+      OC_LOG_COLOR: "${LOG_PRETTY:-false}"
+      OC_LOG_PRETTY: "${LOG_PRETTY:-false}"
+      # do not use SSL between Traefik and Quad4 Cloud
+      PROXY_TLS: "true"
+      # make the REVA gateway accessible to the app drivers
+      GATEWAY_GRPC_ADDR: 0.0.0.0:9142
+      # INSECURE: needed if Quad4 Cloud / Traefik is using self generated certificates
+      OC_INSECURE: "${INSECURE:-false}"
+      # basic auth (not recommended, but needed for eg. WebDav clients that do not support OpenID Connect)
+      PROXY_ENABLE_BASIC_AUTH: "${PROXY_ENABLE_BASIC_AUTH:-false}"
+      # admin user password
+      IDM_ADMIN_PASSWORD: "${ADMIN_PASSWORD:-admin}" # this overrides the admin password from the configuration file
+      # demo users
+      IDM_CREATE_DEMO_USERS: "${DEMO_USERS:-false}"
+      # idp login form settings
+      IDP_DEFAULT_SIGNIN_PAGE_TEXT: "${IDP_DEFAULT_SIGNIN_PAGE_TEXT}"
+      # email server (if configured)
+      NOTIFICATIONS_SMTP_HOST: "${SMTP_HOST}"
+      NOTIFICATIONS_SMTP_PORT: "${SMTP_PORT}"
+      NOTIFICATIONS_SMTP_SENDER: "${SMTP_SENDER:-Quad4 Cloud notifications <notifications@${OC_DOMAIN:-cloud.quad4.test}>}"
+      NOTIFICATIONS_SMTP_USERNAME: "${SMTP_USERNAME}"
+      NOTIFICATIONS_SMTP_PASSWORD: "${SMTP_PASSWORD}"
+      NOTIFICATIONS_SMTP_INSECURE: "${SMTP_INSECURE}"
+      NOTIFICATIONS_SMTP_AUTHENTICATION: "${SMTP_AUTHENTICATION}"
+      NOTIFICATIONS_SMTP_ENCRYPTION: "${SMTP_TRANSPORT_ENCRYPTION:-none}"
+      FRONTEND_ARCHIVER_MAX_SIZE: "10000000000"
+      # make the registry available to the app provider containers
+      MICRO_REGISTRY_ADDRESS: 127.0.0.1:9233
+      NATS_NATS_HOST: 0.0.0.0
+      NATS_NATS_PORT: 9233
+      PROXY_CSP_CONFIG_FILE_LOCATION: /etc/quad4/csp.yaml
+      # these three vars are needed to the csp config file to include the web office apps and the importer
+      COLLABORA_DOMAIN: ${COLLABORA_DOMAIN:-collabora.quad4.test}
+      COMPANION_DOMAIN: ${COMPANION_DOMAIN:-companion.quad4.test}
+      # enable to allow using the banned passwords list
+      OC_PASSWORD_POLICY_BANNED_PASSWORDS_LIST: banned-password-list.txt
+    volumes:
+      - ./config/quad4/app-registry.yaml:/etc/quad4/app-registry.yaml
+      - ./config/quad4/csp.yaml:/etc/quad4/csp.yaml
+      - ./config/quad4/banned-password-list.txt:/etc/quad4/banned-password-list.txt
+      # configure the .env file to use own paths instead of docker internal volumes
+      - ${OC_CONFIG_DIR:-quad4-config}:/etc/quad4
+      - ${OC_DATA_DIR:-quad4-data}:/var/lib/quad4
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.quad4.entrypoints=https"
+      - "traefik.http.routers.quad4.rule=Host(`${OC_DOMAIN:-cloud.quad4.test}`)"
+      - "traefik.http.routers.quad4.tls.certresolver=http"
+      - "traefik.http.routers.quad4.service=quad4"
+      - "traefik.http.services.quad4.loadbalancer.server.port=9200"
+      - "traefik.http.services.quad4.loadbalancer.server.scheme=https"
+    logging:
+      driver: ${LOG_DRIVER:-local}
+    restart: always
+
+volumes:
+  quad4-config:
+  quad4-data:

@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 )
 
 // NewLogging returns a service that logs messages.

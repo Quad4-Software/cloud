@@ -2,11 +2,11 @@ package revaconfig
 
 import (
 	userpb "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	pkgconfig "github.com/opencloud-eu/opencloud/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/storage-system/pkg/config"
+	pkgconfig "github.com/Quad4-Software/cloud/pkg/config"
+	"github.com/Quad4-Software/cloud/services/storage-system/pkg/config"
 )
 
-// StorageSystemFromStruct will adapt an OpenCloud config struct into a reva mapstructure to start a reva service.
+// StorageSystemFromStruct will adapt an Quad4 Cloud config struct into a reva mapstructure to start a reva service.
 func StorageSystemFromStruct(cfg *config.Config) map[string]any {
 	localEndpoint := pkgconfig.LocalEndpoint(cfg.GRPC.Protocol, cfg.GRPC.Addr)
 
@@ -104,7 +104,7 @@ func StorageSystemFromStruct(cfg *config.Config) map[string]any {
 			},
 			"interceptors": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "storage_system",
 				},
 			},
@@ -139,7 +139,7 @@ func StorageSystemFromStruct(cfg *config.Config) map[string]any {
 			},
 			"middlewares": map[string]any{
 				"prometheus": map[string]any{
-					"namespace": "opencloud",
+					"namespace": "quad4",
 					"subsystem": "storage_system",
 				},
 			},

@@ -3,8 +3,8 @@ package debug
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/service/debug"
-	"github.com/opencloud-eu/opencloud/pkg/version"
+	"github.com/Quad4-Software/cloud/pkg/service/debug"
+	"github.com/Quad4-Software/cloud/pkg/version"
 )
 
 // Server initializes the debug service and server.

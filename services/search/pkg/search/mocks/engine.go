@@ -7,8 +7,8 @@ package mocks
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 	mock "github.com/stretchr/testify/mock"
 )
 

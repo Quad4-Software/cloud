@@ -13,8 +13,8 @@ import (
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
-	"github.com/opencloud-eu/opencloud/pkg/x/path/filepathx"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/pkg/x/path/filepathx"
 )
 
 // ServiceOptions defines the options to configure the Service.
@@ -95,7 +95,7 @@ func (s Service) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// LogoUpload implements the endpoint to upload a custom logo for the OpenCloud instance.
+// LogoUpload implements the endpoint to upload a custom logo for the Quad4 Cloud instance.
 func (s Service) LogoUpload(w http.ResponseWriter, r *http.Request) {
 	gatewayClient, err := s.gatewaySelector.Next()
 	if err != nil {

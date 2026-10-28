@@ -9,17 +9,17 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
 	"go-micro.dev/v4/selector"
 )
 
 func TestProxyIntegration(t *testing.T) {
 	var tests = []testCase{
 		// Simple prefix route
-		test("simple_prefix", withPolicy("opencloud", withRoutes{{
+		test("simple_prefix", withPolicy("quad4", withRoutes{{
 			Type:     config.PrefixRoute,
 			Endpoint: "/api",
 			Backend:  "http://api.example.com"},
@@ -27,7 +27,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://api.example.com/api"),
 
 		// Complex prefix route, different method
-		test("complex_prefix_post", withPolicy("opencloud", withRoutes{{
+		test("complex_prefix_post", withPolicy("quad4", withRoutes{{
 			Type:     config.PrefixRoute,
 			Endpoint: "/api",
 			Backend:  "http://api.example.com/service1/"},
@@ -35,7 +35,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://api.example.com/service1/api"),
 
 		// Query route
-		test("query_route", withPolicy("opencloud", withRoutes{{
+		test("query_route", withPolicy("quad4", withRoutes{{
 			Type:     config.QueryRoute,
 			Endpoint: "/api?format=json",
 			Backend:  "http://backend/"},
@@ -43,7 +43,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://backend/api?format=json"),
 
 		// Regex route
-		test("regex_route", withPolicy("opencloud", withRoutes{{
+		test("regex_route", withPolicy("quad4", withRoutes{{
 			Type:     config.RegexRoute,
 			Endpoint: `\/user\/(\d+)`,
 			Backend:  "http://backend/"},
@@ -51,7 +51,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://backend/user/1234"),
 
 		// Multiple prefix routes 1
-		test("multiple_prefix", withPolicy("opencloud", withRoutes{
+		test("multiple_prefix", withPolicy("quad4", withRoutes{
 			{
 				Type:     config.PrefixRoute,
 				Endpoint: "/api",
@@ -66,7 +66,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://payment.example.com/payment"),
 
 		// Multiple prefix routes 2
-		test("multiple_prefix", withPolicy("opencloud", withRoutes{
+		test("multiple_prefix", withPolicy("quad4", withRoutes{
 			{
 				Type:     config.PrefixRoute,
 				Endpoint: "/api",
@@ -81,7 +81,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://api.example.com/api"),
 
 		// Mixed route types
-		test("mixed_types", withPolicy("opencloud", withRoutes{
+		test("mixed_types", withPolicy("quad4", withRoutes{
 			{
 				Type:     config.PrefixRoute,
 				Endpoint: "/api",
@@ -97,7 +97,7 @@ func TestProxyIntegration(t *testing.T) {
 			expectProxyTo("http://api.example.com/api"),
 
 		// Mixed route types
-		test("mixed_types", withPolicy("opencloud", withRoutes{
+		test("mixed_types", withPolicy("quad4", withRoutes{
 			{
 				Type:     config.PrefixRoute,
 				Endpoint: "/api",

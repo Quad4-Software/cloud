@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/log"
 )
 
 func TestEnsureExistsDir(t *testing.T) {
@@ -51,7 +51,7 @@ func TestPersistKey(t *testing.T) {
 	p256 := elliptic.P256()
 	var (
 		tmpDir     = t.TempDir()
-		keyPath    = filepath.Join(tmpDir, "opencloud", "testKey")
+		keyPath    = filepath.Join(tmpDir, "quad4", "testKey")
 		rsaPk, _   = rsa.GenerateKey(rand.Reader, 2048)
 		ecdsaPk, _ = ecdsa.GenerateKey(p256, rand.Reader)
 	)
@@ -97,7 +97,7 @@ func TestPersistCertificate(t *testing.T) {
 	p256 := elliptic.P256()
 	var (
 		tmpDir     = t.TempDir()
-		certPath   = filepath.Join(tmpDir, "opencloud", "testCert")
+		certPath   = filepath.Join(tmpDir, "quad4", "testCert")
 		rsaPk, _   = rsa.GenerateKey(rand.Reader, 2048)
 		ecdsaPk, _ = ecdsa.GenerateKey(p256, rand.Reader)
 	)

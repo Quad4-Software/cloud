@@ -9,7 +9,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/thumbnails/internal/imagortest"
+	"github.com/Quad4-Software/cloud/services/thumbnails/internal/imagortest"
 )
 
 // the container handles stay in process 1.

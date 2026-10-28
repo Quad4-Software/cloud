@@ -14,8 +14,8 @@ import (
 	"github.com/libregraph/idm/pkg/ldapdn"
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/errorcode"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/odata"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/errorcode"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/odata"
 )
 
 type groupAttributeMap struct {
@@ -300,7 +300,7 @@ func (i *LDAP) AddMembersToGroup(ctx context.Context, groupID string, memberIDs 
 	}
 
 	// eliminate duplicates in memberIDs by their UUID, to prevent unnecessary LDAP
-	// lookups below, and for https://github.com/opencloud-eu/opencloud/issues/3354
+	// lookups below, and for https://github.com/Quad4-Software/cloud/issues/3354
 	{
 		uniqueMemberIDs := make([]string, 0, len(memberIDs))
 		memory := map[string]struct{}{}
@@ -477,8 +477,8 @@ func (i *LDAP) groupToLDAPAttrValues(group libregraph.Group) (map[string][]strin
 	}
 
 	if !i.useServerUUID {
-		attrs["openCloudUUID"] = []string{uuid.NewString()}
-		attrs["objectClass"] = append(attrs["objectClass"], "openCloudObject")
+		attrs["quad4CloudUUID"] = []string{uuid.NewString()}
+		attrs["objectClass"] = append(attrs["objectClass"], "quad4CloudObject")
 	}
 	return attrs, nil
 }

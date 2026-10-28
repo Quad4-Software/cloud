@@ -14,9 +14,9 @@ import (
 	opensearchgoAPI "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
 	"github.com/tidwall/gjson"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	searchmapping "github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	searchmapping "github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 var (
@@ -29,7 +29,7 @@ var (
 )
 
 // VersionedIndexName suffixes the base index name with the schema version, e.g.
-// "opencloud-resource" -> the name suffixed with the current schema version.
+// "quad4-resource" -> the name suffixed with the current schema version.
 func VersionedIndexName(base string) string {
 	return fmt.Sprintf("%s-v%d", base, search.SchemaVersion)
 }

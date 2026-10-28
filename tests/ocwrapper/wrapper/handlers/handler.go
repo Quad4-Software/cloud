@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 	"ocwrapper/common"
-	"ocwrapper/opencloud"
+	"ocwrapper/quad4"
 	"os"
 	"time"
 )
@@ -91,18 +91,18 @@ func SetEnvHandler(res http.ResponseWriter, req *http.Request) {
 	for key, value := range envBody {
 		envMap = append(envMap, fmt.Sprintf("%s=%v", key, value))
 	}
-	opencloud.EnvConfigs = append(opencloud.EnvConfigs, envMap...)
+	quad4.EnvConfigs = append(quad4.EnvConfigs, envMap...)
 
 	var message string
 
-	success, _ := opencloud.Restart(opencloud.EnvConfigs)
+	success, _ := quad4.Restart(quad4.EnvConfigs)
 	if success {
-		message = "opencloud configured successfully"
+		message = "quad4 configured successfully"
 		sendResponse(res, http.StatusOK, message)
 		return
 	}
 
-	message = "Failed to restart opencloud with new configuration"
+	message = "Failed to restart quad4 with new configuration"
 	sendResponse(res, http.StatusInternalServerError, message)
 }
 
@@ -113,25 +113,25 @@ func RollbackHandler(res http.ResponseWriter, req *http.Request) {
 	}
 
 	var message string
-	opencloud.EnvConfigs = []string{}
-	success, _ := opencloud.Restart(os.Environ())
+	quad4.EnvConfigs = []string{}
+	success, _ := quad4.Restart(os.Environ())
 	if success {
-		message = "opencloud configuration rolled back successfully"
+		message = "quad4 configuration rolled back successfully"
 		sendResponse(res, http.StatusOK, message)
 		return
 	}
 
-	message = "Failed to restart opencloud with initial configuration"
+	message = "Failed to restart quad4 with initial configuration"
 	sendResponse(res, http.StatusInternalServerError, message)
 }
 
-func StopOpencloudHandler(res http.ResponseWriter, req *http.Request) {
+func StopQuad4cloudHandler(res http.ResponseWriter, req *http.Request) {
 	if req.Method != http.MethodPost {
 		sendResponse(res, http.StatusMethodNotAllowed, "")
 		return
 	}
 
-	success, message := opencloud.Stop()
+	success, message := quad4.Stop()
 	if success {
 		sendResponse(res, http.StatusOK, message)
 		return
@@ -140,21 +140,21 @@ func StopOpencloudHandler(res http.ResponseWriter, req *http.Request) {
 	sendResponse(res, http.StatusInternalServerError, message)
 }
 
-func StartOpencloudHandler(res http.ResponseWriter, req *http.Request) {
+func StartQuad4cloudHandler(res http.ResponseWriter, req *http.Request) {
 	if req.Method != http.MethodPost {
 		sendResponse(res, http.StatusMethodNotAllowed, "")
 		return
 	}
 
-	if opencloud.IsOpencloudRunning() {
-		sendResponse(res, http.StatusConflict, "opencloud server is already running")
+	if quad4.IsQuad4cloudRunning() {
+		sendResponse(res, http.StatusConflict, "quad4 server is already running")
 		return
 	}
 
 	common.Wg.Add(1)
-	go opencloud.Start(nil)
+	go quad4.Start(nil)
 
-	success, message := opencloud.WaitForConnection()
+	success, message := quad4.WaitForConnection()
 	if success {
 		sendResponse(res, http.StatusOK, message)
 		return
@@ -214,9 +214,9 @@ func CommandHandler(res http.ResponseWriter, req *http.Request) {
 
 
 	if raw {
-		exitCode, output = opencloud.RunRawCommand(command, stdIn, timeout)
+		exitCode, output = quad4.RunRawCommand(command, stdIn, timeout)
 	} else {
-		exitCode, output = opencloud.RunCommand(command, stdIn, timeout)
+		exitCode, output = quad4.RunCommand(command, stdIn, timeout)
 	}
 	sendCmdResponse(res, exitCode, output)
 }

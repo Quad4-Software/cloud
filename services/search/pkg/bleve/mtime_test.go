@@ -3,17 +3,17 @@ package bleve_test
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/conversions"
+	"github.com/Quad4-Software/cloud/pkg/conversions"
 
 	bleveSearch "github.com/blevesearch/bleve/v2"
 	bquery "github.com/blevesearch/bleve/v2/search/query"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/bleve"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/bleve"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	"github.com/Quad4-Software/cloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // Mtime is typed as a date, so range queries are chronological, not a

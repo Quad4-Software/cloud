@@ -18,9 +18,9 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/keepalive"
 
-	occrypto "github.com/opencloud-eu/opencloud/pkg/crypto"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/registry"
+	occrypto "github.com/Quad4-Software/cloud/pkg/crypto"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/registry"
 )
 
 // Service simply wraps the go-micro grpc service.

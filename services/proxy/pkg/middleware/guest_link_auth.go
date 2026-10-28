@@ -10,8 +10,8 @@ import (
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
 	rpcv1beta1 "github.com/cs3org/go-cs3apis/cs3/rpc/v1beta1"
 	typesv1beta1 "github.com/cs3org/go-cs3apis/cs3/types/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/webdav"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/webdav"
 	revactx "github.com/opencloud-eu/reva/v2/pkg/ctx"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"go.opentelemetry.io/otel/attribute"
@@ -71,7 +71,7 @@ type GuestLinkAuthenticator struct {
 	Tracer              trace.Tracer
 }
 
-// guestLinkCookieName returns the configured cookie name, defaulting to __Host-opencloud-guest.
+// guestLinkCookieName returns the configured cookie name, defaulting to __Host-quad4-guest.
 func guestLinkCookieName(cfg GuestLinkAuthConfig) string {
 	return cfg.CookieName
 }
@@ -264,7 +264,7 @@ func (m *GuestLinkAuthenticator) parseInnerError(innerError *typesv1beta1.Opaque
 		return false, ""
 	}
 
-	if err.Type != "opencloud_guest_link_error" {
+	if err.Type != "quad4_guest_link_error" {
 		return false, ""
 	}
 

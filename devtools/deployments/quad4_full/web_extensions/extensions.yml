@@ -1,0 +1,7 @@
+services:
+  quad4:
+    volumes:
+      - quad4-apps:/var/lib/quad4/web/assets/apps
+
+volumes:
+  quad4-apps:

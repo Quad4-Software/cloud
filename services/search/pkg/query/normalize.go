@@ -7,9 +7,9 @@ import (
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
 	"reflect"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/query/mimetype"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/services/search/pkg/query/mimetype"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 // Normalize is the shared KQL lowering pass between parse and compile: it

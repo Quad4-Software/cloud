@@ -9,9 +9,9 @@ import (
 	opensearchgo "github.com/opensearch-project/opensearch-go/v4"
 	opensearchgoAPI "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/search/internal/opensearchtest"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/opensearch"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/search/internal/opensearchtest"
+	"github.com/Quad4-Software/cloud/services/search/pkg/opensearch"
 )
 
 func TestOpenSearchBackend(t *testing.T) {
@@ -42,7 +42,7 @@ var _ = Describe("Backend", func() {
 	})
 
 	Describe("Upsert", func() {
-		const indexName = "opencloud-test-engine-upsert"
+		const indexName = "quad4-test-engine-upsert"
 
 		var (
 			tc      *opensearchtest.TestClient

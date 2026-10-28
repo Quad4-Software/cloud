@@ -1,6 +1,6 @@
 package config
 
-import "github.com/opencloud-eu/opencloud/pkg/shared"
+import "github.com/Quad4-Software/cloud/pkg/shared"
 
 // HTTP defines the available http configuration.
 type HTTP struct {

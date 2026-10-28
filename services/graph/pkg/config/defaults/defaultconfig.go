@@ -4,10 +4,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/graph/pkg/unifiedrole"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/config"
+	"github.com/Quad4-Software/cloud/services/graph/pkg/unifiedrole"
 )
 
 var (
@@ -49,7 +49,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Disabled:  false,
 			Addr:      "127.0.0.1:9120",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			Root:      "/graph",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
@@ -67,7 +67,7 @@ func DefaultConfig() *config.Config {
 			Name: "graph",
 		},
 		Application: config.Application{
-			DisplayName: "OpenCloud",
+			DisplayName: "Quad4 Cloud",
 		},
 		API: config.API{
 			GroupMembersPatchLimit:  20,
@@ -77,7 +77,7 @@ func DefaultConfig() *config.Config {
 		},
 		Reva: shared.DefaultRevaConfig(),
 		Spaces: config.Spaces{
-			StorageUsersAddress: "eu.opencloud.api.storage-users",
+			StorageUsersAddress: "io.quad4.api.storage-users",
 			WebDavBase:          "https://localhost:9200",
 			WebDavPath:          "/dav/spaces/",
 			DefaultQuota:        "1000000000",
@@ -112,9 +112,9 @@ func DefaultConfig() *config.Config {
 				UserNameAttribute:        "uid",
 				// FIXME: switch this to some more widely available attribute by default
 				//        ideally this needs to	be constant for the lifetime of a users
-				UserIDAttribute:           "openCloudUUID",
-				UserTypeAttribute:         "openCloudUserType",
-				UserEnabledAttribute:      "openCloudUserEnabled",
+				UserIDAttribute:           "quad4CloudUUID",
+				UserTypeAttribute:         "quad4CloudUserType",
+				UserEnabledAttribute:      "quad4CloudUserEnabled",
 				DisableUserMechanism:      "attribute",
 				LdapDisabledUsersGroupDN:  "cn=DisabledUsersGroup,ou=groups,o=libregraph-idm",
 				GroupBaseDN:               "ou=groups,o=libregraph-idm",
@@ -123,7 +123,7 @@ func DefaultConfig() *config.Config {
 				GroupObjectClass:          "groupOfNames",
 				GroupNameAttribute:        "cn",
 				GroupMemberAttribute:      "member",
-				GroupIDAttribute:          "openCloudUUID",
+				GroupIDAttribute:          "quad4CloudUUID",
 				EducationResourcesEnabled: false,
 				Metrics: config.LDAPMetrics{
 					// disabling inbound HTTP metrics collection by default for now, since the runtime performance impact is currently unclear;
@@ -141,7 +141,7 @@ func DefaultConfig() *config.Config {
 		Events: config.Events{
 			DisabledConsumer: false,
 			Endpoint:         "127.0.0.1:9233",
-			Cluster:          "opencloud-cluster",
+			Cluster:          "quad4-cluster",
 			EnableTLS:        false,
 		},
 		MaxConcurrency: 20,
@@ -149,8 +149,8 @@ func DefaultConfig() *config.Config {
 			AvailableRoles: nil, // will be populated with defaults in EnsureDefaults
 		},
 		Metadata: config.Metadata{
-			GatewayAddress: "eu.opencloud.api.storage-system",
-			StorageAddress: "eu.opencloud.api.storage-system",
+			GatewayAddress: "io.quad4.api.storage-system",
+			StorageAddress: "io.quad4.api.storage-system",
 			SystemUserIDP:  "internal",
 		},
 		UserSoftDeleteRetentionTime: 0,

@@ -3,9 +3,9 @@ package http
 import (
 	"context"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/config"
 	"github.com/spf13/pflag"
 	"go.opentelemetry.io/otel/trace"
 	"go.opentelemetry.io/otel/trace/noop"

@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 package defaults
@@ -7,10 +7,10 @@ import (
 	"path"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
 )
 
 // Default values for the guard policies (nonce, backoff and quota limiters).
@@ -57,19 +57,19 @@ func DefaultConfig() *config.Config {
 		NumConsumers: 1,
 		Events: config.Events{
 			Endpoint:  "127.0.0.1:9233",
-			Cluster:   "opencloud-cluster",
+			Cluster:   "quad4-cluster",
 			EnableTLS: false,
 		},
 		RevaGateway: shared.DefaultRevaConfig().Address,
 		GRPC: config.GRPCConfig{
 			Addr:      "127.0.0.1:9268",
-			Namespace: "eu.opencloud.api",
+			Namespace: "io.quad4.api",
 			Protocol:  "tcp",
 		},
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9266",
 			Root:      "/graph",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			CORS: config.CORS{
 				AllowedOrigins:   []string{"*"},
 				AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE"},

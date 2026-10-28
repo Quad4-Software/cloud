@@ -57,8 +57,8 @@ trait Sharing {
 
 	/**
 	 * Defines the fields that are known and can be tested in a share response.
-	 * Note that OpenCloud also provides file_parent in responses.
-	 * file_parent is not provided by opencloud/reva.
+	 * Note that Quad4 Cloud also provides file_parent in responses.
+	 * file_parent is not provided by quad4/reva.
 	 * There are no known clients that use file_parent.
 	 * The acceptance tests do not test for file_parent.
 	 *

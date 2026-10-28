@@ -12,12 +12,12 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/oidc"
-	oidcmocks "github.com/opencloud-eu/opencloud/pkg/oidc/mocks"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/router"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/user/backend/mocks"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/oidc"
+	oidcmocks "github.com/Quad4-Software/cloud/pkg/oidc/mocks"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/router"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/user/backend/mocks"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 	"github.com/stretchr/testify/mock"
 	"go-micro.dev/v4/store"
@@ -72,7 +72,7 @@ var _ = Describe("Authenticating requests", Label("Authentication"), func() {
 	ub.On("Authenticate", mock.Anything, mock.Anything, mock.Anything).Return(nil, "", backend.ErrAccountNotFound)
 
 	BeforeEach(func() {
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 
 		logger := log.NewLogger()
 		authenticators = []Authenticator{
@@ -91,7 +91,7 @@ var _ = Describe("Authenticating requests", Label("Authentication"), func() {
 				Logger: logger,
 				RevaGatewaySelector: pool.GetSelector[gateway.GatewayAPIClient](
 					"GatewaySelector",
-					"eu.opencloud.api.gateway",
+					"io.quad4.api.gateway",
 					func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 						return mockGatewayClient{
 							AuthenticateFunc: func(authType, clientID, clientSecret string) (string, rpcv1beta1.Code) {
@@ -146,7 +146,7 @@ var _ = Describe("Authenticating requests", Label("Authentication"), func() {
 			testHandler := handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				Expect(oidc.FromContext(r.Context())).To(Equal(map[string]any{
 					"email":              "testuser@example.com",
-					"openclouduuid":      "OpaqueId",
+					"quad4uuid":      "OpaqueId",
 					"iss":                "IdpId",
 					"preferred_username": "testuser",
 				}))

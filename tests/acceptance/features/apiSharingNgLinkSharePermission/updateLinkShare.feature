@@ -1,5 +1,5 @@
 Feature: Update a link share for a resource
-  https://docs.opencloud.eu/libre-graph-api/#/drives.permissions/CreateLink
+  https://github.com/Quad4-Software/cloud/libre-graph-api/#/drives.permissions/CreateLink
 
   Background:
     Given these users have been created with default attributes:
@@ -276,7 +276,7 @@ Feature: Update a link share for a resource
       | banned-password |
       | 123             |
       | password        |
-      | OpenCloud       |
+      | Quad4 Cloud       |
 
   @env-config @issue-9724 @issue-10331
   Scenario: set password on a existing link share of a folder inside project-space using permissions endpoint

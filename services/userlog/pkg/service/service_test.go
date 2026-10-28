@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
 
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
 	user "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
@@ -27,14 +27,14 @@ import (
 	"go.opentelemetry.io/otel/trace"
 	"google.golang.org/grpc"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	ehmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/eventhistory/v0"
-	ehsvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0"
-	"github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/eventhistory/v0/mocks"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	settingsmocks "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0/mocks"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/userlog/pkg/service"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	ehmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/eventhistory/v0"
+	ehsvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0"
+	"github.com/Quad4-Software/cloud/protogen/gen/quad4/services/eventhistory/v0/mocks"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	settingsmocks "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0/mocks"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/config"
+	"github.com/Quad4-Software/cloud/services/userlog/pkg/service"
 )
 
 var _ = Describe("UserlogService", func() {
@@ -59,11 +59,11 @@ var _ = Describe("UserlogService", func() {
 		sto = store.Create()
 		bus = testBus(make(chan events.Event))
 
-		pool.RemoveSelector("GatewaySelector" + "eu.opencloud.api.gateway")
+		pool.RemoveSelector("GatewaySelector" + "io.quad4.api.gateway")
 		gatewayClient = &cs3mocks.GatewayAPIClient{}
 		gatewaySelector = pool.GetSelector[gateway.GatewayAPIClient](
 			"GatewaySelector",
-			"eu.opencloud.api.gateway",
+			"io.quad4.api.gateway",
 			func(cc grpc.ClientConnInterface) gateway.GatewayAPIClient {
 				return gatewayClient
 			},

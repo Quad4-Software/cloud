@@ -21,7 +21,7 @@ Example json:
 {"RemoteAddr":"","User":"user_id","URL":"","Method":"","UserAgent":"","Time":"","App":"admin_audit","Message":"user 'user_id' read file 'item_id'","Action":"file_read","CLI":false,"Level":1,"Path":"path","Owner":"user_id","FileID":"item_id"}
 ```
 
-The audit service is not started automatically when running as single binary started via `opencloud server` or when running as docker container and must be started and stopped manually on demand.
+The audit service is not started automatically when running as single binary started via `quad4 server` or when running as docker container and must be started and stopped manually on demand.
 
 The audit service logs:
 

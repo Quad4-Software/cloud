@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
 )
 
 // NewHTTPCheck checks the reachability of a http server.

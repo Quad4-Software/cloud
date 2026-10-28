@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/webfinger/pkg/webfinger"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/config"
+	"github.com/Quad4-Software/cloud/services/webfinger/pkg/webfinger"
 )
 
 func TestOpenidDiscovery(t *testing.T) {
@@ -44,10 +44,10 @@ func TestOpenidDiscovery(t *testing.T) {
 	if len(jrd.Properties) != 2 {
 		t.Errorf("provider returned wrong number of properties for platform test: %v, expected 2", len(jrd.Properties))
 	}
-	if jrd.Properties["http://opencloud.eu/ns/oidc/client_id"] != "test" {
-		t.Errorf("provider returned wrong client_id property: %v, expected %v", jrd.Properties["http://opencloud.eu/ns/oidc/client_id"], "test")
+	if jrd.Properties["http://quad4.io/ns/oidc/client_id"] != "test" {
+		t.Errorf("provider returned wrong client_id property: %v, expected %v", jrd.Properties["http://quad4.io/ns/oidc/client_id"], "test")
 	}
-	if scopes, ok := jrd.Properties["http://opencloud.eu/ns/oidc/scopes"].([]string); !ok || len(scopes) != 1 || scopes[0] != "test" {
-		t.Errorf("provider returned wrong scopes property: %v, expected %v", jrd.Properties["http://opencloud.eu/ns/oidc/scopes"], []string{"test"})
+	if scopes, ok := jrd.Properties["http://quad4.io/ns/oidc/scopes"].([]string); !ok || len(scopes) != 1 || scopes[0] != "test" {
+		t.Errorf("provider returned wrong scopes property: %v, expected %v", jrd.Properties["http://quad4.io/ns/oidc/scopes"], []string{"test"})
 	}
 }

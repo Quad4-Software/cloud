@@ -3,7 +3,7 @@ package parity
 import (
 	libregraph "github.com/opencloud-eu/libre-graph-api-go"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/search"
+	"github.com/Quad4-Software/cloud/services/search/pkg/search"
 )
 
 func fieldsGroup() queryGroup {

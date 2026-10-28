@@ -6,6 +6,6 @@ pkgname: mocks
 
 template: testify
 packages:
-  github.com/opencloud-eu/opencloud/pkg/oidc:
+  github.com/Quad4-Software/cloud/pkg/oidc:
     interfaces:
       OIDCClient: {}

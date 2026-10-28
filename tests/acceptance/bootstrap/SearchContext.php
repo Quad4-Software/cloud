@@ -148,7 +148,7 @@ class SearchContext implements Context {
 		?string    $limit = null,
 		?TableNode $properties = null
 	): void {
-		// NOTE: because indexing of newly uploaded files or directories with OpenCloud is decoupled and occurs asynchronously
+		// NOTE: because indexing of newly uploaded files or directories with Quad4 Cloud is decoupled and occurs asynchronously
 		// short wait is necessary before searching
 		sleep(2);
 		// remember the query so "should eventually contain" steps can re-search
@@ -300,7 +300,7 @@ class SearchContext implements Context {
 		string  $scope,
 		?string $spaceName = null,
 	): void {
-		// NOTE: since indexing of newly uploaded files or directories with OpenCloud is decoupled and occurs asynchronously,
+		// NOTE: since indexing of newly uploaded files or directories with Quad4 Cloud is decoupled and occurs asynchronously,
 		// a short wait is necessary before searching
 		sleep(2);
 		$this->lastSearchQuery = [

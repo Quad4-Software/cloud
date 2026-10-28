@@ -3,7 +3,7 @@ package l10n
 import (
 	"embed"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
 )
 
 var (

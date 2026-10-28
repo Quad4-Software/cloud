@@ -1,6 +1,6 @@
 {
   "clientId": "web",
-  "name": "OpenCloud Web App",
+  "name": "Quad4 Cloud Web App",
   "description": "",
   "rootUrl": "{{OC_URL}}",
   "adminUrl": "{{OC_URL}}",

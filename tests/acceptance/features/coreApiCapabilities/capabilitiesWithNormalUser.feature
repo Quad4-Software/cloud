@@ -8,7 +8,7 @@ Feature: default capabilities for normal user
     And user "Alice" has been created with default attributes
 
   # adjust this scenario after fixing tagged issues as its just created to show difference
-  # in the response items in different environment (core & opencloud-reva)
+  # in the response items in different environment (core & quad4-reva)
   @issue-1285 @issue-1286
   Scenario: getting default capabilities with normal user
     When user "Alice" retrieves the capabilities using the capabilities API

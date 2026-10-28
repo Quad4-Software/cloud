@@ -5,9 +5,9 @@ import (
 
 	"github.com/test-go/testify/require"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/envdecode"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/services/storage-users/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/config/envdecode"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/services/storage-users/pkg/config/defaults"
 )
 
 func TestMetadataPrefixReachesAllDrivers(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/opencloud-eu/opencloud/pkg/handlers"
+	"github.com/Quad4-Software/cloud/pkg/handlers"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

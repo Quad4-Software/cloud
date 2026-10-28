@@ -1,4 +1,4 @@
-// Copyright 2026 OpenCloud GmbH <mail@opencloud.eu>
+// Copyright 2026 Quad4 Cloud GmbH <mail@quad4.io>
 // SPDX-License-Identifier: Apache-2.0
 
 // Package guard provides generic building blocks for restricting access to
@@ -10,7 +10,7 @@ package guard
 import (
 	"time"
 
-	"github.com/opencloud-eu/opencloud/services/auth-guest/pkg/config"
+	"github.com/Quad4-Software/cloud/services/auth-guest/pkg/config"
 )
 
 const backoffFactor = 2

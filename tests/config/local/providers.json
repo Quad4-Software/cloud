@@ -1,10 +1,10 @@
 [
   {
-    "name": "opencloud-server",
-    "full_name": "first-opencloud-instance",
-    "organization": "OpenCloud",
+    "name": "quad4-server",
+    "full_name": "first-quad4-instance",
+    "organization": "Quad4 Cloud",
     "domain": "localhost:9200",
-    "homepage": "https://opencloud.eu",
+    "homepage": "https://quad4.io",
     "services": [
       {
         "endpoint": {
@@ -22,11 +22,11 @@
     ]
   },
   {
-    "name": "federation-opencloud-server",
-    "full_name": "Federation opencloud",
-    "organization": "OpenCloud",
+    "name": "federation-quad4-server",
+    "full_name": "Federation quad4",
+    "organization": "Quad4 Cloud",
     "domain": "localhost:10200",
-    "homepage": "https://opencloud.eu",
+    "homepage": "https://quad4.io",
     "services": [
       {
         "endpoint": {

@@ -16,14 +16,14 @@ import (
 	"github.com/opencloud-eu/reva/v2/pkg/storage/utils/grants"
 	"github.com/opencloud-eu/reva/v2/pkg/utils"
 
-	"github.com/opencloud-eu/opencloud/pkg/ast"
-	"github.com/opencloud-eu/opencloud/pkg/kql"
+	"github.com/Quad4-Software/cloud/pkg/ast"
+	"github.com/Quad4-Software/cloud/pkg/kql"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	searchmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/search/v0"
-	searchService "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/search/v0"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/content"
-	"github.com/opencloud-eu/opencloud/services/search/pkg/mapping"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	searchmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/search/v0"
+	searchService "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/search/v0"
+	"github.com/Quad4-Software/cloud/services/search/pkg/content"
+	"github.com/Quad4-Software/cloud/services/search/pkg/mapping"
 )
 
 // SchemaVersion is the shared schema version for both search backends. Bump it

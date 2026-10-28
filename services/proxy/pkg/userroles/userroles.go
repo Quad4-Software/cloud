@@ -5,9 +5,9 @@ import (
 
 	gateway "github.com/cs3org/go-cs3apis/cs3/gateway/v1beta1"
 	cs3 "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/proxy/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/proxy/pkg/config"
 	"github.com/opencloud-eu/reva/v2/pkg/rgrpc/todo/pool"
 )
 
@@ -56,7 +56,7 @@ func WithRolesClaim(claim string) Option {
 	}
 }
 
-// WithRoleMapping configures the map of OpenCloud role names to claims values
+// WithRoleMapping configures the map of Quad4 Cloud role names to claims values
 func WithRoleMapping(roleMap []config.RoleMapping) Option {
 	return func(o *Options) {
 		o.roleMapping = roleMap

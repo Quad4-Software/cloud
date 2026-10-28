@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/opencloud-eu/opencloud/pkg/registry"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	"github.com/opencloud-eu/opencloud/services/auth-bearer/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/registry"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	"github.com/Quad4-Software/cloud/services/auth-bearer/pkg/config"
 	"github.com/spf13/cobra"
 
 	"github.com/olekukonko/tablewriter"

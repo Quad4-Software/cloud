@@ -10,14 +10,14 @@ import (
 	"github.com/open-policy-agent/opa/types"
 )
 
-// RFResourceDownload extends the rego dictionary with the possibility to download opencloud resources.
+// RFResourceDownload extends the rego dictionary with the possibility to download quad4 resources.
 //
-// Rego: `opencloud.resource.download("opencloud/path/0034892347349827")`
+// Rego: `quad4.resource.download("quad4/path/0034892347349827")`
 // Result: bytes
 func RFResourceDownload(client *http.Client) func(*rego.Rego) {
 	return rego.Function1(
 		&rego.Function{
-			Name:             "opencloud.resource.download",
+			Name:             "quad4.resource.download",
 			Decl:             types.NewFunction(types.Args(types.S), types.A),
 			Memoize:          true,
 			Nondeterministic: true,

@@ -6,7 +6,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/opencloud-eu/opencloud/services/search/pkg/bleve/hierarchy"
+	"github.com/Quad4-Software/cloud/services/search/pkg/bleve/hierarchy"
 )
 
 func terms(ts analysis.TokenStream) []string {

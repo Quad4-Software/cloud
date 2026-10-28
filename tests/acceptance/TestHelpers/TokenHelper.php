@@ -1,7 +1,7 @@
 <?php
 /**
- * @author Viktor Scharf <v.scharf@opencloud.eu>
- * @copyright Copyright (c) 2025 Viktor Scharf <v.scharf@opencloud.eu>
+ * @author Viktor Scharf <v.scharf@quad4.io>
+ * @copyright Copyright (c) 2025 Viktor Scharf <v.scharf@quad4.io>
  *
  * This code is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License,

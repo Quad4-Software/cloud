@@ -34,11 +34,11 @@ import (
 	"github.com/rs/zerolog"
 	microstore "go-micro.dev/v4/store"
 
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/connector/fileinfo"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/helpers"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/services/collaboration/pkg/wopisrc"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/config"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/connector/fileinfo"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/helpers"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/middleware"
+	"github.com/Quad4-Software/cloud/services/collaboration/pkg/wopisrc"
 )
 
 const (
@@ -758,7 +758,7 @@ func (f *FileConnector) PutRelativeFileSuggested(ctx context.Context, ccs Conten
 		Str("FinalReference", wopiContext.FileReference.String()).
 		Msg("PutRelativeFileSuggested: success")
 
-	webURL, err := url.Parse(f.cfg.Commons.OpenCloudURL)
+	webURL, err := url.Parse(f.cfg.Commons.Quad4CloudURL)
 	if err != nil {
 		return nil, err
 	}
@@ -850,7 +850,7 @@ func (f *FileConnector) PutRelativeFileRelative(ctx context.Context, ccs Content
 	}
 
 	var newInfo *providerv1beta1.ResourceInfo
-	webURL, err := url.Parse(f.cfg.Commons.OpenCloudURL)
+	webURL, err := url.Parse(f.cfg.Commons.Quad4CloudURL)
 	if err != nil {
 		return nil, err
 	}
@@ -1245,7 +1245,7 @@ func (f *FileConnector) CheckFileInfo(ctx context.Context) (*ConnectorResponse, 
 		breadcrumbFolderName = statRes.GetInfo().GetSpace().GetName()
 	}
 
-	ocURL, err := url.Parse(f.cfg.Commons.OpenCloudURL)
+	ocURL, err := url.Parse(f.cfg.Commons.Quad4CloudURL)
 	if err != nil {
 		return nil, err
 	}
@@ -1319,7 +1319,7 @@ func (f *FileConnector) CheckFileInfo(ctx context.Context) (*ConnectorResponse, 
 		fileinfo.KeyUserFriendlyName: userFriendlyName,
 		fileinfo.KeyUserID:           userId,
 
-		fileinfo.KeyPostMessageOrigin:            f.cfg.Commons.OpenCloudURL,
+		fileinfo.KeyPostMessageOrigin:            f.cfg.Commons.Quad4CloudURL,
 		fileinfo.KeyLicenseCheckForEditIsEnabled: f.cfg.App.LicenseCheckEnable,
 
 		fileinfo.KeyUserCanNotWriteRelative: false,
@@ -1677,7 +1677,7 @@ func (f *FileConnector) GetAvatar(ctx context.Context, userID string) (*Connecto
 }
 
 func (f *FileConnector) setupLibregraphClient(_ context.Context, cs3token string) (*libregraph.APIClient, error) {
-	next, err := f.graphSelector.Select("eu.opencloud.web.graph")
+	next, err := f.graphSelector.Select("io.quad4.web.graph")
 	if err != nil {
 		return nil, err
 	}

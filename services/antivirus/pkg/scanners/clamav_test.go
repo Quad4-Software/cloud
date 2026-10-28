@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/opencloud-eu/opencloud/services/antivirus/pkg/scanners"
+	"github.com/Quad4-Software/cloud/services/antivirus/pkg/scanners"
 )
 
 func newUnixListener(t testing.TB, lc net.ListenConfig, v ...string) net.Listener {

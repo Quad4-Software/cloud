@@ -4,11 +4,11 @@ import (
 	"context"
 	"strings"
 
-	settingsmsg "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/messages/settings/v0"
-	settingssvc "github.com/opencloud-eu/opencloud/protogen/gen/opencloud/services/settings/v0"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/settings"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/store/defaults"
+	settingsmsg "github.com/Quad4-Software/cloud/protogen/gen/quad4/messages/settings/v0"
+	settingssvc "github.com/Quad4-Software/cloud/protogen/gen/quad4/services/settings/v0"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/settings"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/store/defaults"
 )
 
 var _defaultLanguage = "en"
@@ -71,7 +71,7 @@ func (s *defaultLanguageDecorator) ListValues(ctx context.Context, req *settings
 func (s *defaultLanguageDecorator) withDefaultLanguageSetting(accountUUID string) *settingsmsg.ValueWithIdentifier {
 	return &settingsmsg.ValueWithIdentifier{
 		Identifier: &settingsmsg.Identifier{
-			Extension: "opencloud-accounts",
+			Extension: "quad4-accounts",
 			Bundle:    "profile",
 			Setting:   "language",
 		},

@@ -1,6 +1,6 @@
 # Web
 
-The web service embeds and serves the static files for the [OpenCloud Web Client](https://github.com/opencloud-eu/web).
+The web service embeds and serves the static files for the [Quad4 Cloud Web Client](https://github.com/opencloud-eu/web).
 Note that clients will respond with a connection error if the web service is not available.
 
 The web service also provides a minimal API for branding functionality like changing the logo shown.
@@ -9,7 +9,7 @@ The web service also provides a minimal API for branding functionality like chan
 
 If you want to use your custom compiled web client assets instead of the embedded ones,
 then you can do that by setting the `WEB_ASSET_CORE_PATH` variable to point to your compiled files.
-See [OpenCloud Web / Getting Started](https://docs.opencloud.eu/clients/web/getting-started/) for more details.
+See [Quad4 Cloud Web / Getting Started](https://github.com/Quad4-Software/cloud/clients/web/getting-started/) for more details.
 
 ## Web UI Configuration
 
@@ -32,7 +32,7 @@ with a [json based](https://github.com/opencloud-eu/web/tree/master/config) file
 Web can be consumed by another application in a stripped down version called “Embed mode”.
 This mode is supposed to be used in the context of selecting or sharing resources.
 
-For more details see the developer documentation [OpenCloud Web / Embed Mode](https://docs.opencloud.eu/docs/dev/web/embed-mode).
+For more details see the developer documentation [Quad4 Cloud Web / Embed Mode](https://github.com/Quad4-Software/cloud/docs/dev/web/embed-mode).
 See the environment variables: `WEB_OPTION_MODE` and `WEB_OPTION_EMBED_TARGET` to configure the embedded mode.
 
 ## Web Apps
@@ -45,8 +45,8 @@ and does not support injection of dynamic web applications (custom dynamic backe
 
 ### Loading Themes
 
-Web themes are loaded, if added in the OpenCloud source code, at build-time from
-`<opencloud_repo>/services/web/assets/themes`.
+Web themes are loaded, if added in the Quad4 Cloud source code, at build-time from
+`<quad4_repo>/services/web/assets/themes`.
 This cannot be manipulated at runtime.
 
 Additionally, the administrator can provide custom themes by storing it in the path defined by the environment
@@ -58,28 +58,28 @@ This can be done by setting the `WEB_UI_THEME_PATH` environment variable.
 The final theme is composed of the built-in and the custom theme provided by the
 administrator via `WEB_ASSET_THEMES_PATH` and `WEB_UI_THEME_PATH`.
 
-For example, OpenCloud by default contains a built-in OpenCloud theme.
+For example, Quad4 Cloud by default contains a built-in Quad4 Cloud theme.
 If the administrator provides a custom theme via the `WEB_ASSET_THEMES_PATH` directory like,
-`WEB_ASSET_THEMES_PATH/opencloud/themes.json`, this one will be used instead of the built-in one.
+`WEB_ASSET_THEMES_PATH/quad4/themes.json`, this one will be used instead of the built-in one.
 
 Some theme keys are mandatory, like the `common.shareRoles` settings.
 Such mandatory keys are injected automatically at runtime if not provided.
 
 ### Loading Applications
 
-Web applications are loaded, if added in the OpenCloud source code, at build-time from
-`<opencloud_repo>/services/web/assets/apps`. This cannot be manipulated at runtime.
+Web applications are loaded, if added in the Quad4 Cloud source code, at build-time from
+`<quad4_repo>/services/web/assets/apps`. This cannot be manipulated at runtime.
 
 Additionally, the administrator can provide custom applications by storing them in the path defined by the environment
 variable `WEB_ASSET_APPS_PATH`.
 
-This environment variable defaults to the OpenCloud base data directory `$OC_BASE_DATA_PATH/web/assets/apps`,
+This environment variable defaults to the Quad4 Cloud base data directory `$OC_BASE_DATA_PATH/web/assets/apps`,
 but can be redefined with any path set manually.
 
 The final list of available applications is composed of the built-in and the custom applications provided by the
 administrator via `WEB_ASSET_APPS_PATH`.
 
-For example, if OpenCloud contains a built-in extension named `image-viewer-dfx` and the administrator provides a custom application named `image-viewer-obj` via the `WEB_ASSET_APPS_PATH` directory, the user will be able to access both
+For example, if Quad4 Cloud contains a built-in extension named `image-viewer-dfx` and the administrator provides a custom application named `image-viewer-obj` via the `WEB_ASSET_APPS_PATH` directory, the user will be able to access both
 applications from the WebUI.
 
 ### Application Structure
@@ -164,7 +164,7 @@ Besides the configuration and application registration, in the process of loadin
 
 This is useful for cases where just a single asset should be overwritten, like a logo or similar.
 
-Consider the following: OpenCloud is shipped with a default web app named `image-viewer-dfx` which contains a logo,
+Consider the following: Quad4 Cloud is shipped with a default web app named `image-viewer-dfx` which contains a logo,
 but the administrator wants to provide a custom logo for that application.
 
 This can be achieved using the path defined via `WEB_ASSET_APPS_PATH` and adding a custom structure like `WEB_ASSET_APPS_PATH/image-viewer-dfx/`. Here you can add all custom assets to load like `logo.png`. On loading the web app, custom assets defined overwrite default ones.
@@ -173,4 +173,4 @@ This also applies for the `manifest.json` file, if the administrator wants to pr
 
 ## Miscellaneous
 
-Please note that OpenCloud, in particular the web service, needs a restart to load new applications or changes to the `apps.yaml` file.
+Please note that Quad4 Cloud, in particular the web service, needs a restart to load new applications or changes to the `apps.yaml` file.

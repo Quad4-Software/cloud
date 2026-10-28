@@ -13,7 +13,7 @@ import (
 
 	natsjskv "github.com/go-micro/plugins/v4/store/nats-js-kv"
 	"github.com/nats-io/nats.go"
-	"github.com/opencloud-eu/opencloud/pkg/generators"
+	"github.com/Quad4-Software/cloud/pkg/generators"
 	"go-micro.dev/v4/registry"
 	"go-micro.dev/v4/server"
 	"go-micro.dev/v4/store"

@@ -6,7 +6,7 @@ import (
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
-	"github.com/opencloud-eu/opencloud/services/activitylog/pkg/service/activitylog"
+	"github.com/Quad4-Software/cloud/services/activitylog/pkg/service/activitylog"
 )
 
 var _ = Describe("Debouncer", func() {

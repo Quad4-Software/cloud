@@ -32,7 +32,7 @@ use Behat\Step\Then;
 use Behat\Step\When;
 
 /**
- * steps needed to re-configure OpenCloud server
+ * steps needed to re-configure Quad4 Cloud server
  */
 class CollaborationContext implements Context {
 	private FeatureContext $featureContext;

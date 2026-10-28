@@ -3,8 +3,8 @@ package svc
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/services/settings/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/services/settings/pkg/config"
 )
 
 // Option defines a single option function.

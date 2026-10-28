@@ -81,7 +81,7 @@ func TestRenderTerminalFailure_GuestSessionExpiredDAV(t *testing.T) {
 	// inspect the document directly.
 	body := rr.Body.String()
 	assert.Contains(t, body, "<s:Exception>Sabre\\DAV\\Exception\\NotAuthenticated</s:Exception>")
-	assert.Contains(t, body, "<opencloud:error_type>session_expired</opencloud:error_type>")
-	assert.Contains(t, body, "<opencloud:share_id>&lt;script&gt;alert(&#34;x&#34;)&lt;/script&gt;&amp;&#39;</opencloud:share_id>")
+	assert.Contains(t, body, "<quad4:error_type>session_expired</quad4:error_type>")
+	assert.Contains(t, body, "<quad4:share_id>&lt;script&gt;alert(&#34;x&#34;)&lt;/script&gt;&amp;&#39;</quad4:share_id>")
 	assert.NotContains(t, body, "<script>")
 }
