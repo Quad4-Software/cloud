@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" width="512" height="512"><svg id="SvgjsSvg1001" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect x=".02" y="0" width="512" height="512" fill="#20434f"></rect><polygon points="255.98 342.75 271.89 333.57 271.89 267.12 329.08 234.1 329.08 215.78 313.18 206.6 255.6 239.84 198.83 207.06 182.93 216.24 182.93 234.56 240.12 267.58 240.12 333.59 255.98 342.75" fill="#e2baff"></polygon><polygon points="401.95 150.82 256 66.56 256 66.56 256 66.56 110.05 150.82 110.05 187.5 256 103.24 401.95 187.5 401.95 150.82" fill="#e2baff"></polygon><polygon points="401.95 324.5 256 408.76 110.06 324.5 110.06 361.17 256 445.43 256 445.43 256 445.43 401.95 361.17 401.95 324.5" fill="#e2baff"></polygon></svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
-@media (prefers-color-scheme: dark) { :root { filter: none; } }
-</style></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Quad4">
+  <rect width="64" height="64" rx="14" fill="#0a0a0b"/>
+  <g transform="translate(32 32) scale(24)" fill="#ffffff" fill-rule="nonzero">
+    <path d="M 0.10097 -0.97999 L 0.09859 -0.69728 L 0.39556 -0.52385 L 0.09859 -0.35517 L 0.09859 -0.11522 L 0.83983 -0.54286 Z"/>
+    <path d="M -0.09859 -0.97762 L -0.83745 -0.54523 L -0.10097 -0.11760 L -0.09622 -0.35517 L -0.39081 -0.52385 L -0.09622 -0.69728 Z"/>
+    <path d="M -0.86121 -0.49059 L -0.86121 0.36943 L -0.62363 0.23163 L -0.62126 -0.10810 L -0.32666 0.06533 L -0.11285 -0.05821 Z"/>
+    <path d="M 0.86121 -0.49059 L 0.11998 -0.05821 L 0.33142 0.06533 L 0.62363 -0.10572 L 0.62601 0.23163 L 0.86121 0.36705 Z"/>
+    <path d="M 0.07008 0.19362 L 0.07008 0.98237 L 0.79231 0.54761 L 0.56424 0.41219 L 0.26252 0.59750 L 0.26014 0.30291 Z"/>
+    <path d="M -0.07008 0.19600 L -0.25777 0.30291 L -0.26014 0.59750 L -0.56186 0.41219 L -0.78993 0.54761 L -0.07008 0.97999 Z"/>
+  </g>
+</svg>

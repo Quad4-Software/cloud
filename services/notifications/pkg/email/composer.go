@@ -10,7 +10,7 @@ import (
 	"github.com/leonelquinteros/gotext"
 	"github.com/pkg/errors"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
 )
 
 var (

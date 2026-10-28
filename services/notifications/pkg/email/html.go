@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/pkg/l10n"
+	"github.com/Quad4-Software/cloud/pkg/l10n"
 )
 
 // htmlContent is the data of the html templates. All text is plain text with unescaped

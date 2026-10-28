@@ -16,16 +16,16 @@ node-generate-prod: assets
 .PHONY: assets
 assets: pnpm-build \
 		assets/identifier/static/favicon.svg \
-		assets/identifier/static/icon-lilac.svg
+		assets/identifier/static/icon-void.svg
 
 .PHONY: assets/identifier/static/favicon.svg # force overwrite
 assets/identifier/static/favicon.svg: pnpm-build
 	cp src/images/favicon.svg assets/identifier/static/favicon.svg
 	rm assets/identifier/static/favicon.ico
 
-.PHONY: assets/identifier/static/icon-lilac.svg
-assets/identifier/static/icon-lilac.svg: pnpm-build
-	cp src/images/icon-lilac.svg assets/identifier/static/icon-lilac.svg
+.PHONY: assets/identifier/static/icon-void.svg
+assets/identifier/static/icon-void.svg: pnpm-build
+	cp src/images/icon-void.svg assets/identifier/static/icon-void.svg
 
 .PHONY: pnpm-build
 pnpm-build: node_modules

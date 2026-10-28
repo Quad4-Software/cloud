@@ -5,12 +5,12 @@ import (
 	"os"
 
 	chimiddleware "github.com/go-chi/chi/v5/middleware"
-	pkgcrypto "github.com/opencloud-eu/opencloud/pkg/crypto"
-	"github.com/opencloud-eu/opencloud/pkg/middleware"
-	"github.com/opencloud-eu/opencloud/pkg/service/http"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/version"
-	svc "github.com/opencloud-eu/opencloud/services/idp/pkg/service/v0"
+	pkgcrypto "github.com/Quad4-Software/cloud/pkg/crypto"
+	"github.com/Quad4-Software/cloud/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/service/http"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/version"
+	svc "github.com/Quad4-Software/cloud/services/idp/pkg/service/v0"
 	"go-micro.dev/v4"
 )
 

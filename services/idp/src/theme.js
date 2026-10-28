@@ -1,12 +1,20 @@
 import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
 
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import blue from '@material-ui/core/colors/blue';
-import red from '@material-ui/core/colors/red';
-
-const primaryColor = blue;
-const secondaryColor = blueGrey;
-const errorColor = red;
+const primaryColor = {
+    light: '#f4f4f5',
+    main: '#e9e9ec',
+    dark: '#a1a1aa',
+    contrastText: '#0a0a0b',
+};
+const secondaryColor = {
+    light: '#71717a',
+    main: '#3f3f46',
+    dark: '#2a2a31',
+    contrastText: '#e9e9ec',
+};
+const errorColor = {
+    main: '#ff6f5c',
+};
 
 // All the following keys are optional.
 // We try our best to provide a great default value.

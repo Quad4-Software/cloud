@@ -1,0 +1,165 @@
+{
+ "common": {
+  "name": "Quad4 Cloud",
+  "slogan": "File sync and share",
+  "logo": "themes/quad4/assets/logo.svg",
+  "urls": {
+   "accessDeniedHelp": "",
+   "imprint": "",
+   "privacy": "",
+   "accessibility": ""
+  },
+  "shareRoles": {
+   "b1e2218d-eef8-4d4c-b82d-0f1a1b48f3b5": {
+    "name": "UnifiedRoleViewer",
+    "iconName": "eye"
+   },
+   "a8d5fe5e-96e3-418d-825b-534dbdf22b99": {
+    "label": "UnifiedRoleSpaceViewer",
+    "iconName": "eye"
+   },
+   "2d00ce52-1fc2-4dbc-8b95-a73b73395f5a": {
+    "label": "UnifiedRoleFileEditor",
+    "iconName": "pencil"
+   },
+   "fb6c3e19-e378-47e5-b277-9732f9de6e21": {
+    "label": "UnifiedRoleEditor",
+    "iconName": "pencil"
+   },
+   "58c63c02-1d89-4572-916a-870abc5a1b7d": {
+    "label": "UnifiedRoleSpaceEditor",
+    "iconName": "pencil"
+   },
+   "312c0871-5ef7-4b3a-85b6-0e4074c64049": {
+    "label": "UnifiedRoleManager",
+    "iconName": "user-star"
+   },
+   "1c996275-f1c9-4e71-abdf-a42f6495e960": {
+    "label": "UnifiedRoleUploader",
+    "iconName": "upload"
+   },
+   "aa97fe03-7980-45ac-9e50-b325749fd7e6": {
+    "label": "UnifiedRoleSecureView",
+    "iconName": "shield"
+   }
+  }
+ },
+ "clients": {
+  "android": {},
+  "desktop": {},
+  "ios": {},
+  "web": {
+   "defaults": {
+    "logo": "themes/quad4/assets/logo-dark.svg",
+    "logoMobile": "themes/quad4/assets/logo-dark.svg",
+    "favicon": "themes/quad4/assets/favicon.svg"
+   },
+   "themes": [
+    {
+     "isDark": false,
+     "label": "Paper",
+     "designTokens": {
+      "roles": {
+       "primary": "#0a0a0b",
+       "onPrimary": "#fafafa",
+       "primaryContainer": "#e9e9ec",
+       "onPrimaryContainer": "#0a0a0b",
+       "secondary": "#3f3f46",
+       "onSecondary": "#fafafa",
+       "secondaryContainer": "#e9e9ec",
+       "onSecondaryContainer": "#18181b",
+       "tertiary": "#71717a",
+       "onTertiary": "#fafafa",
+       "tertiaryContainer": "#d9d9de",
+       "onTertiaryContainer": "#18181b",
+       "error": "#ba1a1a",
+       "onError": "#ffffff",
+       "errorContainer": "#ffdad6",
+       "onErrorContainer": "#410002",
+       "background": "#fafafa",
+       "onBackground": "#18181b",
+       "surface": "#fafafa",
+       "onSurface": "#18181b",
+       "surfaceVariant": "#e9e9ec",
+       "onSurfaceVariant": "#71717a",
+       "outline": "#a1a1aa",
+       "outlineVariant": "#d9d9de",
+       "shadow": "#000000",
+       "scrim": "#000000",
+       "inverseSurface": "#0a0a0b",
+       "inverseOnSurface": "#f4f4f5",
+       "inversePrimary": "#a1a1aa",
+       "primaryFixed": "#e9e9ec",
+       "onPrimaryFixed": "#0a0a0b",
+       "secondaryFixed": "#e9e9ec",
+       "onSecondaryFixed": "#18181b",
+       "tertiaryFixed": "#d9d9de",
+       "onTertiaryFixed": "#18181b",
+       "surfaceDim": "#d9d9de",
+       "surfaceBright": "#ffffff",
+       "surfaceContainerLowest": "#ffffff",
+       "surfaceContainerLow": "#fafafa",
+       "surfaceContainer": "#f4f4f5",
+       "surfaceContainerHigh": "#e9e9ec",
+       "surfaceContainerHighest": "#d9d9de"
+      }
+     },
+     "logo": "themes/quad4/assets/logo-dark.svg",
+     "logoMobile": "themes/quad4/assets/logo-dark.svg"
+    },
+    {
+     "isDark": true,
+     "label": "Void",
+     "logo": "themes/quad4/assets/logo.svg",
+     "logoMobile": "themes/quad4/assets/logo.svg",
+     "designTokens": {
+      "roles": {
+       "primary": "#e9e9ec",
+       "onPrimary": "#0a0a0b",
+       "primaryContainer": "#1f1f24",
+       "onPrimaryContainer": "#e9e9ec",
+       "secondary": "#a1a1aa",
+       "onSecondary": "#0a0a0b",
+       "secondaryContainer": "#16161a",
+       "onSecondaryContainer": "#d9d9de",
+       "tertiary": "#71717a",
+       "onTertiary": "#0a0a0b",
+       "tertiaryContainer": "#1f1f24",
+       "onTertiaryContainer": "#a1a1aa",
+       "error": "#ffb4ab",
+       "onError": "#690005",
+       "errorContainer": "#93000a",
+       "onErrorContainer": "#ffb4ab",
+       "background": "#0a0a0b",
+       "onBackground": "#e9e9ec",
+       "surface": "#0a0a0b",
+       "onSurface": "#d9d9de",
+       "surfaceVariant": "#1f1f24",
+       "onSurfaceVariant": "#a1a1aa",
+       "outline": "#3f3f46",
+       "outlineVariant": "#2a2a31",
+       "shadow": "#000000",
+       "scrim": "#000000",
+       "inverseSurface": "#e9e9ec",
+       "inverseOnSurface": "#0a0a0b",
+       "inversePrimary": "#3f3f46",
+       "primaryFixed": "#d9d9de",
+       "onPrimaryFixed": "#0a0a0b",
+       "secondaryFixed": "#16161a",
+       "onSecondaryFixed": "#d9d9de",
+       "tertiaryFixed": "#1f1f24",
+       "onTertiaryFixed": "#a1a1aa",
+       "surfaceDim": "#08080a",
+       "surfaceBright": "#1f1f24",
+       "surfaceContainerLowest": "#0a0a0b",
+       "surfaceContainerLow": "#0d0d10",
+       "surfaceContainer": "#101013",
+       "surfaceContainerHigh": "#16161a",
+       "surfaceContainerHighest": "#1f1f24"
+      }
+     }
+    }
+   ]
+  }
+ }
+}

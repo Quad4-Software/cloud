@@ -1,26 +1,26 @@
 @font-face {
-    font-family: OpenCloud;
-    src: url('./fonts/OpenCloud500-Regular.woff2') format('woff2');
+    font-family: 'Quad4 Cloud';
+    src: url('./fonts/Quad4Cloud500-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 
 @font-face {
-    font-family: OpenCloud;
-    src: url('./fonts/OpenCloud750-Bold.woff2') format('woff2');
+    font-family: 'Quad4 Cloud';
+    src: url('./fonts/Quad4Cloud750-Bold.woff2') format('woff2');
     font-weight: bold;
     font-style: normal;
 }
 
 html {
     font-feature-settings: "cv11";
-    color: #20434f !important;
+    color: #d9d9de !important;
     height: 100%;
 }
 
 body {
-    font-family: OpenCloud, sans-serif;
+    font-family: 'Quad4 Cloud', sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -40,7 +40,18 @@ strong {
 }
 
 .oc-login-bg {
-    background: #20434F;
+    background-color: #0a0a0b;
+    background-image:
+        radial-gradient(1px 1px at 12% 22%, #ffffff4d 50%, transparent 51%),
+        radial-gradient(1px 1px at 34% 68%, #ffffff38 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 57% 15%, #ffffff59 50%, transparent 51%),
+        radial-gradient(1px 1px at 73% 44%, #ffffff38 50%, transparent 51%),
+        radial-gradient(1px 1px at 88% 79%, #ffffff4d 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 25% 87%, #ffffff38 50%, transparent 51%),
+        radial-gradient(1px 1px at 45% 40%, #ffffff30 50%, transparent 51%),
+        radial-gradient(1px 1px at 66% 90%, #ffffff4d 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 91% 8%, #ffffff38 50%, transparent 51%),
+        radial-gradient(1px 1px at 8% 55%, #ffffff30 50%, transparent 51%);
     display: flex;
     width: 100%;
 }
@@ -50,6 +61,7 @@ strong {
     right: -3vw;
     bottom: -3vh;
     height: 50vh;
+    opacity: 0.12;
     z-index: 0;
 }
 
@@ -61,7 +73,7 @@ strong {
 
 #loader {
     /* NOTE(longsleep): White here needed because of the background image */
-    color: white;
+    color: #e9e9ec;
     text-shadow: #000 0 0 1px;
 }
 
@@ -76,18 +88,20 @@ strong {
 
 .oc-progress {
     /* Needs to be important to overwrite material-ui */
-    background-color: rgba(78, 133, 200, 0.8) !important;
+    background-color: rgba(233, 233, 236, 0.25) !important;
     height: 4px;
     width: 100px;
 }
 
 .oc-progress > div {
     /* Needs to be important to overwrite material-ui */
-    background-color: #4a76ac !important;
+    background-color: #e9e9ec !important;
 }
 
 .oc-input {
-    border: 1px solid #20434f;
+    border: 1px solid #3f3f46;
+    background: #101013;
+    color: #e9e9ec;
     border-radius: 4px;
     height: 45px;
     width: 100%;
@@ -104,17 +118,17 @@ strong {
 
 .oc-input.error {
     outline: none;
-    border: 1px solid #fe4600;
+    border: 1px solid #ff6f5c;
 }
 
 .MuiTypography-colorError {
-    color: #fe4600 !important;
+    color: #ffb4ab !important;
 }
 
 .oc-input:focus {
-    outline: 2px solid #e2baff;
+    outline: 2px solid #71717a;
     outline-offset: 0;
-    border: 1px solid #fff;
+    border: 1px solid #a1a1aa;
 }
 
 .oc-input + .oc-input {
@@ -126,7 +140,9 @@ strong {
 }
 
 .oc-card {
-    background: white;
+    background: #16161a;
+    border: 1px solid #1f1f24;
+    border-radius: 8px;
     display: inline-flex;
     width: 500px;
 }
@@ -139,7 +155,7 @@ strong {
 .oc-button {
     /* Needs to be important to overwrite material-ui */
     font-size: 1.0625rem !important;
-    border-radius: 100px !important;
+    border-radius: 6px !important;
     box-shadow: none !important;
     font-weight: 700 !important;
 }
@@ -147,9 +163,9 @@ strong {
 .oc-button-primary {
     /* Needs to be important to overwrite material-ui */
     width: 100%;
-    background: #e2baff !important;
-    border-radius: 100px !important;
-    color: #20434f !important;
+    background: #e9e9ec !important;
+    border-radius: 6px !important;
+    color: #0a0a0b !important;
     box-shadow: none !important;
     font-weight: 700 !important;
 }
@@ -159,27 +175,27 @@ strong {
  * box-shadow, which are both switched off in this file.
  */
 body :focus-visible {
-    outline: 2px solid #20434f;
+    outline: 2px solid #a1a1aa;
     outline-offset: 2px;
 }
 
 /* the logo link sits on the background, which can be dark or a light image */
 .oc-logo-container:focus-visible {
     outline-color: #fff;
-    box-shadow: 0 0 0 6px #20434f;
+    box-shadow: 0 0 0 6px #0a0a0b;
 }
 
 .oc-button-secondary {
     /* Needs to be important to overwrite material-ui */
     width: 100%;
-    border-radius: 100px !important;
-    background: #F1F3F4 !important;
-    color: #20434f !important;
+    border-radius: 6px !important;
+    background: #1f1f24 !important;
+    color: #d9d9de !important;
     box-shadow: none !important;
 }
 
 .oc-footer-message {
-    color: white;
+    color: #e9e9ec;
     padding: 10px;
     font-size: 0.8rem;
 }

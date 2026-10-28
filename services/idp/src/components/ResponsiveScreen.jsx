@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import Loading from './Loading';
-import { OpenCloudContext } from "../openCloudContext";
+import { Quad4CloudContext } from "../quad4CloudContext";
 
 const styles = theme => ({
   root: {
@@ -45,10 +45,10 @@ const ResponsiveScreen = (props) => {
     branding,
     ...other
   } = props;
-  const { theme } = useContext(OpenCloudContext);
+  const { theme } = useContext(Quad4CloudContext);
 
   const logo = (theme && !withoutLogo) ? (
-        <img src={'/' + theme.common?.logo} className="oc-logo" alt="OpenCloud Logo"/>
+        <img src={'/' + theme.common?.logo} className="oc-logo" alt="Quad4 Cloud Logo"/>
     ) : null;
 
   const content = loading ? <Loading/> : (withoutPadding ? children : <DialogContent>{children}</DialogContent>);
@@ -86,7 +86,7 @@ const ResponsiveScreen = (props) => {
       </div>
       <footer className="oc-footer-message">
         <Trans i18nKey="konnect.footer.slogan">
-          <strong>OpenCloud</strong> - excellent file sharing
+          <strong>Quad4 Cloud</strong> - excellent file sharing
         </Trans>
       </footer>
     </Grid>

@@ -6,7 +6,7 @@ import muiTheme from './theme';
 
 import Spinner from './components/Spinner';
 import * as version from './version';
-import {OpenCloudContext} from './openCloudContext';
+import {Quad4CloudContext} from './quad4CloudContext';
 
 const LazyMain = lazy(() => import(/* webpackChunkName: "identifier-main" */ './Main'));
 
@@ -44,7 +44,7 @@ const App = ({ bgImg }): ReactElement => {
 
 
     return (
-        <OpenCloudContext.Provider value={{theme, config}}>
+        <Quad4CloudContext.Provider value={{theme, config}}>
             <div
                 className={`oc-login-bg ${bgImg ? 'oc-login-bg-image' : ''}`}
                 style={{backgroundImage: bgImg ? `url(${bgImg})` : undefined}}
@@ -56,13 +56,13 @@ const App = ({ bgImg }): ReactElement => {
                 </MuiThemeProvider>
                 {!bgImg &&
                     <img
-                        src={`${process.env.PUBLIC_URL}/static/icon-lilac.svg`}
+                        src={`${process.env.PUBLIC_URL}/static/icon-void.svg`}
                         className={'oc-login-bg-icon'}
                         alt=''
                     />
                 }
             </div>
-        </OpenCloudContext.Provider>
+        </Quad4CloudContext.Provider>
     );
 }
 

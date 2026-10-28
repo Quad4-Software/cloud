@@ -93,7 +93,7 @@ msgstr ""
 
 #. From: translation##konnect##footer##slogan
 #: translation##konnect##footer##slogan
-msgid "<strong>OpenCloud</strong> - excellent file sharing"
+msgid "<strong>Quad4 Cloud</strong> - excellent file sharing"
 msgstr ""
 
 #. From: translation##konnect##goodbye##confirm##headline

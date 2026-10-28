@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/opencloud-eu/opencloud/pkg/config/defaults"
-	"github.com/opencloud-eu/opencloud/pkg/shared"
-	"github.com/opencloud-eu/opencloud/pkg/structs"
-	"github.com/opencloud-eu/opencloud/services/idp/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/config/defaults"
+	"github.com/Quad4-Software/cloud/pkg/shared"
+	"github.com/Quad4-Software/cloud/pkg/structs"
+	"github.com/Quad4-Software/cloud/services/idp/pkg/config"
 )
 
 // FullDefaultConfig returns a fully initialized default configuration
@@ -28,7 +28,7 @@ func DefaultConfig() *config.Config {
 		HTTP: config.HTTP{
 			Addr:      "127.0.0.1:9130",
 			Root:      "/",
-			Namespace: "eu.opencloud.web",
+			Namespace: "io.quad4.web",
 			TLSCert:   filepath.Join(defaults.BaseDataPath(), "idp", "server.crt"),
 			TLSKey:    filepath.Join(defaults.BaseDataPath(), "idp", "server.key"),
 			TLS:       false,
@@ -58,7 +58,7 @@ func DefaultConfig() *config.Config {
 			IdentifierScopesConf:               "",
 			IdentifierDefaultBannerLogo:        "",
 			IdentifierDefaultSignInPageText:    "",
-			IdentifierDefaultLogoTargetURI:     "https://opencloud.eu",
+			IdentifierDefaultLogoTargetURI:     "https://quad4.io",
 			IdentifierDefaultUsernameHintText:  "",
 			SigningKid:                         "private-key",
 			SigningMethod:                      "PS256",
@@ -75,7 +75,7 @@ func DefaultConfig() *config.Config {
 		Clients: []config.Client{
 			{
 				ID:      "web",
-				Name:    "OpenCloud Web App",
+				Name:    "Quad4 Cloud Web App",
 				Trusted: true,
 				RedirectURIs: []string{
 					"{{OC_URL}}/",
@@ -87,8 +87,8 @@ func DefaultConfig() *config.Config {
 				},
 			},
 			{
-				ID:              "OpenCloudDesktop",
-				Name:            "OpenCloud Desktop Client",
+				ID:              "Quad4CloudDesktop",
+				Name:            "Quad4 Cloud Desktop Client",
 				ApplicationType: "native",
 				RedirectURIs: []string{
 					"http://127.0.0.1",
@@ -96,25 +96,25 @@ func DefaultConfig() *config.Config {
 				},
 			},
 			{
-				ID:              "OpenCloudAndroid",
-				Name:            "OpenCloud Android App",
+				ID:              "Quad4CloudAndroid",
+				Name:            "Quad4 Cloud Android App",
 				ApplicationType: "native",
 				RedirectURIs: []string{
-					"oc://android.opencloud.eu",
+					"oc://android.quad4.io",
 				},
 				PostLogoutRedirectURIs: []string{
-					"oc://android.opencloud.eu",
+					"oc://android.quad4.io",
 				},
 			},
 			{
-				ID:              "OpenCloudIOS",
-				Name:            "OpenCloud iOS App",
+				ID:              "Quad4CloudIOS",
+				Name:            "Quad4 Cloud iOS App",
 				ApplicationType: "native",
 				RedirectURIs: []string{
-					"oc://ios.opencloud.eu",
+					"oc://ios.quad4.io",
 				},
 				PostLogoutRedirectURIs: []string{
-					"oc://ios.opencloud.eu",
+					"oc://ios.quad4.io",
 				},
 			},
 		},
@@ -126,11 +126,11 @@ func DefaultConfig() *config.Config {
 			LoginAttribute:       "uid",
 			EmailAttribute:       "mail",
 			NameAttribute:        "displayName",
-			UUIDAttribute:        "openCloudUUID",
+			UUIDAttribute:        "quad4CloudUUID",
 			UUIDAttributeType:    "text",
 			Filter:               "",
 			ObjectClass:          "inetOrgPerson",
-			UserEnabledAttribute: "openCloudUserEnabled",
+			UserEnabledAttribute: "quad4CloudUserEnabled",
 		},
 	}
 }

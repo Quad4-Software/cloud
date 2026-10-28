@@ -18,13 +18,13 @@ import (
 	libreGraphBackendSupport "github.com/libregraph/lico/bootstrap/backends/libregraph"
 	licoconfig "github.com/libregraph/lico/config"
 	"github.com/libregraph/lico/server"
-	"github.com/opencloud-eu/opencloud/pkg/ldap"
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/tracing"
-	"github.com/opencloud-eu/opencloud/services/idp/pkg/assets"
-	cs3BackendSupport "github.com/opencloud-eu/opencloud/services/idp/pkg/backends/cs3/bootstrap"
-	"github.com/opencloud-eu/opencloud/services/idp/pkg/config"
-	"github.com/opencloud-eu/opencloud/services/idp/pkg/middleware"
+	"github.com/Quad4-Software/cloud/pkg/ldap"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/tracing"
+	"github.com/Quad4-Software/cloud/services/idp/pkg/assets"
+	cs3BackendSupport "github.com/Quad4-Software/cloud/services/idp/pkg/backends/cs3/bootstrap"
+	"github.com/Quad4-Software/cloud/services/idp/pkg/config"
+	"github.com/Quad4-Software/cloud/services/idp/pkg/middleware"
 	"github.com/riandyrn/otelchi"
 	"go.opentelemetry.io/otel/trace"
 	"gopkg.in/yaml.v2"
@@ -48,7 +48,7 @@ func NewService(opts ...Option) Service {
 
 	if err := createTemporaryClientsConfig(
 		options.Config.IDP.IdentifierRegistrationConf,
-		options.Config.Commons.OpenCloudURL,
+		options.Config.Commons.Quad4CloudURL,
 		options.Config.Clients,
 	); err != nil {
 		logger.Fatal().Err(err).Msg("could not create default config")
@@ -142,7 +142,7 @@ type temporaryClientConfig struct {
 	Clients []config.Client `yaml:"clients"`
 }
 
-func createTemporaryClientsConfig(filePath, openCloudURL string, clients []config.Client) error {
+func createTemporaryClientsConfig(filePath, quad4CloudURL string, clients []config.Client) error {
 	folder := path.Dir(filePath)
 	if _, err := os.Stat(folder); os.IsNotExist(err) {
 		if err := os.MkdirAll(folder, 0o700); err != nil {
@@ -153,10 +153,10 @@ func createTemporaryClientsConfig(filePath, openCloudURL string, clients []confi
 	for i, client := range clients {
 
 		for i, entry := range client.RedirectURIs {
-			client.RedirectURIs[i] = strings.ReplaceAll(entry, "{{OC_URL}}", strings.TrimRight(openCloudURL, "/"))
+			client.RedirectURIs[i] = strings.ReplaceAll(entry, "{{OC_URL}}", strings.TrimRight(quad4CloudURL, "/"))
 		}
 		for i, entry := range client.Origins {
-			client.Origins[i] = strings.ReplaceAll(entry, "{{OC_URL}}", strings.TrimRight(openCloudURL, "/"))
+			client.Origins[i] = strings.ReplaceAll(entry, "{{OC_URL}}", strings.TrimRight(quad4CloudURL, "/"))
 		}
 		clients[i] = client
 	}
@@ -259,7 +259,7 @@ type IDP struct {
 	tp     trace.TracerProvider
 }
 
-// initMux initializes the internal idp gorilla mux and mounts it in to an OpenCloud chi-router
+// initMux initializes the internal idp gorilla mux and mounts it in to an Quad4 Cloud chi-router
 func (idp *IDP) initMux(ctx context.Context, r []server.WithRoutes, h http.Handler, options Options) {
 	gm := mux.NewRouter()
 	for _, route := range r {

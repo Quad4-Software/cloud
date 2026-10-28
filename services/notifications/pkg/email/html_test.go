@@ -57,8 +57,8 @@ func TestRenderEmailTemplateHTML(t *testing.T) {
 		">Open link</a>",
 		"Or open this link:",
 		"The link and the PIN are only valid for 30 minutes.",
-		`src="cid:opencloud-logo.png"`,
-		`src="cid:opencloud-logo-dark.png"`,
+		`src="cid:quad4-logo.png"`,
+		`src="cid:quad4-logo-dark.png"`,
 		"prefers-color-scheme: dark",
 	} {
 		if !strings.Contains(msg.HTMLBody, want) {
@@ -68,7 +68,7 @@ func TestRenderEmailTemplateHTML(t *testing.T) {
 	if strings.Contains(msg.HTMLBody, "<b>Lindqvist</b>") {
 		t.Error("html body contains unescaped user input")
 	}
-	for _, name := range []string{"opencloud-logo.png", "opencloud-logo-dark.png"} {
+	for _, name := range []string{"quad4-logo.png", "quad4-logo-dark.png"} {
 		if len(msg.AttachInline[name]) == 0 {
 			t.Errorf("inline attachment %q is missing", name)
 		}

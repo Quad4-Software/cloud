@@ -16,7 +16,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/opencloud-eu/opencloud/services/notifications/pkg/channels"
+	"github.com/Quad4-Software/cloud/services/notifications/pkg/channels"
 )
 
 var (

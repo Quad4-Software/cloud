@@ -3,10 +3,10 @@ package assets
 import (
 	"net/http"
 
-	"github.com/opencloud-eu/opencloud/pkg/log"
-	"github.com/opencloud-eu/opencloud/pkg/x/io/fsx"
-	"github.com/opencloud-eu/opencloud/services/idp"
-	"github.com/opencloud-eu/opencloud/services/idp/pkg/config"
+	"github.com/Quad4-Software/cloud/pkg/log"
+	"github.com/Quad4-Software/cloud/pkg/x/io/fsx"
+	"github.com/Quad4-Software/cloud/services/idp"
+	"github.com/Quad4-Software/cloud/services/idp/pkg/config"
 )
 
 // New returns a new http filesystem to serve assets.
