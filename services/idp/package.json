@@ -74,7 +74,7 @@
     "@babel/preset-flow": "^8.0.1",
     "@babel/preset-react": "^8.0.1",
     "@babel/preset-typescript": "^8.0.7",
-    "babel-loader": "10.0.0",
+    "babel-loader": "10.1.1",
     "babel-plugin-named-asset-import": "^0.3.8",
     "case-sensitive-paths-webpack-plugin": "2.4.0",
     "cldr": "^8.0.0",
