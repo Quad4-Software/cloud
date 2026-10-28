@@ -3,7 +3,7 @@ module ocwrapper
 go 1.20
 
 require (
-	github.com/creack/pty v1.1.21
+	github.com/creack/pty v1.1.24
 	github.com/spf13/cobra v1.7.0
 )
 
