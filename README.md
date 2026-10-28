@@ -1,70 +1,116 @@
-![OpenCloud logo](https://raw.githubusercontent.com/opencloud-eu/opencloud/refs/heads/main/opencloud_logo.png)
+![Quad4 Cloud](quad4_logo.png)
 
-[![status-badge](https://ci.opencloud.rocks/api/badges/3/status.svg)](https://ci.opencloud.rocks/repos/3)
- [![Matrix](https://img.shields.io/matrix/opencloud%3Amatrix.org?logo=matrix)](https://app.element.io/#/room/#opencloud:matrix.org)
- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+# Quad4 Cloud
 
-# Server Backend
+Quad4 Cloud is a file sync and share platform. It provides file storage,
+sharing, collaboration, and user management over a web interface, WebDAV,
+and the LibreGraph API. It is a fork of OpenCloud.
 
+## Run with containers
 
-> [!TIP]
-> For general information about OpenCloud and how to install please visit [OpenCloud on Github](https://github.com/opencloud-eu/) and [OpenCloud GmbH](https://opencloud.eu).
+Multi-arch images (linux/amd64 and linux/arm64) are published to
+`ghcr.io/quad4-software/cloud` with zstd-compressed layers and cosign
+keyless signatures. The image runs as an unprivileged user.
 
-This is the main repository of the OpenCloud server.
-It contains the golang codebase for the backend services.
+```console
+podman pull ghcr.io/quad4-software/cloud:latest
+podman run -d --name quad4-cloud \
+  -p 9200:9200 \
+  -v quad4-config:/etc/quad4 \
+  -v quad4-data:/var/lib/quad4 \
+  ghcr.io/quad4-software/cloud:latest
+```
 
-## Getting Involved
+On first start the server initializes its configuration and data, then
+serves the web interface at `https://localhost:9200`. For local testing,
+`OC_INSECURE=true` enables the built-in self-signed certificate:
 
-The OpenCloud server is released under [Apache 2.0](https://github.com/opencloud-eu/opencloud/blob/main/LICENSE).
-The project is thrilled to receive contributions in all forms.
-Start hacking now, there are many ways to get involved such as:
+```console
+podman run -d --name quad4-cloud \
+  -p 9200:9200 \
+  -e OC_INSECURE=true \
+  -e OC_URL=https://localhost:9200 \
+  -e IDM_ADMIN_PASSWORD=admin \
+  -v quad4-config:/etc/quad4 \
+  -v quad4-data:/var/lib/quad4 \
+  ghcr.io/quad4-software/cloud:latest
+```
 
-- Reporting [issues or bugs](https://github.com/opencloud-eu/opencloud/issues)
-- Requesting [features](https://github.com/opencloud-eu/opencloud/issues)
-- [Writing documentation](https://github.com/opencloud-eu/docs)
-- [Writing code or extend our tests](https://github.com/opencloud-eu/opencloud/pulls)
-- [Reviewing code](https://github.com/opencloud-eu/opencloud/pulls)
-- Helping others in the [community](https://app.element.io/#/room/#opencloud:matrix.org)
+Log in as `admin` with the configured `IDM_ADMIN_PASSWORD`.
 
-Every contribution is meaningful and appreciated!
-Please refer to our [Contribution Guidelines](https://github.com/opencloud-eu/opencloud/blob/main/CONTRIBUTING.md) if you want to get started.
+Verify the image signature:
 
-## Build OpenCloud
+```console
+cosign verify ghcr.io/quad4-software/cloud:latest \
+  --certificate-identity-regexp 'https://github.com/Quad4-Software/cloud' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com
+```
 
-To build the backend, follow these instructions:
+## Configuration
 
-Generate the assets needed by e.g., the web UI and the builtin IDP
+Configuration lives in `/etc/quad4`, data in `/var/lib/quad4`. All
+settings can also be set via environment variables; see the `env` fields
+in each service's `pkg/config/config.go`.
 
-``` console
+### OpenID Connect
+
+Quad4 Cloud ships an embedded identity provider. To use an external
+OIDC provider such as Keycloak or Authentik instead:
+
+```console
+-e PROXY_OIDC_ISSUER=https://idp.example.com/realms/quad4 \
+-e PROXY_OIDC_REWRITE_WELLKNOWN=true \
+-e WEB_OIDC_CLIENT_ID=quad4-web \
+-e PROXY_AUTOPROVISION_ACCOUNTS=true \
+-e PROXY_USER_OIDC_CLAIM=preferred_username \
+-e PROXY_AUTOPROVISION_CLAIM_USERNAME=preferred_username \
+-e PROXY_AUTOPROVISION_CLAIM_EMAIL=email \
+-e PROXY_AUTOPROVISION_CLAIM_DISPLAYNAME=name \
+-e PROXY_AUTOPROVISION_CLAIM_GROUPS=groups
+```
+
+When `PROXY_OIDC_ISSUER` is set, requests to `/.well-known/openid-configuration`
+are rewritten to the external provider and the embedded IDP stays unused.
+Auto-provisioned users are created on first login.
+
+### S3 storage backend
+
+By default files are stored on the local filesystem (posix driver). To
+store blobs in S3 while keeping metadata on the filesystem, use the
+`decomposeds3` driver:
+
+```console
+-e STORAGE_USERS_DRIVER=decomposeds3 \
+-e STORAGE_USERS_DECOMPOSEDS3_ENDPOINT=https://s3.example.com \
+-e STORAGE_USERS_DECOMPOSEDS3_REGION=us-east-1 \
+-e STORAGE_USERS_DECOMPOSEDS3_BUCKET=quad4 \
+-e STORAGE_USERS_DECOMPOSEDS3_ACCESS_KEY=... \
+-e STORAGE_USERS_DECOMPOSEDS3_SECRET_KEY=...
+```
+
+Works with AWS S3 and S3-compatible stores such as MinIO.
+
+## Build from source
+
+Requires Go, Node.js, and pnpm:
+
+```console
 make generate
+make -C quad4 build
+quad4/bin/quad4 init && quad4/bin/quad4 server
 ```
 
-Then compile the `opencloud` binary
+The container image can be built locally with podman:
 
-``` console
-make -C opencloud build
+```console
+podman build -t quad4-cloud:dev .
 ```
-That will produce the binary `opencloud/bin/opencloud`. It can be started as a local test instance right away with a two step command:
-
-```bash
-opencloud/bin/opencloud init && opencloud/bin/opencloud server
-```
-This creates a server configuration (by default in `$HOME/.opencloud`) and starts the server.
-
-For more setup- and installation options consult the [Development Documentation](https://docs.opencloud.eu/).
-
-## Technology
-
-Important information for contributors about the technology in use.
-
-### Authentication
-
-The OpenCloud backend authenticates users via [OpenID Connect](https://openid.net/connect/) using either an external IdP like [Keycloak](https://www.keycloak.org/) or the embedded [LibreGraph Connect](https://github.com/libregraph/lico) identity provider.
-
-### Database
-
-The OpenCloud backend does not use a database. It stores all data in the filesystem. By default, the root directory of the backend is `$HOME/.opencloud/`.
 
 ## Security
 
-If you find a security-related issue, please contact [security@opencloud.eu](mailto:security@opencloud.eu) immediately.
+Report security issues to [security@quad4.io](mailto:security@quad4.io).
+
+## License
+
+Apache 2.0. See [LICENSE](LICENSE). Quad4 Cloud is a fork of OpenCloud,
+which is itself a fork of ownCloud Infinite Scale.

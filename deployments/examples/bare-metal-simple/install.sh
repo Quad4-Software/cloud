@@ -3,15 +3,15 @@
 set -euo pipefail
 
 #
-# Quick and dirty quickstart script to fire up a local OpenCloud instance.
-# Klaas Freitag <k.freitag@opencloud.eu>
+# Quick and dirty quickstart script to fire up a local Quad4 Cloud instance.
+# Klaas Freitag <k.freitag@quad4.io>
 #
 
 # This script supports the following environment variables:
 #   OC_VERSION: Version to download, e.g. OC_VERSION="1.2.0"
 
-# Call this script directly from opencloud:
-# curl -L https://opencloud.eu/install | /bin/bash
+# Call this script directly from quad4:
+# curl -L https://quad4.io/install | /bin/bash
 
 # This function is borrowed from openSUSEs /usr/bin/old, thanks.
 function backup_file () {
@@ -35,21 +35,21 @@ function backup_file () {
 }
 
 function get_latest_version() {
-     latest_version=$(curl -s https://api.github.com/repos/opencloud-eu/opencloud/releases/latest \
+     latest_version=$(curl -s https://api.github.com/repos/Quad4-Software/cloud/releases/latest \
 	     | grep '"tag_name":' \
 	     | awk -F: '{print $2}' \
          | tr -d ' ",v')
 }
 
 # URL pattern of the download file
-# https://github.com/opencloud-eu/opencloud/releases/download/v1.0.0/opencloud-1.0.0-linux-amd64
+# https://github.com/Quad4-Software/cloud/releases/download/v1.0.0/quad4-1.0.0-linux-amd64
 
 get_latest_version
 
 dlversion="${OC_VERSION:-$latest_version}"
-dlurl="https://github.com/opencloud-eu/opencloud/releases/download/v${dlversion}/"
+dlurl="https://github.com/Quad4-Software/cloud/releases/download/v${dlversion}/"
 
-sandbox="opencloud-sandbox-${dlversion}"
+sandbox="quad4-sandbox-${dlversion}"
 
 # Create a sandbox
 [ -d "./${sandbox}" ] && backup_file ${sandbox}
@@ -71,7 +71,7 @@ if [[ ( "$(uname -s)" == "Darwin" && "$(uname -m)" == "arm64" ) ||
 fi
 
 # ...results in the download file
-dlfile="opencloud-${dlversion}-${os}-${dlarch}"
+dlfile="quad4-${dlversion}-${os}-${dlarch}"
 
 # download
 echo "Downloading ${dlurl}/${dlfile}"
@@ -92,7 +92,7 @@ host="${OC_HOST:-localhost}"
 
 echo '#!/bin/bash
 SCRIPT_DIR="$(dirname "$(readlink -f "${0}")")"
-cd "${SCRIPT_DIR}"' > runopencloud.sh
+cd "${SCRIPT_DIR}"' > runquad4.sh
 
 echo "export OC_CONFIG_DIR=${OC_CONFIG_DIR}
 export OC_BASE_DATA_PATH=${OC_BASE_DATA_PATH}
@@ -104,16 +104,16 @@ export PROXY_ENABLE_BASIC_AUTH=true
 export OC_LOG_LEVEL=warning
 
 ./"${dlfile}" server
-" >> runopencloud.sh
+" >> runquad4.sh
 
-chmod 755 runopencloud.sh
+chmod 755 runquad4.sh
 
-echo "Connect to OpenCloud via https://${host}:9200"
+echo "Connect to Quad4 Cloud via https://${host}:9200"
 echo ""
 echo "*** This is a fragile test setup, not suitable for production! ***"
-echo "    If you stop this script now, you can run your test OpenCloud again"
-echo "    using the script ${sandbox}/runopencloud.sh"
+echo "    If you stop this script now, you can run your test Quad4 Cloud again"
+echo "    using the script ${sandbox}/runquad4.sh"
 echo ""
 
-./runopencloud.sh
+./runquad4.sh
 

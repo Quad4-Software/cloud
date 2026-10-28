@@ -1,3 +1,6 @@
 # Deployment Examples
-Please note: The docker-compose deployment examples that lived in this directory have been moved over to the
-[opencloud-compose](https://github.com/opencloud-eu/opencloud-compose) repository.
+
+- [compose](compose) - podman-compose / docker compose file and a Quadlet
+  unit for rootless podman with systemd.
+- [bare-metal-simple](bare-metal-simple) - minimal bare metal install
+  with a reverse proxy.

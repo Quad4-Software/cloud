@@ -1,13 +1,13 @@
-# OpenCloud Contribution Guidelines
+# Quad4 Cloud Contribution Guidelines
 
-First, thank you for taking the time to read this and your interest in contributing to OpenCloud!
+First, thank you for taking the time to read this and your interest in contributing to Quad4 Cloud!
 
-The following is a set of guidelines suitable to most of the projects hosted in the [OpenCloud Organization](https://github.com/opencloud-eu).
+The following is a set of guidelines suitable to most of the projects hosted in the [Quad4 Cloud Organization](https://github.com/opencloud-eu).
 These are mostly guidelines, not rules.
 
-Use your best judgment and feel free to propose changes to this document in a [pull request](https://github.com/opencloud-eu/opencloud/pulls).
+Use your best judgment and feel free to propose changes to this document in a [pull request](https://github.com/Quad4-Software/cloud/pulls).
 
-For simplicity reasons, this document mostly refers to the [opencloud repository](https://www.github.com/opencloud-eu/opencloud),
+For simplicity reasons, this document mostly refers to the [quad4 repository](https://www.github.com/Quad4-Software/cloud),
 but it should be easily transferable to other (sub)projects.
 
 #### Table Of Contents
@@ -15,8 +15,8 @@ but it should be easily transferable to other (sub)projects.
 [I don't want to read this whole thing, I just have a question](#i-dont-want-to-read-this-whole-thing-i-just-have-a-question)
 
 [What to know before getting started](#what-to-know-before-getting-started)
-*   [OpenCloud is hosted on GitHub](#opencloud-is-hosted-on-github)
-*   [OpenCloud Company, Engineering Partners and Community](#opencloud-company-engineering-partners-and-community)
+*   [Quad4 Cloud is hosted on GitHub](#quad4-is-hosted-on-github)
+*   [Quad4 Cloud Company, Engineering Partners and Community](#quad4-company-engineering-partners-and-community)
 *   [Licensing and CLA](#licensing-and-cla)
 
 [How to Contribute](#how-to-contribute)
@@ -40,22 +40,22 @@ but it should be easily transferable to other (sub)projects.
 
 > **Note:** Please don't file an issue to ask a question. You'll get faster results by using the resources below.
 
-For general questions, please refer to [OpenCloud's FAQs](https://docs.opencloud.eu/docs/admin/resources/faq/) or check the [project page](https://github.com/opencloud-eu) for communication channels.
+For general questions, please refer to [Quad4 Cloud's FAQs](https://github.com/Quad4-Software/cloud/docs/admin/resources/faq/) or check the [project page](https://github.com/opencloud-eu) for communication channels.
 
 ## What to know before getting started
 
-### OpenCloud is hosted on GitHub
+### Quad4 Cloud is hosted on GitHub
 
-To effectively contribute to OpenCloud, you need a GitHub account. You can get that for free at [GitHub](https://github.com/join). You can find howtos on the internet, for example, [here](https://www.wikihow.com/Create-an-Account-on-GitHub).
+To effectively contribute to Quad4 Cloud, you need a GitHub account. You can get that for free at [GitHub](https://github.com/join). You can find howtos on the internet, for example, [here](https://www.wikihow.com/Create-an-Account-on-GitHub).
 
 For other ways of contributing, for example, with translations, other systems require you to have an account as well, for example [Transifex](https://www.transifex.com).
 
-The OpenCloud project follows the strict GitHub workflow of development as briefly [described here](https://guides.github.com/introduction/flow/).
+The Quad4 Cloud project follows the strict GitHub workflow of development as briefly [described here](https://guides.github.com/introduction/flow/).
 
-### OpenCloud Company, Engineering Partners and Community
+### Quad4 Cloud Company, Engineering Partners and Community
 
-OpenCloud is largely created by developers who are employed by the [OpenCloud company](https://opencloud.eu), which is located in Germany.
-It is providing support for OpenCloud for customers mainly in the EU. In addition, there are engineering partners who also work full-time on OpenCloud related code, for example, on the component [REVA](https://github.com/opencloud-eu/reva/).
+Quad4 Cloud is largely created by developers who are employed by the [Quad4 Cloud company](https://quad4.io), which is located in Germany.
+It is providing support for Quad4 Cloud for customers mainly in the EU. In addition, there are engineering partners who also work full-time on Quad4 Cloud related code, for example, on the component [REVA](https://github.com/opencloud-eu/reva/).
 
 Because of that fact, the pace that the development is moving forward is sometimes high for people who are not willing and/or able to spend a comparable amount of time to contribute.
 Even though this can be a challenge, it should not scare anybody away. Here is our clear commitment that we feel honored by everybody who is interested in our work and improves it, no matter how big the contribution might be.
@@ -64,7 +64,7 @@ We as the full-time devs from either organization are doing our best to listen, 
 
 ### Licensing and CLA
 
- There is *no CLA* required for any of the public code of OpenCloud.
+ There is *no CLA* required for any of the public code of Quad4 Cloud.
 
 ## How to Contribute
 
@@ -73,19 +73,19 @@ There are many ways to contribute to open source projects, and all are equally v
 ### Help spreading the word
 
 This way to contribute to the project cannot be overestimated:
-People who talk about their experience with OpenCloud and help others with that are the key to the success of the project.
+People who talk about their experience with Quad4 Cloud and help others with that are the key to the success of the project.
 
-There are too many ways of doing that to line them up here, but examples are answering questions in any social media or in the [OpenCloud Matrix channel](https://matrix.to/#/#opencloud:matrix.org), writing blog posts etc. pp.
+There are too many ways of doing that to line them up here, but examples are answering questions in any social media or in the [Quad4 Cloud Matrix channel](https://matrix.to/#/#quad4:matrix.org), writing blog posts etc. pp.
 
 There is no formal guideline to this, just do it :-)
 
 ### Reporting Bugs
 
-This section guides you through submitting a bug report for OpenCloud. Following these guidelines help maintainers and the community understand your report :pencil:,
+This section guides you through submitting a bug report for Quad4 Cloud. Following these guidelines help maintainers and the community understand your report :pencil:,
 reproduce the behavior :computer: :computer:, and find related reports :mag_right:.
 
 Before creating bug reports, please check [this list](#before-submitting-a-bug-report) as you might find out that you don't need to create one.
-When you are creating a bug report, please [include as many details as possible](#how-to-submit-a-good-bug-report). Fill out [the required template](https://github.com/opencloud-eu/opencloud/issues/new?Type%3ABug&template=bug_report.md), the information it asks for helps to resolve issues faster.
+When you are creating a bug report, please [include as many details as possible](#how-to-submit-a-good-bug-report). Fill out [the required template](https://github.com/Quad4-Software/cloud/issues/new?Type%3ABug&template=bug_report.md), the information it asks for helps to resolve issues faster.
 
 > **Note:** If you find a **Closed** issue that seems like it is the same thing that you're experiencing, open a new issue and include a link to the original issue in the body of your new one. If you have permission to reopen the issue, feel free to do so.
 
@@ -97,12 +97,12 @@ When you are creating a bug report, please [include as many details as possible]
 
 #### How to Submit A (Good) Bug Report
 
-Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). After you've determined [which repository](https://github.com/opencloud-eu) your bug is related to, create an issue on that repository and provide the following information by filling in [the template](https://github.com/opencloud-eu/opencloud/issues/new?Type%3ABug&template=bug_report.md).
+Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/). After you've determined [which repository](https://github.com/opencloud-eu) your bug is related to, create an issue on that repository and provide the following information by filling in [the template](https://github.com/Quad4-Software/cloud/issues/new?Type%3ABug&template=bug_report.md).
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
 *   **Use a clear and descriptive title** for the issue to identify the problem.
-*   **Describe the exact steps which reproduce the problem** in as many details as possible. Start with describing, from a user perspective, what you tried to achieve, i.e. "I want to share some pictures with Grandma". When listing steps, **don't just say what you did, but explain how you did it**. For example, if you uploaded a file to OpenCloud, say which client you used, which way of uploading you chose, if the name was special somehow and how big it was.
+*   **Describe the exact steps which reproduce the problem** in as many details as possible. Start with describing, from a user perspective, what you tried to achieve, i.e. "I want to share some pictures with Grandma". When listing steps, **don't just say what you did, but explain how you did it**. For example, if you uploaded a file to Quad4 Cloud, say which client you used, which way of uploading you chose, if the name was special somehow and how big it was.
 *   **Provide specific examples to demonstrate the steps**. Include links to files or GitHub projects, or copy/pasteable snippets, which you use in those examples. If you're providing snippets in the issue, use [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
 *   **Describe the behavior you observed after following the steps** and point out what exactly is the problem with that behavior.
 *   **Explain which behavior you expected to see instead and why.**
@@ -113,24 +113,24 @@ Explain the problem and include additional details to help maintainers reproduce
 Provide more context by answering these questions:
 
 *   **Did the problem start happening recently** (e.g. after updating to a new version) or was this always a problem?
-*   If the problem started happening recently, **can you reproduce the problem in an older version?** What's the most recent version in which the problem doesn't happen? You can find more information about how to set up in the [Getting Started guide](https://docs.opencloud.eu/docs/admin/getting-started).
+*   If the problem started happening recently, **can you reproduce the problem in an older version?** What's the most recent version in which the problem doesn't happen? You can find more information about how to set up in the [Getting Started guide](https://github.com/Quad4-Software/cloud/docs/admin/getting-started).
 *   **Can you reliably reproduce the issue?** If not, provide details about how often the problem happens and under which conditions it normally happens.
 
 Include details about your configuration and environment as asked for in the template.
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for OpenCloud, including completely new features and minor improvements to existing functionality.
+This section guides you through submitting an enhancement suggestion for Quad4 Cloud, including completely new features and minor improvements to existing functionality.
 Following these guidelines help maintainers and the community understand your suggestion :pencil: and find related suggestions :mag_right:.
 
 Before creating enhancement suggestions, please check [this list](#before-submitting-an-enhancement-suggestion) as you might find out that you don't need to create one.
 When you are creating an enhancement suggestion, please [include as many details as possible](#how-to-submit-a-good-enhancement-suggestion).
-Fill in [the template](https://github.com/opencloud-eu/opencloud/issues/new?template=feature_request.md), including the steps that you imagine you would take if the feature you're requesting existed.
+Fill in [the template](https://github.com/Quad4-Software/cloud/issues/new?template=feature_request.md), including the steps that you imagine you would take if the feature you're requesting existed.
 
 #### Before Submitting An Enhancement Suggestion
 
 *   **Check if there's already an extension or other component that provides that enhancement, even differently.**
-*   **Perform a [cursory search](https://github.com/search?q=+is%3Aissue+user%3Aopencloud)** to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one. Feel free to use the GitHub emojis to indicate that you are in favor of an enhancement request.
+*   **Perform a [cursory search](https://github.com/search?q=+is%3Aissue+user%3Aquad4)** to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one. Feel free to use the GitHub emojis to indicate that you are in favor of an enhancement request.
 
 #### How to Submit A (Good) Enhancement Suggestion
 
@@ -139,28 +139,28 @@ Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com
 *   **Use a clear and descriptive title** for the issue to identify the suggestion.
 *   **Provide a step-by-step description of the suggested enhancement** in as many details as possible.
 *   **Provide specific examples to demonstrate the steps**. Include copy/pasteable snippets which you use in those examples, as [Markdown code blocks](https://help.github.com/articles/markdown-basics/#multiple-lines).
-*   **Explain why this enhancement would be useful** to most OpenCloud users.
+*   **Explain why this enhancement would be useful** to most Quad4 Cloud users.
 *   **List some other projects or products where this enhancement exists.**
 
 ### Your First Code Contribution
 
-Unsure where to begin contributing to OpenCloud? You can start by looking through these `Needs-help` issues:
+Unsure where to begin contributing to Quad4 Cloud? You can start by looking through these `Needs-help` issues:
 
-*   The [Good first issue](https://github.com/opencloud-eu/opencloud/labels/Type%3Agood-first-issue) label marks good items to start with.
-*   The [Feature Request](https://github.com/opencloud-eu/opencloud/issues?q=state%3Aopen%20label%3AType%3AFeature-Request) label lists features the community would like to see implemented.
+*   The [Good first issue](https://github.com/Quad4-Software/cloud/labels/Type%3Agood-first-issue) label marks good items to start with.
+*   The [Feature Request](https://github.com/Quad4-Software/cloud/issues?q=state%3Aopen%20label%3AType%3AFeature-Request) label lists features the community would like to see implemented.
 
 It is fine to pick one of the lists following personal preference.
 While not perfect, the number of comments is a reasonable proxy for the impact a given change will have.
 
-To find out how to set up OpenCloud for local development, please refer to the [Developer Documentation](https://docs.opencloud.eu/docs/dev/web/getting-started) for the web side, and the general server [README](https://github.com/opencloud-eu/opencloud/blob/main/README.md) for backend setup. Both contain information that will come in handy when starting to work on the project.
+To find out how to set up Quad4 Cloud for local development, please refer to the [Developer Documentation](https://github.com/Quad4-Software/cloud/docs/dev/web/getting-started) for the web side, and the general server [README](https://github.com/Quad4-Software/cloud/blob/main/README.md) for backend setup. Both contain information that will come in handy when starting to work on the project.
 
 ### Pull Requests
 
-All contributions to OpenClouds projects use so-called pull requests following the [GitHub PR workflow](https://guides.github.com/introduction/flow/).
+All contributions to Quad4 Clouds projects use so-called pull requests following the [GitHub PR workflow](https://guides.github.com/introduction/flow/).
 
 Please follow these steps to have your contribution considered by the maintainers:
 
-*   Follow all instructions in [the template](https://github.com/opencloud-eu/opencloud/blob/main/.github/pull_request_template.md)
+*   Follow all instructions in [the template](https://github.com/Quad4-Software/cloud/blob/main/.github/pull_request_template.md)
 *   Follow the [styleguide](#styleguide) where applicable
 *   After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated. A maintainer will re-run the status check for you. If we conclude that the failure was a false positive, then we will open an issue to track that problem with our status check suite.</details>
 
@@ -168,20 +168,20 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ### Documentation Contributions
 
-OpenCloud is very proud of the documentation it has, which is the work of a great team of people. Of course, also the documentation is open to contributions.
+Quad4 Cloud is very proud of the documentation it has, which is the work of a great team of people. Of course, also the documentation is open to contributions.
 
 You find more guidance in the [Documentation Repo](https://github.com/opencloud-eu/docs) on how to get started.
 
 ### Internationalization
 
-Our projects are getting translated into many languages to allow people from all over the world to use OpenCloud in their native language.
-For translations, OpenCloud uses [Transifex](https://www.transifex.com) as a community-based collaboration platform for internationalization.
+Our projects are getting translated into many languages to allow people from all over the world to use Quad4 Cloud in their native language.
+For translations, Quad4 Cloud uses [Transifex](https://www.transifex.com) as a community-based collaboration platform for internationalization.
 
-For contributions please refer to the [Transifex Resources](https://www.transifex.com/resources/) to learn how to improve OpenClouds translations there.
+For contributions please refer to the [Transifex Resources](https://www.transifex.com/resources/) to learn how to improve Quad4 Clouds translations there.
 
 ## Styleguide
 
-To keep up with a consistent code and tooling landscape, some OpenCloud modules maintain styleguide for contributions.
+To keep up with a consistent code and tooling landscape, some Quad4 Cloud modules maintain styleguide for contributions.
 It is mandatory to follow them in contributions.
 
 ### Commit Messages
@@ -211,10 +211,10 @@ Also, consulting documentation like [Effective Go](https://golang.org/doc/effect
 
 ### Issue and Pull Request Labels
 
-This section lists the labels we use to help us track and manage issues and pull requests. Most labels are used across all OpenCloud repositories, but some are specific.
+This section lists the labels we use to help us track and manage issues and pull requests. Most labels are used across all Quad4 Cloud repositories, but some are specific.
 
 [GitHub search](https://help.github.com/articles/searching-issues/) makes it easy to use labels for finding groups of issues or pull requests you're interested in.
-To help you find issues and pull requests, each label can be used in search links for finding open items with that label in the OpenCloud repositories.
+To help you find issues and pull requests, each label can be used in search links for finding open items with that label in the Quad4 Cloud repositories.
 
 The labels are loosely grouped by their purpose, but it's not required that every issue has a label from every group or that an issue can't have more than one label from the same group.
 
@@ -267,4 +267,4 @@ Important for browser-dependent web issues. It specifies the browser that shows 
 
 #### Early-Adopter
 
-Tags issues reported by one of the OpenCloud early adopters, i.e. customers and users who start using OpenCloud before its general availability.
+Tags issues reported by one of the Quad4 Cloud early adopters, i.e. customers and users who start using Quad4 Cloud before its general availability.

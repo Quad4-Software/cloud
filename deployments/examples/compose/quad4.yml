@@ -1,0 +1,32 @@
+# Quad4 Cloud with podman-compose or docker compose.
+# podman compose -f quad4.yml up -d
+services:
+  quad4:
+    image: ghcr.io/quad4-software/cloud:latest
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
+    environment:
+      OC_URL: https://localhost:9200
+      OC_INSECURE: "true" # self-signed cert for local testing only
+      IDM_ADMIN_PASSWORD: admin # change before exposing
+      # External OIDC (embedded IDP is used when unset):
+      # PROXY_OIDC_ISSUER: https://idp.example.com/realms/quad4
+      # PROXY_OIDC_REWRITE_WELLKNOWN: "true"
+      # WEB_OIDC_CLIENT_ID: quad4-web
+      # PROXY_AUTOPROVISION_ACCOUNTS: "true"
+      # PROXY_USER_OIDC_CLAIM: preferred_username
+      # S3 storage backend (local posix storage is used when unset):
+      # STORAGE_USERS_DRIVER: decomposeds3
+      # STORAGE_USERS_DECOMPOSEDS3_ENDPOINT: https://s3.example.com
+      # STORAGE_USERS_DECOMPOSEDS3_REGION: us-east-1
+      # STORAGE_USERS_DECOMPOSEDS3_BUCKET: quad4
+      # STORAGE_USERS_DECOMPOSEDS3_ACCESS_KEY: change-me
+      # STORAGE_USERS_DECOMPOSEDS3_SECRET_KEY: change-me
+    volumes:
+      - quad4-config:/etc/quad4
+      - quad4-data:/var/lib/quad4
+
+volumes:
+  quad4-config:
+  quad4-data:

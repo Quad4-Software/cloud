@@ -1,0 +1,21 @@
+# Quadlet unit for Quad4 Cloud (rootless podman + systemd).
+# Install: copy to ~/.config/containers/systemd/quad4.container
+# then: systemctl --user daemon-reload && systemctl --user start quad4
+[Unit]
+Description=Quad4 Cloud
+After=network-online.target
+
+[Container]
+Image=ghcr.io/quad4-software/cloud:latest
+PublishPort=9200:9200
+Volume=quad4-config:/etc/quad4
+Volume=quad4-data:/var/lib/quad4
+Environment=OC_URL=https://localhost:9200
+Environment=OC_INSECURE=true
+Environment=IDM_ADMIN_PASSWORD=admin
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
