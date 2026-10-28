@@ -56,7 +56,7 @@ type UploadSessionLister interface {
 // upload to the resource it produced, read as the upload's executant. The tus data path is
 // authenticated by a transfer token that carries no user identity, so a caller there cannot stat
 // the resource itself; this lets the storage driver, which knows the upload's executant, do it.
-// https://github.com/Quad4-Software/cloud/issues/2409
+// https://github.com/opencloud-eu/opencloud/issues/2409
 type UploadSessionResolver interface {
 	// ResolveUpload stats the resource produced by the given finished upload and returns it
 	// together with a context carrying the upload's executant identity, so the caller can derive
