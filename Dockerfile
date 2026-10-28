@@ -1,48 +1,56 @@
-# Please use this Dockerfile only if
-# you want to build an image from source without
-# pnpm and Go installed on your dev machine.
+# syntax=docker/dockerfile:1
+# Quad4 Cloud container image.
+#
+# Build locally with podman:
+#   podman build -t quad4-cloud:dev .
+#
+# Multi-stage build on Chainguard wolfi-base. The final image runs as the
+# unprivileged nonroot user (uid 65532).
 
-# You can build OpenCloud using this Dockerfile
-# by running following command:
-# `docker build -t opencloud/opencloud:custom .`
+FROM cgr.dev/chainguard/wolfi-base:latest AS nodebuild
 
-# In most other cases you might want to run the
-# following command instead:
-# `make -C opencloud dev-docker`
-# It will build a `opencloud/opencloud:dev` image for you
-# and use your local pnpm and Go caches and therefore
-# is a lot faster than the build steps below.
+RUN apk add --no-cache bash curl git make nodejs-24 pnpm-11
 
+WORKDIR /src
+COPY ./ /src/
 
-FROM quay.io/opencloudeu/nodejs-ci:24 AS generate
-
-COPY ./ /opencloud/
-
-WORKDIR /opencloud/opencloud
 RUN make node-generate-prod
 
-FROM quay.io/opencloudeu/golang-ci:1.26 AS build
+FROM cgr.dev/chainguard/wolfi-base:latest AS build
 
-COPY --from=generate /opencloud /opencloud
+RUN apk add --no-cache bash build-base git go-1.26 libvips-dev make pkgconf
 
-WORKDIR /opencloud/opencloud
-RUN make go-generate build ENABLE_VIPS=true
+WORKDIR /src
+COPY --from=nodebuild /src /src
 
-FROM alpine:3.24
+ARG VERSION=dev
+ARG EDITION=dev
+RUN make -C quad4 go-generate release-linux-docker-$(go env GOARCH) ENABLE_VIPS=true VERSION=${VERSION} EDITION=${EDITION}
 
-RUN apk add --no-cache attr ca-certificates curl mailcap tree vips && \
-	echo 'hosts: files dns' >| /etc/nsswitch.conf
+FROM cgr.dev/chainguard/wolfi-base:latest
 
-LABEL maintainer="OpenCloud GmbH <devops@opencloud.eu>" \
-        org.opencontainers.image.title="OpenCloud" \
-        org.opencontainers.image.vendor="OpenCloud GmbH" \
-        org.opencontainers.image.authors="OpenCloud GmbH" \
-        org.opencontainers.image.description="OpenCloud is a modern file-sync and share platform" \
-        org.opencontainers.image.licenses="Apache-2.0" \
-        org.opencontainers.image.documentation="https://github.com/opencloud-eu/opencloud" \
-        org.opencontainers.image.source="https://github.com/opencloud-eu/opencloud"
+RUN apk add --no-cache attr ca-certificates curl mailcap tree libvips && \
+	echo 'hosts: files dns' >| /etc/nsswitch.conf && \
+	mkdir -p /etc/quad4 /var/lib/quad4 && \
+	chown -R nonroot:nonroot /etc/quad4 /var/lib/quad4
 
-ENTRYPOINT ["/usr/bin/opencloud"]
+LABEL org.opencontainers.image.title="Quad4 Cloud" \
+	org.opencontainers.image.vendor="Quad4" \
+	org.opencontainers.image.authors="Quad4" \
+	org.opencontainers.image.description="Quad4 Cloud is a modern file-sync and share platform" \
+	org.opencontainers.image.licenses="Apache-2.0" \
+	org.opencontainers.image.documentation="https://github.com/Quad4-Software/cloud" \
+	org.opencontainers.image.source="https://github.com/Quad4-Software/cloud" \
+	org.opencontainers.image.url="https://quad4.io"
+
+USER nonroot
+
+VOLUME ["/etc/quad4", "/var/lib/quad4"]
+
+EXPOSE 9200
+
+ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 CMD ["server"]
 
-COPY --from=build /opencloud/opencloud/bin/opencloud /usr/bin/opencloud
+COPY --from=build /src/quad4/dist/binaries/quad4-linux-* /usr/bin/quad4
+COPY --chmod=0755 entrypoint.sh /usr/bin/entrypoint.sh
