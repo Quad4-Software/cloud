@@ -1,10 +1,13 @@
 - [Upgrading OpenSearch Go Client](#upgrading-opensearch-go-client)
   - [Upgrading to >= 5.0.0](#upgrading-to->=-5.0.0)
     - [Partial failure errors (Config.Errors)](#partial-failure-errors-configerrors)
-    - [Default Router Injection in v5preview](#default-router-injection-in-v5preview)
+    - [Default Router Injection in v5](#default-router-injection-in-v5)
     - [DiscoverNodes() blocking semantics](#discovernodes-blocking-semantics)
     - [opensearchtransport.Route interface gained OpID()](#opensearchtransportroute-interface-gained-opid)
     - [Response.Body becomes a method](#responsebody-becomes-a-method)
+  - [Upgrading to >= 4.8.0](#upgrading-to->=-4.8.0)
+    - [v5preview/opensearchapi/ package removed](#v5previewopensearchapi-package-removed)
+    - [Perform and Stream rewrite the caller's \*http.Request on the first attempt only](#perform-and-stream-rewrite-the-callers-httprequest-on-the-first-attempt-only)
   - [Upgrading to >= 4.7.0](#upgrading-to->=-4.7.0)
     - [opensearch.Request interface signature change](#opensearchrequest-interface-signature-change)
     - [Path segment values are percent-encoded](#path-segment-values-are-percent-encoded)
@@ -56,9 +59,9 @@ The recommended call-site pattern is a `for`/`switch` over `opensearchapi.Errors
 
 **Where to read more:**
 
-- [`v5preview/opensearchapi/README.md`](v5preview/opensearchapi/README.md) - full v5preview usage guide for these errors, including the type-switch pattern and the rationale for preferring it over `errors.As`/`Has`.
-- [`guides/error_handling.md`](guides/error_handling.md) - cross-version best-practices guide with v4 and v5preview examples side-by-side.
-- [`v5preview/opensearchapi/MIGRATING.md`](v5preview/opensearchapi/MIGRATING.md) - v4 -> v5preview surface delta.
+- [v5 `opensearchapi` README](https://github.com/opensearch-project/opensearch-go/blob/v5.0.0/opensearchapi/README.md) - full v5 usage guide for these errors, including the type-switch pattern and the rationale for preferring it over `errors.As`/`Has`.
+- [`guides/error_handling.md`](guides/error_handling.md) - best-practices guide for the v4 surface.
+- [v4 to v5 migration guide](https://github.com/opensearch-project/opensearch-go/blob/v5.0.0/opensearchapi/UPGRADING_V4_TO_V5.md) - v4 -> v5 surface delta.
 
 **Error types in v4 `opensearchapi/`** (the upgrade source):
 
@@ -71,24 +74,24 @@ The recommended call-site pattern is a `for`/`switch` over `opensearchapi.Errors
 | `*MSearchErrors`         | `MSearch` when 2+ wrappers fire                                                                                                     | `Unwrap() []error` (multi-error contract)                                 |
 | `*MSearchTemplateErrors` | `MSearchTemplate` when 2+ wrappers fire                                                                                             | `Unwrap() []error`                                                        |
 
-The v5preview surface ports the same model with internal field types regenerated from the [OpenSearch API specification](https://github.com/opensearch-project/opensearch-api-specification) ([see MIGRATING.md](v5preview/opensearchapi/MIGRATING.md#partial-failure-type-renames) for the table).
+The v5 surface ports the same model with internal field types regenerated from the [OpenSearch API specification](https://github.com/opensearch-project/opensearch-api-specification) ([see the migration guide](https://github.com/opensearch-project/opensearch-go/blob/v5.0.0/opensearchapi/UPGRADING_V4_TO_V5.md#partial-failure-type-renames) for the table).
 
-### Default Router Injection in v5preview
+### Default Router Injection in v5
 
-`v5preview/opensearchapi.NewClient` (and `NewDefaultClient`) now inject [`opensearchtransport.NewDefaultRouter`](https://pkg.go.dev/github.com/opensearch-project/opensearch-go/v4/opensearchtransport#NewDefaultRouter) when the caller leaves `config.Client.Router` nil. The `OPENSEARCH_GO_ROUTER` environment variable acts as an opt-out:
+v5's `opensearchapi.NewClient` (and `NewDefaultClient`) inject [`opensearchtransport.NewDefaultRouter`](https://pkg.go.dev/github.com/opensearch-project/opensearch-go/v5/opensearchtransport#NewDefaultRouter) when the caller leaves `config.Client.Router` nil. The `OPENSEARCH_GO_ROUTER` environment variable acts as an opt-out:
 
-| `OPENSEARCH_GO_ROUTER` | v4                                                  | v5preview                                                   |
+| `OPENSEARCH_GO_ROUTER` | v4                                                  | v5                                                          |
 | ---------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
 | unset                  | no Router, no auto-discovery                        | **default Router injected**, no auto-discovery              |
 | `true` / `1`           | default Router (transport layer), auto-discovery on | **default Router injected, auto-discovery on**              |
 | `false` / `0`          | no Router, no auto-discovery                        | **injection skipped (Router stays nil)**, no auto-discovery |
 | unparseable            | no Router, no auto-discovery                        | default Router injected, no auto-discovery                  |
 
-Truthy and falsy semantics are preserved end-to-end: a v4 caller running with `OPENSEARCH_GO_ROUTER=true` keeps auto-discovery when migrating to v5preview, and `=false` opts out of both Router injection and auto-discovery. A caller-supplied `DiscoverNodesOnStart` value always wins over the env-var-driven side-effect.
+Truthy and falsy semantics are preserved end-to-end: a v4 caller running with `OPENSEARCH_GO_ROUTER=true` keeps auto-discovery when migrating to v5, and `=false` opts out of both Router injection and auto-discovery. A caller-supplied `DiscoverNodesOnStart` value always wins over the env-var-driven side-effect.
 
 v4's `opensearchapi.NewClient` is unchanged: it doesn't auto-inject a Router, so existing v4 code keeps its current behavior.
 
-For full usage and rationale see [`v5preview/opensearchapi/README.md` Default Router Injection](v5preview/opensearchapi/README.md#default-router-injection).
+For full usage and rationale see the [v5 `opensearchapi` README, Default Router Injection](https://github.com/opensearch-project/opensearch-go/blob/v5.0.0/opensearchapi/README.md#default-router-injection).
 
 ### `DiscoverNodes()` blocking semantics
 
@@ -154,6 +157,77 @@ body, err := io.ReadAll(resp.Body())
 raw := resp.RawBody()
 ```
 
+## Upgrading to >= 4.8.0
+
+### `v5preview/opensearchapi/` package removed
+
+**BREAKING**: `github.com/opensearch-project/opensearch-go/v4/v5preview/opensearchapi` and its `plugins/` subpackages are removed. The generated API surface they previewed shipped as `github.com/opensearch-project/opensearch-go/v5/opensearchapi` in 5.0.0 and is maintained there.
+
+The v5 surface is not identical to the last v5preview release, so moving over takes more than an import-path edit. For example, v5 multi-index `Req` types use `Indices`, where v5preview used `Index`. Follow the [v4 to v5 migration guide](https://github.com/opensearch-project/opensearch-go/blob/v5.0.0/opensearchapi/UPGRADING_V4_TO_V5.md) for the full delta.
+
+Before:
+
+```go
+import "github.com/opensearch-project/opensearch-go/v4/v5preview/opensearchapi"
+```
+
+After, either move to v5:
+
+```go
+import "github.com/opensearch-project/opensearch-go/v5/opensearchapi"
+```
+
+or stay on v4 and use the hand-written package:
+
+```go
+import "github.com/opensearch-project/opensearch-go/v4/opensearchapi"
+```
+
+If you can do neither yet, pin `github.com/opensearch-project/opensearch-go/v4` to `v4.7.3`, the last release that ships `v5preview/`.
+
+### `Perform` and `Stream` rewrite the caller's `*http.Request` on the first attempt only
+
+Previously the transport rewrote the request you handed it on every attempt: it set `URL.Scheme`, `URL.Host`, and `URL.Path` to the selected node (prepending any base path), injected auth and signature headers, and could append `max_concurrent_shard_requests` to `URL.RawQuery`. After a retried call your request reflected the last node tried.
+
+Now only the first attempt rewrites your request; retries and the seed-URL fallback work on copies. Your request therefore reflects the first node tried, which on a retried call is not the node that served the response. Copying on retry fixes a data race: net/http encodes HTTP/2 request headers on a goroutine that can outlive a cancelled `RoundTrip`, so rewriting a request that goroutine still holds raced. The first attempt is safe to rewrite in place because nothing holds it yet, which keeps the common single-attempt path free of the copy.
+
+If you were reading the rewritten request to discover which node served a call, read it from the router observer instead. `OnRoute` fires once per routing decision and names the node chosen, so it reports every attempt rather than just the one your request happens to reflect. It requires a configured `Router`:
+
+```go
+// Before: inspect the request after the call.
+_, _ = client.Stream(req)
+host := req.URL.Host // before: the last node tried; now: the first node tried
+
+// After: the observer reports the node actually contacted, on every attempt.
+type myObserver struct{ opensearchtransport.BaseConnectionObserver }
+
+func (myObserver) OnRoute(event opensearchtransport.RouteEvent) {
+    nodeURL := event.Selected.URL
+}
+```
+
+Requests built and sent normally need no changes.
+
+### Transport errors are wrapped with the request method and URL
+
+Errors returned from `Perform` and `Stream` now begin with the method and a credential-redacted URL of the request that failed, followed by the original error. This applies to the errors the transport itself produces, such as network failures, timeouts, and `io.EOF`. HTTP error responses (4xx/5xx) and body-decode errors are unaffected.
+
+Before:
+
+```
+context deadline exceeded
+```
+
+After:
+
+```
+"GET" "https://node1.example:9200/_search": context deadline exceeded
+```
+
+The URL has its userinfo, query string, and fragment removed before it goes into the message, so a credential cannot leak into a log or an error tracker: userinfo can carry basic-auth credentials, and the query string can carry a SigV4 signature or an API key. Scheme, host, and path remain, which is enough to identify the request.
+
+The wrap uses `%w`, so `errors.Is` and `errors.As` still reach the original cause; code that inspects errors that way needs no change. Only the text of `err.Error()` changed. If you alert on transport error messages, a rule that compares the whole string or anchors to the start of it will stop matching, while a substring match on the cause such as `context deadline exceeded` still matches. Move those checks to `errors.Is`/`errors.As`, or match the cause substring instead of the full message.
+
 ## Upgrading to >= 4.7.0
 
 ### `opensearch.Request` interface signature change
@@ -216,6 +290,8 @@ If your code intentionally passes percent-encoded values, decode them with `url.
 
 ### `v5preview/opensearchapi/` package — v5 preview API surface
 
+> This package was removed in 4.8.0; see [`v5preview/opensearchapi/` package removed](#v5previewopensearchapi-package-removed). The links below point at the v4.7.3 tree.
+
 This release introduces a new `v5preview/opensearchapi/` package alongside the existing top-level `opensearchapi/` package. The new package is the **preview of the v5 API in the v4 branch** and is generated from the [OpenSearch API specification](https://github.com/opensearch-project/opensearch-api-specification) by `cmd/osgen`. It deliberately reuses the package name `opensearchapi` so that callers who migrate during the v4 branch only need to change the import path at v5 release time -- every reference in code (e.g. `opensearchapi.IndexReq`, `opensearchapi.NewClient`) stays the same.
 
 **Migration Considerations:**
@@ -238,7 +314,7 @@ client, err := opensearchapi.NewClient(opensearchapi.Config{...})
 - Multi-index `Req` types use `Index []string` (the spec spelling); v4's hand-written `Indices` is renamed.
 - Plugin APIs (k-NN, ML, Security, ISM, etc.) live in `v5preview/opensearchapi/plugins/`.
 
-For the full v4 -> v5preview surface delta and the optional forward-compatible `replace` directive, see [`v5preview/opensearchapi/MIGRATING.md`](v5preview/opensearchapi/MIGRATING.md). For everyday usage (errors, routing, response handling) see [`v5preview/opensearchapi/README.md`](v5preview/opensearchapi/README.md).
+For the full v4 -> v5preview surface delta and the optional forward-compatible `replace` directive, see [`v5preview/opensearchapi/MIGRATING.md`](https://github.com/opensearch-project/opensearch-go/blob/v4.7.3/v5preview/opensearchapi/MIGRATING.md). For everyday usage (errors, routing, response handling) see [`v5preview/opensearchapi/README.md`](https://github.com/opensearch-project/opensearch-go/blob/v4.7.3/v5preview/opensearchapi/README.md).
 
 ## Upgrading to >= 4.0.0
 

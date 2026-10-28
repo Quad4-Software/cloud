@@ -631,8 +631,6 @@ github.com/go-task/slim-sprig
 # github.com/go-task/slim-sprig/v3 v3.0.0
 ## explicit; go 1.20
 github.com/go-task/slim-sprig/v3
-# github.com/go-test/deep v1.1.0
-## explicit; go 1.16
 # github.com/go-viper/mapstructure/v2 v2.5.0
 ## explicit; go 1.18
 github.com/go-viper/mapstructure/v2
@@ -1360,6 +1358,11 @@ github.com/opencloud-eu/icap-client
 # github.com/opencloud-eu/libre-graph-api-go v1.0.9-0.20261016073229-17ed3d5dd346
 ## explicit; go 1.23
 github.com/opencloud-eu/libre-graph-api-go
+# github.com/opencloud-eu/opencloud v1.1.0
+## explicit; go 1.24.1
+github.com/opencloud-eu/opencloud/pkg/log
+github.com/opencloud-eu/opencloud/pkg/natsjsregistry
+github.com/opencloud-eu/opencloud/pkg/registry
 # github.com/opencloud-eu/reva/v2 v2.52.1
 ## explicit; go 1.26.0
 github.com/opencloud-eu/reva/v2/cmd/revad/internal/grace
@@ -1727,8 +1730,8 @@ github.com/opencontainers/go-digest
 ## explicit; go 1.18
 github.com/opencontainers/image-spec/specs-go
 github.com/opencontainers/image-spec/specs-go/v1
-# github.com/opensearch-project/opensearch-go/v4 v4.7.3
-## explicit; go 1.25.9
+# github.com/opensearch-project/opensearch-go/v4 v4.8.1
+## explicit; go 1.26.0
 github.com/opensearch-project/opensearch-go/v4
 github.com/opensearch-project/opensearch-go/v4/errmask
 github.com/opensearch-project/opensearch-go/v4/internal/build
@@ -2056,10 +2059,10 @@ github.com/thejerf/suture/v4
 # github.com/tidwall/gjson v1.19.0
 ## explicit; go 1.23
 github.com/tidwall/gjson
-# github.com/tidwall/match v1.1.1
+# github.com/tidwall/match v1.2.0
 ## explicit; go 1.15
 github.com/tidwall/match
-# github.com/tidwall/pretty v1.2.1
+# github.com/tidwall/pretty v1.2.2
 ## explicit; go 1.16
 github.com/tidwall/pretty
 # github.com/tidwall/sjson v1.2.5
