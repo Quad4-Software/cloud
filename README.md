@@ -1,4 +1,7 @@
-![Quad4 Cloud](quad4_logo.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="quad4-mark-light.png">
+  <img src="quad4-mark.png" alt="Quad4" width="120">
+</picture>
 
 # Quad4 Cloud
 
