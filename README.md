@@ -55,6 +55,48 @@ Configuration lives in `/etc/quad4`, data in `/var/lib/quad4`. All
 settings can also be set via environment variables; see the `env` fields
 in each service's `pkg/config/config.go`.
 
+### Behind a reverse proxy
+
+Set `OC_URL` to the public URL so the issuer in tokens and the
+well-known document match what browsers see:
+
+```console
+-e OC_URL=https://cloud.example.com
+```
+
+After login, the proxy service validates tokens by fetching
+`https://cloud.example.com/.well-known/openid-configuration` and JWKS
+from inside the container. That public name must resolve to something
+the container can reach, which fails on split-horizon DNS or NAT
+hairpin setups and produces a "Not logged in" page after a successful
+login. Two ways to fix it:
+
+Option A, resolve the public name to the internal endpoint:
+
+```console
+podman run --add-host cloud.example.com:host-gateway ...
+```
+
+or in compose:
+
+```yaml
+extra_hosts:
+  - "cloud.example.com=host-gateway"
+```
+
+Option B, fetch discovery from an internally reachable issuer while the
+public well-known document is rewritten for clients:
+
+```console
+-e PROXY_OIDC_ISSUER=https://quad4:9200 \
+-e PROXY_OIDC_REWRITE_WELLKNOWN=true
+```
+
+Use the service name of the container on the shared network (or
+`127.0.0.1` when the reverse proxy runs in the same pod or host
+network). This is the recommended form when the OIDC issuer is an
+external provider reachable only inside the cluster.
+
 ### OpenID Connect
 
 Quad4 Cloud ships an embedded identity provider. To use an external

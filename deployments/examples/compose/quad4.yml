@@ -10,6 +10,13 @@ services:
       OC_URL: https://localhost:9200
       OC_INSECURE: "true" # self-signed cert for local testing only
       IDM_ADMIN_PASSWORD: admin # change before exposing
+      # Behind a reverse proxy: set OC_URL to the public URL and pick
+      # one of the two internal-reachability options from the README.
+      # PROXY_OIDC_ISSUER: https://quad4:9200
+      # PROXY_OIDC_REWRITE_WELLKNOWN: "true"
+      # or extra_hosts below.
+      # extra_hosts:
+      #   - "cloud.example.com=host-gateway"
       # External OIDC (embedded IDP is used when unset):
       # PROXY_OIDC_ISSUER: https://idp.example.com/realms/quad4
       # PROXY_OIDC_REWRITE_WELLKNOWN: "true"
