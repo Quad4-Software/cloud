@@ -10,8 +10,8 @@ import (
 
 const (
 	OpenIDConnectRel = "http://openid.net/specs/connect/1.0/issuer"
-	clientIDProp     = "http://quad4.io/ns/oidc/client_id"
-	scopesProp       = "http://quad4.io/ns/oidc/scopes"
+	clientIDProp     = "http://opencloud.eu/ns/oidc/client_id"
+	scopesProp       = "http://opencloud.eu/ns/oidc/scopes"
 )
 
 type openIDDiscovery struct {

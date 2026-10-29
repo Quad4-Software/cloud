@@ -59,8 +59,8 @@ GET /.well-known/webfinger?resource=https://cloud.quad4.test&rel=http://openid.n
     "href": "https://idp.example.com"
   }],
   "properties": {
-    "http://quad4.io/ns/oidc/client_id": "desktop-client-id",
-    "http://quad4.io/ns/oidc/scopes": ["openid", "profile", "email", "offline_access"]
+    "http://opencloud.eu/ns/oidc/client_id": "desktop-client-id",
+    "http://opencloud.eu/ns/oidc/scopes": ["openid", "profile", "email", "offline_access"]
   }
 }
 ```

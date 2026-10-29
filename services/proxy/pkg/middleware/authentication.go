@@ -391,7 +391,7 @@ func renderDAVExpired(w http.ResponseWriter, permissionID string) error {
 		Exception: "Sabre\\DAV\\Exception\\NotAuthenticated",
 		Message:   "Guest session has expired.",
 		Details: davExpiredDetails{
-			XmlnsQuad4Cloud: "http://quad4.org/ns",
+			XmlnsOpenCloud: "http://opencloud.org/ns",
 			ErrorType:      "session_expired",
 			ShareID:        permissionID,
 		},
@@ -408,7 +408,7 @@ type davExpiredResponse struct {
 }
 
 type davExpiredDetails struct {
-	XmlnsQuad4Cloud string `xml:"xmlns:quad4,attr"`
+	XmlnsOpenCloud string `xml:"xmlns:opencloud,attr"`
 	ErrorType      string `xml:"quad4:error_type"`
 	ShareID        string `xml:"quad4:share_id"`
 }

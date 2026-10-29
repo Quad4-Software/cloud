@@ -42,7 +42,7 @@ type AccountEditLink struct {
 
 // FeedbackLink are the feedback link options
 type FeedbackLink struct {
-	Href        string `json:"href,omitempty" yaml:"href" env:"WEB_OPTION_FEEDBACKLINK_HREF" desc:"Set a target URL for the feedback link. Make sure to prepend it with 'http(s)://'. Defaults to 'https://quad4.io/web-design-feedback'." introductionVersion:"1.0.0"`
+	Href        string `json:"href,omitempty" yaml:"href" env:"WEB_OPTION_FEEDBACKLINK_HREF" desc:"Set a target URL for the feedback link. Make sure to prepend it with 'http(s)://'. Defaults to 'https://github.com/Quad4-Software/cloud/issues'." introductionVersion:"1.0.0"`
 	AriaLabel   string `json:"ariaLabel,omitempty" yaml:"ariaLabel" env:"WEB_OPTION_FEEDBACKLINK_ARIALABEL" desc:"Since the feedback link only has an icon, a screen reader accessible label can be set. The text defaults to 'Quad4 Cloud feedback survey'." introductionVersion:"1.0.0"`
 	Description string `json:"description,omitempty" yaml:"description" env:"WEB_OPTION_FEEDBACKLINK_DESCRIPTION" desc:"For feedbacks, provide any description you want to see as tooltip and as accessible description. Defaults to 'Provide your feedback: We'd like to improve the web design and would be happy to hear your feedback. Thank you! Your Quad4 Cloud team'." introductionVersion:"1.0.0"`
 }
